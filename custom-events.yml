@@ -1,0 +1,366 @@
+version: 1
+destination: docs/custom-events.yml
+
+conventions:
+  event_names: "Use the exact Title Case event name in both Amplitude and Statsig."
+  firing: "Emit after the specified business outcome, not on the initiating click."
+  delivery: "Reuse event_id when retrying or forwarding the same action."
+  properties: "Include common_properties alongside each event properties map."
+  currency: "USD"
+  revenue: "revenue_usd is a number in dollars; forward as revenue only for carries_revenue events."
+  simulation: "Exclude seeded history and forced experiment traffic from live experiment conclusions."
+  privacy: "Exclude passwords, payment details, email addresses, raw search queries, and free-text chat or survey responses."
+  reading: "content_progress_percent measures content position reached, not proof that every preceding word was read."
+  excluded_autocapture: ["Page Views", "Element Clicks", "Raw Form Interactions", "Raw Scroll Events"]
+  implementation_notes: ["Adding to cart persists the selected subscription offer in the checkout draft; no separate cart page is required.", "Record money only on Subscription Payment Completed and Ad Revenue Recorded.", "Checkout, activation, trial conversion, and renewal events must not duplicate revenue.", "Read Article replaces Article Reading Started, Article Reading Completed, and Reading Resumed."]
+
+common_properties:
+  event_id: {"type": "string"}
+  schema_version: {"type": "integer"}
+  occurred_at: {"type": "string", "format": "date-time"}
+  anonymous_id: {"type": "string"}
+  reader_id: {"type": ["string", "null"]}
+  session_id: {"type": "string"}
+  account_state: {"type": "string", "enum": ["anonymous", "registered", "trial", "paid", "canceled", "expired"]}
+  data_origin: {"type": "string", "enum": ["interactive_demo", "seeded_history"]}
+  is_simulated: {"type": "boolean"}
+  is_forced_variant: {"type": "boolean"}
+  demo_run_id: {"type": "string"}
+
+events:
+  Topic Filter Applied:
+    properties:
+      topic_id: {"type": "string"}
+      result_count: {"type": "integer"}
+      discovery_surface: {"type": "string"}
+    fires_at: "TopicFilter, after the topic filter updates the result set."
+    carries_revenue: false
+
+  Author Filter Applied:
+    properties:
+      author_id: {"type": "string"}
+      result_count: {"type": "integer"}
+      discovery_surface: {"type": "string"}
+    fires_at: "AuthorFilter, after the author filter updates the result set."
+    carries_revenue: false
+
+  Search Completed:
+    properties:
+      search_id: {"type": "string"}
+      query_length: {"type": "integer"}
+      result_count: {"type": "integer"}
+      search_scope: {"type": "string"}
+    fires_at: "SearchResults, after a submitted search finishes."
+    carries_revenue: false
+
+  Recommendation Set Presented:
+    properties:
+      recommendation_set_id: {"type": "string"}
+      article_ids: {"type": "array", "items": {"type": "string"}}
+      recommendation_strategy: {"type": "string"}
+      placement: {"type": "string"}
+    fires_at: "RecommendationList, once at least half the list is visible for one second."
+    carries_revenue: false
+
+  Read Article:
+    properties:
+      article_id: {"type": "string"}
+      author_id: {"type": "string"}
+      topic_id: {"type": "string"}
+      content_progress_percent: {"type": "integer", "enum": [10, 25, 50, 75, 90, 100]}
+      active_reading_seconds: {"type": "number"}
+      discovery_source: {"type": "string"}
+      recommendation_set_id: {"type": ["string", "null"]}
+      reading_source: {"type": "string", "enum": ["new_read", "saved_article", "reading_history"]}
+      content_type: {"type": "string", "enum": ["editorial", "sponsored"]}
+      sponsor_id: {"type": ["string", "null"]}
+    fires_at: "ArticleReader, when the reader reaches each content milestone: 10, 25, 50, 75, 90, or 100 percent. Fire once per milestone per article per session. Measure the article body only; 100 means the end of the body is visible. On restored reading position, establish a baseline without firing skipped milestones; emit only newly crossed milestones after reader interaction."
+    carries_revenue: false
+
+  Registration Completed:
+    properties:
+      registration_method: {"type": "string", "enum": ["demo_account"]}
+      entry_point: {"type": "string"}
+    fires_at: "RegistrationForm, after creating and persisting the demo account."
+    carries_revenue: false
+
+  Sign In Completed:
+    properties:
+      sign_in_method: {"type": "string", "enum": ["demo_account"]}
+      entry_point: {"type": "string"}
+    fires_at: "SignInForm, after restoring the selected demo account."
+    carries_revenue: false
+
+  Sign Out Completed:
+    properties:
+      previous_account_state: {"type": "string"}
+    fires_at: "AccountMenu, after ending the account session; capture under the outgoing identity before resetting SDK identities."
+    carries_revenue: false
+
+  Article Saved:
+    properties:
+      article_id: {"type": "string"}
+      entry_point: {"type": "string"}
+      saved_article_count: {"type": "integer"}
+    fires_at: "SaveArticleControl, after persisting a newly saved article."
+    carries_revenue: false
+
+  Article Unsaved:
+    properties:
+      article_id: {"type": "string"}
+      entry_point: {"type": "string"}
+      saved_article_count: {"type": "integer"}
+    fires_at: "SaveArticleControl, after removing a saved article from storage."
+    carries_revenue: false
+
+  Author Followed:
+    properties:
+      author_id: {"type": "string"}
+      followed_author_count: {"type": "integer"}
+    fires_at: "FollowAuthorControl, after persisting a new author follow."
+    carries_revenue: false
+
+  Author Unfollowed:
+    properties:
+      author_id: {"type": "string"}
+      followed_author_count: {"type": "integer"}
+    fires_at: "FollowAuthorControl, after removing an author follow."
+    carries_revenue: false
+
+  Newsletter Subscription Completed:
+    properties:
+      newsletter_id: {"type": "string"}
+      entry_point: {"type": "string"}
+    fires_at: "NewsletterForm, after persisting a new simulated newsletter subscription."
+    carries_revenue: false
+
+  Newsletter Unsubscription Completed:
+    properties:
+      newsletter_id: {"type": "string"}
+    fires_at: "NewsletterPreferences, after persisting the simulated unsubscription."
+    carries_revenue: false
+
+  Media Playback Started:
+    properties:
+      media_id: {"type": "string"}
+      media_type: {"type": "string", "enum": ["article_narration", "podcast"]}
+      article_id: {"type": ["string", "null"]}
+      duration_seconds: {"type": "number"}
+    fires_at: "MediaPlayer, on the first playing callback for a playback attempt."
+    carries_revenue: false
+
+  Media Playback Completed:
+    properties:
+      media_id: {"type": "string"}
+      media_type: {"type": "string", "enum": ["article_narration", "podcast"]}
+      listened_seconds: {"type": "number"}
+      duration_seconds: {"type": "number"}
+    fires_at: "MediaPlayer, on the ended callback after at least 90 percent of the media was played."
+    carries_revenue: false
+
+  Paywall Presented:
+    properties:
+      paywall_id: {"type": "string"}
+      article_id: {"type": "string"}
+      trigger_reason: {"type": "string"}
+      message_id: {"type": "string"}
+      articles_read_in_window: {"type": "integer"}
+    fires_at: "Paywall, once the active paywall is visible and restricts reading."
+    carries_revenue: false
+
+  Subscription Added To Cart:
+    properties:
+      checkout_id: {"type": "string"}
+      plan_id: {"type": "string"}
+      offer_id: {"type": "string"}
+      offer_type: {"type": "string", "enum": ["standard", "free_trial", "introductory"]}
+      billing_period: {"type": "string", "enum": ["monthly", "annual"]}
+      amount_due_usd: {"type": "number"}
+      trial_days: {"type": "integer"}
+    fires_at: "SubscriptionOfferSelector, after persisting the selected offer as the checkout draft."
+    carries_revenue: false
+
+  Checkout Started:
+    properties:
+      checkout_id: {"type": "string"}
+      plan_id: {"type": "string"}
+      offer_id: {"type": "string"}
+      amount_due_usd: {"type": "number"}
+    fires_at: "Checkout, after loading a valid checkout draft into the checkout flow; once per checkout ID."
+    carries_revenue: false
+
+  Checkout Failed:
+    properties:
+      checkout_id: {"type": "string"}
+      plan_id: {"type": "string"}
+      failure_code: {"type": "string", "enum": ["validation_failed", "simulated_payment_declined", "storage_failed"]}
+    fires_at: "CheckoutForm, after a submission fails validation or simulated processing."
+    carries_revenue: false
+
+  Checkout Completed:
+    properties:
+      checkout_id: {"type": "string"}
+      subscription_id: {"type": "string"}
+      plan_id: {"type": "string"}
+      offer_id: {"type": "string"}
+      amount_due_usd: {"type": "number"}
+    fires_at: "CheckoutForm, after persisting the completed simulated order."
+    carries_revenue: false
+
+  Subscription Activated:
+    properties:
+      subscription_id: {"type": "string"}
+      checkout_id: {"type": "string"}
+      plan_id: {"type": "string"}
+      activation_type: {"type": "string", "enum": ["trial", "paid"]}
+    fires_at: "SubscriptionState, after granting access for a new subscription."
+    carries_revenue: false
+
+  Trial Started:
+    properties:
+      subscription_id: {"type": "string"}
+      offer_id: {"type": "string"}
+      trial_days: {"type": "integer"}
+      trial_ends_at: {"type": "string", "format": "date-time"}
+    fires_at: "SubscriptionState, when a newly activated subscription enters trial status."
+    carries_revenue: false
+
+  Trial Converted:
+    properties:
+      subscription_id: {"type": "string"}
+      transaction_id: {"type": "string"}
+      plan_id: {"type": "string"}
+      trial_days: {"type": "integer"}
+    fires_at: "SubscriptionLifecycle, after a simulated successful charge changes trial status to paid."
+    carries_revenue: false
+
+  Subscription Payment Completed:
+    properties:
+      transaction_id: {"type": "string"}
+      subscription_id: {"type": "string"}
+      checkout_id: {"type": ["string", "null"]}
+      plan_id: {"type": "string"}
+      payment_reason: {"type": "string", "enum": ["initial_purchase", "trial_conversion", "renewal", "plan_change"]}
+      revenue_usd: {"type": "number", "exclusiveMinimum": 0}
+      currency: {"type": "string", "enum": ["USD"]}
+    fires_at: "MockPaymentService, once per persisted successful simulated charge; never for zero-dollar trial activation."
+    carries_revenue: true
+    revenue_property: revenue_usd
+
+  Advertisement Viewable:
+    properties:
+      ad_impression_id: {"type": "string"}
+      ad_id: {"type": "string"}
+      placement_id: {"type": "string"}
+      article_id: {"type": ["string", "null"]}
+    fires_at: "AdSlot, after at least 50 percent of the ad is visible for one continuous second; once per impression."
+    carries_revenue: false
+
+  Ad Revenue Recorded:
+    properties:
+      revenue_record_id: {"type": "string"}
+      ad_impression_id: {"type": "string"}
+      ad_id: {"type": "string"}
+      placement_id: {"type": "string"}
+      revenue_usd: {"type": "number", "exclusiveMinimum": 0}
+      currency: {"type": "string", "enum": ["USD"]}
+      revenue_basis: {"type": "string", "enum": ["simulated_impression", "simulated_engagement"]}
+    fires_at: "MockAdRevenueService, once after persisting a simulated earnings record linked to an eligible impression or engagement."
+    carries_revenue: true
+    revenue_property: revenue_usd
+
+  Retention Treatment Presented:
+    properties:
+      treatment_id: {"type": "string"}
+      treatment_type: {"type": "string", "enum": ["reminder", "recommendation", "renewal_offer"]}
+      engagement_segment: {"type": "string"}
+      placement: {"type": "string"}
+    fires_at: "RetentionTreatment, after the configured reminder, recommendation, or renewal offer becomes visible; once per presentation."
+    carries_revenue: false
+
+  Renewal Offer Accepted:
+    properties:
+      subscription_id: {"type": "string"}
+      offer_id: {"type": "string"}
+      treatment_id: {"type": "string"}
+      next_renewal_amount_usd: {"type": "number"}
+    fires_at: "RenewalOffer, after persisting acceptance and the updated renewal terms."
+    carries_revenue: false
+
+  Billing Details Updated:
+    properties:
+      subscription_id: {"type": "string"}
+      updated_fields: {"type": "array", "items": {"type": "string", "enum": ["demo_payment_method", "billing_frequency"]}}
+    fires_at: "BillingSettings, after validating and persisting simulated billing changes; never include field values."
+    carries_revenue: false
+
+  Subscription Plan Changed:
+    properties:
+      subscription_id: {"type": "string"}
+      previous_plan_id: {"type": "string"}
+      new_plan_id: {"type": "string"}
+      effective_at: {"type": "string", "format": "date-time"}
+    fires_at: "PlanManagement, after persisting the new plan and its effective date."
+    carries_revenue: false
+
+  Subscription Renewed:
+    properties:
+      subscription_id: {"type": "string"}
+      plan_id: {"type": "string"}
+      transaction_id: {"type": "string"}
+      renewal_method: {"type": "string", "enum": ["automatic", "manual"]}
+      next_renewal_at: {"type": "string", "format": "date-time"}
+    fires_at: "SubscriptionLifecycle, after a successful simulated renewal extends paid access."
+    carries_revenue: false
+
+  Cancellation Started:
+    properties:
+      subscription_id: {"type": "string"}
+      plan_id: {"type": "string"}
+    fires_at: "CancellationFlow, after creating a cancellation attempt; once per attempt."
+    carries_revenue: false
+
+  Subscription Canceled:
+    properties:
+      subscription_id: {"type": "string"}
+      plan_id: {"type": "string"}
+      reason_code: {"type": "string", "enum": ["price", "low_usage", "content_fit", "technical_issue", "other", "prefer_not_to_say"]}
+      access_ends_at: {"type": "string", "format": "date-time"}
+    fires_at: "CancellationFlow, after persisting cancellation and the access end date."
+    carries_revenue: false
+
+  Subscription Expired:
+    properties:
+      subscription_id: {"type": "string"}
+      previous_account_state: {"type": "string"}
+      expiration_reason: {"type": "string", "enum": ["trial_ended", "cancellation_effective", "simulated_payment_failure"]}
+    fires_at: "SubscriptionLifecycle, once when advancing demo time causes access to expire."
+    carries_revenue: false
+
+  Chat Request Submitted:
+    properties:
+      conversation_id: {"type": "string"}
+      request_id: {"type": "string"}
+      intent: {"type": "string", "enum": ["find_article", "explore_topic", "next_read", "account_support", "subscription_support", "unknown"]}
+      message_length: {"type": "integer"}
+    fires_at: "ReaderChat, after accepting a nonempty reader request; exclude message text."
+    carries_revenue: false
+
+  Chat Response Delivered:
+    properties:
+      conversation_id: {"type": "string"}
+      request_id: {"type": "string"}
+      response_type: {"type": "string", "enum": ["article_results", "topic_summary", "recommendation", "support_steps", "clarification", "fallback"]}
+      result_count: {"type": "integer"}
+      response_latency_ms: {"type": "number"}
+    fires_at: "ReaderChat, after rendering the scripted response to the submitted request."
+    carries_revenue: false
+
+  Chat Resolution Recorded:
+    properties:
+      conversation_id: {"type": "string"}
+      request_id: {"type": "string"}
+      resolution: {"type": "string", "enum": ["resolved", "unresolved"]}
+      intent: {"type": "string"}
+    fires_at: "ChatFeedback, after persisting the reader resolution feedback."
+    carries_revenue: false
