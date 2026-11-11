@@ -1,18 +1,9 @@
 # Amplitude Daily project plan
 
-- Status: IDLE. **P0-PUBLISH-001** complete — PR https://github.com/beccaabusharkh/AmpliYorker/pull/1 (head `b0ca49a8e76fe4e6f1ad10f1f4e2671380ba81a3`). Merge to `main` stays denied until a qualifying Slack `Approve` names that PR.
+- Status: START — Phase 1 BUILD dispatched (`P1-BUILD-001` in BUILDER_HANDOFF.md). Phase 0 merged (`db8cc8b` on `main`); Pages deploy verified 2026-11-11 (Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/43102935560).
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
-
-## Phase 0 PR (awaiting merge Approve)
-
-| Field | Value |
-| --- | --- |
-| PR | https://github.com/beccaabusharkh/AmpliYorker/pull/1 |
-| Head SHA | `b0ca49a8e76fe4e6f1ad10f1f4e2671380ba81a3` |
-| Scaffold review | `P0-BUILD-002` P0-D1–D3 PASS (`54a3232`) |
-| Merge | Blocked until Slack `Approve` from `<@U045L8FS5BN>` names this PR |
 
 ## Shared implementation and review rules
 
@@ -32,6 +23,7 @@
 
 ## Phase 0 : Static scaffold and deployment
 
+- **Review (2026-11-11):** PASS — P0-D1–D3 per PHASE_LOG P0-BUILD-002; PR #1 squash-merged; published URL verified signed-out.
 - Type: BUILD.
 - Objective: publish a static Amplitude Daily home page through GitHub Actions so subsequent phases extend an accessible site.
 - Deliverables: home shell, typography and color tokens, responsive header/footer, repo content structure, hash-route fallback, package scripts, and `.github/workflows/deploy-pages.yml` deploying `dist/` on push to `main` only (`docs/0/SPEC.md` waived for this scaffold — see DECISIONS.md).
