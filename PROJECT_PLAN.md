@@ -1,19 +1,19 @@
 # Amplitude Daily project plan
 
-- Status: IDLE. Phase 0 assignment **P0-BUILD-002** passed Planner build review at commit `54a3232` on `phase-0-static-scaffold` (unpublished). `BUILDER_HANDOFF.md` is IDLE. Merge to `main` stays denied until a qualifying Slack `Approve` from the configured approver names exactly one PR.
+- Status: START. Active assignment **P0-PUBLISH-001** — push `phase-0-static-scaffold` and open PR (authorized Slack ts `1794432155.702439`). Merge to `main` stays denied until a qualifying Slack `Approve` names exactly one PR.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
 
-## Pending publish (Phase 0)
+## Active dispatch (Phase 0 publish)
 
 | Field | Value |
 | --- | --- |
-| assignment_id | P0-BUILD-002 |
-| Reviewed commit | `54a3232` on `phase-0-static-scaffold` |
+| assignment_id | P0-PUBLISH-001 |
+| Scaffold | `P0-BUILD-002` accepted at `54a3232` |
 | Builder agent | https://cursor.com/agents/bc-3219cf40-a75c-507c-a345-62219ac5994e |
-| Acceptance | P0-D1 PASS, P0-D2 PASS, P0-D3 PASS (DECISIONS.md 2026-11-11) |
-| Blocker | Push/PR not authorized — awaiting Planner handoff with Push yes |
+| Branch → base | `phase-0-static-scaffold` → `main` |
+| Git | Push yes, PR yes, Merge no |
 
 ## Shared implementation and review rules
 

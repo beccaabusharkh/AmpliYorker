@@ -25,6 +25,15 @@
 - **UX:** Per waiver (Slack ts `1794431421.518979`).
 - **Does not authorize:** push, PR, merge, or deploy — separate handoff permissions required.
 
+## 2026-11-11 — Phase 0 push and PR authorization
+
+- **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
+- **Channel:** `#bas-cursor` (`C0CGUUSJ4TG`)
+- **Slack ts (processed):** `1794432155.702439`
+- **Request:** `@PLANNER authorize push and PR for Phase 0`
+- **Decision:** Assignment **`P0-PUBLISH-001`** — Builder may push branch `phase-0-static-scaffold` (scaffold from accepted `P0-BUILD-002` / `54a3232`) and open one PR to `main`.
+- **Does not authorize:** merge, deploy, or changes outside publish/conflict resolution.
+
 ## Approval records
 
 _(none yet — `Approve` reserved for PR merge actions)_
@@ -32,3 +41,4 @@ _(none yet — `Approve` reserved for PR merge actions)_
 ## Processed Slack timestamps
 
 - `1794431421.518979` — Phase 0 UX spec waiver (not a merge Approve)
+- `1794432155.702439` — Phase 0 push/PR authorization (not a merge Approve)
