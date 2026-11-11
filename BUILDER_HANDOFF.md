@@ -5,7 +5,7 @@
 **phase_id:** 1
 **assignment_id:** P1-BUILD-001
 **phase_type:** BUILD
-**Builder agent ID:** <RESUME_EXISTING_BUILDER — same Builder thread as Phase 0; do not spawn a replacement>
+**Builder agent ID:** bc-3219cf40-a75c-507c-a345-62219ac5994e
 **Branch:** phase-1-discovery
 
 Objective: extend the live AmpliYorker site with reader discovery and engagement journeys (search, expanded content, recommendations, media, newsletter simulation, labeled ads/sponsored stories, and scripted discovery chat) while keeping accounts, Amplitude, and Statsig out of scope.
