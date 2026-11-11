@@ -5,7 +5,7 @@
 **phase_id:** 0
 **assignment_id:** P0-BUILD-001
 **phase_type:** BUILD
-**Builder agent ID:** <EXISTING_BUILDER_AGENT_ID>
+**Builder agent ID:** bc-3219cf40-a75c-507c-a345-62219ac5994e
 **Branch:** phase-0-static-scaffold
 
 Objective: prepare a static Amplitude Daily home page and GitHub Actions Pages workflow for publication after an approved merge.
