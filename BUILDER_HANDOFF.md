@@ -3,7 +3,7 @@
 **Status:** START
 **Phase:** 0 : Static scaffold and deployment
 **phase_id:** 0
-**assignment_id:** P0-BUILD-001
+**assignment_id:** P0-BUILD-002
 **phase_type:** BUILD
 **Builder agent ID:** bc-3219cf40-a75c-507c-a345-62219ac5994e
 **Branch:** phase-0-static-scaffold
@@ -12,13 +12,13 @@ Objective: prepare a static Amplitude Daily home page and GitHub Actions Pages w
 
 ## Steps
 
-1. Read BUILDER.md, AGENTS.md, PROJECT_PLAN.md, DECISIONS.md if present, and PHASE_LOG.md if present; stop if this assignment already has a COMPLETE or BLOCKED entry.
+1. Read BUILDER.md, AGENTS.md, PROJECT_PLAN.md, DECISIONS.md if present, and PHASE_LOG.md if present; stop if **this assignment_id** (`P0-BUILD-002`) already has a COMPLETE or BLOCKED entry (prior `P0-BUILD-001` entries do not block).
 2. Confirm the Planner has replaced the agent ID placeholder with this existing Builder's runtime ID; do not create another Builder. Confirm an existing git repository, an origin remote identifying the GitHub owner/repository, and its default branch. If any required value is missing, append BLOCKED to PHASE_LOG.md, notify only the Planner, and stop before editing product files.
-3. Read `docs/0/SPEC.md`; require status READY and exact scaffold component, copy, spacing, and state definitions. If the spec is missing or BLOCKED, report the missing prerequisite to the Planner and stop.
+3. **Waiver:** Per DECISIONS.md (2026-11-11), `docs/0/SPEC.md` is not required. Implement scaffold copy/layout from PROJECT_PLAN Phase 0 deliverables and this handoff’s definition of done (Amplitude Daily header/footer, tokens, one home headline, one linked article body). Do not invent later-phase navigation.
 4. Inspect the working tree without changing it. Create or switch to `phase-0-static-scaffold` from the confirmed default branch only if unrelated changes will not be moved or overwritten; otherwise log BLOCKED. Do not fetch, pull, initialize a repository, or change remotes.
 5. Create the TypeScript static-app scaffold and pnpm package/lock files. Define `pnpm typecheck`, `pnpm build`, and `pnpm preview`; configure production output as `dist/` and preview on port 4173. Use pnpm for dependencies and stop if registry access or required tooling is unavailable.
 6. Set the Pages base path from the confirmed repository name, using `/` for an owner.github.io repository and `/<repository>/` otherwise. Add hash routing for home, one seeded article, and an unknown-route fallback; resolve local assets under the same base path.
-7. Implement only the READY Phase 0 spec: Amplitude Daily header/footer, typography/color tokens, one home headline, and its linked minimal article body. Store article data in the repo; render no links to unimplemented features.
+7. Implement the waived Phase 0 scope: Amplitude Daily header/footer, typography/color tokens, one home headline, and its linked minimal article body. Store article data in the repo; render no links to unimplemented features.
 8. Add `.github/workflows/deploy-pages.yml` to install locked dependencies, run typecheck and build, upload `dist/` with the Pages artifact action, and deploy with GitHub's Pages deployment action. Trigger deployment on pushes to the confirmed default branch only; do not deploy from feature branches or pull requests. Set only the workflow permissions required by those jobs.
 9. Run `pnpm typecheck` and `pnpm build`. Start `pnpm preview --host 127.0.0.1 --port 4173 --strictPort` and perform the single smoke check below. Fix only in-scope failures; do not run full suites, browser walkthroughs, screenshots, or video.
 10. Stage and commit only the permitted Phase 0 files and this assignment's PHASE_LOG.md evidence. Record the commands/results, smoke result, commit ID, Pages base path, local preview URL, and expected published URL. Label the published URL as unverified; do not claim deployment occurred.
