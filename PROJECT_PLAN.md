@@ -1,19 +1,18 @@
 # Amplitude Daily project plan
 
-- Status: START. Active assignment **P0-PUBLISH-001** — push `phase-0-static-scaffold` and open PR (authorized Slack ts `1794432155.702439`). Merge to `main` stays denied until a qualifying Slack `Approve` names exactly one PR.
+- Status: IDLE. **P0-PUBLISH-001** complete — PR https://github.com/beccaabusharkh/AmpliYorker/pull/1 (head `b0ca49a8e76fe4e6f1ad10f1f4e2671380ba81a3`). Merge to `main` stays denied until a qualifying Slack `Approve` names that PR.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
 
-## Active dispatch (Phase 0 publish)
+## Phase 0 PR (awaiting merge Approve)
 
 | Field | Value |
 | --- | --- |
-| assignment_id | P0-PUBLISH-001 |
-| Scaffold | `P0-BUILD-002` accepted at `54a3232` |
-| Builder agent | https://cursor.com/agents/bc-3219cf40-a75c-507c-a345-62219ac5994e |
-| Branch → base | `phase-0-static-scaffold` → `main` |
-| Git | Push yes, PR yes, Merge no |
+| PR | https://github.com/beccaabusharkh/AmpliYorker/pull/1 |
+| Head SHA | `b0ca49a8e76fe4e6f1ad10f1f4e2671380ba81a3` |
+| Scaffold review | `P0-BUILD-002` P0-D1–D3 PASS (`54a3232`) |
+| Merge | Blocked until Slack `Approve` from `<@U045L8FS5BN>` names this PR |
 
 ## Shared implementation and review rules
 

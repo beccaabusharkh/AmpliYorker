@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** START
+**Status:** IDLE
 **Phase:** 0 : Static scaffold and deployment
 **phase_id:** 0
 **assignment_id:** P0-PUBLISH-001

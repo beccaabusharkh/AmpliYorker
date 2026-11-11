@@ -34,9 +34,18 @@
 - **Decision:** Assignment **`P0-PUBLISH-001`** — Builder may push branch `phase-0-static-scaffold` (scaffold from accepted `P0-BUILD-002` / `54a3232`) and open one PR to `main`.
 - **Does not authorize:** merge, deploy, or changes outside publish/conflict resolution.
 
+## 2026-11-11 — Phase 0 publish complete (`P0-PUBLISH-001`)
+
+- **Result:** Branch `phase-0-static-scaffold` pushed; PR opened.
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/1
+- **Head SHA:** `b0ca49a8e76fe4e6f1ad10f1f4e2671380ba81a3` (includes scaffold from reviewed `54a3232` + PHASE_LOG publish entry)
+- **PHASE_LOG:** `2026-11-11T21:25:00Z | Phase 0 | Assignment P0-PUBLISH-001 | COMPLETE`
+
 ## Approval records
 
-_(none yet — `Approve` reserved for PR merge actions)_
+| Action | PR | Head commit | assignment_id | State |
+| --- | --- | --- | --- | --- |
+| Merge to `main` (triggers Pages deploy) | https://github.com/beccaabusharkh/AmpliYorker/pull/1 | `b0ca49a8e76fe4e6f1ad10f1f4e2671380ba81a3` | _(awaiting merge handoff after Approve)_ | **UNUSED** until qualifying Slack `Approve` |
 
 ## Processed Slack timestamps
 
