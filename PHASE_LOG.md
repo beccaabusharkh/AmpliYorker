@@ -1,3 +1,19 @@
+## 2026-11-11T22:12:00Z | Phase 1 | Assignment P1-PUBLISH-001 | COMPLETE
+- What was built: no product changes; published accepted Phase 1 from P1-BUILD-001.
+- Files changed: `PHASE_LOG.md` only.
+- Git actions: `git push -u origin phase-1-discovery` (head `a99f1a5`); PR opened (see ManagePullRequest).
+- Definition-of-done check: P1-PUB-D1 PASS; P1-PUB-D2 PASS (one open PR into `main`).
+- Deviations: none.
+- Blocker / next action: merge awaits Planner Slack Approve naming the PR.
+
+## 2026-11-11T22:05:00Z | Phase 1 | Assignment P1-BUILD-001 | COMPLETE
+- What was built: discovery and engagement — 6 seeded articles, search/topic/author routes, header search, recommendations, reading progress (localStorage), narrated audio block, podcast card, simulated newsletter, sponsored story + simulated ad rail, discovery chat FAQ panel.
+- Files changed: `src/data/articles.json`, `src/data/faq.json`, `src/lib/articles.ts`, `src/lib/router.ts`, `src/lib/reading-progress.ts`, `src/lib/paths.ts`, `src/vite-env.d.ts`, `src/pages/*`, `src/ui/shell.ts`, `src/ui/discovery-chat.ts`, `src/styles/tokens.css`, `src/main.ts`, `public/audio/narration-demo.wav`, `PHASE_LOG.md`.
+- Git actions: local commit on `phase-1-discovery` (push not authorized).
+- Definition-of-done check: P1-D1 PASS (`pnpm typecheck` exit 0); P1-D2 PASS (`pnpm build` exit 0, `dist/` generated); P1-D3 PASS smoke on production preview — searched `retention myths`, opened `Five retention myths that skew experiment results`, article `#/article/retention-myths` body contains `declare victory` (Playwright, preview `http://127.0.0.1:4173/AmpliYorker/`).
+- Deviations: UX followed PROJECT_PLAN + DECISIONS.md Phase 1 waiver (`docs/1/SPEC.md` absent).
+- Blocker / next action: Planner review; push/PR/merge requires separate publish assignment.
+
 ## 2026-11-11T21:25:00Z | Phase 0 | Assignment P0-PUBLISH-001 | COMPLETE
 - What was built: no product changes; published accepted Phase 0 scaffold from `P0-BUILD-002`.
 - Files changed: `PHASE_LOG.md` only.

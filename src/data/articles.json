@@ -5,8 +5,79 @@
     "deck": "A fictional Amplitude Daily brief for demo readers evaluating analytics and experimentation.",
     "body": [
       "Product leaders no longer wait for quarterly reviews to understand what changed in their funnels. They compare cohorts, session paths, and retention curves every morning—then ship answers the same day.",
-      "This article is seeded content for Phase 0. Later phases will add search, accounts, instrumentation, and experiments without replacing this route."
+      "This article is seeded content from Phase 0. Search, topics, and recommendations build on this route in Phase 1."
     ],
-    "publishedAt": "2026-11-11"
+    "publishedAt": "2026-11-11",
+    "topic": "product-analytics",
+    "author": "maya-chen",
+    "authorName": "Maya Chen",
+    "narrated": true
+  },
+  {
+    "id": "retention-myths",
+    "headline": "Five retention myths that skew experiment results",
+    "deck": "Why naive day-N curves mislead teams before they instrument properly.",
+    "body": [
+      "Teams often declare victory when short-term engagement spikes, even if the cohort never returns. Retention questions need stable identity and consistent event definitions.",
+      "Use holdouts and clear primary metrics before scaling a winning variant across surfaces."
+    ],
+    "publishedAt": "2026-11-10",
+    "topic": "experimentation",
+    "author": "jordan-lee",
+    "authorName": "Jordan Lee"
+  },
+  {
+    "id": "funnel-friction",
+    "headline": "Finding funnel friction without drowning in charts",
+    "deck": "A practical order of operations for PMs auditing drop-off.",
+    "body": [
+      "Start with the business question, then map steps that mirror user intent—not org chart handoffs.",
+      "Pair funnel views with session replay on the worst step to separate UX bugs from expectation gaps."
+    ],
+    "publishedAt": "2026-11-09",
+    "topic": "product-analytics",
+    "author": "maya-chen",
+    "authorName": "Maya Chen"
+  },
+  {
+    "id": "experiment-runtime",
+    "headline": "When to stop an experiment early (and when not to)",
+    "deck": "Guardrails for peeking, power, and shipping.",
+    "body": [
+      "Peeking without correction inflates false positives. Pre-register the minimum runtime and success metric before traffic arrives.",
+      "Stopping early is appropriate for clear harm guardrails—not because Tuesday looked good."
+    ],
+    "publishedAt": "2026-11-08",
+    "topic": "experimentation",
+    "author": "jordan-lee",
+    "authorName": "Jordan Lee"
+  },
+  {
+    "id": "signal-weekly-podcast",
+    "headline": "Signal Weekly: Cohort stories that actually compound",
+    "deck": "Podcast show notes for a fictional analytics culture series.",
+    "body": [
+      "In this episode, a growth lead walks through three cohorts that looked identical in aggregates but diverged on activation timing.",
+      "Listen in the player on the home page, then explore related articles on experimentation and retention."
+    ],
+    "publishedAt": "2026-11-07",
+    "topic": "podcast",
+    "author": "amplitude-daily",
+    "authorName": "Amplitude Daily Editors",
+    "podcast": true
+  },
+  {
+    "id": "partner-playbook-sponsored",
+    "headline": "Partner playbook: Rolling out experimentation across business units",
+    "deck": "Sponsored perspective on governance and platform buy-in.",
+    "body": [
+      "Cross-functional experimentation succeeds when legal, data, and product share a common metrics dictionary.",
+      "This sponsored story illustrates labeled partner content on Amplitude Daily—no checkout or payment flow behind this link."
+    ],
+    "publishedAt": "2026-11-06",
+    "topic": "experimentation",
+    "author": "sponsored-desk",
+    "authorName": "Sponsored Desk",
+    "sponsored": true
   }
 ]
