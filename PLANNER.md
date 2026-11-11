@@ -75,7 +75,7 @@
 
 ## Runtime Slack configuration (2026-11-11)
 
-- SLACK_CHANNEL_ID: `BLOCKED` — `#bas-cursor` is not visible to the Planner Slack MCP (channel search and membership list have no match). Invite the Cursor Slack app to `#bas-cursor` or paste the channel ID here before subscription.
+- SLACK_CHANNEL_ID: `C0CGUUSJ4TG` (`#bas-cursor`, private). Subscribed for top-level messages only; act on human messages that contain `@PLANNER`.
 - PLANNER_MENTION: `@PLANNER` — accept human requests only from top-level messages containing this exact mention.
 - APPROVER_MENTION: `<@U045L8FS5BN>` (Becca Abu Sharkh) — accept `Approve` only from this user in qualifying top-level messages that name exactly one PR for one pending action.
 - Active Builder (Phase 0): https://cursor.com/agents/bc-3219cf40-a75c-507c-a345-62219ac5994e
