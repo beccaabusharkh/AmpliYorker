@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** START
+**Status:** IDLE
 **Phase:** 1 : Discovery, reading, and engagement (publish)
 **phase_id:** 1
 **assignment_id:** P1-PUBLISH-001
