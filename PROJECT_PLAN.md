@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: START. Active assignment P0-BUILD-001 (Phase 0 BUILD) is dispatched; merge to `main` stays denied until a qualifying Slack `Approve` from the configured approver.
+- Status: START. Active assignment P0-BUILD-002 (Phase 0 BUILD) is dispatched; merge to `main` stays denied until a qualifying Slack `Approve` from the configured approver.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -10,12 +10,12 @@
 | Field | Value |
 | --- | --- |
 | phase_id | 0 |
-| assignment_id | P0-BUILD-001 |
+| assignment_id | P0-BUILD-002 |
 | phase_type | BUILD |
 | Builder agent | https://cursor.com/agents/bc-3219cf40-a75c-507c-a345-62219ac5994e |
 | Branch | `phase-0-static-scaffold` |
 | Handoff | `BUILDER_HANDOFF.md` (Status START; Git Commit yes, Merge no) |
-| Open blocker | `docs/0/SPEC.md` missing; Builder must BLOCKED until UX delivers READY `docs/0/SPEC.md` or Planner waives in DECISIONS.md |
+| Open blocker | None — Phase 0 UX spec waived in DECISIONS.md (Slack ts 1794431421.518979); P0-BUILD-001 ended BLOCKED |
 
 ## Shared implementation and review rules
 
