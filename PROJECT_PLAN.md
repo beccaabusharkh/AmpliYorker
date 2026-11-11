@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: START — Phase 1 BUILD dispatched (`P1-BUILD-001` in BUILDER_HANDOFF.md). Phase 0 merged (`db8cc8b` on `main`); Pages deploy verified 2026-11-11 (Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/43102935560).
+- Status: START — Phase 1 publish dispatched (`P1-PUBLISH-001`). Build review: **P1-BUILD-001** PASS at `a99f1a5` (P1-D1–D3). Phase 0 on `main` at `db8cc8b`; Pages deploy verified 2026-11-11 (Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/43102935560).
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -39,6 +39,7 @@
 
 ## Phase 1 : Discovery, reading, and engagement
 
+- **Planner build review (2026-11-11):** `P1-BUILD-001` PASS at `a99f1a5` — P1-D1 PASS, P1-D2 PASS, P1-D3 PASS (per PHASE_LOG).
 - Type: BUILD.
 - Objective: let readers discover and consume articles, media, sponsored content, and recommendations before adding accounts or tracking.
 - Deliverables: topic/author pages, search, article pages, deterministic recommendations, reading progress, narrated articles, podcasts, newsletter signup simulation, labeled ads/sponsored stories, and scripted discovery chat.
