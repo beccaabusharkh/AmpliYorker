@@ -1,0 +1,12 @@
+[
+  {
+    "id": "daily-decisions",
+    "headline": "How product teams turn behavioral data into daily decisions",
+    "deck": "A fictional Amplitude Daily brief for demo readers evaluating analytics and experimentation.",
+    "body": [
+      "Product leaders no longer wait for quarterly reviews to understand what changed in their funnels. They compare cohorts, session paths, and retention curves every morning—then ship answers the same day.",
+      "This article is seeded content for Phase 0. Later phases will add search, accounts, instrumentation, and experiments without replacing this route."
+    ],
+    "publishedAt": "2026-11-11"
+  }
+]
