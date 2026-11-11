@@ -1,9 +1,21 @@
 # Amplitude Daily project plan
 
-- Status: IDLE. This plan does not dispatch agents or authorize git actions; the Planner must issue a START handoff with a unique assignment ID.
+- Status: START. Active assignment P0-BUILD-001 (Phase 0 BUILD) is dispatched; merge to `main` stays denied until a qualifying Slack `Approve` from the configured approver.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
+
+## Active dispatch
+
+| Field | Value |
+| --- | --- |
+| phase_id | 0 |
+| assignment_id | P0-BUILD-001 |
+| phase_type | BUILD |
+| Builder agent | https://cursor.com/agents/bc-3219cf40-a75c-507c-a345-62219ac5994e |
+| Branch | `phase-0-static-scaffold` |
+| Handoff | `BUILDER_HANDOFF.md` (Status START; Git Commit yes, Merge no) |
+| Open blocker | `docs/0/SPEC.md` missing; Builder must BLOCKED until UX delivers READY `docs/0/SPEC.md` or Planner waives in DECISIONS.md |
 
 ## Shared implementation and review rules
 
@@ -19,12 +31,13 @@
 - After each authorized merge, check the deployment workflow result and fetch the published home URL once; log BLOCKED and pause the next dispatch if deployment fails. Treat this as deployment confirmation, not full browser QA.
 - Keep real authentication, payments, billing, email delivery, live ads/revenue, shared cross-device state, and live AI out of scope. Label simulated services and sponsored content.
 - Do not start UX or Builder work from this plan alone. Assign UX specs through UX_HANDOFF.md and pass READY specs to the same Builder in BUILDER_HANDOFF.md.
+- Phase 0 UI work requires `docs/0/SPEC.md` with status READY; Pages workflow and toolchain setup still follow BUILDER_HANDOFF.md step order.
 
 ## Phase 0 : Static scaffold and deployment
 
 - Type: BUILD.
 - Objective: publish a static Amplitude Daily home page through GitHub Actions so subsequent phases extend an accessible site.
-- Deliverables: home shell, typography and color tokens, responsive header/footer, repo content structure, hash-route fallback, package scripts, and Pages workflow.
+- Deliverables: `docs/0/SPEC.md` (UX, status READY), home shell, typography and color tokens, responsive header/footer, repo content structure, hash-route fallback, package scripts, and `.github/workflows/deploy-pages.yml` deploying `dist/` on push to `main` only.
 - Definition of done:
   1. P0-D1: `pnpm typecheck` exits 0.
   2. P0-D2: `pnpm build` exits 0 and produces the artifact directory used by the GitHub Actions Pages workflow.
