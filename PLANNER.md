@@ -72,3 +72,10 @@
 - Create the initial Builder only when authorized; record its returned agent ID immediately and send no work before its ID is recorded.
 - Resume that exact ID with the runtime's supported resume/follow-up mechanism; send assignment_id, phase_id, handoff path, checks, and permissions.
 - If the ID is missing or cannot be resumed, stop dispatch and report the blocker; never start a replacement Builder.
+
+## Runtime Slack configuration (2026-11-11)
+
+- SLACK_CHANNEL_ID: `BLOCKED` — `#bas-cursor` is not visible to the Planner Slack MCP (channel search and membership list have no match). Invite the Cursor Slack app to `#bas-cursor` or paste the channel ID here before subscription.
+- PLANNER_MENTION: `@PLANNER` — accept human requests only from top-level messages containing this exact mention.
+- APPROVER_MENTION: `<@U045L8FS5BN>` (Becca Abu Sharkh) — accept `Approve` only from this user in qualifying top-level messages that name exactly one PR for one pending action.
+- Active Builder (Phase 0): https://cursor.com/agents/bc-3219cf40-a75c-507c-a345-62219ac5994e
