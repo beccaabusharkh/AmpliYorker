@@ -16,6 +16,15 @@
 - **Decision:** Waive requirement for `docs/0/SPEC.md` (READY) for Phase 0 scaffold only. Builder assignment **`P0-BUILD-002`** may implement home shell using PROJECT_PLAN Phase 0 deliverables: Amplitude Daily branding, header/footer, typography/color tokens, one seeded headline and linked article body, hash routing, `/AmpliYorker/` base path, Pages workflow. No expansion beyond Phase 0 handoff scope.
 - **Does not authorize:** merge, push, PR, deploy, or waiver of later-phase UX specs.
 
+## 2026-11-11 — Phase 0 builder acceptance (`P0-BUILD-002`)
+
+- **Planner review:** Builder COMPLETE entry `2026-11-11T21:13:30Z` on assignment `P0-BUILD-002`.
+- **Reviewed commit:** `54a3232` on branch `phase-0-static-scaffold` (Builder VM only; not on `origin` until push is authorized).
+- **Acceptance:** P0-D1 PASS, P0-D2 PASS, P0-D3 PASS (production preview smoke per PHASE_LOG; `deploy-pages.yml` uploads `dist/`, `main` push only).
+- **Scope:** Permitted Phase 0 scaffold/workflow files only; no Amplitude/Statsig SDK; no edits to agent instruction files beyond `PHASE_LOG.md` append on feature branch.
+- **UX:** Per waiver (Slack ts `1794431421.518979`).
+- **Does not authorize:** push, PR, merge, or deploy — separate handoff permissions required.
+
 ## Approval records
 
 _(none yet — `Approve` reserved for PR merge actions)_

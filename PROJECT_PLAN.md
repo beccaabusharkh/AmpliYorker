@@ -1,21 +1,19 @@
 # Amplitude Daily project plan
 
-- Status: START. Active assignment P0-BUILD-002 (Phase 0 BUILD) is dispatched; merge to `main` stays denied until a qualifying Slack `Approve` from the configured approver.
+- Status: IDLE. Phase 0 assignment **P0-BUILD-002** passed Planner build review at commit `54a3232` on `phase-0-static-scaffold` (unpublished). `BUILDER_HANDOFF.md` is IDLE. Merge to `main` stays denied until a qualifying Slack `Approve` from the configured approver names exactly one PR.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
 
-## Active dispatch
+## Pending publish (Phase 0)
 
 | Field | Value |
 | --- | --- |
-| phase_id | 0 |
 | assignment_id | P0-BUILD-002 |
-| phase_type | BUILD |
+| Reviewed commit | `54a3232` on `phase-0-static-scaffold` |
 | Builder agent | https://cursor.com/agents/bc-3219cf40-a75c-507c-a345-62219ac5994e |
-| Branch | `phase-0-static-scaffold` |
-| Handoff | `BUILDER_HANDOFF.md` (Status START; Git Commit yes, Merge no) |
-| Open blocker | None — Phase 0 UX spec waived in DECISIONS.md (Slack ts 1794431421.518979); P0-BUILD-001 ended BLOCKED |
+| Acceptance | P0-D1 PASS, P0-D2 PASS, P0-D3 PASS (DECISIONS.md 2026-11-11) |
+| Blocker | Push/PR not authorized — awaiting Planner handoff with Push yes |
 
 ## Shared implementation and review rules
 
@@ -31,13 +29,14 @@
 - After each authorized merge, check the deployment workflow result and fetch the published home URL once; log BLOCKED and pause the next dispatch if deployment fails. Treat this as deployment confirmation, not full browser QA.
 - Keep real authentication, payments, billing, email delivery, live ads/revenue, shared cross-device state, and live AI out of scope. Label simulated services and sponsored content.
 - Do not start UX or Builder work from this plan alone. Assign UX specs through UX_HANDOFF.md and pass READY specs to the same Builder in BUILDER_HANDOFF.md.
-- Phase 0 UI work requires `docs/0/SPEC.md` with status READY; Pages workflow and toolchain setup still follow BUILDER_HANDOFF.md step order.
+- Phase 0 UI copy/layout may follow PROJECT_PLAN defaults when `docs/0/SPEC.md` is waived in DECISIONS.md.
 
 ## Phase 0 : Static scaffold and deployment
 
 - Type: BUILD.
 - Objective: publish a static Amplitude Daily home page through GitHub Actions so subsequent phases extend an accessible site.
-- Deliverables: `docs/0/SPEC.md` (UX, status READY), home shell, typography and color tokens, responsive header/footer, repo content structure, hash-route fallback, package scripts, and `.github/workflows/deploy-pages.yml` deploying `dist/` on push to `main` only.
+- Deliverables: home shell, typography and color tokens, responsive header/footer, repo content structure, hash-route fallback, package scripts, and `.github/workflows/deploy-pages.yml` deploying `dist/` on push to `main` only (`docs/0/SPEC.md` waived for this scaffold — see DECISIONS.md).
+- **Planner build review (2026-11-11):** `P0-BUILD-002` accepted at `54a3232` — P0-D1 PASS, P0-D2 PASS, P0-D3 PASS; branch not on remote until push authorized.
 - Definition of done:
   1. P0-D1: `pnpm typecheck` exits 0.
   2. P0-D2: `pnpm build` exits 0 and produces the artifact directory used by the GitHub Actions Pages workflow.
