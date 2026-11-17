@@ -1,7 +1,9 @@
 import { getArticleById, getRecommendations, formatTopicLabel } from "../lib/articles";
+import { canAccessArticle, isPremiumArticle, paywallMessage } from "../lib/paywall";
 import { attachReadingProgress } from "../lib/reading-progress";
 import { navigateToHash } from "../lib/router";
 import { baseUrl } from "../lib/paths";
+import { hasActiveSubscription, incrementArticlesRead, isArticleSaved, isLoggedIn, toggleSaveArticle } from "../lib/session";
 
 export function renderArticlePage(id: string): HTMLElement {
   const article = getArticleById(id);
@@ -23,7 +25,15 @@ export function renderArticlePage(id: string): HTMLElement {
     return main;
   }
 
-  const bodyHtml = article.body.map((paragraph) => `<p>${paragraph}</p>`).join("");
+  const premium = isPremiumArticle(id);
+  const allowed = canAccessArticle(id);
+  const saved = isArticleSaved(id);
+
+  const bodyHtml = allowed
+    ? article.body.map((paragraph) => `<p>${paragraph}</p>`).join("")
+    : `<p class="paywall-block">${paywallMessage()}</p>
+       <p><a href="#/account/login" data-paywall-login>Simulated login</a> · <a href="#/subscribe" data-paywall-sub>Subscribe</a></p>`;
+
   const recs = getRecommendations(article)
     .map(
       (rec) =>
@@ -31,14 +41,19 @@ export function renderArticlePage(id: string): HTMLElement {
     )
     .join("");
 
-  const narratedBlock = article.narrated
-    ? `
+  const narratedBlock =
+    allowed && article.narrated
+      ? `
     <section class="narrated-block" aria-label="Narrated article">
       <p class="narrated-label">Listen</p>
       <audio controls src="${baseUrl}audio/narration-demo.wav">
         Your browser does not support audio playback.
       </audio>
     </section>`
+      : "";
+
+  const premiumBadge = premium
+    ? `<span class="premium-badge">${hasActiveSubscription() ? "Premium · unlocked" : "Premium · paywalled"}</span>`
     : "";
 
   main.innerHTML = `
@@ -47,6 +62,10 @@ export function renderArticlePage(id: string): HTMLElement {
       Published ${article.publishedAt} ·
       <a href="#/topic/${encodeURIComponent(article.topic)}">${formatTopicLabel(article.topic)}</a> ·
       <a href="#/author/${encodeURIComponent(article.author)}">${article.authorName}</a>
+      ${premiumBadge}
+    </p>
+    <p class="article-actions">
+      <button type="button" data-save-article>${saved ? "Saved" : "Save article"}</button>
     </p>
     <article class="article-body" data-article-root>
       <h1>${article.headline}</h1>
@@ -60,13 +79,25 @@ export function renderArticlePage(id: string): HTMLElement {
     </section>
   `;
 
-  const articleRoot = main.querySelector("[data-article-root]");
-  const progressBar = main.querySelector("[data-progress-bar]");
-  if (articleRoot instanceof HTMLElement && progressBar instanceof HTMLElement) {
-    attachReadingProgress(article.id, articleRoot, progressBar);
+  if (allowed) {
+    incrementArticlesRead();
+    const articleRoot = main.querySelector("[data-article-root]");
+    const progressBar = main.querySelector("[data-progress-bar]");
+    if (articleRoot instanceof HTMLElement && progressBar instanceof HTMLElement) {
+      attachReadingProgress(article.id, articleRoot, progressBar);
+    }
   }
 
-  main.querySelectorAll("[data-rec-link]").forEach((link) => {
+  main.querySelector("[data-save-article]")?.addEventListener("click", () => {
+    if (!isLoggedIn()) {
+      navigateToHash("#/account/login");
+      return;
+    }
+    toggleSaveArticle(article.id);
+    navigateToHash(`#/article/${encodeURIComponent(article.id)}`);
+  });
+
+  main.querySelectorAll("[data-rec-link], [data-paywall-login], [data-paywall-sub]").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       const href = (link as HTMLAnchorElement).getAttribute("href");

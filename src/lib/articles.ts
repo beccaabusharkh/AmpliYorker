@@ -12,6 +12,7 @@ export type Article = {
   narrated?: boolean;
   podcast?: boolean;
   sponsored?: boolean;
+  premium?: boolean;
 };
 
 export const articles: Article[] = articlesData as Article[];

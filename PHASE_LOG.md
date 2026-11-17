@@ -1,3 +1,19 @@
+## 2026-11-17T21:52:00Z | Phase 2 | Assignment P2-PUBLISH-001 | COMPLETE
+- What was built: no further product edits; published accepted Phase 2 deliverables from P2-BUILD-001 onto `origin/phase-2-accounts`.
+- Files changed: `PHASE_LOG.md` only (publish commit after code push).
+- Git actions: pushed `phase-2-accounts` via GitHub MCP (head `edbb78af96dc30b97a80fba293b9f96787ec320f`); PR https://github.com/beccaabusharkh/AmpliYorker/pull/3 (base `main`, head `phase-2-accounts`); merge not performed.
+- Definition-of-done check: P2-PUB-D1 PASS (`origin/phase-2-accounts` contains Phase 2 accounts/subscriptions/retention deliverables; accepted baseline `0a002c0`, published descendant after Builder VM recovery); P2-PUB-D2 PASS (one open PR into `main`, URL above).
+- Deviations: Builder commit `0a002c0` unreachable on VM; tree recovered from sibling agent transcript. Remote head differs from `0a002c0`. `src/styles/tokens.css` Phase 2 polish not applied on remote (phase-1 tokens remain).
+- Blocker / next action: Planner review and merge approval.
+
+## 2026-11-17T21:36:00Z | Phase 2 | Assignment P2-BUILD-001 | COMPLETE
+- What was built: simulated accounts — versioned `localStorage` session (personas `anonymous`, `registered-reader`, `declining-engagement`), register/login/logout, save/follow, paywall on premium article `retention-myths`, subscribe plans with introductory offer, simulated checkout/confirmation, account hub (billing, plan change, cancellation reason, device snapshot, demo reset/time advance), retention module, account-support FAQ chat; header nav for account/subscribe.
+- Files changed: `src/data/personas.json`, `src/data/plans.json`, `src/data/account-faq.json`, `src/data/articles.json` (premium flag), `src/lib/session.ts`, `src/lib/personas.ts`, `src/lib/plans.ts`, `src/lib/paywall.ts`, `src/lib/router.ts`, `src/lib/articles.ts`, `src/pages/account.ts`, `src/pages/register.ts`, `src/pages/login.ts`, `src/pages/subscribe.ts`, `src/pages/checkout.ts`, `src/pages/checkout-confirmation.ts`, `src/pages/article.ts`, `src/pages/author.ts`, `src/pages/home.ts`, `src/ui/shell.ts`, `src/ui/account-support-chat.ts`, `src/ui/toast.ts`, `src/main.ts`, `src/styles/tokens.css`, `PHASE_LOG.md`.
+- Git actions: local commit on `phase-2-accounts` (push/PR not authorized).
+- Definition-of-done check: P2-D1 PASS (`pnpm typecheck` exit 0); P2-D2 PASS (`pnpm build` exit 0); P2-D3 PASS smoke on production preview `http://127.0.0.1:4173/AmpliYorker/` — persona `registered-reader` via `#/account/login`, introductory offer on `#/subscribe`, simulated payment on `#/checkout`, confirmation `#/checkout/confirmation` shows **Active subscriber — Monthly plan** before and after refresh; premium `#/article/retention-myths` body unlocked; account `#/account` status **Active · Monthly** (Playwright).
+- Deviations: UX per PROJECT_PLAN + DECISIONS.md Phase 2 waiver (`docs/2/SPEC.md` absent).
+- Blocker / next action: Planner review; push/PR/merge requires separate publish assignment.
+
 ## 2026-11-11T22:12:00Z | Phase 1 | Assignment P1-PUBLISH-001 | COMPLETE
 - What was built: no product changes; published accepted Phase 1 from P1-BUILD-001.
 - Files changed: `PHASE_LOG.md` only.

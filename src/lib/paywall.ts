@@ -1,0 +1,31 @@
+import { getArticleById } from "./articles";
+import { hasActiveSubscription, isLoggedIn, loadSession } from "./session";
+
+export function isPremiumArticle(articleId: string): boolean {
+  const article = getArticleById(articleId);
+  return Boolean(article?.premium);
+}
+
+export function canAccessArticle(articleId: string): boolean {
+  if (!isPremiumArticle(articleId)) {
+    return true;
+  }
+  return hasActiveSubscription();
+}
+
+export function paywallMessage(): string {
+  const session = loadSession();
+  if (!isLoggedIn()) {
+    return "Simulated paywall — register or log in, then subscribe to read this premium brief.";
+  }
+  if (!hasActiveSubscription()) {
+    return "Simulated paywall — choose a plan and complete simulated checkout to unlock.";
+  }
+  if (session.subscription.status === "canceled") {
+    return "Simulated paywall — subscription canceled; resubscribe to regain access.";
+  }
+  if (session.subscription.status === "expired") {
+    return "Simulated paywall — subscription expired. Renew on Account or advance demo time.";
+  }
+  return "Simulated paywall";
+}

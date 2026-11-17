@@ -1,4 +1,6 @@
 import { getAllArticles, getFeaturedArticle } from "../lib/articles";
+import { shouldShowRetentionOffer } from "../lib/session";
+import { navigateToHash } from "../lib/router";
 
 export function renderHomePage(): HTMLElement {
   const article = getFeaturedArticle();
@@ -18,10 +20,20 @@ export function renderHomePage(): HTMLElement {
     )
     .join("");
 
+  const retention = shouldShowRetentionOffer()
+    ? `
+      <section class="retention-module home-retention">
+        <h3>Simulated retention reminder</h3>
+        <p>Your reading engagement is lower this cycle — explore a renewal offer on Subscribe (deterministic demo copy).</p>
+        <p><a href="#/subscribe" data-retention-sub>View simulated introductory offers</a></p>
+      </section>`
+    : "";
+
   const main = document.createElement("main");
   main.className = "page-main home-layout";
   main.innerHTML = `
     <div class="home-primary">
+      ${retention}
       <p class="article-meta">Featured · ${article.publishedAt}</p>
       <h2 class="hero-headline">${article.headline}</h2>
       <p class="hero-deck">${article.deck}</p>
@@ -72,6 +84,11 @@ export function renderHomePage(): HTMLElement {
       </section>
     </aside>
   `;
+
+  main.querySelector("[data-retention-sub]")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigateToHash("#/subscribe");
+  });
 
   main.querySelector("[data-newsletter-form]")?.addEventListener("submit", (event) => {
     event.preventDefault();
