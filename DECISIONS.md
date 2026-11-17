@@ -66,8 +66,17 @@
 - **Reviewed commit:** `0a002c09e6710a4ae592995411195b7815ed1cd1` on `phase-2-accounts` (Builder VM; pre-push)
 - **Action:** Authorize push of `phase-2-accounts` to `origin` and open one PR into `main`; **not** merge or deployment
 - **Assignment:** `P2-PUBLISH-001`
-- **Approval state:** RESERVED (merge will require separate `Approve` naming the PR URL)
+- **Approval state:** CONSUMED (push/PR executed; merge authorized separately — see below)
 
-## Approval records (open)
+## 2026-11-17 — Phase 2 merge approval (PR #3)
 
-- **P2-PUBLISH-001** push/PR: RESERVED per Slack `1794951381.434309` (merge not granted).
+- **Channel:** #bas-cursor (Slack)
+- **Slack timestamp:** `1794952413.118799`
+- **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/3
+- **Reviewed commit (pre-merge head):** `5409c4893f2e455b58a7424e0c67fe5915400234`
+- **Merge commit on `main`:** `a70cd9c177b2599e4d43f02e02dbfbee8fcc7093`
+- **Action:** Approve and squash-merge PR #3; trigger GitHub Pages deploy on `main`
+- **Assignment:** Phase 2 publish (consumes merge authorization after P2-PUBLISH-001)
+- **Approval state:** CONSUMED
+- **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44184633700 (success); live deploy-smoke `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 with `account/login` and `registered-reader` in deployed bundle

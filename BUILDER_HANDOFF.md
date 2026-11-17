@@ -8,6 +8,6 @@
 **Builder agent ID:** bc-3467dc4a-c7ee-539f-9d04-8640a675ef90
 **Branch:** `phase-2-accounts`
 
-**P2-PUBLISH-001** complete per PHASE_LOG on branch. PR https://github.com/beccaabusharkh/AmpliYorker/pull/3 (head `5409c48`). Planner build review was at `0a002c0` (Builder VM); reconcile PR head vs acceptance before merge.
+**P2-PUBLISH-001** complete; PR #3 merged to `main` (`a70cd9c`) per Slack Approve `1794952413.118799`. Pages deploy run 44184633700 success.
 
-Merge awaits top-level `Approve https://github.com/beccaabusharkh/AmpliYorker/pull/3`. Do NOT proceed without a new Planner START handoff.
+Do NOT proceed without a new Planner START handoff (Phase 3 or other assignment).

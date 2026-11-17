@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: IDLE — **P2-PUBLISH-001** complete; PR https://github.com/beccaabusharkh/AmpliYorker/pull/3 open (`5409c48`). Await merge approval. **Planner note:** build review was at `0a002c0`; reconcile PR diff before `Approve`.
+- Status: IDLE — Phase 2 published https://beccaabusharkh.github.io/AmpliYorker/ (PR #3 squash-merged `a70cd9c`, deploy run 44184633700 success). Next: dispatch Phase 3 when authorized.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -55,8 +55,8 @@
 
 ## Phase 2 : Accounts, subscriptions, and retention
 
-- **Publish (2026-11-17):** P2-PUBLISH-001 COMPLETE — PR #3 open; head `5409c48` (reconcile with acceptance at `0a002c0` before merge).
-- **Planner build review (2026-11-17):** `P2-BUILD-001` accepted — P2-D1–D3 PASS at `0a002c0` (branch not on remote until push authorized).
+- **Review (2026-11-17):** PASS — P2-D1–D3 per PHASE_LOG; PR #3 squash-merged; Pages deploy run 44184633700 success; published URL deploy-smoke verified (`account/login`, `registered-reader` in bundle).
+- **Planner build review (2026-11-17):** `P2-BUILD-001` accepted — P2-D1–D3 PASS; published head `5409c48` on PR #3 (descendant of accepted `0a002c0`).
 - Type: BUILD.
 - Objective: let readers complete simulated registration, engagement, subscription, retention, and account-management journeys with persistent browser state.
 - Deliverables: account personas, registration/login/logout, saved articles, followed writers, simulated device switch, paywall, plans, trials/offers, checkout, activation, billing edits, plan changes, renewals, cancellation reasons, and scripted account-support chat.
