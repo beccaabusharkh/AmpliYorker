@@ -1,12 +1,18 @@
 # BUILDER_HANDOFF
 
-**Status:** START
+**Status:** IDLE
 **Phase:** 3 : Amplitude instrumentation and product connections
 **phase_id:** 3
 **assignment_id:** P3-BUILD-001
 **phase_type:** BUILD
 **Builder agent ID:** bc-3467dc4a-c7ee-539f-9d04-8640a675ef90
 **Branch:** `phase-3-instrumentation`
+
+**Builder report (2026-11-17):** assignment **BLOCKED** on VM commit `573af6d` (branch not on GitHub — push not authorized). **P3-D1** PASS, **P3-D2** PASS, **P3-D3** BLOCKED — no `VITE_AMPLITUDE_API_KEY` / `.env.local` on Builder VM. Resume same assignment after credential setup (see DECISIONS.md).
+
+Do NOT proceed without a new Planner START handoff or explicit resume for P3-D3 smoke only.
+
+---
 
 Objective: install `@amplitude/unified`, initialize Analytics + Session Replay (+ Guides & Surveys interfaces where supported) once via `initAll()`, wire custom events from `custom-events.yml`, and preserve existing reader journeys without behavior regressions. No Statsig. No Amplitude Experiment/flags.
 
