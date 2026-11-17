@@ -1,0 +1,22 @@
+[
+  {
+    "keywords": ["search", "find", "article"],
+    "answer": "Use the header search field or open Search from the home page. Queries match headlines, decks, and body text."
+  },
+  {
+    "keywords": ["newsletter", "email", "subscribe"],
+    "answer": "Newsletter signup is simulated in Phase 1. Submitting the form shows success without sending email."
+  },
+  {
+    "keywords": ["sponsored", "ad", "advertisement"],
+    "answer": "Sponsored stories and simulated ads are labeled on the home page and never link to checkout."
+  },
+  {
+    "keywords": ["topic", "author"],
+    "answer": "Each article links to its topic and author pages from the article metadata row."
+  },
+  {
+    "keywords": ["default", "help"],
+    "answer": "Amplitude Daily is a fictional demo site. Ask about search, topics, newsletter, or sponsored content."
+  }
+]

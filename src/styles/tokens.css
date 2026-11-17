@@ -152,3 +152,236 @@ a:hover {
   color: var(--color-text-muted);
   font-size: 0.875rem;
 }
+
+.site-header__layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.header-search {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.header-search input {
+  min-width: 12rem;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.header-search button {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.home-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(14rem, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.home-rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.ad-unit,
+.sponsored-card,
+.podcast-card,
+.home-newsletter {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+}
+
+.sponsored-card {
+  border-color: #c7923e;
+  background: #fff9ee;
+}
+
+.ad-label,
+.sponsored-label,
+.podcast-label,
+.narrated-label {
+  margin: 0 0 var(--space-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.sponsored-label {
+  color: #9a6700;
+}
+
+.ad-copy {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.latest-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.latest-list li {
+  margin-bottom: var(--space-md);
+}
+
+.latest-list span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.home-newsletter form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.home-newsletter input {
+  flex: 1;
+  min-width: 10rem;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.newsletter-success {
+  color: #0d6832;
+  font-weight: 600;
+}
+
+.search-panel,
+.listing-panel {
+  max-width: var(--max-content);
+}
+
+.search-results,
+.listing-list {
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.search-result,
+.listing-item {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.search-guidance,
+.search-empty {
+  color: var(--color-text-muted);
+}
+
+.recommendations ul {
+  padding-left: var(--space-lg);
+}
+
+.reading-progress {
+  position: sticky;
+  top: 0;
+  height: 4px;
+  background: var(--color-border);
+  margin-bottom: var(--space-md);
+  z-index: 2;
+}
+
+.reading-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--color-accent);
+  transition: width 0.1s linear;
+}
+
+.narrated-block audio {
+  width: 100%;
+  max-width: var(--max-content);
+}
+
+.discovery-chat__toggle {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: 20;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 999px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-surface);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.discovery-chat {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: calc(var(--space-lg) + 3rem);
+  width: min(22rem, calc(100vw - 2rem));
+  z-index: 20;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.discovery-chat__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.discovery-chat__close {
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.discovery-chat__form {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.discovery-chat__form input {
+  flex: 1;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 720px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+  }
+}
