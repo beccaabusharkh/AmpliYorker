@@ -1,10 +1,10 @@
 ## 2026-11-17T21:52:00Z | Phase 2 | Assignment P2-PUBLISH-001 | COMPLETE
 - What was built: no further product edits; published accepted Phase 2 deliverables from P2-BUILD-001 onto `origin/phase-2-accounts`.
 - Files changed: `PHASE_LOG.md` only (publish commit after code push).
-- Git actions: pushed `phase-2-accounts` via GitHub MCP (`origin/phase-2-accounts` head `214ab0364c17cb7e5851a80e78ac8baac9fcfff3` before publish log); PR https://github.com/beccaabusharkh/AmpliYorker/compare/main...phase-2-accounts?expand=1 (integration token cannot `createPullRequest`; open from compare if MCP form not submitted). Merge not performed.
-- Definition-of-done check: P2-PUB-D1 PASS (`origin/phase-2-accounts` contains Phase 2 accounts/subscriptions/retention deliverables; accepted baseline `0a002c0`, published descendant after Builder VM recovery); P2-PUB-D2 PASS (single PR target into `main` from `phase-2-accounts`, compare URL above).
+- Git actions: pushed `phase-2-accounts` via GitHub MCP (head `edbb78af96dc30b97a80fba293b9f96787ec320f`); PR https://github.com/beccaabusharkh/AmpliYorker/pull/3 (base `main`, head `phase-2-accounts`); merge not performed.
+- Definition-of-done check: P2-PUB-D1 PASS (`origin/phase-2-accounts` contains Phase 2 accounts/subscriptions/retention deliverables; accepted baseline `0a002c0`, published descendant after Builder VM recovery); P2-PUB-D2 PASS (one open PR into `main`, URL above).
 - Deviations: Builder commit `0a002c0` unreachable on VM; tree recovered from sibling agent transcript. Remote head differs from `0a002c0`. `src/styles/tokens.css` Phase 2 polish not applied on remote (phase-1 tokens remain).
-- Blocker / next action: Planner review and merge approval; submit compare PR if not already open.
+- Blocker / next action: Planner review and merge approval.
 
 ## 2026-11-17T21:36:00Z | Phase 2 | Assignment P2-BUILD-001 | COMPLETE
 - What was built: simulated accounts — versioned `localStorage` session (personas `anonymous`, `registered-reader`, `declining-engagement`), register/login/logout, save/follow, paywall on premium article `retention-myths`, subscribe plans with introductory offer, simulated checkout/confirmation, account hub (billing, plan change, cancellation reason, device snapshot, demo reset/time advance), retention module, account-support FAQ chat; header nav for account/subscribe.
