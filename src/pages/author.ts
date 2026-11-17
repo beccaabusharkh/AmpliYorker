@@ -1,11 +1,13 @@
 import { getArticlesByAuthor } from "../lib/articles";
 import { navigateToHash } from "../lib/router";
+import { isAuthorFollowed, isLoggedIn, toggleFollowAuthor } from "../lib/session";
 
 export function renderAuthorPage(slug: string): HTMLElement {
   const main = document.createElement("main");
   main.className = "page-main";
   const articles = getArticlesByAuthor(slug);
   const displayName = articles[0]?.authorName ?? slug;
+  const followed = isAuthorFollowed(slug);
 
   if (articles.length === 0) {
     main.innerHTML = `
@@ -29,10 +31,22 @@ export function renderAuthorPage(slug: string): HTMLElement {
     main.innerHTML = `
       <section class="listing-panel">
         <h1>${displayName}</h1>
+        <p class="author-actions">
+          <button type="button" data-follow-author>${followed ? "Following" : "Follow writer"}</button>
+        </p>
         <ul class="listing-list">${items}</ul>
       </section>
     `;
   }
+
+  main.querySelector("[data-follow-author]")?.addEventListener("click", () => {
+    if (!isLoggedIn()) {
+      navigateToHash("#/account/login");
+      return;
+    }
+    toggleFollowAuthor(slug);
+    navigateToHash(`#/author/${encodeURIComponent(slug)}`);
+  });
 
   main.querySelector("[data-home-link]")?.addEventListener("click", (event) => {
     event.preventDefault();
