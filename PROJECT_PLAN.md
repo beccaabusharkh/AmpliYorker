@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: IDLE — **P2-BUILD-001** accepted (`0a002c0` on `phase-2-accounts`, unpublished); await publish authorization. Phase 1 published https://beccaabusharkh.github.io/AmpliYorker/.
+- Status: START — **P2-PUBLISH-001** dispatched (`0a002c0` on `phase-2-accounts`, push/PR authorized 2026-11-17). Phase 1 published https://beccaabusharkh.github.io/AmpliYorker/.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
