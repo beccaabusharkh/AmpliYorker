@@ -91,3 +91,11 @@
 - **INCLUDED (BUILD must configure):** Analytics custom events (`custom-events.yml`); Session Replay (`sampleRate: 1` with assigned masks); Guides & Surveys via Unified init when supported by SDK docs.
 - **EXCLUDED (recorded):** Amplitude Experiment / Feature Flags (Statsig Phase 4); Warehouse, CDP, Activation, and other products not listed above.
 - **Verification deferred:** Live ingestion, full event matrix, replay masking QA, guide targeting → Phase 5 FINAL_VERIFY.
+
+## 2026-11-17 — Phase 3 builder smoke blocker (`P3-BUILD-001`)
+
+- **Planner review:** Builder report 2026-11-17 (VM commit `573af6d`, assignment BLOCKED in Builder `PHASE_LOG` — not yet on `origin`).
+- **Acceptance:** P3-D1 PASS (typecheck); P3-D2 PASS (build); **P3-D3 BLOCKED** — missing `VITE_AMPLITUDE_API_KEY` in gitignored `.env.local` on AmpliYorker Builder environment.
+- **Scope note:** Instrumentation implementation claimed complete on VM (`@amplitude/unified`, `initAll`, custom events, masks); **Planner has not reviewed diff** until branch is pushed or evidence exported.
+- **Required (no secret in Slack):** Add `VITE_AMPLITUDE_API_KEY` to the **AmpliYorker** Cursor Cloud environment (team env `09ed1dd9-ddfa-11f1-ba91-f63b1661ac50`) or equivalent secret injection for Builder VMs; use a demo/dev project API key only.
+- **Resume:** After secret is set, top-level `@PLANNER resume P3-BUILD-001 smoke` to rerun P3-D3 only on existing VM branch (same assignment id until COMPLETE).
