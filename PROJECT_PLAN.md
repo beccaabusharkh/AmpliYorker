@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: START — **P2-PUBLISH-001** dispatched (`0a002c0` on `phase-2-accounts`, push/PR authorized 2026-11-17). Phase 1 published https://beccaabusharkh.github.io/AmpliYorker/.
+- Status: IDLE — **P2-PUBLISH-001** complete; PR https://github.com/beccaabusharkh/AmpliYorker/pull/3 open (`edbb78a`). Await merge approval. **Planner note:** build review was at `0a002c0`; reconcile PR diff before `Approve`.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -43,7 +43,7 @@
 - **Planner build review (2026-11-11):** `P1-BUILD-001` accepted — P1-D1–D3 PASS; PR #2 (`4b282fa`).
 - Type: BUILD.
 - Objective: let readers discover and consume articles, media, sponsored content, and recommendations before adding accounts or tracking.
-- Deliverables: topic/author pages, search, article pages, deterministic recommendations, reading progress, narrated articles, podcasts, newsletter signup simulation, labeled ads/sponsored stories, and scripted discovery chat.
+- Deliverables: topic/author/pages, search, article pages, deterministic recommendations, reading progress, narrated articles, podcasts, newsletter signup simulation, labeled ads/sponsored stories, and scripted discovery chat.
 - Definition of done:
   1. P1-D1: `pnpm typecheck` exits 0.
   2. P1-D2: `pnpm build` exits 0.
@@ -55,6 +55,7 @@
 
 ## Phase 2 : Accounts, subscriptions, and retention
 
+- **Publish (2026-11-17):** P2-PUBLISH-001 COMPLETE — PR #3 open; head `edbb78a` (reconcile with acceptance at `0a002c0` before merge).
 - **Planner build review (2026-11-17):** `P2-BUILD-001` accepted — P2-D1–D3 PASS at `0a002c0` (branch not on remote until push authorized).
 - Type: BUILD.
 - Objective: let readers complete simulated registration, engagement, subscription, retention, and account-management journeys with persistent browser state.
