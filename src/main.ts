@@ -1,11 +1,19 @@
 import "./styles/tokens.css";
 import { getCurrentRoute, onRouteChange, type Route } from "./lib/router";
+import { recordVisit } from "./lib/session";
+import { renderAccountPage } from "./pages/account";
 import { renderArticlePage } from "./pages/article";
 import { renderAuthorPage } from "./pages/author";
+import { renderCheckoutConfirmationPage } from "./pages/checkout-confirmation";
+import { renderCheckoutPage } from "./pages/checkout";
 import { renderHomePage } from "./pages/home";
+import { renderLoginPage } from "./pages/login";
 import { renderNotFoundPage } from "./pages/not-found";
+import { renderRegisterPage } from "./pages/register";
 import { renderSearchPage } from "./pages/search";
+import { renderSubscribePage } from "./pages/subscribe";
 import { renderTopicPage } from "./pages/topic";
+import { mountAccountSupportChat } from "./ui/account-support-chat";
 import { renderFooter, renderHeader } from "./ui/shell";
 import { mountDiscoveryChat } from "./ui/discovery-chat";
 
@@ -14,6 +22,8 @@ if (!(rootEl instanceof HTMLElement)) {
   throw new Error("Missing #app mount point");
 }
 const appRoot: HTMLElement = rootEl;
+
+recordVisit();
 
 function renderContent(route: Route): HTMLElement {
   switch (route.name) {
@@ -27,6 +37,18 @@ function renderContent(route: Route): HTMLElement {
       return renderTopicPage(route.slug);
     case "author":
       return renderAuthorPage(route.slug);
+    case "accountRegister":
+      return renderRegisterPage();
+    case "accountLogin":
+      return renderLoginPage();
+    case "account":
+      return renderAccountPage();
+    case "subscribe":
+      return renderSubscribePage();
+    case "checkout":
+      return renderCheckoutPage();
+    case "checkoutConfirmation":
+      return renderCheckoutConfirmationPage();
     default:
       return renderNotFoundPage();
   }
@@ -38,6 +60,7 @@ function renderApp(route: Route): void {
   shell.append(renderHeader(), renderContent(route), renderFooter());
   appRoot.replaceChildren(shell);
   mountDiscoveryChat(appRoot);
+  mountAccountSupportChat(appRoot);
 }
 
 const initialRoute = getCurrentRoute();

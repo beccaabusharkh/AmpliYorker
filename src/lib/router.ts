@@ -4,6 +4,12 @@ export type Route =
   | { name: "search"; query: string }
   | { name: "topic"; slug: string }
   | { name: "author"; slug: string }
+  | { name: "accountRegister" }
+  | { name: "accountLogin" }
+  | { name: "account" }
+  | { name: "subscribe" }
+  | { name: "checkout" }
+  | { name: "checkoutConfirmation" }
   | { name: "notFound" };
 
 function parseHash(hash: string): Route {
@@ -25,6 +31,24 @@ function parseHash(hash: string): Route {
   if (root === "author" && segments[1]) {
     return { name: "author", slug: decodeURIComponent(segments[1]) };
   }
+  if (root === "account") {
+    if (segments[1] === "register") {
+      return { name: "accountRegister" };
+    }
+    if (segments[1] === "login") {
+      return { name: "accountLogin" };
+    }
+    return { name: "account" };
+  }
+  if (root === "subscribe") {
+    return { name: "subscribe" };
+  }
+  if (root === "checkout") {
+    if (segments[1] === "confirmation") {
+      return { name: "checkoutConfirmation" };
+    }
+    return { name: "checkout" };
+  }
   return { name: "notFound" };
 }
 
@@ -33,8 +57,9 @@ export function getCurrentRoute(): Route {
 }
 
 export function navigateToHash(hash: string): void {
-  if (window.location.hash !== hash) {
-    window.location.hash = hash;
+  const normalized = hash.startsWith("#") ? hash : `#/${hash.replace(/^\//, "")}`;
+  if (window.location.hash !== normalized) {
+    window.location.hash = normalized;
   }
 }
 
