@@ -40,7 +40,8 @@
 - **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/2
 - **Reviewed commit (pre-merge head):** `4b282fa77d6c35ef5670740e8b9f55b14033cd6f`
 - **Merge commit on `main`:** `002b35e25c05ed7a094069f1202986414e6600c6`
-- **Action:** Approve and merge PR #2; trigger GitHub Pages deploy on `main`
+- **Action:** Approve and squash-merge PR #2; trigger GitHub Pages deploy on `main`
+- **Note:** GitHub review APPROVE not submitted — same account owns PR (self-approval blocked).
 - **Assignment:** Phase 1 publish (consumes merge authorization after P1-PUBLISH-001)
 - **Approval state:** CONSUMED
 - **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44179907875 (success); live signed-out check `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 with “Amplitude Daily” and `retention-myths` / “retention myths” in deployed bundle (deploy smoke only)
