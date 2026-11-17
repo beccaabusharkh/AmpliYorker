@@ -80,3 +80,14 @@
 - **Assignment:** Phase 2 publish (consumes merge authorization after P2-PUBLISH-001)
 - **Approval state:** CONSUMED
 - **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44184633700 (success); live deploy-smoke `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 with `account/login` and `registered-reader` in deployed bundle
+
+## 2026-11-17 — Phase 3 UX / instrumentation spec waiver (interim)
+
+- **Decision:** Dispatch Phase 3 BUILD assignment **P3-BUILD-001** using PROJECT_PLAN Phase 3 deliverables, `custom-events.yml`, and BUILDER_HANDOFF replay-mask rules until `docs/3/SPEC.md` is READY from UX.
+- **Rationale:** Slack `@PLANNER dispatch Phase 3` (ts `1794952578.396539`).
+
+## 2026-11-17 — Phase 3 Amplitude product scope
+
+- **INCLUDED (BUILD must configure):** Analytics custom events (`custom-events.yml`); Session Replay (`sampleRate: 1` with assigned masks); Guides & Surveys via Unified init when supported by SDK docs.
+- **EXCLUDED (recorded):** Amplitude Experiment / Feature Flags (Statsig Phase 4); Warehouse, CDP, Activation, and other products not listed above.
+- **Verification deferred:** Live ingestion, full event matrix, replay masking QA, guide targeting → Phase 5 FINAL_VERIFY.
