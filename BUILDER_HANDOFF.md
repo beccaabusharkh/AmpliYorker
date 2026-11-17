@@ -1,13 +1,13 @@
 # BUILDER_HANDOFF
 
 **Status:** IDLE
-**Phase:** 1 : Discovery, reading, and engagement
-**phase_id:** 1
-**assignment_id:** _(none — last completed: P1-PUBLISH-001)_
+**Phase:** 2 : Accounts, subscriptions, and retention
+**phase_id:** 2
+**assignment_id:** _(none)_
 **phase_type:** BUILD
 **Builder agent ID:** bc-3219cf40-a75c-507c-a345-62219ac5994e
-**Branch:** `phase-1-discovery`
+**Branch:** _(not assigned)_
 
-No active assignment. Phase 1 build **P1-BUILD-001** accepted; PR https://github.com/beccaabusharkh/AmpliYorker/pull/2 awaits merge Approve.
+No active assignment. Phase 1 merged to `main`; Builder IDLE until Planner dispatches Phase 2 (`P2-BUILD-001` or successor).
 
 Do NOT proceed without a new Planner START handoff.

@@ -30,10 +30,21 @@
 - **Acceptance:** P1-D1 PASS, P1-D2 PASS, P1-D3 PASS (production-preview search smoke per PHASE_LOG).
 - **Scope:** Phase 1 product files only (`src/**`, `public/audio/*`, `PHASE_LOG.md`); no Amplitude/Statsig SDK; no account/paywall scope.
 - **UX:** Interim waiver per above; handoff deliverables (search, routes, media, newsletter/ad/chat labels) covered.
-- **Publish note:** Branch/PR #2 opened (see PHASE_LOG `P1-PUBLISH-001`); merge still requires unused Slack `Approve` naming PR #2.
+- **Publish note:** Branch/PR #2 opened (see PHASE_LOG `P1-PUBLISH-001`); merged 2026-11-17.
+
+## 2026-11-17 — Phase 1 merge approval (PR #2)
+
+- **Channel:** #bas-cursor (Slack)
+- **Slack timestamp:** `1794950761.134219`
+- **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/2
+- **Reviewed commit (pre-merge head):** `4b282fa77d6c35ef5670740e8b9f55b14033cd6f`
+- **Merge commit on `main`:** `002b35e25c05ed7a094069f1202986414e6600c6`
+- **Action:** Approve and merge PR #2; trigger GitHub Pages deploy on `main`
+- **Assignment:** Phase 1 publish (consumes merge authorization after P1-PUBLISH-001)
+- **Approval state:** CONSUMED
+- **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44179907875 (success); live signed-out check `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 with “Amplitude Daily” and `retention-myths` / “retention myths” in deployed bundle (deploy smoke only)
 
 ## Approval records (open)
 
-| Action | PR | Head commit | State |
-| --- | --- | --- | --- |
-| Merge to `main` (Pages deploy) | https://github.com/beccaabusharkh/AmpliYorker/pull/2 | `4b282fa77d6c35ef5670740e8b9f55b14033cd6f` | **UNUSED** until qualifying Slack `Approve` |
+_None._

@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: IDLE — **P1-BUILD-001** accepted (P1-D1–D3 PASS); **P1-PUBLISH-001** complete — PR https://github.com/beccaabusharkh/AmpliYorker/pull/2 (`4b282fa`) awaits merge Approve. Phase 0 live at https://beccaabusharkh.github.io/AmpliYorker/.
+- Status: IDLE — Phase 1 landed on `main` (`002b35e2`); published https://beccaabusharkh.github.io/AmpliYorker/. Next: Phase 2 accounts/subscriptions (await `@PLANNER` dispatch or UX spec).
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -39,6 +39,7 @@
 
 ## Phase 1 : Discovery, reading, and engagement
 
+- **Review (2026-11-17):** PASS — P1-D1–D3 per PHASE_LOG; PR #2 merged; Pages deploy run 44179907875 success; published URL deploy-smoke verified signed-out.
 - **Planner build review (2026-11-11):** `P1-BUILD-001` accepted — P1-D1–D3 PASS; PR #2 (`4b282fa`).
 - Type: BUILD.
 - Objective: let readers discover and consume articles, media, sponsored content, and recommendations before adding accounts or tracking.
