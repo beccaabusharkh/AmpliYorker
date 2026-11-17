@@ -51,6 +51,13 @@
 - **Approval state:** CONSUMED
 - **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44179907875 (success); live signed-out check `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 with “Amplitude Daily” and `retention-myths` / “retention myths” in deployed bundle (deploy smoke only)
 
+## 2026-11-17 — Phase 2 builder acceptance (`P2-BUILD-001`)
+
+- **Planner review:** PHASE_LOG `2026-11-17T21:35:00Z` (assignment `P2-BUILD-001` COMPLETE).
+- **Reviewed commit:** `0a002c09e6710a4ae592995411195b7815ed1cd1` on `phase-2-accounts` (Builder VM only; not on GitHub yet).
+- **Acceptance:** P2-D1 PASS, P2-D2 PASS, P2-D3 PASS (production-preview smoke per PHASE_LOG: `registered-reader` → introductory offer → simulated checkout → confirmation refresh → premium article unlocked).
+- **Scope:** Phase 2 product files (`src/**`, `src/data/*.json`, `PHASE_LOG.md`); no Amplitude/Statsig SDK; no push in build assignment.
+
 ## Approval records (open)
 
 _None._
