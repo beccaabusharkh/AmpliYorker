@@ -18,6 +18,11 @@
 - **Decision:** Proceed with Phase 0 scaffold using PROJECT_PLAN defaults when `docs/0/SPEC.md` is absent
 - **Recorded by:** Builder assignment P0-BUILD-002 (referenced in PHASE_LOG)
 
+## 2026-11-17 — Phase 2 UX spec waiver (interim)
+
+- **Decision:** Dispatch Phase 2 BUILD assignment **P2-BUILD-001** using PROJECT_PLAN Phase 2 deliverables and acceptance copy until `docs/2/SPEC.md` is READY from UX; label all simulated account, payment, billing, device, and support flows explicitly (“Simulated …”).
+- **Rationale:** Unblock accounts/subscriptions build per Slack `@PLANNER dispatch Phase 2`.
+
 ## 2026-11-11 — Phase 1 UX spec waiver (interim)
 
 - **Decision:** Dispatch Phase 1 BUILD assignment **P1-BUILD-001** using PROJECT_PLAN Phase 1 deliverables and acceptance copy until `docs/1/SPEC.md` is READY from UX; Builder must not invent competing copy for labeled simulations or sponsored content—use explicit simulation labels from the plan (“Simulated”, “Sponsored story” variants as listed in handoff)

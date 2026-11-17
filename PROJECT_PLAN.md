@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: START — Phase 2 BUILD dispatched (`P2-BUILD-001` in BUILDER_HANDOFF.md). Phase 1 merged (`002b35e` on `main`); Pages deploy verified 2026-11-17 (Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44179907875). Published https://beccaabusharkh.github.io/AmpliYorker/.
+- Status: START — **P2-BUILD-001** on branch `phase-2-accounts`. Phase 1 on `main`; published https://beccaabusharkh.github.io/AmpliYorker/ (deploy run 44179907875).
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
