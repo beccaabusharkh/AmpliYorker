@@ -1,0 +1,18 @@
+[
+  {
+    "id": "monthly",
+    "name": "Monthly",
+    "cadence": "monthly",
+    "priceLabel": "$12 / month",
+    "introOfferLabel": "Introductory offer — $1 for your first month (simulated)",
+    "renewalIntervalDays": 30
+  },
+  {
+    "id": "annual",
+    "name": "Annual",
+    "cadence": "annual",
+    "priceLabel": "$99 / year",
+    "introOfferLabel": "Introductory offer — $79 for your first year (simulated)",
+    "renewalIntervalDays": 365
+  }
+]

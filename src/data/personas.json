@@ -3,5 +3,21 @@
     "id": "anonymous",
     "label": "Anonymous visitor",
     "description": "Default unsigned browsing — no saved account session."
+  },
+  {
+    "id": "registered-reader",
+    "label": "Registered reader",
+    "description": "Signed-in reader without a subscription (smoke persona for checkout).",
+    "presetEmail": "reader-demo@ampliyorker.test",
+    "presetDisplayName": "Demo Reader"
+  },
+  {
+    "id": "declining-engagement",
+    "label": "Declining engagement profile",
+    "description": "Low recent engagement — surfaces retention reminders on home and account.",
+    "presetEmail": "lapsed@ampliyorker.test",
+    "presetDisplayName": "Lapsed Reader",
+    "seedEngagementArticlesRead": 2,
+    "seedDaysSinceLastVisit": 18
   }
 ]

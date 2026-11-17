@@ -1,0 +1,22 @@
+[
+  {
+    "keywords": ["cancel", "cancellation", "unsubscribe"],
+    "answer": "Simulated account support: open Account → Cancel subscription, pick a reason, and confirm. Access ends at the simulated renewal date shown on your hub."
+  },
+  {
+    "keywords": ["billing", "card", "payment", "invoice"],
+    "answer": "Simulated billing: update preset demo values on the Account page under Billing profile. No real payment network is contacted."
+  },
+  {
+    "keywords": ["device", "phone", "tablet", "switch"],
+    "answer": "Simulated device switch: use Export persona snapshot on Account to copy local demo state, or apply a secondary device label. This does not sync across real devices."
+  },
+  {
+    "keywords": ["paywall", "premium", "subscriber"],
+    "answer": "Premium articles require an active simulated subscription. Complete Subscribe → Checkout with preset payment fields to lift the paywall in this browser."
+  },
+  {
+    "keywords": [],
+    "answer": "Simulated account support — browse Account, Subscribe, and this FAQ. For discovery questions, use the Discovery chat button instead."
+  }
+]
