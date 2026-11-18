@@ -1,0 +1,11 @@
+{
+  "source": "src/lib/statsig/catalog.ts",
+  "defaultVariantsWhenKeyMissing": {
+    "premium_paywall_after_scroll": "false",
+    "subscription_message_copy": "control",
+    "subscription_offer_framing": "control",
+    "home_recommendation_strategy": "control",
+    "retention_renewal_treatment": "control"
+  },
+  "inspectorUi": "Statsig exposure inspector (local) — fixed bottom-right above discovery chat after P5 layout fix."
+}
