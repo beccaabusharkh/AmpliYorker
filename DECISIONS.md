@@ -267,3 +267,10 @@
 - **Assignments:** `P2-UX-EDITORIAL-001` (UX), then `P2-BUILD-EDITORIAL-001` (Builder) after `docs/2/SPEC.md` is `READY`.
 - **Reading measurement:** Align milestones to 25/50/75/90/completion + active time per user brief; document changes to `custom-events.yml` if needed.
 
+## 2026-11-18 — Editorial redesign merge complete (PR #7)
+
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/7
+- **Merge commit on `main`:** `81522f9c4211e97d771a39f6a0b16ddddfbf3c1e`
+- **Assignment:** `P2E-MERGE-001` COMPLETE
+- **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44380450346 (success); deploy-smoke `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200; published JS bundle contains `Ask the Daily` and editorial corpus
+

@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: IDLE — **P2-BUILD-EDITORIAL-001** accepted on VM `editorial-redesign`; await **P2E-PUBLISH-001** push/PR. Live site still pre-redesign until merge.
+- Status: IDLE — Editorial redesign **live** on `main` (`81522f9c`); https://beccaabusharkh.github.io/AmpliYorker/
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
