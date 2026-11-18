@@ -1,6 +1,6 @@
 # UX_HANDOFF
 
-**Status:** START
+**Status:** IDLE
 **Phase:** 2 editorial redesign
 **phase_id:** 2
 **assignment_id:** P2-UX-EDITORIAL-001
@@ -38,3 +38,5 @@ Follow `UX.md`. Include exact tokens (ivory background, near-black text, serif h
 ## Stop
 
 Mark `BLOCKED` with `Blocked decisions` if scope conflicts with preserved journeys. Report to Planner only via spec.
+
+**Closed:** P2-UX-EDITORIAL-001 COMPLETE 2026-11-18 — `docs/2/SPEC.md` READY.
