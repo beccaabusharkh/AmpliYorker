@@ -3,7 +3,7 @@
 **Status:** START
 **phase_id:** 2G
 **assignment_id:** P2G-UX-POLISH-001
-**UX agent ID:** _(assigned at launch)_
+**UX agent ID:** bc-d6b39d6a-75ef-5486-bba5-c57db45b4161
 
 ## Objective
 
