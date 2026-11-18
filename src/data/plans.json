@@ -1,7 +1,7 @@
 [
   {
     "id": "monthly",
-    "name": "Monthly",
+    "name": "Digital Monthly",
     "cadence": "monthly",
     "priceLabel": "$12 / month",
     "introOfferLabel": "Introductory offer — $1 for your first month (simulated)",
@@ -9,10 +9,18 @@
   },
   {
     "id": "annual",
-    "name": "Annual",
+    "name": "Digital Annual",
     "cadence": "annual",
     "priceLabel": "$99 / year",
     "introOfferLabel": "Introductory offer — $79 for your first year (simulated)",
+    "renewalIntervalDays": 365
+  },
+  {
+    "id": "premium",
+    "name": "Premium Annual",
+    "cadence": "annual",
+    "priceLabel": "$149 / year",
+    "introOfferLabel": "Introductory offer — $119 for your first year (simulated)",
     "renewalIntervalDays": 365
   }
 ]

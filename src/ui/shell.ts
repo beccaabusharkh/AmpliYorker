@@ -46,6 +46,10 @@ export function renderHeader(): HTMLElement {
       <a href="#/" data-internal-link>Amplitude Daily</a>
     </h1>
     <p class="home-masthead-tagline">Independent reporting on product analytics and experimentation</p>
+    <div class="site-promo-band" data-subscribe-promo aria-label="Subscription promotion">
+      <p class="site-promo-band__copy">Subscribe for full access to Amplitude Daily — simulated plans from $12/month.</p>
+      <a class="promo-band__cta" href="#/subscribe" data-section-link>Subscribe</a>
+    </div>
     <nav class="home-section-nav" aria-label="Sections">
       <ul class="section-nav-list">
         ${SECTION_LINKS.map(

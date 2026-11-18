@@ -1,0 +1,11 @@
+{
+  "bodyBg": "rgb(255, 255, 255)",
+  "promoBand": true,
+  "leadHeightPx": 280,
+  "leadCopyFirst": true,
+  "leadDisplayFlex": true,
+  "planCardsLoggedIn": 3,
+  "premiumCheckoutLabel": true,
+  "paywallUnlockAfterIntroPremium": true,
+  "previewBase": "http://127.0.0.1:4174/AmpliYorker/"
+}

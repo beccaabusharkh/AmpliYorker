@@ -1,4 +1,5 @@
 import { getPlanById } from "../lib/plans";
+import { getPlanAmountUsd } from "../lib/plan-pricing";
 import { navigateToHash } from "../lib/router";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { clearCheckoutId, getOrCreateCheckoutId } from "../lib/analytics/checkout";
@@ -12,7 +13,7 @@ export function renderCheckoutPage(): HTMLElement {
 
   if (!isLoggedIn() || !plan) {
     main.innerHTML = `
-      <section class="form-panel">
+      <section class="form-panel account-surface">
         <h1>Checkout</h1>
         <p>Select a plan on <a href="#/subscribe" data-sub-link>Subscribe</a> first.</p>
       </section>
@@ -25,10 +26,10 @@ export function renderCheckoutPage(): HTMLElement {
   }
 
   const offerCopy = session.pendingIntroOffer ? plan.introOfferLabel : plan.priceLabel;
-  const amountDue = session.pendingIntroOffer ? (plan.id === "annual" ? 79 : 1) : plan.id === "annual" ? 99 : 12;
+  const amountDue = getPlanAmountUsd(plan.id, session.pendingIntroOffer);
 
   main.innerHTML = `
-    <section class="form-panel">
+    <section class="form-panel account-surface">
       <h1>Simulated checkout</h1>
       <p class="simulation-label">Simulated payment — preset values only; nothing is charged.</p>
       <p><strong>Plan:</strong> ${plan.name} · ${offerCopy}</p>

@@ -72,13 +72,13 @@ export function renderHomePage(): HTMLElement {
         <section class="home-lead-package" data-component="home-lead">
           ${article.kicker ? `<p class="home-kicker">${article.kicker}</p>` : ""}
           <div class="lead-grid">
-            <a class="lead-hero-link" href="#/article/${encodeURIComponent(article.id)}" data-lead-link>
-              <img class="lead-hero-image" src="${heroSrc}" alt="${escapeAttr(heroAlt)}" width="1920" height="1080" />
-            </a>
             <div class="lead-copy">
               <h2 class="lead-headline"><a href="#/article/${encodeURIComponent(article.id)}" data-lead-link>${article.headline}</a></h2>
               <p class="lead-deck">${article.deck}</p>
             </div>
+            <a class="lead-hero-link" href="#/article/${encodeURIComponent(article.id)}" data-lead-link>
+              <img class="lead-hero-image" src="${heroSrc}" alt="${escapeAttr(heroAlt)}" width="1200" height="800" />
+            </a>
           </div>
         </section>
         <div class="home-secondary-leads">

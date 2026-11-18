@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** START
+**Status:** IDLE
 **Phase:** 2F Atlantic-inspired refinement
 **phase_id:** 2F
 **assignment_id:** P2F-BUILD-ATLANTIC-001

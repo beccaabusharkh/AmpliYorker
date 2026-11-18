@@ -11,7 +11,7 @@ export function renderLoginPage(): HTMLElement {
   main.className = "page-main account-page";
 
   main.innerHTML = `
-    <section class="form-panel">
+    <section class="form-panel account-surface">
       <h1>Simulated login</h1>
       <p class="simulation-label">Preset demo credentials only — no real authentication.</p>
       <form data-login-form class="stacked-form">
