@@ -78,5 +78,5 @@
 - SLACK_CHANNEL_ID: `C0CGUUSJ4TG` (`#bas-cursor`, private). Subscribed for top-level messages only; act on human messages that contain `@PLANNER`.
 - PLANNER_MENTION: `@PLANNER` — accept human requests only from top-level messages containing this exact mention.
 - APPROVER_MENTION: `<@U045L8FS5BN>` (Becca Abu Sharkh) — accept `Approve` only from this user in qualifying top-level messages that name exactly one PR for one pending action.
-- Active Builder (Phase 3 build): https://cursor.com/agents/bc-3467dc4a-c7ee-539f-9d04-8640a675ef90
-- Processed Slack timestamps: include `1794951381.434309` (authorize push and PR for Phase 2), `1794952413.118799` (Approve PR #3 merge), `1794952578.396539` (dispatch Phase 3)
+- Active Builder (Phase 3 build): https://cursor.com/agents/bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114
+- Processed Slack timestamps: include `1794951381.434309` (authorize push and PR for Phase 2), `1794952413.118799` (Approve PR #3 merge), `1794952578.396539` (dispatch Phase 3), `1794959766.742059` (resume P3-BUILD-001 smoke)
