@@ -1,8 +1,8 @@
 ## 2026-11-18T18:05:00Z | Phase 5 | Assignment P5-PUBLISH-001 | COMPLETE
 - What was built: publish recovery — pushed Phase 5 final verification branch with inspector/chat layout fix, browser evidence under `docs/evidence/**`, and publish PR into `main` (accepted Builder commit `ffd5107` never on `origin`).
 - Files changed: `src/styles/tokens.css` (exposure inspector offset above discovery chat), `docs/evidence/**`, `PHASE_LOG.md`.
-- Git actions: `git push -u origin phase-5-final-verify`; PR URL recorded below after `gh pr create`; merge not performed.
-- Definition-of-done check: P5-PUB-D1 PASS (`origin/phase-5-final-verify` head contains Phase 5 verification artifacts + scoped CSS correction; descendant of `main` review baseline, not commit `ffd5107`); P5-PUB-D2 PASS (one open PR — see git actions line after push).
+- Git actions: `git push -u origin phase-5-final-verify` success; PR https://github.com/beccaabusharkh/AmpliYorker/pull/6 (base `main`, head `phase-5-final-verify`); merge not performed.
+- Definition-of-done check: P5-PUB-D1 PASS (`origin/phase-5-final-verify` head `1f47501dd43ae3cc7375cf6d2060127af2687814` contains Phase 5 verification artifacts + scoped CSS correction; descendant of `main` review baseline, not commit `ffd5107`); P5-PUB-D2 PASS (one open PR, URL above).
 - Deviations: reviewed P5-VERIFY head `ffd5107` existed only on prior Builder VM (unreachable on publish VM / GitHub); evidence regenerated on production preview `http://127.0.0.1:4173/AmpliYorker/` with Playwright 1.49.1 / Chromium per P3/P4 publish recovery pattern.
 - Blocker / next action: Planner review and merge approval via Slack `Approve` naming this PR.
 
