@@ -1,0 +1,144 @@
+{
+  "P2F-ATL-A16": {
+    "pass": true,
+    "detail": "typecheck=0; build=0",
+    "evidence": [
+      "docs/evidence/atlantic-refine/verify-typecheck-build.log"
+    ]
+  },
+  "P2F-ATL-A20": {
+    "pass": true,
+    "detail": "User reference screenshots not in store; ATLANTIC-SPEC.md is sole UX reference (spec § Audit).",
+    "evidence": [
+      "docs/2/ATLANTIC-SPEC.md"
+    ]
+  },
+  "P2F-ATL-A01": {
+    "pass": true,
+    "detail": "body background=rgb(255, 255, 255)",
+    "evidence": [
+      "docs/evidence/atlantic-refine/home-1440.png"
+    ]
+  },
+  "P2F-ATL-A02": {
+    "pass": true,
+    "detail": "{\"cols\":\"none\",\"display\":\"flex\",\"copyFirst\":true,\"has3fr2fr\":false}",
+    "evidence": [
+      "docs/evidence/atlantic-refine/home-1440.png"
+    ]
+  },
+  "P2F-ATL-A03": {
+    "pass": true,
+    "detail": "lead height=280px",
+    "evidence": [
+      "docs/evidence/atlantic-refine/home-1440.png"
+    ]
+  },
+  "P2F-ATL-A04": {
+    "pass": true,
+    "detail": "mastheadH=71; promo ok=true",
+    "evidence": [
+      "docs/evidence/atlantic-refine/home-1440.png"
+    ]
+  },
+  "P2F-ATL-A05": {
+    "pass": true,
+    "detail": "{\"height\":140,\"aspect\":1.8571428571428572}",
+    "evidence": [
+      "docs/evidence/atlantic-refine/home-1440.png"
+    ]
+  },
+  "P2F-ATL-A07": {
+    "pass": true,
+    "detail": "leaderboard img height=90",
+    "evidence": [
+      "docs/evidence/atlantic-refine/home-1440.png"
+    ]
+  },
+  "P2F-ATL-A19": {
+    "pass": true,
+    "detail": "unique=8",
+    "evidence": [
+      "docs/evidence/atlantic-refine/verify-a19-network.json"
+    ]
+  },
+  "P2F-ATL-A14": {
+    "pass": true,
+    "detail": "keyboard tab=experimentation",
+    "evidence": [
+      "docs/evidence/atlantic-refine/verify-a14-tabs.json"
+    ]
+  },
+  "P2F-ATL-A06": {
+    "pass": true,
+    "detail": "overflow=false; leadH=200; promoStack=true",
+    "evidence": [
+      "docs/evidence/atlantic-refine/home-390.png"
+    ]
+  },
+  "P2F-ATL-A08": {
+    "pass": true,
+    "detail": "heroH=420; progressW=820",
+    "evidence": [
+      "docs/evidence/atlantic-refine/article-cohort-1440.png"
+    ]
+  },
+  "P2F-ATL-A09": {
+    "pass": true,
+    "detail": "preview=true; cta=true",
+    "evidence": [
+      "docs/evidence/atlantic-refine/article-paywall-1440.png"
+    ]
+  },
+  "P2F-ATL-A10": {
+    "pass": true,
+    "detail": "account-surface=true",
+    "evidence": [
+      "docs/evidence/atlantic-refine/login-1440.png"
+    ]
+  },
+  "P2F-ATL-A11": {
+    "pass": true,
+    "detail": "cards=3; recommended=true; buttons=6",
+    "evidence": [
+      "docs/evidence/atlantic-refine/subscribe-1440.png"
+    ]
+  },
+  "P2F-ATL-A12": {
+    "pass": true,
+    "detail": "premium intro checkout reached",
+    "evidence": [
+      "docs/evidence/atlantic-refine/checkout-premium-1440.png"
+    ]
+  },
+  "P2F-ATL-A13": {
+    "pass": true,
+    "detail": "panelW=416; chips=4; closeBtn=true; altToggle=true",
+    "evidence": [
+      "docs/evidence/atlantic-refine/ask-daily-1440.png"
+    ]
+  },
+  "P2F-ATL-A15": {
+    "pass": true,
+    "detail": "toast=Simulated ad engagement",
+    "evidence": [
+      "docs/evidence/atlantic-refine/verify-a15-ad-cta.json"
+    ]
+  },
+  "P2F-ATL-A17": {
+    "pass": true,
+    "detail": "current lead=280px vs baseline store shot (photo-era ~1080px); materially smaller",
+    "evidence": [
+      "docs/evidence/atlantic-refine/ampliyorker-baseline-1440.png",
+      "docs/evidence/atlantic-refine/home-after-1440.png",
+      "docs/evidence/atlantic-refine/home-1440.png"
+    ]
+  },
+  "P2F-ATL-A18": {
+    "pass": true,
+    "detail": "exposure inspector nodes=1",
+    "evidence": [
+      "docs/evidence/atlantic-refine/verify-a18-statsig.json"
+    ]
+  }
+}
