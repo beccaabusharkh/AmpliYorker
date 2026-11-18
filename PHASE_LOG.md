@@ -1,3 +1,8 @@
+## 2026-11-19T00:25:00Z | Phase 2G | Assignment P2G-SHIP-POLISH-001 | COMPLETE
+- What was shipped: pushed `polish-subscribe-account`; opened PR to `main` (no merge).
+- Definition-of-done: PR cites 18/18 + `docs/evidence/polish-fix/`.
+- Blocker / next action: merge awaits approval.
+
 ## 2026-11-19T00:15:00Z | Phase 2G | Assignment P2G-VERIFY-POLISH-001 | COMPLETE
 - What was verified: P2G-POL-A01–A18 @ 1440/1024/768/390; 12 journeys; resize spot-check; reader copy grep; subscribe→account video.
 - Files changed: `docs/evidence/polish-fix/UX-REVIEW.md`, `verify-matrix.json`, `verify-journeys.json`, screenshots, `journey-subscribe-account.webm`, `scripts/verify-polish-a01-a18.mjs`.
