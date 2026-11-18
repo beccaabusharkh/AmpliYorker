@@ -309,3 +309,8 @@
 
 - Commit `a7b38be` on `atlantic-refinement` (no push); D1–D3 PASS per Builder.
 - Verify: P2F-VERIFY-ATLANTIC-001 in progress.
+
+## 2026-11-18 — Atlantic verify (P2F-VERIFY-ATLANTIC-001)
+
+- **A01–A20:** 20/20 PASS; 11/11 journeys PASS on `atlantic-refinement` (VM; no push).
+- UX screenshot sign-off: P2F-UX-REVIEW-ATLANTIC-001 queued.
