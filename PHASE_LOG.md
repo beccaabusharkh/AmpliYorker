@@ -1,3 +1,27 @@
+## 2026-11-18T20:15:00Z | Phase 2 | Assignment P2E-SHIP-PHOTO-001 | COMPLETE
+- What was shipped: pushed `photo-editorial-v2` and opened PR into `main` (no merge).
+- Files changed: `PHASE_LOG.md` (this entry).
+- Git actions: `git push -u origin photo-editorial-v2` PASS; head `1611330`; PR opened via ManagePullRequest (URL in Planner handoff).
+- Definition-of-done check: push authorized; single PR against `main`; merge not performed.
+- Deviations: none.
+- Blocker / next action: merge awaits Planner/user approval.
+
+## 2026-11-18T20:10:00Z | Phase 2 | Assignment P2E-VERIFY-PHOTO-001 | COMPLETE
+- What was verified: Full **A01–A15** matrix per `docs/2/PHOTO-SPEC.md` on `photo-editorial-v2` — fresh Playwright contexts at **1440×1000**, **768×1024**, **390×844**; before/after desktop home (`home-before-1440.png` vs `home-after-1440.png`).
+- Files changed: `docs/evidence/photo-v2/UX-REVIEW.md`, `docs/evidence/photo-v2/verify-matrix.json`, evidence PNG/JSON/logs, `scripts/verify-photo-a01-a15.mjs`, `src/styles/editorial.css` (390px home overflow clip), `PHASE_LOG.md`.
+- Git actions: local commit on `photo-editorial-v2` (push not authorized).
+- Definition-of-done check: **A01–A15** all **PASS** (15/15); see `docs/evidence/photo-v2/UX-REVIEW.md` and `verify-matrix.json`.
+- Deviations: A12 — Amplitude event names not manually inspected; CTA + toast + HTTP ingest noted in evidence. A11 overflow scoped to `.home-editorial`.
+- Blocker / next action: none — Planner publish/merge when authorized.
+
+## 2026-11-18T19:55:00Z | Phase 2 | Assignment P2E-BUILD-PHOTO-001 | COMPLETE
+- What was built: Photography pass per `docs/2/PHOTO-SPEC.md` — 33 WebP editorial/ad rasters under `public/images/editorial/` and `public/images/ads/`; `ASSET-MANIFEST.md` + `asset-manifest.json`; `articles.json` hero/inline paths and 16:9 featured lead; Northline / Sunday House / Margin Coffee ads with preserved `placementId`s; home 60/40 `3fr 2fr` lead, secondary + feed + podcast thumbs; ad slot photos in `ads.ts`; Playwright evidence in `docs/evidence/photo-v2/`.
+- Files changed: `src/data/articles.json`, `src/data/ads.json`, `src/lib/ads.ts`, `src/lib/articles.ts`, `src/pages/home.ts`, `src/styles/editorial.css`, `public/images/**`, `docs/evidence/photo-v2/**`, `PHASE_LOG.md`.
+- Git actions: local commit on `photo-editorial-v2` (push not authorized).
+- Definition-of-done check: **P2E-PHOTO-D1** PASS (`pnpm typecheck` exit 0); **P2E-PHOTO-D2** PASS (`pnpm build` exit 0); **P2E-PHOTO-D3** PASS preview `http://127.0.0.1:4173/AmpliYorker/` — lead `.webp` (not SVG), **8** unique home rasters at 1440/768/390, all **3** ad placements render photos (home leaderboard + rail, article MPU); **P2E-PHOTO-D4** PASS registered-reader intro monthly checkout → `retention-myths` full body (no paywall).
+- Deviations: no pre-photo “before” screenshots (live site still pre-photo until publish); feed thumbs on rows 4–5 to avoid duplicate URLs with secondary leads while meeting ≥8 unique home images.
+- Blocker / next action: none — Planner `P2E-VERIFY-PHOTO-001` / publish when authorized.
+
 ## 2026-11-18T19:50:00Z | Phase 2 | Assignment P2E-MERGE-001 | COMPLETE
 - What was built: squash-merged PR #7 (editorial redesign) into `main`; GitHub Pages deploy; live deploy smoke for editorial bundle markers.
 - Files changed: `PHASE_LOG.md` (this entry).

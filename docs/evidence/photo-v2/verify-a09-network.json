@@ -1,0 +1,13 @@
+{
+  "dom": [
+    "/AmpliYorker/images/editorial/cohort-compound-interest--hero.webp",
+    "/AmpliYorker/images/editorial/cohort-compound-interest--inline-01.webp",
+    "/AmpliYorker/images/editorial/cohort-compound-interest--inline-02.webp"
+  ],
+  "network": [
+    "http://127.0.0.1:4173/AmpliYorker/images/editorial/retention-myths--hero.webp",
+    "http://127.0.0.1:4173/AmpliYorker/images/editorial/cohort-compound-interest--hero.webp",
+    "http://127.0.0.1:4173/AmpliYorker/images/editorial/cohort-compound-interest--inline-01.webp",
+    "http://127.0.0.1:4173/AmpliYorker/images/editorial/cohort-compound-interest--inline-02.webp"
+  ]
+}

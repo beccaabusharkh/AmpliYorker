@@ -1,23 +1,29 @@
 [
   {
-    "id": "camp-metricsmart-display",
+    "id": "camp-northline-display",
     "placementId": "home_leaderboard",
     "label": "Advertisement · Simulated",
-    "body": "MetricSmart helps teams pipe warehouse metrics into experiment dashboards.",
-    "cta": "Learn more"
+    "body": "Northline pipes warehouse metrics into experiment-ready dashboards—without the Sunday scramble.",
+    "cta": "See Northline",
+    "image": "images/ads/camp-northline-display--leaderboard.webp",
+    "imageAlt": ""
   },
   {
-    "id": "camp-cohortly-video",
+    "id": "camp-sunday-house-rail",
     "placementId": "home_rail",
     "label": "Advertisement · Simulated",
-    "body": "Cohortly retargets churning readers with holdout-safe journeys.",
-    "cta": "Watch demo"
+    "body": "Sunday House offers holdout-friendly team offsites when your experiment calendar needs quiet.",
+    "cta": "Tour spaces",
+    "image": "images/ads/camp-sunday-house-rail--rail.webp",
+    "imageAlt": ""
   },
   {
-    "id": "camp-pipeline-pros",
+    "id": "camp-margin-coffee-mpu",
     "placementId": "article_mpu",
     "label": "Advertisement · Simulated",
-    "body": "Pipeline Pros sponsors analytics engineering briefings.",
-    "cta": "View sponsor"
+    "body": "Margin Coffee keeps late-night dashboard reviews civil—simulated sponsor, real caffeine energy.",
+    "cta": "Shop beans",
+    "image": "images/ads/camp-margin-coffee-mpu--mpu.webp",
+    "imageAlt": ""
   }
 ]
