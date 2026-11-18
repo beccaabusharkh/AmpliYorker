@@ -283,4 +283,4 @@
 
 - **Reviewed commit:** `b3dbfaa` on `photo-editorial-v2` (VM only; no push)
 - **Acceptance:** P2E-PHOTO-D1–D4 PASS per Builder; 33 WebP assets + `ASSET-MANIFEST.md`; Northline/Sunday House/Margin Coffee ads; 60/40 lead; 8 unique home photo URLs
-- **Verify:** P2E-VERIFY-PHOTO-001 in progress (evidence `docs/evidence/photo-v2/`)
+- **Verify:** P2E-VERIFY-PHOTO-001 COMPLETE — A01–A15 15/15 PASS (`docs/evidence/photo-v2/UX-REVIEW.md`)
