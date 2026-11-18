@@ -328,3 +328,6 @@
 
 ## 2026-11-18 — Polish build accepted
 - P2G-BUILD-POLISH-001 @ `fbf445f`; P2G-VERIFY 18/18 + 12 journeys PASS; UX review in flight.
+
+## 2026-11-18 — Subscribe polish push/PR authorization
+- Push + PR `polish-subscribe-account`; no merge without Approve.
