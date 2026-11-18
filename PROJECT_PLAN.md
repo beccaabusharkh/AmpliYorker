@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: START — **P2-UX-EDITORIAL-001** (editorial redesign on `main`). Phases 0–5 complete; live https://beccaabusharkh.github.io/AmpliYorker/. Build branch `editorial-redesign`; merge requires fresh approval.
+- Status: IDLE — **P2-BUILD-EDITORIAL-001** accepted on VM `editorial-redesign`; await **P2E-PUBLISH-001** push/PR. Live site still pre-redesign until merge.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -71,6 +71,8 @@
 - Deferred to Phase 5: every account state, saved/followed persistence, validation failures, trial progression, billing/plan changes, renewal/cancellation, retention treatments, reset, and device-switch simulation.
 
 ## Phase 2 editorial redesign (visual, content, ads, assistant)
+
+- **Build review (2026-11-18):** PASS — P2E-D1–D4 + P2E-A01–A10 per VM PHASE_LOG; commit on `editorial-redesign` not on `origin` until publish.
 
 - **Authorized:** 2026-11-18 (see DECISIONS.md). Branches from current `main` (`editorial-redesign`); preserves Phases 2–5 journeys and vendor SDKs; publish/merge still require explicit approval after build acceptance.
 - **Objective:** Present Amplitude Daily as a premium fictional newspaper/magazine while preserving all simulated account, subscription, retention, and experimentation journeys.

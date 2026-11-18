@@ -230,6 +230,14 @@
 - **Approval state:** CONSUMED
 - **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44365703026 (success); live signed-out check `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 (deploy smoke only)
 
+## 2026-11-18 — Editorial redesign builder acceptance (`P2-BUILD-EDITORIAL-001`)
+
+- **Planner review:** Builder report 2026-11-18; assignment COMPLETE on VM branch `editorial-redesign`.
+- **Reviewed commit:** `54ef27d` (amended; log references `f969957`) — local only until push authorized.
+- **Acceptance:** P2E-D1 PASS, P2E-D2 PASS, P2E-D3 PASS, P2E-D4 PASS; P2E-A01–A10 PASS per PHASE_LOG on VM.
+- **Scope:** Editorial UI/content (`src/**`, `public/images/editorial/**`, `custom-events.yml` milestone docs/enum, `PHASE_LOG.md`); journeys + Amplitude/Statsig preserved.
+- **Publish:** Awaits **P2E-PUBLISH-001** (push + PR, merge separate).
+
 ## 2026-11-18 — Editorial redesign scope authorization
 
 - **Channel:** Cursor Project (Becca Abu Sharkh)
