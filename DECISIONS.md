@@ -289,3 +289,8 @@
 - **Channel:** Cursor Project (Becca Abu Sharkh)
 - **Decision:** Authorize push + open PR for `photo-editorial-v2`; **no merge** without separate Approve.
 - **Assignment:** P2E-SHIP-PHOTO-001 → Builder `bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2`
+## 2026-11-18 — Photography merge authorization
+
+- **Channel:** Cursor Project (Becca Abu Sharkh)
+- **Decision:** Approve and merge PR #8 → `main` (squash merge preferred if repo default)
+- **Assignment:** P2E-MERGE-PHOTO-001 → Builder
