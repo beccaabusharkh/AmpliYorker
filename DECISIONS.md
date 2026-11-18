@@ -157,3 +157,22 @@
 
 - **Assignment:** `P4-BUILD-001` · Builder `bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114` · branch `phase-4-statsig` · Commit yes · Push/PR/Merge no.
 - **Credentials:** Use team environment `09ed1dd9-ddfa-11f1-ba91-f63b1661ac50` secrets `VITE_AMPLITUDE_API_KEY` (existing) and `VITE_STATSIG_CLIENT_KEY` when present on Builder VM (no secrets in repo or Slack).
+
+## 2026-11-17 — Phase 4 builder acceptance (`P4-BUILD-001`)
+
+- **Planner review:** Builder report 2026-11-18 (assignment `P4-BUILD-001` COMPLETE; PHASE_LOG on VM branch `phase-4-statsig`).
+- **Reviewed commit:** `53abe422ea485ae7ebcf0892081ca45d3a72e9bb` on `phase-4-statsig` (Builder VM only; not on `origin` yet).
+- **Acceptance:** P4-D1 PASS, P4-D2 PASS, P4-D3 PASS (forced subscription-message variant + local Statsig inspector exposure on production preview per PHASE_LOG).
+- **Scope:** `@statsig/js-client`, identity mapping, forced demo overrides, local exposure inspector, paywall/subscribe/home/retention treatments; single Amplitude `initAll()` preserved; no push in build assignment.
+- **Deviations:** Experiment catalog uses `subscription_message_experiment` / `value_focused` naming (handoff table used `paywall_subscription_message` / `value_first`); tree produced by parallel Builder worker while official Builder VM had not yet resumed — same recovery pattern as Phase 3 publish.
+- **Note:** Full diff review pending until branch is on GitHub.
+
+## 2026-11-17 — Phase 4 publish authorization (push + PR only)
+
+- **Channel:** #bas-cursor (Slack)
+- **Slack timestamp:** `1795022360.226239`
+- **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
+- **Reviewed commit:** `53abe422ea485ae7ebcf0892081ca45d3a72e9bb` on `phase-4-statsig` (Builder VM; pre-push)
+- **Action:** Authorize push of `phase-4-statsig` to `origin` and open one PR into `main`; **not** merge or deployment
+- **Assignment:** `P4-PUBLISH-001`
+- **Approval state:** RESERVED (consumes on successful push/PR)
