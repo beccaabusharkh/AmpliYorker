@@ -125,4 +125,12 @@
 - **Reviewed commit:** `4fd7687` on `phase-3-instrumentation` (Builder VM; pre-push)
 - **Action:** Authorize push of `phase-3-instrumentation` to `origin` and open one PR into `main`; **not** merge or deployment
 - **Assignment:** `P3-PUBLISH-001`
-- **Approval state:** RESERVED
+- **Approval state:** CONSUMED
+
+## 2026-11-17 — Phase 3 publish complete (P3-PUBLISH-001)
+
+- **Assignment:** `P3-PUBLISH-001` (consumes publish authorization above)
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/4
+- **Published head:** `3fe4299` on `phase-3-instrumentation`
+- **Acceptance:** P3-PUB-D1 PASS, P3-PUB-D2 PASS
+- **Note:** Published head differs from planner-reviewed VM commit `4fd7687` authorized pre-push; GitHub head is a descendant including branch `PHASE_LOG` / publish evidence.
