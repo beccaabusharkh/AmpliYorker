@@ -305,3 +305,7 @@
 - **Decision:** Atlantic-inspired layout; white canvas, smaller photos, masthead, accounts/chat/subscribe polish.
 - **Git:** no push/merge in this authorization.
 - **Assignments:** P2F-UX-ATLANTIC-001 → Builder → verify → UX review.
+## 2026-11-18 — Atlantic build acceptance (P2F-BUILD-ATLANTIC-001)
+
+- Commit `a7b38be` on `atlantic-refinement` (no push); D1–D3 PASS per Builder.
+- Verify: P2F-VERIFY-ATLANTIC-001 in progress.
