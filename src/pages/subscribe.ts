@@ -1,4 +1,6 @@
-import { plans } from "../lib/plans";
+import { plans, getPlanById } from "../lib/plans";
+import { getBillingPeriod, getPlanAmountUsd } from "../lib/plan-pricing";
+import { getPlanFeatureBullets, SUBSCRIBE_PLAN_ORDER } from "../lib/subscribe-ui";
 import { getSubscriptionOfferVariant } from "../lib/statsig/evaluate";
 import { navigateToHash } from "../lib/router";
 import { getRegisteredReaderPersona } from "../lib/personas";
@@ -13,7 +15,7 @@ export function renderSubscribePage(): HTMLElement {
 
   if (!isLoggedIn()) {
     main.innerHTML = `
-      <section class="form-panel">
+      <section class="form-panel account-surface">
         <h1>Subscribe</h1>
         <p class="simulation-label">Simulated plans — log in first with preset credentials.</p>
         <p><a href="#/account/login" data-login-link>Simulated login</a></p>
@@ -27,25 +29,35 @@ export function renderSubscribePage(): HTMLElement {
   }
 
   const offerVariant = getSubscriptionOfferVariant("subscribe-page");
-  const cards = plans
-    .map(
-      (plan) => `
-      <article class="plan-card" data-plan-card="${plan.id}">
+  const orderedPlans = SUBSCRIBE_PLAN_ORDER.map((id) => getPlanById(id)).filter(
+    (plan): plan is NonNullable<typeof plan> => plan != null,
+  );
+
+  const cards = orderedPlans
+    .map((plan) => {
+      const recommended = plan.id === "annual";
+      const features = getPlanFeatureBullets(plan.id)
+        .map((line) => `<li>${line}</li>`)
+        .join("");
+      return `
+      <article class="plan-card${recommended ? " plan-card--recommended" : ""}" data-plan-card="${plan.id}">
+        ${recommended ? `<p class="plan-card__badge">Recommended</p>` : ""}
         <h2>${plan.name}</h2>
-        <p>${plan.priceLabel}</p>
+        <p class="plan-card__price">${plan.priceLabel}</p>
         <p class="intro-offer">${offerVariant === "intro_badge" ? "Statsig treatment · " : ""}${plan.introOfferLabel}</p>
+        <ul class="plan-card__features">${features}</ul>
         <button type="button" data-select-plan="${plan.id}" data-intro="true">Choose introductory offer</button>
         <button type="button" class="secondary-button" data-select-plan="${plan.id}" data-intro="false">Choose standard price</button>
       </article>
-    `,
-    )
+    `;
+    })
     .join("");
 
   main.innerHTML = `
-    <section class="form-panel">
+    <section class="form-panel account-surface account-surface--wide">
       <h1>Simulated subscription plans</h1>
-      <p class="simulation-label">Registered-reader smoke persona (<code>${smokePersona.id}</code>): use <strong>introductory offer</strong> on any plan for P2-D3 checkout smoke.</p>
-      <div class="plan-grid">${cards}</div>
+      <p class="simulation-label">Registered-reader smoke persona (<code>${smokePersona.id}</code>): use <strong>introductory offer</strong> on any plan for checkout smoke.</p>
+      <div class="plan-grid plan-grid--three">${cards}</div>
     </section>
   `;
 
@@ -53,16 +65,16 @@ export function renderSubscribePage(): HTMLElement {
     button.addEventListener("click", () => {
       const planId = button.getAttribute("data-select-plan");
       const intro = button.getAttribute("data-intro") === "true";
-      if (planId) {
+      if (planId && plans.some((p) => p.id === planId)) {
         setPendingCheckout(planId, intro);
         const checkoutId = getOrCreateCheckoutId();
-        const amountDue = intro ? (planId === "annual" ? 79 : 1) : planId === "annual" ? 99 : 12;
+        const amountDue = getPlanAmountUsd(planId, intro);
         trackDemoEvent("Subscription Added To Cart", {
           checkout_id: checkoutId,
           plan_id: planId,
           offer_id: intro ? `${planId}-intro` : `${planId}-standard`,
           offer_type: intro ? "introductory" : "standard",
-          billing_period: planId === "annual" ? "annual" : "monthly",
+          billing_period: getBillingPeriod(planId),
           amount_due_usd: amountDue,
           trial_days: 0,
         });

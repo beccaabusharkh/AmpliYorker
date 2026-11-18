@@ -59,7 +59,10 @@ export function renderArticlePage(id: string): HTMLElement {
       </section>
       <section class="paywall-panel">
         <p class="paywall-block" data-paywall-message>${paywallCopy}</p>
-        <p class="paywall-actions"><a href="#/account/login" data-paywall-login>Simulated login</a> · <a href="#/subscribe" data-paywall-sub>Subscribe</a></p>
+        <p class="paywall-actions">
+          <a href="#/account/login" data-paywall-login>Simulated login</a>
+          <a class="paywall-subscribe-btn" href="#/subscribe" data-paywall-sub>Subscribe</a>
+        </p>
       </section>`;
   } else {
     bodySection = `<div class="article-body" data-article-body>${fullBody}</div>`;

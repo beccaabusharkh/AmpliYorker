@@ -25,7 +25,10 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
   panel.setAttribute("aria-labelledby", "ask-daily-title");
   panel.innerHTML = `
     <header class="ask-daily__header">
-      <strong id="ask-daily-title">Ask the Daily</strong>
+      <div>
+        <strong id="ask-daily-title">Ask the Daily</strong>
+        <p class="ask-daily__subtitle">How can we help you explore the demo?</p>
+      </div>
       <button type="button" class="ask-daily__close" data-chat-close aria-label="Close Ask the Daily">×</button>
     </header>
     <p class="ask-daily__disclosure">Scripted assistant for this demo — no live AI. Answers come from local FAQ rules.</p>
@@ -46,7 +49,7 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
   toggle.className = "ask-daily-fab";
   toggle.dataset.chatToggle = "true";
   toggle.setAttribute("aria-expanded", "false");
-  toggle.textContent = "Ask the Daily";
+  toggle.innerHTML = `<span class="ask-daily-fab__icon" aria-hidden="true">?</span> Ask the Daily`;
 
   root.append(toggle, panel);
 

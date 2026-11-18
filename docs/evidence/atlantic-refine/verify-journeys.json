@@ -1,0 +1,55 @@
+{
+  "journeyPass": true,
+  "journeys": [
+    {
+      "id": "J01_home",
+      "pass": true,
+      "route": "#/",
+      "note": "Atlantic home render"
+    },
+    {
+      "id": "J02_article_cohort",
+      "pass": true,
+      "route": "#/article/cohort-compound-interest"
+    },
+    {
+      "id": "J03_paywall_logged_out",
+      "pass": true
+    },
+    {
+      "id": "J04_premium_unlock",
+      "pass": true
+    },
+    {
+      "id": "J05_search",
+      "pass": true,
+      "route": "#/search/retention"
+    },
+    {
+      "id": "J06_topic",
+      "pass": true,
+      "route": "#/topic/product-analytics"
+    },
+    {
+      "id": "J06_login",
+      "pass": true
+    },
+    {
+      "id": "J06b_register",
+      "pass": true
+    },
+    {
+      "id": "J07_premium_checkout",
+      "pass": true
+    },
+    {
+      "id": "J08_subscribe_3plan",
+      "pass": true
+    },
+    {
+      "id": "J11_ask_daily_mobile_keyboard",
+      "pass": true,
+      "note": "Alt+D + Tab in chat input @ 390"
+    }
+  ]
+}

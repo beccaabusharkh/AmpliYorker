@@ -1,0 +1,22 @@
+{
+  "dom": [
+    "/AmpliYorker/images/ads/camp-northline-display--leaderboard.webp",
+    "/AmpliYorker/images/editorial/cohort-compound-interest--hero.webp",
+    "/AmpliYorker/images/editorial/daily-decisions--hero.webp",
+    "/AmpliYorker/images/editorial/retention-myths--hero.webp",
+    "/AmpliYorker/images/editorial/funnel-friction--hero.webp",
+    "/AmpliYorker/images/editorial/experiment-runtime--hero.webp",
+    "/AmpliYorker/images/editorial/signal-weekly-podcast--hero.webp",
+    "/AmpliYorker/images/ads/camp-sunday-house-rail--rail.webp"
+  ],
+  "network": [
+    "http://127.0.0.1:4174/AmpliYorker/images/editorial/cohort-compound-interest--hero.webp",
+    "http://127.0.0.1:4174/AmpliYorker/images/editorial/daily-decisions--hero.webp",
+    "http://127.0.0.1:4174/AmpliYorker/images/editorial/retention-myths--hero.webp",
+    "http://127.0.0.1:4174/AmpliYorker/images/editorial/funnel-friction--hero.webp",
+    "http://127.0.0.1:4174/AmpliYorker/images/ads/camp-northline-display--leaderboard.webp",
+    "http://127.0.0.1:4174/AmpliYorker/images/editorial/signal-weekly-podcast--hero.webp",
+    "http://127.0.0.1:4174/AmpliYorker/images/ads/camp-sunday-house-rail--rail.webp",
+    "http://127.0.0.1:4174/AmpliYorker/images/editorial/experiment-runtime--hero.webp"
+  ]
+}

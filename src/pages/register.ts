@@ -17,7 +17,7 @@ export function renderRegisterPage(): HTMLElement {
     .join("");
 
   main.innerHTML = `
-    <section class="form-panel">
+    <section class="form-panel account-surface">
       <h1>Simulated registration</h1>
       <p class="simulation-label">No passwords are collected. Pick a preset persona — values are demo-only.</p>
       <form data-register-form class="stacked-form">
