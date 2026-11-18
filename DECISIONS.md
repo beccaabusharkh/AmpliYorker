@@ -331,3 +331,6 @@
 
 ## 2026-11-18 — Subscribe polish push/PR authorization
 - Push + PR `polish-subscribe-account`; no merge without Approve.
+
+## 2026-11-18 — Polish merge authorization
+- Approve merge PR #10.
