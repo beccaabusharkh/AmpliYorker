@@ -3,20 +3,18 @@
 **Status:** START
 **Phase:** 3 : Amplitude instrumentation and product connections
 **phase_id:** 3
-**assignment_id:** P3-BUILD-001
+**assignment_id:** P3-BUILD-002
 **phase_type:** BUILD
 **Builder agent ID:** bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114
 **Branch:** `phase-3-instrumentation`
 
-**Planner resume (2026-11-17):** Slack ts `1794959766.742059` — rerun **P3-D3 smoke only**. Prior report at VM commit `573af6d`: **P3-D1** PASS, **P3-D2** PASS, **P3-D3** BLOCKED (missing API key). Credential setup completed per approver; do **not** repeat full implementation unless branch/working tree is missing.
+**Planner rebuild (2026-11-17):** Slack ts `1794961026.139839` — full **rebuild** of Phase 3 instrumentation on GitHub. Supersedes **P3-BUILD-001** (VM-only commit `573af6d`, never pushed; `origin` has no `phase-3-instrumentation`). Do not resume smoke-only; implement fresh from current `main`.
 
-**Resume steps (smoke only):**
-1. Confirm local branch `phase-3-instrumentation` at `573af6d` or descendant; if missing, log BLOCKED in PHASE_LOG and stop.
+**Rebuild steps:**
+1. `git fetch origin main` and create or reset local `phase-3-instrumentation` from `origin/main` (discard any unpushed P3-BUILD-001 tree).
 2. Write `VITE_AMPLITUDE_API_KEY` into gitignored `.env.local` from the AmpliYorker environment secret (same name) — never commit or log the value.
-3. Run P3-D3 smoke per Definition of done below (`pnpm preview` + inspector evidence).
-4. Append COMPLETE or BLOCKED to PHASE_LOG.md; commit on branch if log or `.env.local` staging would leak — commit **only** `PHASE_LOG.md` (never `.env.local`).
-
-If P3-D3 PASS, assignment may be COMPLETE without re-running P3-D1/P3-D2 unless you changed product code.
+3. Complete full instrumentation per sections below; run P3-D1–P3-D3.
+4. Append COMPLETE or BLOCKED to PHASE_LOG.md; commit product + log on `phase-3-instrumentation` (never `.env.local`).
 
 ---
 
@@ -24,8 +22,8 @@ Objective: install `@amplitude/unified`, initialize Analytics + Session Replay (
 
 ## Prerequisites
 
-1. Read BUILDER.md, AGENTS.md, PROJECT_PLAN.md, DECISIONS.md, `custom-events.yml`, and PHASE_LOG.md; stop if **P3-BUILD-001** already has COMPLETE or BLOCKED.
-2. Branch from current `main` (`efadb5e` or later; Phase 2 live at `https://beccaabusharkh.github.io/AmpliYorker/`).
+1. Read BUILDER.md, AGENTS.md, PROJECT_PLAN.md, DECISIONS.md, `custom-events.yml`, and PHASE_LOG.md; stop if **P3-BUILD-002** already has COMPLETE or BLOCKED (P3-BUILD-001 is SUPERSEDED — do not execute).
+2. Branch from current `main` (`79763a8` or later; Phase 2 live at `https://beccaabusharkh.github.io/AmpliYorker/`).
 3. Read `docs/3/SPEC.md` when status is READY; if missing, follow PROJECT_PLAN Phase 3 + DECISIONS.md interim UX/instrumentation waiver and `custom-events.yml` (exact Title Case event names).
 4. Create or switch to `phase-3-instrumentation` from `main`.
 
