@@ -322,3 +322,6 @@
 
 - Approve merge PR #9 → main.
 - Assignment: P2F-MERGE-ATLANTIC-001
+
+## 2026-11-18 — Subscribe/account polish (fix)
+- Sections 1–7; no push in authorization.
