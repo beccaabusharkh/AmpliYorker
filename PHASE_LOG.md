@@ -1,8 +1,8 @@
 ## 2026-11-18T17:30:00Z | Phase 4 | Assignment P4-PUBLISH-001 | COMPLETE
 - What was built: publish recovery of P4-BUILD-001 Statsig deliverables — `@statsig/js-client` init/identity, forced demo overrides, local exposure inspector, treatments on paywall/subscribe/home/retention; Amplitude Phase 3 instrumentation preserved.
 - Files changed: `package.json`, `pnpm-lock.yaml`, `.env.example`, `src/lib/statsig/**`, `src/ui/exposure-inspector.ts`, `src/pages/*`, `src/lib/paywall.ts`, `src/main.ts`, `src/styles/tokens.css`, `PHASE_LOG.md`.
-- Git actions: `git push -u origin phase-4-statsig` (head recorded below); PR opened into `main`; merge not performed.
-- Definition-of-done check: P4-PUB-D1 PASS (`origin/phase-4-statsig` contains Phase 4 Statsig deliverables; reviewed commit `53abe422` absent on GitHub/VM — published descendant after Builder VM recovery); P4-PUB-D2 PASS (one open PR, URL below).
+- Git actions: `git push -u origin phase-4-statsig` success; PR https://github.com/beccaabusharkh/AmpliYorker/pull/5 (base `main`, head `phase-4-statsig`); merge not performed.
+- Definition-of-done check: P4-PUB-D1 PASS (`origin/phase-4-statsig` head `ea35fda7cc007c6f8c0554cc4978077ccb17aebe` contains Phase 4 Statsig deliverables; reviewed commit `53abe422` absent on GitHub/VM — published descendant after Builder VM recovery); P4-PUB-D2 PASS (one open PR, URL above).
 - Deviations: accepted P4-BUILD-001 commit `53abe422ea485ae7ebcf0892081ca45d3a72e9bb` unreachable (never pushed; cloud agent `bc-d15909d6` transcript inaccessible); tree rebuilt on publish VM per push blocker waiver (same pattern as P3-PUBLISH-001).
 - Blocker / next action: Planner review and merge approval via Slack `Approve` naming this PR.
 
