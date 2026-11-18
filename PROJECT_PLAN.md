@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: START — Phase 4 **P4-PUBLISH-001** authorized (Slack ts `1795022360.226239`): push/PR for accepted **P4-BUILD-001** at `53abe42` on `phase-4-statsig` (merge still blocked). Phase 3 live on `main` (`5bb6f9eb`) at https://beccaabusharkh.github.io/AmpliYorker/.
+- Status: IDLE — Phase 4 published on GitHub: PR #5 https://github.com/beccaabusharkh/AmpliYorker/pull/5 (head `8c90341`, `phase-4-statsig`). Merge blocked until Slack `Approve`. Phase 3 live on `main` (`5bb6f9eb`) at https://beccaabusharkh.github.io/AmpliYorker/.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
