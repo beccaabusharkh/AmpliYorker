@@ -6,13 +6,13 @@
 **assignment_id:** P2-UX-EDITORIAL-001
 **phase_type:** UX_AUDIT
 **UX agent ID:** bc-30eaabed-cb54-5de3-844c-8423f61f33f4
-**Audited baseline:** P2-BUILD-001 accepted `0a002c09` on `phase-2-accounts` (Builder VM); live site Phase 1 at https://beccaabusharkh.github.io/AmpliYorker/
+**Audited baseline:** `main` post Phase 5 (`b077491`+, live https://beccaabusharkh.github.io/AmpliYorker/); implementation branch `editorial-redesign`
 
 ## Objective
 
 Produce `docs/2/SPEC.md` (`READY`) for a premium fictional newspaper/magazine redesign: New Yorker long-form reading character + NYT homepage hierarchy/density. Original copy and art direction; keep publication name **Amplitude Daily**. Structural reference only: https://www.newyorker.com/magazine/2026/11/23/would-you-dissect-a-human-body
 
-Full requirement list: `/cursor/stores/self/docs/editorial-redesign-brief.md` (read via Project store). Preserve every Phase 2 journey (accounts, paywall, checkout, retention, demo controls).
+Full requirement list: `/cursor/stores/self/docs/editorial-redesign-brief.md` (read via Project store). Preserve Phases 2–5 journeys (accounts, paywall, checkout, retention, Amplitude, Statsig, demo controls).
 
 ## Routes and surfaces (minimum)
 
