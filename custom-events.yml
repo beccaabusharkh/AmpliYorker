@@ -67,14 +67,14 @@ events:
       article_id: {"type": "string"}
       author_id: {"type": "string"}
       topic_id: {"type": "string"}
-      content_progress_percent: {"type": "integer", "enum": [10, 25, 50, 75, 90, 100]}
+      content_progress_percent: {"type": "integer", "enum": [25, 50, 75, 90, 100]}
       active_reading_seconds: {"type": "number"}
       discovery_source: {"type": "string"}
       recommendation_set_id: {"type": ["string", "null"]}
       reading_source: {"type": "string", "enum": ["new_read", "saved_article", "reading_history"]}
       content_type: {"type": "string", "enum": ["editorial", "sponsored"]}
       sponsor_id: {"type": ["string", "null"]}
-    fires_at: "ArticleReader, when the reader reaches each content milestone: 10, 25, 50, 75, 90, or 100 percent. Fire once per milestone per article per session. Measure the article body only; 100 means the end of the body is visible. On restored reading position, establish a baseline without firing skipped milestones; emit only newly crossed milestones after reader interaction."
+    fires_at: "ArticleReader, when the reader reaches each content milestone: 25, 50, 75, 90, or 100 percent of full article body (not paywall preview). Fire once per milestone per article per session. Measure article body element [data-article-body] only; 100 means end of body visible. On restored position, baseline without firing skipped milestones until reader interaction. Include active_reading_seconds accumulated while tab is visible and reader interacted in the last 30s."
     carries_revenue: false
 
   Registration Completed:

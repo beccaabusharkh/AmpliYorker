@@ -1,0 +1,23 @@
+[
+  {
+    "id": "camp-metricsmart-display",
+    "placementId": "home_leaderboard",
+    "label": "Advertisement · Simulated",
+    "body": "MetricSmart helps teams pipe warehouse metrics into experiment dashboards.",
+    "cta": "Learn more"
+  },
+  {
+    "id": "camp-cohortly-video",
+    "placementId": "home_rail",
+    "label": "Advertisement · Simulated",
+    "body": "Cohortly retargets churning readers with holdout-safe journeys.",
+    "cta": "Watch demo"
+  },
+  {
+    "id": "camp-pipeline-pros",
+    "placementId": "article_mpu",
+    "label": "Advertisement · Simulated",
+    "body": "Pipeline Pros sponsors analytics engineering briefings.",
+    "cta": "View sponsor"
+  }
+]

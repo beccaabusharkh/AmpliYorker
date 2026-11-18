@@ -1,4 +1,6 @@
 import { getArticleById, getRecommendations, formatTopicLabel } from "../lib/articles";
+import { renderArticleBodyContent, renderArticleHero } from "../lib/article-render";
+import { getAdByPlacement, renderAdUnit } from "../lib/ads";
 import { canAccessArticle, isPremiumArticle, paywallMessage, paywallMessageExperimentId } from "../lib/paywall";
 import { STATSIG_GATES } from "../lib/statsig/catalog";
 import { getGateValue, getSubscriptionMessageVariant } from "../lib/statsig/evaluate";
@@ -7,13 +9,19 @@ import { navigateToHash } from "../lib/router";
 import { baseUrl } from "../lib/paths";
 import { attachArticleReadTracking } from "../lib/analytics/article-reading";
 import { trackDemoEvent } from "../lib/analytics/track";
-import { hasActiveSubscription, incrementArticlesRead, isArticleSaved, isLoggedIn, loadSession, toggleSaveArticle } from "../lib/session";
+import {
+  hasActiveSubscription,
+  incrementArticlesRead,
+  isArticleSaved,
+  isLoggedIn,
+  loadSession,
+  toggleSaveArticle,
+} from "../lib/session";
 
 export function renderArticlePage(id: string): HTMLElement {
   const article = getArticleById(id);
   const main = document.createElement("main");
-  main.className = "page-main";
-
+  main.className = "page-main article-page";
   if (!article) {
     main.innerHTML = `
       <section class="not-found">
@@ -35,11 +43,27 @@ export function renderArticlePage(id: string): HTMLElement {
   const saved = isArticleSaved(id);
   const paywallCopy = paywallMessage("article-paywall");
   const messageVariant = getSubscriptionMessageVariant("article-paywall");
+  const previewCount = article.previewParagraphCount ?? 2;
 
-  const bodyHtml = allowed
-    ? article.body.map((paragraph) => `<p>${paragraph}</p>`).join("")
-    : `<p class="paywall-block" data-paywall-message>${paywallCopy}</p>
-       <p><a href="#/account/login" data-paywall-login>Simulated login</a> · <a href="#/subscribe" data-paywall-sub>Subscribe</a></p>`;
+  const fullBody = renderArticleBodyContent(article);
+  let bodySection = "";
+  if (allowed) {
+    bodySection = `<div class="article-body" data-article-body>${fullBody}</div>`;
+  } else if (premium) {
+    const previewArticle = { ...article, body: article.body.slice(0, previewCount) };
+    bodySection = `
+      <section class="article-paywall-preview" data-paywall-preview>
+        <span class="visually-hidden">Article preview — subscribe for full text</span>
+        <div class="article-body article-body--preview" data-article-body>${renderArticleBodyContent(previewArticle)}</div>
+        <div class="preview-fade" aria-hidden="true"></div>
+      </section>
+      <section class="paywall-panel">
+        <p class="paywall-block" data-paywall-message>${paywallCopy}</p>
+        <p class="paywall-actions"><a href="#/account/login" data-paywall-login>Simulated login</a> · <a href="#/subscribe" data-paywall-sub>Subscribe</a></p>
+      </section>`;
+  } else {
+    bodySection = `<div class="article-body" data-article-body>${fullBody}</div>`;
+  }
 
   const recs = getRecommendations(article)
     .map(
@@ -52,7 +76,7 @@ export function renderArticlePage(id: string): HTMLElement {
     allowed && article.narrated
       ? `
     <section class="narrated-block" aria-label="Narrated article">
-      <p class="narrated-label">Listen</p>
+      <p class="narrated-label">Listen to this article</p>
       <audio controls src="${baseUrl}audio/narration-demo.wav">
         Your browser does not support audio playback.
       </audio>
@@ -60,31 +84,62 @@ export function renderArticlePage(id: string): HTMLElement {
       : "";
 
   const premiumBadge = premium
-    ? `<span class="premium-badge">${hasActiveSubscription() ? "Premium · unlocked" : "Premium · paywalled"}</span>`
+    ? `<span class="premium-badge">${hasActiveSubscription() ? "Premium · subscriber access" : "Premium · preview"}</span>`
     : "";
 
+  const kicker = article.kicker ? `<p class="article-kicker">${article.kicker}</p>` : "";
+
   main.innerHTML = `
-    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
-    <p class="article-meta">
-      Published ${article.publishedAt} ·
-      <a href="#/topic/${encodeURIComponent(article.topic)}">${formatTopicLabel(article.topic)}</a> ·
-      <a href="#/author/${encodeURIComponent(article.author)}">${article.authorName}</a>
-      ${premiumBadge}
-    </p>
-    <p class="article-actions">
-      <button type="button" data-save-article>${saved ? "Saved" : "Save article"}</button>
-    </p>
-    <article class="article-body" data-article-root>
-      <h1>${article.headline}</h1>
-      <p class="hero-deck">${article.deck}</p>
-      ${narratedBlock}
-      ${bodyHtml}
-    </article>
-    <section class="recommendations">
-      <h2>More for you</h2>
-      <ul>${recs}</ul>
-    </section>
+    <div class="article-layout">
+      <div class="article-main-column">
+        <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+        <header class="article-masthead">
+          ${kicker}
+          <h1>${article.headline}</h1>
+          <p class="hero-deck">${article.deck}</p>
+          <p class="article-meta">
+            Published ${article.publishedAt} ·
+            <a href="#/topic/${encodeURIComponent(article.topic)}">${formatTopicLabel(article.topic)}</a> ·
+            <a href="#/author/${encodeURIComponent(article.author)}">${article.authorName}</a>
+            ${premiumBadge}
+          </p>
+          <p class="article-actions">
+            <button type="button" data-save-article>${saved ? "Saved" : "Save article"}</button>
+          </p>
+        </header>
+        ${renderArticleHero(article)}
+        ${narratedBlock}
+        <article class="article-article-root" data-article-root>
+          ${bodySection}
+        </article>
+        <section class="article-end-signoff">
+          <hr class="end-rule" />
+          <p>You\u2019ve reached the end of this article.</p>
+        </section>
+        <section class="recommendations">
+          <h2>More for you</h2>
+          <ul>${recs}</ul>
+        </section>
+      </div>
+      <aside class="article-rail" aria-label="Article sidebar" data-article-rail></aside>
+    </div>
   `;
+
+  const rail = main.querySelector("[data-article-rail]");
+  const mpu = getAdByPlacement("article_mpu");
+  if (mpu && rail) {
+    rail.append(renderAdUnit(mpu, "ad-slot--mpu"));
+  }
+
+  const progressTarget =
+    (main.querySelector("[data-article-root]") as HTMLElement | null) ??
+    main.querySelector(".article-main-column");
+  const articleBody = main.querySelector("[data-article-body]");
+  const progressBar = main.querySelector("[data-progress-bar]");
+
+  if (progressTarget instanceof HTMLElement && progressBar instanceof HTMLElement) {
+    attachReadingProgress(article.id, progressTarget, progressBar);
+  }
 
   if (!allowed && premium) {
     const emitPaywall = (): void => {
@@ -97,31 +152,21 @@ export function renderArticlePage(id: string): HTMLElement {
       });
     };
     if (scrollGate) {
-      const articleRoot = main.querySelector("[data-article-root]");
-      if (articleRoot instanceof HTMLElement) {
-        const onScroll = (): void => {
-          if (articleRoot.scrollTop > 48) {
-            emitPaywall();
-            articleRoot.removeEventListener("scroll", onScroll);
-          }
-        };
-        articleRoot.addEventListener("scroll", onScroll);
-      } else {
-        emitPaywall();
-      }
+      const onScroll = (): void => {
+        if (window.scrollY > 48) {
+          emitPaywall();
+          window.removeEventListener("scroll", onScroll);
+        }
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
     } else {
       emitPaywall();
     }
   }
 
-  if (allowed) {
+  if (allowed && articleBody instanceof HTMLElement) {
     incrementArticlesRead();
-    const articleRoot = main.querySelector("[data-article-root]");
-    const progressBar = main.querySelector("[data-progress-bar]");
-    if (articleRoot instanceof HTMLElement && progressBar instanceof HTMLElement) {
-      attachReadingProgress(article.id, articleRoot, progressBar);
-      attachArticleReadTracking(article.id, articleRoot);
-    }
+    attachArticleReadTracking(article.id, articleBody);
     const audio = main.querySelector("audio");
     if (audio instanceof HTMLAudioElement) {
       let started = false;

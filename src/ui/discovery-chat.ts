@@ -5,42 +5,59 @@ type FaqEntry = { keywords: string[]; answer: string };
 
 const faq = faqData as FaqEntry[];
 
+const SUGGESTED_PROMPTS = ["Search tips", "Premium access", "Newsletter signup", "Sponsored content"];
+
 export function mountDiscoveryChat(root: HTMLElement): void {
-  if (root.querySelector("[data-discovery-chat]")) {
+  mountAskDailyAssistant(root);
+}
+
+export function mountAskDailyAssistant(root: HTMLElement): void {
+  if (root.querySelector("[data-ask-daily]")) {
     return;
   }
 
   const panel = document.createElement("aside");
-  panel.className = "discovery-chat";
-  panel.dataset.discoveryChat = "true";
+  panel.className = "ask-daily-panel";
+  panel.dataset.askDaily = "true";
   panel.hidden = true;
   panel.setAttribute("role", "dialog");
-  panel.setAttribute("aria-label", "Simulated assistant");
+  panel.setAttribute("aria-modal", "false");
+  panel.setAttribute("aria-labelledby", "ask-daily-title");
   panel.innerHTML = `
-    <header class="discovery-chat__header">
-      <strong>Simulated assistant</strong>
-      <button type="button" class="discovery-chat__close" data-chat-close aria-label="Close chat">×</button>
+    <header class="ask-daily__header">
+      <strong id="ask-daily-title">Ask the Daily</strong>
+      <button type="button" class="ask-daily__close" data-chat-close aria-label="Close Ask the Daily">×</button>
     </header>
-    <p class="discovery-chat__hint">Ask about search, topics, newsletter signup, or sponsored content.</p>
-    <form class="discovery-chat__form" data-chat-form>
-      <label class="visually-hidden" for="chat-input">Question</label>
-      <input id="chat-input" data-amplitude-mask name="q" type="text" placeholder="How do I search?" autocomplete="off" />
+    <p class="ask-daily__disclosure">Scripted assistant for this demo — no live AI. Answers come from local FAQ rules.</p>
+    <div class="ask-daily__chips" data-chat-chips>
+      ${SUGGESTED_PROMPTS.map((chip) => `<button type="button" data-chip="${escapeAttr(chip)}">${chip}</button>`).join("")}
+    </div>
+    <form class="ask-daily__form" data-chat-form>
+      <label class="visually-hidden" for="chat-input">Ask a question</label>
+      <input id="chat-input" data-amplitude-mask name="q" type="text" placeholder="What should I read about retention?" autocomplete="off" />
       <button type="submit">Ask</button>
     </form>
-    <p class="discovery-chat__answer" data-chat-answer data-chat-transcript hidden></p>
+    <p class="ask-daily__answer" data-chat-answer data-chat-transcript hidden></p>
+    <p class="ask-daily__error" data-chat-error hidden>Type a question to continue.</p>
   `;
 
   const toggle = document.createElement("button");
   toggle.type = "button";
-  toggle.className = "discovery-chat__toggle";
+  toggle.className = "ask-daily-fab";
   toggle.dataset.chatToggle = "true";
-  toggle.textContent = "Discovery chat";
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.textContent = "Ask the Daily";
 
   root.append(toggle, panel);
 
   const answerEl = panel.querySelector("[data-chat-answer]");
+  const errorEl = panel.querySelector("[data-chat-error]");
   const form = panel.querySelector("[data-chat-form]");
   const input = panel.querySelector("#chat-input");
+  const focusable = () =>
+    Array.from(panel.querySelectorAll<HTMLElement>("input, button, [data-chip]")).filter(
+      (el) => !el.hidden && el.offsetParent !== null,
+    );
 
   const open = (): void => {
     panel.hidden = false;
@@ -57,9 +74,61 @@ export function mountDiscoveryChat(root: HTMLElement): void {
   toggle.addEventListener("click", () => (panel.hidden ? open() : close()));
   panel.querySelector("[data-chat-close]")?.addEventListener("click", close);
 
+  window.addEventListener("keydown", (event) => {
+    if (event.altKey && event.key.toLowerCase() === "d") {
+      const active = document.activeElement;
+      if (active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement) {
+        return;
+      }
+      event.preventDefault();
+      panel.hidden ? open() : close();
+    }
+    if (event.key === "Escape" && !panel.hidden) {
+      close();
+    }
+  });
+
+  panel.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab" || panel.hidden) {
+      return;
+    }
+    const items = focusable();
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (!first || !last) {
+      return;
+    }
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  panel.querySelectorAll("[data-chip]").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const value = chip.getAttribute("data-chip") ?? "";
+      if (input instanceof HTMLInputElement) {
+        input.value = value;
+        input.focus();
+      }
+    });
+  });
+
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
     const value = (input as HTMLInputElement).value.trim().toLowerCase();
+    if (!value) {
+      if (errorEl instanceof HTMLElement) {
+        errorEl.hidden = false;
+      }
+      return;
+    }
+    if (errorEl instanceof HTMLElement) {
+      errorEl.hidden = true;
+    }
     const requestId = crypto.randomUUID();
     const conversationId = crypto.randomUUID();
     trackDemoEvent("Chat Request Submitted", {
@@ -92,8 +161,15 @@ function inferDiscoveryIntent(value: string): string {
   if (value.includes("topic")) {
     return "explore_topic";
   }
+  if (value.includes("premium") || value.includes("subscribe")) {
+    return "subscription_help";
+  }
   if (value.includes("read") || value.includes("next")) {
     return "next_read";
   }
   return "unknown";
+}
+
+function escapeAttr(value: string): string {
+  return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 }

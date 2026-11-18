@@ -139,14 +139,14 @@ export function renderAccountPage(): HTMLElement {
       <pre class="snapshot-pre" data-snapshot-output hidden></pre>
     </section>
 
-    <section class="form-panel demo-controls">
-      <h2>Demo reset & time</h2>
-      <p class="simulation-label">Controls shift simulated renewal dates and subscription expiry.</p>
+    <details class="form-panel demo-controls">
+      <summary>Demo controls (simulated)</summary>
+      <p class="simulation-label">Adjust demo time and reset local storage.</p>
       <p>Demo time offset: <strong data-time-offset>${session.demoTimeOffsetDays}</strong> days</p>
       <button type="button" data-advance-time="+7">Advance +7 days</button>
       <button type="button" data-advance-time="+30">Advance +30 days</button>
       <button type="button" data-reset-demo>Reset demo data</button>
-    </section>
+    </details>
   `;
 
   if (retentionOffer) {
