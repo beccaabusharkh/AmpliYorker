@@ -322,3 +322,15 @@
 
 - Approve merge PR #9 → main.
 - Assignment: P2F-MERGE-ATLANTIC-001
+
+## 2026-11-18 — Subscribe/account polish (fix)
+- Sections 1–7; no push in authorization.
+
+## 2026-11-18 — Polish build accepted
+- P2G-BUILD-POLISH-001 @ `fbf445f`; P2G-VERIFY 18/18 + 12 journeys PASS; UX review in flight.
+
+## 2026-11-18 — Subscribe polish push/PR authorization
+- Push + PR `polish-subscribe-account`; no merge without Approve.
+
+## 2026-11-18 — Polish merge authorization
+- Approve merge PR #10.

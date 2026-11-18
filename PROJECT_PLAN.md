@@ -159,4 +159,6 @@
 - **Build:** P2F-BUILD-ATLANTIC-001 (same Builder, after UX READY)
 - **Verify:** P2F-VERIFY-ATLANTIC-001 + UX screenshot review
 - **Supersedes:** oversized photo hero, ivory/gray canvas, large image defaults where conflicting
-
+## Phase 2G — Subscribe/account polish (START)
+- P2G-UX-POLISH-001 → P2G-BUILD → verify
+- Git: none unless authorized
