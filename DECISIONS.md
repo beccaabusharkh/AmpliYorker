@@ -294,3 +294,8 @@
 - **Channel:** Cursor Project (Becca Abu Sharkh)
 - **Decision:** Approve and merge PR #8 → `main` (squash merge preferred if repo default)
 - **Assignment:** P2E-MERGE-PHOTO-001 → Builder
+## 2026-11-18 — Photography merge landed
+
+- **PR:** #8 merged → `main` @ `5a7dcbafa2496f70801432a2aea230335efc55e6`
+- **Deploy:** GitHub Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44387614882
+- **Live:** https://beccaabusharkh.github.io/AmpliYorker/
