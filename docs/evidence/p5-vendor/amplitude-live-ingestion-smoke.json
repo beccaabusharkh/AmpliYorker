@@ -14,5 +14,5 @@
     "read_article_event_totals_today": 162,
     "query_chart_edit_id": "7o2cqg9w"
   },
-  "note": "GitHub Pages workflow builds without VITE_AMPLITUDE_API_KEY unless added as a GitHub Actions repository secret and wired in deploy-pages.yml."
+  "note": "deploy-pages.yml wires GitHub Actions secrets into pnpm build; repository secrets must be set in GitHub UI for production Pages ingestion."
 }

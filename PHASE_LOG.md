@@ -4,7 +4,7 @@
 - Commands: `pnpm build` with team secret; preview smoke (Playwright); Amplitude project 905300 query (`Read Article` event totals today).
 - Definition-of-done check: P5-D3 live ingestion PASS on Builder/preview VM (29 Amplitude network requests; `Read Article` totals received in AmpliYorker project). Mask selector evidence unchanged (`docs/evidence/p5-vendor/amplitude-mask-selectors.json`).
 - Deviations: public GitHub Pages bundle still built without API key in CI (`.github/workflows/deploy-pages.yml` has no secret injection) — live instrumentation on https://beccaabusharkh.github.io/AmpliYorker/ remains off until a GitHub Actions secret is added.
-- Blocker / next action: optional — add `VITE_AMPLITUDE_API_KEY` as a GitHub repository secret and pass it to `pnpm build` in Pages workflow for production ingestion.
+- Blocker / next action: add matching values as GitHub repository secrets `VITE_AMPLITUDE_API_KEY` (and optional `VITE_STATSIG_CLIENT_KEY`); workflow updated in commit on `main` wiring secrets into `pnpm build`.
 
 ## 2026-11-18T18:06:00Z | Phase 5 | Assignment P5-MERGE-001 | COMPLETE
 - What was built: squash-merge PR #6 after Slack `Approve` from Becca Abu Sharkh; Pages deploy for `main` @ `b077491`.
