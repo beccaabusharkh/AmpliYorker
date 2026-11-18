@@ -1,4 +1,5 @@
 import "./styles/tokens.css";
+import { initAmplitude } from "./lib/amplitude/init";
 import { getCurrentRoute, onRouteChange, type Route } from "./lib/router";
 import { recordVisit } from "./lib/session";
 import { renderAccountPage } from "./pages/account";
@@ -63,9 +64,14 @@ function renderApp(route: Route): void {
   mountAccountSupportChat(appRoot);
 }
 
-const initialRoute = getCurrentRoute();
-if (!window.location.hash) {
-  window.location.hash = "#/";
+async function boot(): Promise<void> {
+  await initAmplitude();
+  const initialRoute = getCurrentRoute();
+  if (!window.location.hash) {
+    window.location.hash = "#/";
+  }
+  renderApp(initialRoute || getCurrentRoute());
+  onRouteChange(renderApp);
 }
-renderApp(initialRoute || getCurrentRoute());
-onRouteChange(renderApp);
+
+void boot();
