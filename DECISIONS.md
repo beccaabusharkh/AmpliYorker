@@ -175,4 +175,12 @@
 - **Reviewed commit:** `53abe422ea485ae7ebcf0892081ca45d3a72e9bb` on `phase-4-statsig` (Builder VM; pre-push)
 - **Action:** Authorize push of `phase-4-statsig` to `origin` and open one PR into `main`; **not** merge or deployment
 - **Assignment:** `P4-PUBLISH-001`
-- **Approval state:** RESERVED (consumes on successful push/PR)
+- **Approval state:** CONSUMED
+
+## 2026-11-18 — Phase 4 publish complete (P4-PUBLISH-001)
+
+- **Assignment:** `P4-PUBLISH-001` (consumes publish authorization above)
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/5
+- **Published head:** `8c9034190cd57f8013992bbe71c0109aaea496e6` on `phase-4-statsig`
+- **Acceptance:** P4-PUB-D1 PASS, P4-PUB-D2 PASS
+- **Note:** Published head differs from planner-reviewed VM commit `53abe42` authorized pre-push; GitHub head is a descendant including `PHASE_LOG` / publish evidence.
