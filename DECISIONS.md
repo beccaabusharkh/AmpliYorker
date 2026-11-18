@@ -274,3 +274,8 @@
 - **Assignment:** `P2E-MERGE-001` COMPLETE
 - **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44380450346 (success); deploy-smoke `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200; published JS bundle contains `Ask the Daily` and editorial corpus
 
+## 2026-11-18 — Photography-led visual fix authorization
+
+- **Channel:** Cursor Project (Becca Abu Sharkh)
+- **Decision:** Fix mode — substantial photography/asset pass on `main` without SDK/backend changes. UX then same Builder; local branch; no push/merge in this authorization.
+- **Assignments:** P2E-UX-PHOTO-001, P2E-BUILD-PHOTO-001, P2E-VERIFY-PHOTO-001

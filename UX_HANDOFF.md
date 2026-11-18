@@ -1,42 +1,22 @@
 # UX_HANDOFF
 
-**Status:** IDLE
-**Phase:** 2 editorial redesign
+**Status:** START
+**Phase:** 2 editorial photography fix
 **phase_id:** 2
-**assignment_id:** P2-UX-EDITORIAL-001
+**assignment_id:** P2E-UX-PHOTO-001
 **phase_type:** UX_AUDIT
-**UX agent ID:** bc-30eaabed-cb54-5de3-844c-8423f61f33f4
-**Audited baseline:** `main` post Phase 5 (`b077491`+, live https://beccaabusharkh.github.io/AmpliYorker/); implementation branch `editorial-redesign`
+**UX agent ID:** bc-803c6996-1a3b-5030-bcff-7aea3908aeb0
+
+**Baseline:** `main` live https://beccaabusharkh.github.io/AmpliYorker/ — SVG placeholders in `public/images/editorial/`.
 
 ## Objective
 
-Produce `docs/2/SPEC.md` (`READY`) for a premium fictional newspaper/magazine redesign: New Yorker long-form reading character + NYT homepage hierarchy/density. Original copy and art direction; keep publication name **Amplitude Daily**. Structural reference only: https://www.newyorker.com/magazine/2026/11/23/would-you-dissect-a-human-body
+Produce **`docs/2/PHOTO-SPEC.md`** (`READY`) per `/cursor/stores/self/docs/photography-led-redesign-brief.md` (read on VM from `main` planning commits or PROJECT_PLAN).
 
-Full requirement list: `/cursor/stores/self/docs/editorial-redesign-brief.md` (read via Project store). Preserve Phases 2–5 journeys (accounts, paywall, checkout, retention, Amplitude, Statsig, demo controls).
+## Required
 
-## Routes and surfaces (minimum)
-
-- Home (utility row, masthead, section nav, tabs Top Stories / Latest / For You, lead grid, feature art block, modules listed in brief)
-- Section fronts: Technology, Business, Culture, Science, Opinion
-- Article (long-form template + shorter formats)
-- Author, Search (+ empty), Saved, Newsletter states, 404
-- Simulated ad units (banner, sidebar, mobile) + three campaign landings/modals
-- Sponsored editorial module (distinct label)
-- “Ask the Daily” assistant (welcome, prompts, history, minimize/close/restart, mobile full-screen)
-- Demo Controls (collapsible, does not cover reader chrome)
-
-## Spec requirements
-
-Follow `UX.md`. Include exact tokens (ivory background, near-black text, serif headline/body pairing, sans meta/nav), component IDs, copy verbatim, spacing at 1440 / 768 / 390, focus/hover/reduced-motion, simulation labels, ad/sponsored labels (“Advertisement · Fictional brand”), content inventory table (≥18 stories with section, type, word target, premium flag, module placements), six long-form features outlined, assistant scripted intents, and acceptance IDs mapped to PROJECT_PLAN P2E-D* and deferred Phase 5 matrix.
+Hero 60/40, ≥8 homepage photos (≥3 in first two screenfuls), 3 photo ad campaigns (Northline/Sunday House/Margin Coffee or equivalent), article heroes/inline, viewports 1440×1000 / 768×1024 / 390×844, acceptance P2E-PHOTO-A01–A15, preserve journey/analytics selectors.
 
 ## Permissions
 
-- **Write:** `docs/2/SPEC.md` only
-- **Git:** none
-- **Commands:** read-only repo inspection; optional `pnpm preview` if environment provides built `phase-2-accounts` artifacts (else audit from `main` + handoff narrative)
-
-## Stop
-
-Mark `BLOCKED` with `Blocked decisions` if scope conflicts with preserved journeys. Report to Planner only via spec.
-
-**Closed:** P2-UX-EDITORIAL-001 COMPLETE 2026-11-18 — `docs/2/SPEC.md` READY.
+Write `docs/2/PHOTO-SPEC.md` only; no git mutations.

@@ -1,6 +1,7 @@
 # Amplitude Daily project plan
 
-- Status: IDLE — Editorial redesign **live** on `main` (`81522f9c`); https://beccaabusharkh.github.io/AmpliYorker/
+- Status: START — **P2E-UX-PHOTO-001** photography fix
+- Prior: Editorial redesign **live** on `main` (`81522f9c`); https://beccaabusharkh.github.io/AmpliYorker/
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -89,6 +90,14 @@
 - **Git permissions (Builder):** Commit yes on `editorial-redesign` only; Push/PR/Merge none until Planner publish handoff after acceptance.
 - **Detail brief:** `/cursor/stores/self/docs/editorial-redesign-brief.md`
 
+
+
+## Phase 2 photography-led visual fix
+
+- **Authorized:** 2026-11-18 user request (Fix mode). Replace SVG placeholders with licensed/generated photography; hero 60/40; ≥8 homepage images; photo ads; manifest in `public/images/ASSET-MANIFEST.md`.
+- **Assignments:** `P2E-UX-PHOTO-001` → `docs/2/PHOTO-SPEC.md`; `P2E-BUILD-PHOTO-001`; `P2E-VERIFY-PHOTO-001` (evidence `docs/evidence/photo-v2/`).
+- **Builder:** `bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2`; branch `photo-editorial-v2`; Commit yes; no push without approval.
+- **Done when:** Visual evidence passes UX review at three viewports; typecheck/build/smoke pass; journeys + event contracts preserved.
 
 ## Phase 3 : Amplitude instrumentation and product connections
 
