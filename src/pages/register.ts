@@ -1,6 +1,7 @@
 import { personas } from "../lib/personas";
 import { navigateToHash } from "../lib/router";
 import { ensureAmplitudeIdentity } from "../lib/amplitude/init";
+import { syncStatsigIdentity } from "../lib/statsig/init";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { loginWithPersona } from "../lib/session";
 
@@ -51,6 +52,7 @@ export function renderRegisterPage(): HTMLElement {
     const personaId = (personaSelect as HTMLSelectElement).value;
     loginWithPersona(personaId);
     ensureAmplitudeIdentity();
+    void syncStatsigIdentity();
     trackDemoEvent("Registration Completed", {
       registration_method: "demo_account",
       entry_point: "account_register",

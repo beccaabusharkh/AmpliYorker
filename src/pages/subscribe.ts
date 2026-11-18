@@ -1,4 +1,5 @@
 import { plans } from "../lib/plans";
+import { getSubscriptionOfferVariant } from "../lib/statsig/evaluate";
 import { navigateToHash } from "../lib/router";
 import { getRegisteredReaderPersona } from "../lib/personas";
 import { trackDemoEvent } from "../lib/analytics/track";
@@ -25,13 +26,14 @@ export function renderSubscribePage(): HTMLElement {
     return main;
   }
 
+  const offerVariant = getSubscriptionOfferVariant("subscribe-page");
   const cards = plans
     .map(
       (plan) => `
       <article class="plan-card" data-plan-card="${plan.id}">
         <h2>${plan.name}</h2>
         <p>${plan.priceLabel}</p>
-        <p class="intro-offer">${plan.introOfferLabel}</p>
+        <p class="intro-offer">${offerVariant === "intro_badge" ? "Statsig treatment · " : ""}${plan.introOfferLabel}</p>
         <button type="button" data-select-plan="${plan.id}" data-intro="true">Choose introductory offer</button>
         <button type="button" class="secondary-button" data-select-plan="${plan.id}" data-intro="false">Choose standard price</button>
       </article>

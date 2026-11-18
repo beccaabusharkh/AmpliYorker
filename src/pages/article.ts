@@ -1,5 +1,7 @@
 import { getArticleById, getRecommendations, formatTopicLabel } from "../lib/articles";
-import { canAccessArticle, isPremiumArticle, paywallMessage } from "../lib/paywall";
+import { canAccessArticle, isPremiumArticle, paywallMessage, paywallMessageExperimentId } from "../lib/paywall";
+import { STATSIG_GATES } from "../lib/statsig/catalog";
+import { getGateValue, getSubscriptionMessageVariant } from "../lib/statsig/evaluate";
 import { attachReadingProgress } from "../lib/reading-progress";
 import { navigateToHash } from "../lib/router";
 import { baseUrl } from "../lib/paths";
@@ -28,12 +30,15 @@ export function renderArticlePage(id: string): HTMLElement {
   }
 
   const premium = isPremiumArticle(id);
+  const scrollGate = premium ? getGateValue(STATSIG_GATES.premiumPaywallScroll, "article-paywall") : false;
   const allowed = canAccessArticle(id);
   const saved = isArticleSaved(id);
+  const paywallCopy = paywallMessage("article-paywall");
+  const messageVariant = getSubscriptionMessageVariant("article-paywall");
 
   const bodyHtml = allowed
     ? article.body.map((paragraph) => `<p>${paragraph}</p>`).join("")
-    : `<p class="paywall-block">${paywallMessage()}</p>
+    : `<p class="paywall-block" data-paywall-message>${paywallCopy}</p>
        <p><a href="#/account/login" data-paywall-login>Simulated login</a> · <a href="#/subscribe" data-paywall-sub>Subscribe</a></p>`;
 
   const recs = getRecommendations(article)
@@ -82,13 +87,31 @@ export function renderArticlePage(id: string): HTMLElement {
   `;
 
   if (!allowed && premium) {
-    trackDemoEvent("Paywall Presented", {
-      paywall_id: `paywall-${article.id}`,
-      article_id: article.id,
-      trigger_reason: isLoggedIn() ? "subscription_required" : "registration_required",
-      message_id: "default_paywall",
-      articles_read_in_window: loadSession().engagement.articlesRead,
-    });
+    const emitPaywall = (): void => {
+      trackDemoEvent("Paywall Presented", {
+        paywall_id: `paywall-${article.id}`,
+        article_id: article.id,
+        trigger_reason: isLoggedIn() ? "subscription_required" : "registration_required",
+        message_id: `${paywallMessageExperimentId()}:${messageVariant}`,
+        articles_read_in_window: loadSession().engagement.articlesRead,
+      });
+    };
+    if (scrollGate) {
+      const articleRoot = main.querySelector("[data-article-root]");
+      if (articleRoot instanceof HTMLElement) {
+        const onScroll = (): void => {
+          if (articleRoot.scrollTop > 48) {
+            emitPaywall();
+            articleRoot.removeEventListener("scroll", onScroll);
+          }
+        };
+        articleRoot.addEventListener("scroll", onScroll);
+      } else {
+        emitPaywall();
+      }
+    } else {
+      emitPaywall();
+    }
   }
 
   if (allowed) {

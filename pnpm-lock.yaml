@@ -11,6 +11,9 @@ importers:
       '@amplitude/unified':
         specifier: ^1.2.3
         version: 1.2.3(@amplitude/rrweb@2.1.6)
+      '@statsig/js-client':
+        specifier: ^3.33.8
+        version: 3.33.8
     devDependencies:
       typescript:
         specifier: ^5.7.2
@@ -416,6 +419,12 @@ packages:
     resolution: {integrity: sha512-ee+c14ggUiM7lg4PtCjSBYU9O9dHp4FFespRnd5yj7SilUBJCL3x3aHlB+sIqbGjcPo3pEyODASnfKJuZ26YBw==}
     cpu: [x64]
     os: [win32]
+
+  '@statsig/client-core@3.33.8':
+    resolution: {integrity: sha512-5N1XnYMgjXGPwQFO2bsyq2i7NL2yh+Oi8NALIgKCxVL3333Le66iRemPyK61XjkuIXvlNRn7iwoEEdJ1DKxuMg==}
+
+  '@statsig/js-client@3.33.8':
+    resolution: {integrity: sha512-xyfeoSLqn+lJRWo+8k915vSJtf+iuglMakiYxhu0Y7Fjb01Gf1cLmjtuMJYdjC1XCkyGgmiHFDtlLVms7LOcUg==}
 
   '@types/css-font-loading-module@0.0.7':
     resolution: {integrity: sha512-nl09VhutdjINdWyXxHWN/w9zlNCfr60JUqJbd24YXUuCwgeL0TpFSdElCwb6cxfB6ybE19Gjj4g0jsgkXxKv1Q==}
@@ -882,6 +891,12 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.68.2':
     optional: true
+
+  '@statsig/client-core@3.33.8': {}
+
+  '@statsig/js-client@3.33.8':
+    dependencies:
+      '@statsig/client-core': 3.33.8
 
   '@types/css-font-loading-module@0.0.7': {}
 

@@ -1,4 +1,6 @@
 import { getAllArticles, getFeaturedArticle } from "../lib/articles";
+import { RETENTION_COPY } from "../lib/statsig/catalog";
+import { getHomeRecommendationVariant, getRetentionTreatmentVariant } from "../lib/statsig/evaluate";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { shouldShowRetentionOffer } from "../lib/session";
 import { navigateToHash } from "../lib/router";
@@ -9,6 +11,7 @@ export function renderHomePage(): HTMLElement {
   const sponsored = getAllArticles().find((item) => item.sponsored);
   const podcast = getAllArticles().find((item) => item.podcast);
 
+  const recVariant = getHomeRecommendationVariant("home-latest");
   const listItems = others
     .slice(0, 4)
     .map(
@@ -22,11 +25,13 @@ export function renderHomePage(): HTMLElement {
     .join("");
 
   const retentionOffer = shouldShowRetentionOffer();
+  const retentionVariant = getRetentionTreatmentVariant("home-retention");
+  const retentionCopy = RETENTION_COPY[retentionVariant];
   const retention = retentionOffer
     ? `
       <section class="retention-module home-retention">
-        <h3>Simulated retention reminder</h3>
-        <p>Your reading engagement is lower this cycle — explore a renewal offer on Subscribe (deterministic demo copy).</p>
+        <h3>${retentionCopy.title}</h3>
+        <p>${retentionCopy.body}</p>
         <p><a href="#/subscribe" data-retention-sub>View simulated introductory offers</a></p>
       </section>`
     : "";
@@ -81,7 +86,7 @@ export function renderHomePage(): HTMLElement {
           : ""
       }
       <section class="latest-list">
-        <h3>Latest</h3>
+        <h3>${recVariant === "editors_picks" ? "Editor's picks" : "Latest"}</h3>
         <ul>${listItems}</ul>
       </section>
     </aside>

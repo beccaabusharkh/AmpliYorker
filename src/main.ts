@@ -1,5 +1,6 @@
 import "./styles/tokens.css";
 import { initAmplitude } from "./lib/amplitude/init";
+import { initStatsig } from "./lib/statsig/init";
 import { getCurrentRoute, onRouteChange, type Route } from "./lib/router";
 import { recordVisit } from "./lib/session";
 import { renderAccountPage } from "./pages/account";
@@ -17,6 +18,7 @@ import { renderTopicPage } from "./pages/topic";
 import { mountAccountSupportChat } from "./ui/account-support-chat";
 import { renderFooter, renderHeader } from "./ui/shell";
 import { mountDiscoveryChat } from "./ui/discovery-chat";
+import { mountExposureInspector } from "./ui/exposure-inspector";
 
 const rootEl = document.querySelector("#app");
 if (!(rootEl instanceof HTMLElement)) {
@@ -62,10 +64,12 @@ function renderApp(route: Route): void {
   appRoot.replaceChildren(shell);
   mountDiscoveryChat(appRoot);
   mountAccountSupportChat(appRoot);
+  mountExposureInspector(appRoot);
 }
 
 async function boot(): Promise<void> {
   await initAmplitude();
+  await initStatsig();
   const initialRoute = getCurrentRoute();
   if (!window.location.hash) {
     window.location.hash = "#/";
