@@ -1,0 +1,53 @@
+{
+  "journeys": [
+    {
+      "id": "J01_home_polish",
+      "pass": true,
+      "viewport": "1440"
+    },
+    {
+      "id": "J04_subscribe_wide",
+      "pass": true
+    },
+    {
+      "id": "J06_account_dashboard",
+      "pass": true
+    },
+    {
+      "id": "J02_subscribe_logged_out",
+      "pass": true
+    },
+    {
+      "id": "J03_login_desim",
+      "pass": true
+    },
+    {
+      "id": "J05_subscribe_checkout_account",
+      "pass": true
+    },
+    {
+      "id": "J07_sponsored_offer",
+      "pass": true
+    },
+    {
+      "id": "J08_header_search",
+      "pass": true
+    },
+    {
+      "id": "J09_register",
+      "pass": true
+    },
+    {
+      "id": "J10_paywall_login",
+      "pass": true
+    },
+    {
+      "id": "J11_topic",
+      "pass": true
+    },
+    {
+      "id": "J12_resize_spotcheck",
+      "pass": true
+    }
+  ]
+}

@@ -1,3 +1,9 @@
+## 2026-11-19T00:15:00Z | Phase 2G | Assignment P2G-VERIFY-POLISH-001 | COMPLETE
+- What was verified: P2G-POL-A01–A18 @ 1440/1024/768/390; 12 journeys; resize spot-check; reader copy grep; subscribe→account video.
+- Files changed: `docs/evidence/polish-fix/UX-REVIEW.md`, `verify-matrix.json`, `verify-journeys.json`, screenshots, `journey-subscribe-account.webm`, `scripts/verify-polish-a01-a18.mjs`.
+- Definition-of-done: **18/18** + **12/12** PASS; **0** copy leaks.
+- Git actions: local commit only (no push).
+
 ## 2026-11-18T23:55:00Z | Phase 2G | Assignment P2G-BUILD-POLISH-001 | COMPLETE
 - What was built: subscribe wide surface fix, account dashboard, de-simulated copy, sponsored offer card, header/nav grid, masthead edition line per `docs/2/POLISH-SPEC.md`.
 - Branch: `polish-subscribe-account` (local commit only; **no push**).
