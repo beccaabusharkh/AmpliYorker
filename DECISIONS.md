@@ -84,7 +84,7 @@
 ## 2026-11-17 — Phase 3 UX / instrumentation spec waiver (interim)
 
 - **Decision:** Dispatch Phase 3 BUILD assignment **P3-BUILD-001** using PROJECT_PLAN Phase 3 deliverables, `custom-events.yml`, and BUILDER_HANDOFF replay-mask rules until `docs/3/SPEC.md` is READY from UX.
-- **Rationale:** Slack `@PLANNER dispatch Phase 3` (ts `1794952578.396539`).
+- **Rationale:** Slack `@PLANNER dispatch Phase 3` (ts `1794961026.139839`).
 
 ## 2026-11-17 — Phase 3 Amplitude product scope
 
@@ -140,7 +140,7 @@
 - **Channel:** #bas-cursor (Slack)
 - **Slack timestamp:** `1794964389.941119`
 - **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
-- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/5
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/4
 - **Reviewed commit (pre-merge head):** `3fe4299a6e4d49c53064f128cde26bbbeb60ce3c`
 - **Merge commit on `main`:** `5bb6f9eb12d25d4858cb70fae4a73c8d851d718c`
 - **Action:** Approve and merge PR #4; trigger GitHub Pages deploy on `main`
