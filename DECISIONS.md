@@ -229,3 +229,12 @@
 - **Assignment:** Phase 5 publish (consumes merge authorization after P5-PUBLISH-001)
 - **Approval state:** CONSUMED
 - **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44365703026 (success); live signed-out check `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 (deploy smoke only)
+
+## 2026-11-18 — Editorial redesign scope authorization
+
+- **Channel:** Cursor Project (Becca Abu Sharkh)
+- **Decision:** Authorize planning and implementation of a substantial editorial visual/content redesign on the **current `main` baseline** (post Phase 5, `b077491`+). UX spec first, then Builder `bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114` on new branch `editorial-redesign`. Preserve all demo journeys, Amplitude/Statsig instrumentation, and merge/deploy approval workflow. No backend, live AI, or live ads.
+- **References:** New Yorker long-form character + NYT homepage hierarchy; structural reference article URL only (original copy/assets).
+- **Assignments:** `P2-UX-EDITORIAL-001` (UX), then `P2-BUILD-EDITORIAL-001` (Builder) after `docs/2/SPEC.md` is `READY`.
+- **Reading measurement:** Align milestones to 25/50/75/90/completion + active time per user brief; document changes to `custom-events.yml` if needed.
+

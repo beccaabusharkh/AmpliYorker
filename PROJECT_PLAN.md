@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: IDLE — Phase 5 FINAL_VERIFY complete (2026-11-18). Demo live on `main` at https://beccaabusharkh.github.io/AmpliYorker/ (Pages deploy run 44370358367 success). Published Amplitude ingestion PASS (P5-PAGES-VENDOR-001); vendor keys injected via GitHub Actions secrets + `deploy-pages.yml`.
+- Status: START — **P2-UX-EDITORIAL-001** (editorial redesign on `main`). Phases 0–5 complete; live https://beccaabusharkh.github.io/AmpliYorker/. Build branch `editorial-redesign`; merge requires fresh approval.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -69,6 +69,24 @@
 - Needs human approval to merge? Yes.
 - Git permissions for the Builder: Commit yes; Merge no until the Planner grants the exact approved merge action.
 - Deferred to Phase 5: every account state, saved/followed persistence, validation failures, trial progression, billing/plan changes, renewal/cancellation, retention treatments, reset, and device-switch simulation.
+
+## Phase 2 editorial redesign (visual, content, ads, assistant)
+
+- **Authorized:** 2026-11-18 (see DECISIONS.md). Branches from current `main` (`editorial-redesign`); preserves Phases 2–5 journeys and vendor SDKs; publish/merge still require explicit approval after build acceptance.
+- **Objective:** Present Amplitude Daily as a premium fictional newspaper/magazine while preserving all simulated account, subscription, retention, and experimentation journeys.
+- **UX assignment:** `P2-UX-EDITORIAL-001` → `docs/2/SPEC.md` (`READY` required before Builder dispatch).
+- **Build assignment:** `P2-BUILD-EDITORIAL-001` (Builder `bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114`).
+- **Deliverables (summary):** Design tokens (ivory ground, near-black type, serif/sans pairing, rules); masthead + utility row; section pages (Technology, Business, Culture, Science, Opinion); homepage tabs (Top Stories, Latest, For You) with distinct orderings; editorial grid + modules (Editor’s Picks, Most Read, podcast, newsletter, weekend issue, sponsored); ≥18 stories with original copy; ≥6 long features (1,800–2,500 words) + inline art; long-form article template (progress, text size, share/save/listen, paywall/upsell, related); three fictional ad campaigns + placements; redesigned scripted “Ask the Daily” assistant; author/section/search/saved/404 states; collapsible Demo Controls; reserved image/ad slots.
+- **Measurement:** Preserve existing event names where possible; document deltas. Article body milestones 25/50/75/90/completion once per view; active reading time; preview vs full completion; ad viewability/click separate; no raw chat/form PII in telemetry.
+- **Definition of done (BUILD):**
+  1. P2E-D1: `pnpm typecheck` exits 0.
+  2. P2E-D2: `pnpm build` exits 0.
+  3. P2E-D3: Production-preview smoke — open home at 390px and 1440px widths without horizontal overflow; open flagship long-form article, scroll past 50% body marker, confirm sticky progress updates; open “Ask the Daily”, run one discovery and one subscription-help prompt with working article links.
+  4. P2E-D4: Scripted check — registered persona completes save + open saved list; premium article shows paywall for signed-out and unlocks after existing checkout smoke path (reuse P2-D3 persona steps).
+- **Deferred to Phase 5:** Full 18-story content audit, all ad formats at three breakpoints, keyboard matrix, reading-milestone duplication tests, live vendor re-verification, screenshot package (post-redesign) (home, article scroll, ads, assistant).
+- **Git permissions (Builder):** Commit yes on `editorial-redesign` only; Push/PR/Merge none until Planner publish handoff after acceptance.
+- **Detail brief:** `/cursor/stores/self/docs/editorial-redesign-brief.md`
+
 
 ## Phase 3 : Amplitude instrumentation and product connections
 
