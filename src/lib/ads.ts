@@ -1,4 +1,5 @@
 import adsData from "../data/ads.json";
+import { baseUrl } from "./paths";
 import { trackDemoEvent } from "./analytics/track";
 import { showToast } from "../ui/toast";
 
@@ -8,6 +9,8 @@ export type AdCampaign = {
   label: string;
   body: string;
   cta: string;
+  image?: string;
+  imageAlt?: string;
 };
 
 const campaigns = adsData as AdCampaign[];
@@ -21,8 +24,15 @@ export function renderAdUnit(ad: AdCampaign, extraClass = ""): HTMLElement {
   el.className = `ad-slot ${extraClass}`.trim();
   el.dataset.placementId = ad.placementId;
   el.dataset.adId = ad.id;
+  const imageBlock =
+    ad.image != null && ad.image !== ""
+      ? `<div class="ad-slot__visual">
+      <img class="ad-slot__photo" src="${baseUrl}${escapeAttr(ad.image)}" alt="${escapeAttr(ad.imageAlt ?? "")}" loading="lazy" />
+    </div>`
+      : "";
   el.innerHTML = `
     <p class="ad-slot__label">${escapeHtml(ad.label)}</p>
+    ${imageBlock}
     <p class="ad-slot__body">${escapeHtml(ad.body)}</p>
     <button type="button" class="ad-slot__cta" data-ad-cta>${escapeHtml(ad.cta)}</button>
   `;
@@ -57,6 +67,10 @@ export function renderAdUnit(ad: AdCampaign, extraClass = ""): HTMLElement {
   );
   observer.observe(el);
   return el;
+}
+
+function escapeAttr(value: string): string {
+  return escapeHtml(value);
 }
 
 function escapeHtml(value: string): string {

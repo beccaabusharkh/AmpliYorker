@@ -97,6 +97,18 @@ export function formatTopicLabel(slug: string): string {
     .join(" ");
 }
 
+export function getArticleHeroPath(article: Article): string | undefined {
+  return article.heroImage?.src;
+}
+
+export function getArticleThumbAlt(article: Article): string {
+  const alt = article.heroImage?.alt?.trim();
+  if (alt) {
+    return alt.length > 80 ? `${alt.slice(0, 77)}...` : alt;
+  }
+  return article.headline.length > 80 ? `${article.headline.slice(0, 77)}...` : article.headline;
+}
+
 export function formatEditionDate(date = new Date()): string {
   return date.toLocaleDateString(undefined, {
     weekday: "long",

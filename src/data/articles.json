@@ -66,23 +66,23 @@
     ],
     "wordCountBand": "feature",
     "heroImage": {
-      "src": "images/editorial/hero-placeholder.svg",
-      "alt": "Illustration for How product teams turn behavioral data into daily decisions",
-      "credit": "Amplitude Daily art desk (simulated)",
-      "aspectRatio": "16:9"
+      "src": "images/editorial/daily-decisions--hero.webp",
+      "alt": "Editorial photograph about daily decisions",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
     },
     "inlineFigures": [
       {
         "afterParagraph": 3,
-        "src": "images/editorial/inline-a.svg",
-        "alt": "Chart sketch showing cohort overlap",
-        "credit": "Demo graphics"
+        "src": "images/editorial/daily-decisions--inline-01.webp",
+        "alt": "Data workspace scene for daily decisions",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       },
       {
         "afterParagraph": 8,
-        "src": "images/editorial/inline-b.svg",
-        "alt": "Diagram of experiment holdout groups",
-        "credit": "Demo graphics"
+        "src": "images/editorial/daily-decisions--inline-02.webp",
+        "alt": "Team collaboration still for daily decisions",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       }
     ],
     "pullQuotes": [
@@ -158,23 +158,23 @@
     ],
     "wordCountBand": "feature",
     "heroImage": {
-      "src": "images/editorial/hero-placeholder.svg",
-      "alt": "Illustration for Five retention myths that skew experiment results",
-      "credit": "Amplitude Daily art desk (simulated)",
-      "aspectRatio": "16:9"
+      "src": "images/editorial/retention-myths--hero.webp",
+      "alt": "Editorial photograph about retention myths",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
     },
     "inlineFigures": [
       {
         "afterParagraph": 3,
-        "src": "images/editorial/inline-a.svg",
-        "alt": "Chart sketch showing cohort overlap",
-        "credit": "Demo graphics"
+        "src": "images/editorial/retention-myths--inline-01.webp",
+        "alt": "Data workspace scene for retention myths",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       },
       {
         "afterParagraph": 8,
-        "src": "images/editorial/inline-b.svg",
-        "alt": "Diagram of experiment holdout groups",
-        "credit": "Demo graphics"
+        "src": "images/editorial/retention-myths--inline-02.webp",
+        "alt": "Team collaboration still for retention myths",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       }
     ],
     "pullQuotes": [
@@ -216,7 +216,13 @@
       "Masked replay lets editors audit funnels without exposing credentials in demo environments. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Cohort curves compound when activation timing differs by only a few hours across segments. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/funnel-friction--hero.webp",
+      "alt": "Editorial photograph about funnel friction",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "experiment-runtime",
@@ -248,7 +254,13 @@
       "Paywall timing studies pair scroll depth with subscription offers in simulated newsrooms. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Retention myths die when teams measure return visits with stable device labels. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/experiment-runtime--hero.webp",
+      "alt": "Editorial photograph about experiment runtime",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "signal-weekly-podcast",
@@ -261,24 +273,30 @@
     "podcast": true,
     "body": [
       "Signal Weekly distills cohort stories that sound identical until you slice by activation hour. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
-      "Hosts compare experimentation governance to newsroom style guides—both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
+      "Hosts compare experimentation governance to newsroom style guides\u2014both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Listeners queue episodes while scrolling tabbed home feeds on narrow viewports. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Signal Weekly distills cohort stories that sound identical until you slice by activation hour. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
-      "Hosts compare experimentation governance to newsroom style guides—both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
+      "Hosts compare experimentation governance to newsroom style guides\u2014both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Listeners queue episodes while scrolling tabbed home feeds on narrow viewports. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Signal Weekly distills cohort stories that sound identical until you slice by activation hour. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
-      "Hosts compare experimentation governance to newsroom style guides—both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
+      "Hosts compare experimentation governance to newsroom style guides\u2014both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Listeners queue episodes while scrolling tabbed home feeds on narrow viewports. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Signal Weekly distills cohort stories that sound identical until you slice by activation hour. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
-      "Hosts compare experimentation governance to newsroom style guides—both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
+      "Hosts compare experimentation governance to newsroom style guides\u2014both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Listeners queue episodes while scrolling tabbed home feeds on narrow viewports. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Signal Weekly distills cohort stories that sound identical until you slice by activation hour. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
-      "Hosts compare experimentation governance to newsroom style guides—both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
+      "Hosts compare experimentation governance to newsroom style guides\u2014both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Listeners queue episodes while scrolling tabbed home feeds on narrow viewports. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Signal Weekly distills cohort stories that sound identical until you slice by activation hour. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
-      "Hosts compare experimentation governance to newsroom style guides—both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
+      "Hosts compare experimentation governance to newsroom style guides\u2014both need shared vocabulary. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/signal-weekly-podcast--hero.webp",
+      "alt": "Editorial photograph about signal weekly podcast",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "partner-playbook-sponsored",
@@ -311,7 +329,13 @@
       "Paywall timing studies pair scroll depth with subscription offers in simulated newsrooms. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Retention myths die when teams measure return visits with stable device labels. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/partner-playbook-sponsored--hero.webp",
+      "alt": "Editorial photograph about partner playbook sponsored",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "cohort-compound-interest",
@@ -382,23 +406,23 @@
     ],
     "wordCountBand": "feature",
     "heroImage": {
-      "src": "images/editorial/hero-placeholder.svg",
-      "alt": "Illustration for Cohort compound interest: when small activation shifts move annual revenue",
-      "credit": "Amplitude Daily art desk (simulated)",
+      "src": "images/editorial/cohort-compound-interest--hero.webp",
+      "alt": "Editorial photograph about cohort compound interest",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
       "aspectRatio": "16:9"
     },
     "inlineFigures": [
       {
         "afterParagraph": 3,
-        "src": "images/editorial/inline-a.svg",
-        "alt": "Chart sketch showing cohort overlap",
-        "credit": "Demo graphics"
+        "src": "images/editorial/cohort-compound-interest--inline-01.webp",
+        "alt": "Data workspace scene for cohort compound interest",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       },
       {
         "afterParagraph": 8,
-        "src": "images/editorial/inline-b.svg",
-        "alt": "Diagram of experiment holdout groups",
-        "credit": "Demo graphics"
+        "src": "images/editorial/cohort-compound-interest--inline-02.webp",
+        "alt": "Team collaboration still for cohort compound interest",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       }
     ],
     "pullQuotes": [
@@ -472,23 +496,23 @@
     ],
     "wordCountBand": "feature",
     "heroImage": {
-      "src": "images/editorial/hero-placeholder.svg",
-      "alt": "Illustration for Inside the replay ethics lab",
-      "credit": "Amplitude Daily art desk (simulated)",
-      "aspectRatio": "16:9"
+      "src": "images/editorial/replay-ethics-lab--hero.webp",
+      "alt": "Editorial photograph about replay ethics lab",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
     },
     "inlineFigures": [
       {
         "afterParagraph": 3,
-        "src": "images/editorial/inline-a.svg",
-        "alt": "Chart sketch showing cohort overlap",
-        "credit": "Demo graphics"
+        "src": "images/editorial/replay-ethics-lab--inline-01.webp",
+        "alt": "Data workspace scene for replay ethics lab",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       },
       {
         "afterParagraph": 8,
-        "src": "images/editorial/inline-b.svg",
-        "alt": "Diagram of experiment holdout groups",
-        "credit": "Demo graphics"
+        "src": "images/editorial/replay-ethics-lab--inline-02.webp",
+        "alt": "Team collaboration still for replay ethics lab",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       }
     ],
     "pullQuotes": [
@@ -532,7 +556,13 @@
       "Identity graphs in analytics fiction still need consent banners and deletion workflows. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Survey field notes remind PMs that qualitative signals anchor quantitative spikes. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/north-star-metrics-drift--hero.webp",
+      "alt": "Editorial photograph about north star metrics drift",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "warehouse-latency-culture",
@@ -561,7 +591,13 @@
       "Newsletter aperture tests reveal which headlines earn saves versus superficial clicks. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Warehouse latency shapes which metrics product teams trust before noon standups. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/warehouse-latency-culture--hero.webp",
+      "alt": "Editorial photograph about warehouse latency culture",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "holdout-holiday",
@@ -592,7 +628,13 @@
       "Runtime peeking without correction turns Tuesday wins into Wednesday rollbacks. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Paywall timing studies pair scroll depth with subscription offers in simulated newsrooms. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/holdout-holiday--hero.webp",
+      "alt": "Editorial photograph about holdout holiday",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "session-replay-masked",
@@ -625,7 +667,13 @@
       "Masked replay lets editors audit funnels without exposing credentials in demo environments. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Cohort curves compound when activation timing differs by only a few hours across segments. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/session-replay-masked--hero.webp",
+      "alt": "Editorial photograph about session replay masked",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "paywall-timing-study",
@@ -694,23 +742,23 @@
     ],
     "wordCountBand": "feature",
     "heroImage": {
-      "src": "images/editorial/hero-placeholder.svg",
-      "alt": "Illustration for Paywall timing study: scroll depth versus subscriber intent",
-      "credit": "Amplitude Daily art desk (simulated)",
-      "aspectRatio": "16:9"
+      "src": "images/editorial/paywall-timing-study--hero.webp",
+      "alt": "Editorial photograph about paywall timing study",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
     },
     "inlineFigures": [
       {
         "afterParagraph": 3,
-        "src": "images/editorial/inline-a.svg",
-        "alt": "Chart sketch showing cohort overlap",
-        "credit": "Demo graphics"
+        "src": "images/editorial/paywall-timing-study--inline-01.webp",
+        "alt": "Data workspace scene for paywall timing study",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       },
       {
         "afterParagraph": 8,
-        "src": "images/editorial/inline-b.svg",
-        "alt": "Diagram of experiment holdout groups",
-        "credit": "Demo graphics"
+        "src": "images/editorial/paywall-timing-study--inline-02.webp",
+        "alt": "Team collaboration still for paywall timing study",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       }
     ],
     "pullQuotes": [
@@ -747,7 +795,13 @@
       "Survey field notes remind PMs that qualitative signals anchor quantitative spikes. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Newsletter aperture tests reveal which headlines earn saves versus superficial clicks. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/newsletter-aperture--hero.webp",
+      "alt": "Editorial photograph about newsletter aperture",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "guide-surveys-field-note",
@@ -779,7 +833,13 @@
       "Paywall timing studies pair scroll depth with subscription offers in simulated newsrooms. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Retention myths die when teams measure return visits with stable device labels. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/guide-surveys-field-note--hero.webp",
+      "alt": "Editorial photograph about guide surveys field note",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "identity-graph-fiction",
@@ -855,23 +915,23 @@
     ],
     "wordCountBand": "feature",
     "heroImage": {
-      "src": "images/editorial/hero-placeholder.svg",
-      "alt": "Illustration for Identity graph fiction and the demo reader",
-      "credit": "Amplitude Daily art desk (simulated)",
-      "aspectRatio": "16:9"
+      "src": "images/editorial/identity-graph-fiction--hero.webp",
+      "alt": "Editorial photograph about identity graph fiction",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
     },
     "inlineFigures": [
       {
         "afterParagraph": 3,
-        "src": "images/editorial/inline-a.svg",
-        "alt": "Chart sketch showing cohort overlap",
-        "credit": "Demo graphics"
+        "src": "images/editorial/identity-graph-fiction--inline-01.webp",
+        "alt": "Data workspace scene for identity graph fiction",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       },
       {
         "afterParagraph": 8,
-        "src": "images/editorial/inline-b.svg",
-        "alt": "Diagram of experiment holdout groups",
-        "credit": "Demo graphics"
+        "src": "images/editorial/identity-graph-fiction--inline-02.webp",
+        "alt": "Team collaboration still for identity graph fiction",
+        "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos"
       }
     ],
     "pullQuotes": [
@@ -910,7 +970,13 @@
       "Holdout holidays protect long-term trust while short-term campaigns scream for lifts. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Runtime peeking without correction turns Tuesday wins into Wednesday rollbacks. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/win-back-cohort-diaries--hero.webp",
+      "alt": "Editorial photograph about win back cohort diaries",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   },
   {
     "id": "vendor-stack-sponsored",
@@ -942,6 +1008,12 @@
       "Runtime peeking without correction turns Tuesday wins into Wednesday rollbacks. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding.",
       "Paywall timing studies pair scroll depth with subscription offers in simulated newsrooms. In this fictional Amplitude Daily dispatch, editors stress-test instrumentation before stakeholders tour the demo. Teams document decisions in plain language so analysts can replay the narrative during onboarding."
     ],
-    "wordCountBand": "short"
+    "wordCountBand": "short",
+    "heroImage": {
+      "src": "images/editorial/vendor-stack-sponsored--hero.webp",
+      "alt": "Editorial photograph about vendor stack sponsored",
+      "credit": "Amplitude Daily (simulated) \u00b7 Picsum Photos",
+      "aspectRatio": "3:2"
+    }
   }
 ]

@@ -1,5 +1,11 @@
 import { getAdByPlacement, renderAdUnit } from "../lib/ads";
-import { getAllArticles, getFeaturedArticle, formatTopicLabel } from "../lib/articles";
+import {
+  getAllArticles,
+  getArticleThumbAlt,
+  getFeaturedArticle,
+  formatTopicLabel,
+  type Article,
+} from "../lib/articles";
 import { RETENTION_COPY } from "../lib/statsig/catalog";
 import { getHomeRecommendationVariant, getRetentionTreatmentVariant } from "../lib/statsig/evaluate";
 import { trackDemoEvent } from "../lib/analytics/track";
@@ -47,9 +53,8 @@ export function renderHomePage(): HTMLElement {
 
   const main = document.createElement("main");
   main.className = "page-main home-editorial";
-  const heroSrc = article.heroImage
-    ? `${baseUrl}${article.heroImage.src}`
-    : `${baseUrl}images/editorial/hero-placeholder.svg`;
+  const heroSrc = article.heroImage ? `${baseUrl}${article.heroImage.src}` : "";
+  const heroAlt = article.heroImage?.alt ?? article.headline;
 
   main.innerHTML = `
     <div class="home-leaderboard-wrap" data-leaderboard-slot></div>
@@ -68,7 +73,7 @@ export function renderHomePage(): HTMLElement {
           ${article.kicker ? `<p class="home-kicker">${article.kicker}</p>` : ""}
           <div class="lead-grid">
             <a class="lead-hero-link" href="#/article/${encodeURIComponent(article.id)}" data-lead-link>
-              <img class="lead-hero-image" src="${heroSrc}" alt="${escapeAttr(article.headline)}" width="960" height="640" />
+              <img class="lead-hero-image" src="${heroSrc}" alt="${escapeAttr(heroAlt)}" width="1920" height="1080" />
             </a>
             <div class="lead-copy">
               <h2 class="lead-headline"><a href="#/article/${encodeURIComponent(article.id)}" data-lead-link>${article.headline}</a></h2>
@@ -81,7 +86,10 @@ export function renderHomePage(): HTMLElement {
             .map(
               (item) => `
             <article class="secondary-lead-card">
-              <h3><a href="#/article/${encodeURIComponent(item.id)}">${item.headline}</a></h3>
+              <a class="secondary-lead-link" href="#/article/${encodeURIComponent(item.id)}">
+                <img class="secondary-lead-thumb" src="${baseUrl}${escapeAttr(item.heroImage?.src ?? "")}" alt="${escapeAttr(getArticleThumbAlt(item))}" loading="lazy" width="800" height="600" />
+                <h3>${item.headline}</h3>
+              </a>
               <p class="secondary-deck">${item.deck}</p>
             </article>`,
             )
@@ -111,6 +119,11 @@ export function renderHomePage(): HTMLElement {
           podcastFeature
             ? `<section class="home-podcast-spotlight podcast-card">
           <p class="podcast-label">Podcast</p>
+          ${
+            podcastFeature.heroImage
+              ? `<a href="#/article/${encodeURIComponent(podcastFeature.id)}"><img class="podcast-spotlight-thumb" src="${baseUrl}${escapeAttr(podcastFeature.heroImage.src)}" alt="${escapeAttr(getArticleThumbAlt(podcastFeature))}" loading="lazy" width="800" height="600" /></a>`
+              : ""
+          }
           <h3><a href="#/article/${encodeURIComponent(podcastFeature.id)}">${podcastFeature.headline}</a></h3>
           <p>${podcastFeature.deck}</p>
         </section>`
@@ -182,13 +195,7 @@ export function renderHomePage(): HTMLElement {
     }
     list.innerHTML = items
       .slice(0, 8)
-      .map(
-        (item) => `
-        <li>
-          <a href="#/article/${encodeURIComponent(item.id)}">${item.headline}</a>
-          <span>${formatTopicLabel(item.topic)} · ${item.publishedAt}</span>
-        </li>`,
-      )
+      .map((item, index) => renderFeedRow(item, index))
       .join("");
     if (empty instanceof HTMLElement) {
       empty.hidden = items.length > 0;
@@ -255,6 +262,24 @@ export function renderHomePage(): HTMLElement {
   });
 
   return main;
+}
+
+function renderFeedRow(item: Article, index: number): string {
+  // Rows 4–5 (HP-P08–P09): feed thumbs after secondary leads so URLs stay distinct from HP-P03–P05.
+  const thumb =
+    index >= 3 && index < 5 && item.heroImage
+      ? `<img class="feed-thumb" src="${baseUrl}${escapeAttr(item.heroImage.src)}" alt="${escapeAttr(getArticleThumbAlt(item))}" loading="lazy" width="64" height="48" />`
+      : "";
+  return `
+        <li class="home-feed-item">
+          <a class="feed-row-link" href="#/article/${encodeURIComponent(item.id)}">
+            ${thumb}
+            <span class="feed-row-copy">
+              <span class="feed-headline">${item.headline}</span>
+              <span class="feed-meta">${formatTopicLabel(item.topic)} · ${item.publishedAt}</span>
+            </span>
+          </a>
+        </li>`;
 }
 
 function escapeAttr(value: string): string {

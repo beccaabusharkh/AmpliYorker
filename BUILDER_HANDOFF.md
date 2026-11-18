@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** START
+**Status:** IDLE
 **Phase:** 2 photography-led visual fix
 **phase_id:** 2
 **assignment_id:** P2E-BUILD-PHOTO-001

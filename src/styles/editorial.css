@@ -152,16 +152,114 @@ body {
 
 .lead-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: 32px;
   align-items: start;
 }
 
+.lead-copy {
+  align-self: center;
+  padding: 0;
+}
+
 .lead-hero-image {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: center 40%;
   min-height: 320px;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .lead-hero-image {
+    min-height: 360px;
+  }
+}
+
+.secondary-lead-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.secondary-lead-link h3 {
+  margin: 12px 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+}
+
+.secondary-lead-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.podcast-spotlight-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.home-feed-item {
+  list-style: none;
+}
+
+.feed-row-link {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.feed-thumb {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.feed-row-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.feed-headline {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.feed-meta {
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
+}
+
+.ad-slot__visual {
+  margin: 0.5rem 0;
+}
+
+.ad-slot--leaderboard .ad-slot__photo {
+  width: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.ad-slot--rail .ad-slot__photo,
+.ad-slot--mpu .ad-slot__photo {
+  width: 100%;
+  min-height: 250px;
+  max-width: 300px;
+  object-fit: cover;
   display: block;
 }
 
@@ -198,10 +296,12 @@ body {
   margin: var(--space-section) 0;
 }
 
-.secondary-lead-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  margin: 0 0 0.5rem;
+.secondary-lead-card {
+  margin: 0;
+}
+
+.secondary-lead-card .secondary-deck {
+  margin: 0;
 }
 
 .home-tablist {
@@ -231,17 +331,6 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.home-feed-list li {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--color-rule);
-}
-
-.home-feed-list span {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--color-ink-muted);
 }
 
 .topic-chip-row {
