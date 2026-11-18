@@ -1,5 +1,25 @@
 import articlesData from "../data/articles.json";
 
+export type HeroImage = {
+  src: string;
+  alt: string;
+  credit: string;
+  aspectRatio: "16:9" | "3:2" | "4:3";
+};
+
+export type InlineFigure = {
+  afterParagraph: number;
+  src: string;
+  alt: string;
+  credit: string;
+};
+
+export type PullQuote = {
+  afterParagraph: number;
+  quote: string;
+  attribution?: string;
+};
+
 export type Article = {
   id: string;
   headline: string;
@@ -9,20 +29,28 @@ export type Article = {
   topic: string;
   author: string;
   authorName: string;
+  wordCountBand?: "short" | "feature";
+  previewParagraphCount?: number;
+  kicker?: string;
   narrated?: boolean;
   podcast?: boolean;
   sponsored?: boolean;
   premium?: boolean;
+  heroImage?: HeroImage;
+  inlineFigures?: InlineFigure[];
+  pullQuotes?: PullQuote[];
 };
 
 export const articles: Article[] = articlesData as Article[];
+
+const FEATURED_ID = "cohort-compound-interest";
 
 export function getArticleById(id: string): Article | undefined {
   return articles.find((article) => article.id === id);
 }
 
 export function getFeaturedArticle(): Article {
-  return articles[0];
+  return getArticleById(FEATURED_ID) ?? articles[0];
 }
 
 export function getAllArticles(): Article[] {
@@ -60,8 +88,20 @@ export function getRecommendations(article: Article, limit = 3): Article[] {
 }
 
 export function formatTopicLabel(slug: string): string {
+  if (slug === "podcast") {
+    return "Podcasts";
+  }
   return slug
     .split("-")
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+export function formatEditionDate(date = new Date()): string {
+  return date.toLocaleDateString(undefined, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }

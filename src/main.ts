@@ -1,4 +1,5 @@
 import "./styles/tokens.css";
+import "./styles/editorial.css";
 import { initAmplitude } from "./lib/amplitude/init";
 import { initStatsig } from "./lib/statsig/init";
 import { getCurrentRoute, onRouteChange, type Route } from "./lib/router";
@@ -16,7 +17,7 @@ import { renderSearchPage } from "./pages/search";
 import { renderSubscribePage } from "./pages/subscribe";
 import { renderTopicPage } from "./pages/topic";
 import { mountAccountSupportChat } from "./ui/account-support-chat";
-import { renderFooter, renderHeader } from "./ui/shell";
+import { renderFooter, renderHeader, renderSkipLink } from "./ui/shell";
 import { mountDiscoveryChat } from "./ui/discovery-chat";
 import { mountExposureInspector } from "./ui/exposure-inspector";
 
@@ -60,7 +61,11 @@ function renderContent(route: Route): HTMLElement {
 function renderApp(route: Route): void {
   const shell = document.createElement("div");
   shell.className = "app-shell";
-  shell.append(renderHeader(), renderContent(route), renderFooter());
+  const content = renderContent(route);
+  if (content.classList.contains("page-main") && !content.id) {
+    content.id = "page-main";
+  }
+  shell.append(renderSkipLink(), renderHeader(), content, renderFooter());
   appRoot.replaceChildren(shell);
   mountDiscoveryChat(appRoot);
   mountAccountSupportChat(appRoot);

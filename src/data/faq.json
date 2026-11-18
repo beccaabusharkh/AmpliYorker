@@ -16,6 +16,10 @@
     "answer": "Each article links to its topic and author pages from the article metadata row."
   },
   {
+    "keywords": ["premium", "paywall", "subscriber"],
+    "answer": "Premium articles show a preview when signed out. Log in, then use Subscribe and simulated checkout to unlock full text."
+  },
+  {
     "keywords": ["default", "help"],
     "answer": "Amplitude Daily is a fictional demo site. Ask about search, topics, newsletter, or sponsored content."
   }

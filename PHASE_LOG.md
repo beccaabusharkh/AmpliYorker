@@ -1,3 +1,19 @@
+## 2026-11-18T19:40:00Z | Phase 2 | Assignment P2E-PUBLISH-001 | COMPLETE
+- What was built: published editorial redesign branch and opened PR into `main` (no merge).
+- Files changed: `PHASE_LOG.md` (this entry only for publish turn).
+- Git actions: `git push -u origin editorial-redesign` PASS; `origin/editorial-redesign` HEAD `54ef27de6e7dee78ab3fc34f1cc817dc5a004432`; PR https://github.com/beccaabusharkh/AmpliYorker/pull/7 (base `main`, head `editorial-redesign`).
+- Definition-of-done check: **P2E-PUB-D1** PASS (push succeeded); **P2E-PUB-D2** PASS (one PR opened, editorial scope + `docs/2/SPEC.md` in body); **P2E-PUB-D3** PASS (this entry with PR URL and SHA).
+- Deviations: none.
+- Blocker / next action: none — Planner review/merge approval.
+
+## 2026-11-18T19:35:00Z | Phase 2 | Assignment P2-BUILD-EDITORIAL-001 | COMPLETE
+- What was built: Editorial redesign per `docs/2/SPEC.md` — NYT-style home (utility bar, masthead, section nav, lead package, tabbed feed, topic ribbon, podcast strip, leaderboard + rail ads, sponsored module), New Yorker-style articles (hero, drop cap, pull quotes, inline figures, paywall preview fade, end signoff, article rail MPU), 18-story corpus with six long features, `Ask the Daily` assistant (chips, disclosure, focus trap, Alt+D), collapsible demo `<details>`, `Read Article` milestones **25/50/75/90/100** with accumulating **`active_reading_seconds`** (`custom-events.yml` enum/docs updated; event name unchanged).
+- Files changed: `src/data/articles.json`, `src/data/ads.json`, `src/data/faq.json`, `public/images/editorial/*`, `src/lib/articles.ts`, `src/lib/article-render.ts`, `src/lib/ads.ts`, `src/lib/analytics/article-reading.ts`, `src/pages/home.ts`, `src/pages/article.ts`, `src/pages/account.ts`, `src/ui/shell.ts`, `src/ui/discovery-chat.ts`, `src/styles/editorial.css`, `src/main.ts`, `custom-events.yml`, `PHASE_LOG.md`.
+- Git actions: local commit on `editorial-redesign` at `f969957` (push/PR not authorized).
+- Definition-of-done check: **P2E-D1** PASS (`pnpm typecheck` exit 0); **P2E-D2** PASS (`pnpm build` exit 0; 18 article ids in `articles.json`); **P2E-D3** PASS production preview smoke `http://127.0.0.1:4173/AmpliYorker/` — home chrome, no horizontal overflow at 390/1440, flagship long-article progress ≥50% after scroll, Ask the Daily discovery + premium-help prompts with answers, anonymous premium preview, registered-reader checkout unlock + saved list; **P2E-D4** PASS skip link, Ask the Daily open/close, closed demo controls, 768px CSS breakpoint (`editorial.css`); **P2E-A01–A10** PASS per matrix in log (3 ad placements, sponsored module, Pages base path, preserved Statsig/Amplitude init).
+- Deviations: none.
+- Blocker / next action: none — Planner publish/review; team `VITE_*` secrets absent on VM (vendor defaults for local smoke).
+
 ## 2026-11-18T18:31:00Z | Phase 5 | Assignment P5-PAGES-VENDOR-001 | COMPLETE
 - What was built: redeploy GitHub Pages after approver added `VITE_AMPLITUDE_API_KEY` + `VITE_STATSIG_CLIENT_KEY` repository secrets; post-deploy live vendor smoke.
 - Files changed: `docs/evidence/p5-vendor/published-vendor-smoke.json`, planner docs.
