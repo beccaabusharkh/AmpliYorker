@@ -1,3 +1,11 @@
+## 2026-11-18T18:12:00Z | Phase 5 | Assignment P5-CRED-001 | COMPLETE
+- What was built: re-verified Amplitude live ingestion after approver added `VITE_AMPLITUDE_API_KEY` to the team Cursor environment.
+- Files changed: `docs/evidence/p5-vendor/amplitude-live-ingestion-smoke.json`; planner docs.
+- Commands: `pnpm build` with team secret; preview smoke (Playwright); Amplitude project 905300 query (`Read Article` event totals today).
+- Definition-of-done check: P5-D3 live ingestion PASS on Builder/preview VM (29 Amplitude network requests; `Read Article` totals received in AmpliYorker project). Mask selector evidence unchanged (`docs/evidence/p5-vendor/amplitude-mask-selectors.json`).
+- Deviations: public GitHub Pages bundle still built without API key in CI (`.github/workflows/deploy-pages.yml` has no secret injection) — live instrumentation on https://beccaabusharkh.github.io/AmpliYorker/ remains off until a GitHub Actions secret is added.
+- Blocker / next action: optional — add `VITE_AMPLITUDE_API_KEY` as a GitHub repository secret and pass it to `pnpm build` in Pages workflow for production ingestion.
+
 ## 2026-11-18T18:06:00Z | Phase 5 | Assignment P5-MERGE-001 | COMPLETE
 - What was built: squash-merge PR #6 after Slack `Approve` from Becca Abu Sharkh; Pages deploy for `main` @ `b077491`.
 - Files changed: none in merge action (deliverables already on PR #6).

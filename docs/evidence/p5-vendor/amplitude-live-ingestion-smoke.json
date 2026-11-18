@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-11-18T18:12:00Z",
+  "credential_source": "Cursor team environment secret VITE_AMPLITUDE_API_KEY (present on agent VM; no value recorded)",
+  "preview_url": "http://127.0.0.1:4173/AmpliYorker/",
+  "build": "pnpm build with .env.local from team env",
+  "browser_smoke": {
+    "tool": "playwright 1.49.1 chromium",
+    "amplitude_network_requests": 29,
+    "sample_route": "#/article/daily-decisions"
+  },
+  "amplitude_project": {
+    "appId": "905300",
+    "appName": "AmpliYorker",
+    "read_article_event_totals_today": 162,
+    "query_chart_edit_id": "7o2cqg9w"
+  },
+  "note": "GitHub Pages workflow builds without VITE_AMPLITUDE_API_KEY unless added as a GitHub Actions repository secret and wired in deploy-pages.yml."
+}

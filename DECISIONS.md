@@ -209,6 +209,14 @@
 - **Assignment:** `P5-VERIFY-001` · Builder `bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114` · Commit yes · Push/PR/Merge no until **P5-PUBLISH-001** if corrections ship.
 - **UX:** No `docs/5/SPEC.md`; verification matrix lives in BUILDER_HANDOFF.md per PROJECT_PLAN Phase 5 pre-dispatch rule.
 
+## 2026-11-18 — Phase 5 Amplitude credentials (P5-CRED-001)
+
+- **Channel:** #bas-cursor (Slack)
+- **Slack timestamp:** follow-up after `1795025013.027169` (human: API key added)
+- **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
+- **Action:** `VITE_AMPLITUDE_API_KEY` present on team Cursor environment; Builder/preview live ingestion re-verified (see `docs/evidence/p5-vendor/amplitude-live-ingestion-smoke.json`).
+- **Note:** GitHub Pages CI still omits the key unless added as a repository secret on the build job.
+
 ## 2026-11-18 — Phase 5 merge approval (PR #6)
 
 - **Channel:** #bas-cursor (Slack)
