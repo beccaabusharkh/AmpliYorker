@@ -325,3 +325,6 @@
 
 ## 2026-11-18 — Subscribe/account polish (fix)
 - Sections 1–7; no push in authorization.
+
+## 2026-11-18 — Polish build accepted
+- P2G-BUILD-POLISH-001 on `polish-subscribe-account`; D1–D3 PASS.
