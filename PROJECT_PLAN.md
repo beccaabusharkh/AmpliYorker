@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: START — Phase 5 FINAL_VERIFY **P5-VERIFY-001** dispatched (2026-11-18). Phase 4 live on `main` (`df237c8`) at https://beccaabusharkh.github.io/AmpliYorker/ (Pages deploy run 44359843731 success). Builder `bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114` on branch `phase-5-final-verify`.
+- Status: IDLE — Phase 5 FINAL_VERIFY complete (2026-11-18). Demo live on `main` (`b077491`) at https://beccaabusharkh.github.io/AmpliYorker/ (Pages deploy run 44365703026 success). Live Amplitude ingestion remains BLOCKED without org API key (documented in PHASE_LOG P5-VERIFY-001).
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -108,6 +108,7 @@
 
 ## Phase 5 : Final verification and corrections
 
+- **Review (2026-11-18):** PASS with documented vendor BLOCKED — P5-VERIFY-001 / P5-PUBLISH-001 / P5-MERGE-001; PR #6 squash-merged (`b077491`); Pages deploy run 44365703026 success; P5-D3 live Amplitude ingestion BLOCKED (missing `VITE_AMPLITUDE_API_KEY` on publish VM).
 - Type: FINAL_VERIFY.
 - Objective: verify all ten use cases, vendor integrations, and deployed behavior, then correct failures before declaring the demo verified.
 - Before dispatch: expand every deferred check above into a numbered case with route, persona/data state, steps, expected result, and evidence location; set exact viewport sizes, browser targets, vendor projects, and tool permissions in the handoff.

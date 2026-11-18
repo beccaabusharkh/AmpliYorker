@@ -208,3 +208,16 @@
 - **Credentials:** Same team environment as Phases 3–4 (`VITE_AMPLITUDE_API_KEY`, `VITE_STATSIG_CLIENT_KEY`); vendor checks may BLOCK without org UI access — record BLOCKED, not silent PASS.
 - **Assignment:** `P5-VERIFY-001` · Builder `bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114` · Commit yes · Push/PR/Merge no until **P5-PUBLISH-001** if corrections ship.
 - **UX:** No `docs/5/SPEC.md`; verification matrix lives in BUILDER_HANDOFF.md per PROJECT_PLAN Phase 5 pre-dispatch rule.
+
+## 2026-11-18 — Phase 5 merge approval (PR #6)
+
+- **Channel:** #bas-cursor (Slack)
+- **Slack timestamp:** `1795025013.027169`
+- **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/6
+- **Reviewed commit (pre-merge head):** `aedc8e430c28f0157bd7607439c50947d46250e8`
+- **Merge commit on `main`:** `b077491f7410c1b75839a5e13847a43889786c31`
+- **Action:** Approve and squash-merge PR #6; trigger GitHub Pages deploy on `main`
+- **Assignment:** Phase 5 publish (consumes merge authorization after P5-PUBLISH-001)
+- **Approval state:** CONSUMED
+- **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44365703026 (success); live signed-out check `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 (deploy smoke only)

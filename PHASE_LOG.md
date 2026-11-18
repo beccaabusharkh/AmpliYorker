@@ -1,10 +1,18 @@
+## 2026-11-18T18:06:00Z | Phase 5 | Assignment P5-MERGE-001 | COMPLETE
+- What was built: squash-merge PR #6 after Slack `Approve` from Becca Abu Sharkh; Pages deploy for `main` @ `b077491`.
+- Files changed: none in merge action (deliverables already on PR #6).
+- Git actions: PR https://github.com/beccaabusharkh/AmpliYorker/pull/6 squash-merged; `main` head `b077491f7410c1b75839a5e13847a43889786c31`; reviewed PR head `aedc8e430c28f0157bd7607439c50947d46250e8`.
+- Definition-of-done check: deploy-smoke PASS (Actions run 44365703026 success; live `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200 signed-out).
+- Deviations: none.
+- Blocker / next action: none — Phase 5 accepted with P5-D3 live Amplitude ingestion BLOCKED per P5-VERIFY-001 (missing `VITE_AMPLITUDE_API_KEY` on publish VM).
+
 ## 2026-11-18T18:05:00Z | Phase 5 | Assignment P5-PUBLISH-001 | COMPLETE
 - What was built: publish recovery — pushed Phase 5 final verification branch with inspector/chat layout fix, browser evidence under `docs/evidence/**`, and publish PR into `main` (accepted Builder commit `ffd5107` never on `origin`).
 - Files changed: `src/styles/tokens.css` (exposure inspector offset above discovery chat), `docs/evidence/**`, `PHASE_LOG.md`.
-- Git actions: `git push -u origin phase-5-final-verify` success; PR https://github.com/beccaabusharkh/AmpliYorker/pull/6 (base `main`, head `phase-5-final-verify`); merge not performed.
+- Git actions: `git push -u origin phase-5-final-verify` success; PR https://github.com/beccaabusharkh/AmpliYorker/pull/6 (base `main`, head `phase-5-final-verify`); merged via P5-MERGE-001.
 - Definition-of-done check: P5-PUB-D1 PASS (`origin/phase-5-final-verify` head `1a12490032bb32d69e976fc82ac127696dd39541` (product + evidence commit `1f47501`) contains Phase 5 verification artifacts + scoped CSS correction; descendant of `main` review baseline, not commit `ffd5107`); P5-PUB-D2 PASS (one open PR, URL above).
 - Deviations: reviewed P5-VERIFY head `ffd5107` existed only on prior Builder VM (unreachable on publish VM / GitHub); evidence regenerated on production preview `http://127.0.0.1:4173/AmpliYorker/` with Playwright 1.49.1 / Chromium per P3/P4 publish recovery pattern.
-- Blocker / next action: Planner review and merge approval via Slack `Approve` naming this PR.
+- Blocker / next action: none (merge completed P5-MERGE-001).
 
 ## 2026-11-18T18:00:00Z | Phase 5 | Assignment P5-VERIFY-001 | COMPLETE
 - What was built: FINAL_VERIFY recovery on publish VM — full matrix spot-check via production preview; in-scope correction to lift Statsig exposure inspector above discovery chat toggle (overlap fix); evidence screenshots, short walkthrough video, vendor config snapshots.

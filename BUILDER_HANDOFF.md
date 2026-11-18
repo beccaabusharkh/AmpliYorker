@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** START
+**Status:** IDLE
 **Phase:** 5 : Final verification and corrections
 **phase_id:** 5
 **assignment_id:** P5-VERIFY-001
@@ -8,7 +8,7 @@
 **Builder agent ID:** bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114
 **Branch:** `phase-5-final-verify`
 
-**Planner dispatch (2026-11-18):** Phase 4 merged on `main` (`df237c8`); live https://beccaabusharkh.github.io/AmpliYorker/ (Pages run 44359843731 success). Execute full deferred QA from Phases 0–4; fix in-scope failures on this branch and record PASS/FAIL/BLOCKED evidence in `PHASE_LOG.md` and `docs/evidence/**`.
+**Planner close (2026-11-18):** Phase 5 merged on `main` (`b077491`); live https://beccaabusharkh.github.io/AmpliYorker/ (Pages run 44365703026 success). Assignment **P5-VERIFY-001** complete per PHASE_LOG; no further Builder dispatch unless a new correction assignment is authorized.
 
 Objective: verify all ten use cases, Amplitude + Statsig integrations, and deployed behavior; correct scoped bugs; deliver screenshot + short video evidence for the reviewed revision.
 
