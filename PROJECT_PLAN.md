@@ -151,3 +151,12 @@
 - Needs human approval to merge? Yes for any correction PR; an evidence-only review with no repository change has no merge action.
 - Git permissions for the Builder: Commit yes for assigned corrections/evidence; Merge no until the Planner grants the exact approved merge action.
 - Completion: the Planner records final verification only after all five items pass against the final revision and its deployment; any later correction invalidates affected evidence until rerun.
+
+## Phase 2F — Atlantic-inspired refinement (START)
+
+- **Mode:** Fix | **Git:** none unless authorized
+- **UX:** P2F-UX-ATLANTIC-001 → `docs/2/ATLANTIC-SPEC.md`
+- **Build:** P2F-BUILD-ATLANTIC-001 (same Builder, after UX READY)
+- **Verify:** P2F-VERIFY-ATLANTIC-001 + UX screenshot review
+- **Supersedes:** oversized photo hero, ivory/gray canvas, large image defaults where conflicting
+

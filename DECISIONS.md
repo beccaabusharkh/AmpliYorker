@@ -299,3 +299,9 @@
 - **PR:** #8 merged → `main` @ `5a7dcbafa2496f70801432a2aea230335efc55e6`
 - **Deploy:** GitHub Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44387614882
 - **Live:** https://beccaabusharkh.github.io/AmpliYorker/
+
+## 2026-11-18 — Atlantic refinement authorized (fix mode)
+
+- **Decision:** Atlantic-inspired layout; white canvas, smaller photos, masthead, accounts/chat/subscribe polish.
+- **Git:** no push/merge in this authorization.
+- **Assignments:** P2F-UX-ATLANTIC-001 → Builder → verify → UX review.
