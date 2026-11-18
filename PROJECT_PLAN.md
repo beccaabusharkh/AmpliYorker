@@ -162,3 +162,5 @@
 ## Phase 2G — Subscribe/account polish (START)
 - P2G-UX-POLISH-001 → P2G-BUILD → verify
 - Git: none unless authorized
+## Phase 2H — Atlantic layout fidelity (START)
+- Analysis-first; incremental build+UX diff loop; no git auth
