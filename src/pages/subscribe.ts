@@ -1,6 +1,8 @@
 import { plans } from "../lib/plans";
 import { navigateToHash } from "../lib/router";
 import { getRegisteredReaderPersona } from "../lib/personas";
+import { trackDemoEvent } from "../lib/analytics/track";
+import { getOrCreateCheckoutId } from "../lib/analytics/checkout";
 import { isLoggedIn, setPendingCheckout } from "../lib/session";
 
 export function renderSubscribePage(): HTMLElement {
@@ -51,6 +53,17 @@ export function renderSubscribePage(): HTMLElement {
       const intro = button.getAttribute("data-intro") === "true";
       if (planId) {
         setPendingCheckout(planId, intro);
+        const checkoutId = getOrCreateCheckoutId();
+        const amountDue = intro ? (planId === "annual" ? 79 : 1) : planId === "annual" ? 99 : 12;
+        trackDemoEvent("Subscription Added To Cart", {
+          checkout_id: checkoutId,
+          plan_id: planId,
+          offer_id: intro ? `${planId}-intro` : `${planId}-standard`,
+          offer_type: intro ? "introductory" : "standard",
+          billing_period: planId === "annual" ? "annual" : "monthly",
+          amount_due_usd: amountDue,
+          trial_days: 0,
+        });
         navigateToHash("#/checkout");
       }
     });

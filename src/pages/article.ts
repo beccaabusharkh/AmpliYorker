@@ -3,7 +3,9 @@ import { canAccessArticle, isPremiumArticle, paywallMessage } from "../lib/paywa
 import { attachReadingProgress } from "../lib/reading-progress";
 import { navigateToHash } from "../lib/router";
 import { baseUrl } from "../lib/paths";
-import { hasActiveSubscription, incrementArticlesRead, isArticleSaved, isLoggedIn, toggleSaveArticle } from "../lib/session";
+import { attachArticleReadTracking } from "../lib/analytics/article-reading";
+import { trackDemoEvent } from "../lib/analytics/track";
+import { hasActiveSubscription, incrementArticlesRead, isArticleSaved, isLoggedIn, loadSession, toggleSaveArticle } from "../lib/session";
 
 export function renderArticlePage(id: string): HTMLElement {
   const article = getArticleById(id);
@@ -79,12 +81,47 @@ export function renderArticlePage(id: string): HTMLElement {
     </section>
   `;
 
+  if (!allowed && premium) {
+    trackDemoEvent("Paywall Presented", {
+      paywall_id: `paywall-${article.id}`,
+      article_id: article.id,
+      trigger_reason: isLoggedIn() ? "subscription_required" : "registration_required",
+      message_id: "default_paywall",
+      articles_read_in_window: loadSession().engagement.articlesRead,
+    });
+  }
+
   if (allowed) {
     incrementArticlesRead();
     const articleRoot = main.querySelector("[data-article-root]");
     const progressBar = main.querySelector("[data-progress-bar]");
     if (articleRoot instanceof HTMLElement && progressBar instanceof HTMLElement) {
       attachReadingProgress(article.id, articleRoot, progressBar);
+      attachArticleReadTracking(article.id, articleRoot);
+    }
+    const audio = main.querySelector("audio");
+    if (audio instanceof HTMLAudioElement) {
+      let started = false;
+      audio.addEventListener("play", () => {
+        if (started) {
+          return;
+        }
+        started = true;
+        trackDemoEvent("Media Playback Started", {
+          media_id: `narration-${article.id}`,
+          media_type: "article_narration",
+          article_id: article.id,
+          duration_seconds: Number.isFinite(audio.duration) ? audio.duration : 0,
+        });
+      });
+      audio.addEventListener("ended", () => {
+        trackDemoEvent("Media Playback Completed", {
+          media_id: `narration-${article.id}`,
+          media_type: "article_narration",
+          listened_seconds: Number.isFinite(audio.duration) ? audio.duration : 0,
+          duration_seconds: Number.isFinite(audio.duration) ? audio.duration : 0,
+        });
+      });
     }
   }
 
@@ -93,7 +130,12 @@ export function renderArticlePage(id: string): HTMLElement {
       navigateToHash("#/account/login");
       return;
     }
-    toggleSaveArticle(article.id);
+    const savedNow = toggleSaveArticle(article.id);
+    trackDemoEvent(savedNow ? "Article Saved" : "Article Unsaved", {
+      article_id: article.id,
+      entry_point: "article_page",
+      saved_article_count: loadSession().savedArticleIds.length,
+    });
     navigateToHash(`#/article/${encodeURIComponent(article.id)}`);
   });
 

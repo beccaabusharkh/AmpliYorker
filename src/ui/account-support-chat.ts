@@ -1,3 +1,4 @@
+import { trackDemoEvent } from "../lib/analytics/track";
 import accountFaqData from "../data/account-faq.json";
 
 type FaqEntry = { keywords: string[]; answer: string };
@@ -23,10 +24,10 @@ export function mountAccountSupportChat(root: HTMLElement): void {
     <p class="account-support-chat__hint">Billing, paywall, cancellation, and device-switch help (FAQ from repo JSON).</p>
     <form class="account-support-chat__form" data-account-chat-form>
       <label class="visually-hidden" for="account-chat-input">Question</label>
-      <input id="account-chat-input" name="q" type="text" placeholder="How do I cancel?" autocomplete="off" />
+      <input id="account-chat-input" data-amplitude-mask name="q" type="text" placeholder="How do I cancel?" autocomplete="off" />
       <button type="submit">Ask</button>
     </form>
-    <p class="account-support-chat__answer" data-account-chat-answer hidden></p>
+    <p class="account-support-chat__answer" data-account-chat-answer data-chat-transcript hidden></p>
   `;
 
   const toggle = document.createElement("button");
@@ -58,11 +59,27 @@ export function mountAccountSupportChat(root: HTMLElement): void {
   panel.querySelector("[data-account-chat-form]")?.addEventListener("submit", (event) => {
     event.preventDefault();
     const value = (input as HTMLInputElement).value.trim().toLowerCase();
+    const requestId = crypto.randomUUID();
+    const conversationId = crypto.randomUUID();
+    trackDemoEvent("Chat Request Submitted", {
+      conversation_id: conversationId,
+      request_id: requestId,
+      intent: value.includes("cancel") || value.includes("bill") ? "account_support" : "subscription_support",
+      message_length: value.length,
+    });
+    const started = performance.now();
     const entry =
       faq.find((item) => item.keywords.some((keyword) => value.includes(keyword))) ?? faq[faq.length - 1];
     if (answerEl instanceof HTMLElement) {
       answerEl.hidden = false;
       answerEl.textContent = entry.answer;
     }
+    trackDemoEvent("Chat Response Delivered", {
+      conversation_id: conversationId,
+      request_id: requestId,
+      response_type: "support_steps",
+      result_count: 1,
+      response_latency_ms: performance.now() - started,
+    });
   });
 }

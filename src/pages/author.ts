@@ -1,6 +1,7 @@
+import { trackDemoEvent } from "../lib/analytics/track";
 import { getArticlesByAuthor } from "../lib/articles";
 import { navigateToHash } from "../lib/router";
-import { isAuthorFollowed, isLoggedIn, toggleFollowAuthor } from "../lib/session";
+import { isAuthorFollowed, isLoggedIn, loadSession, toggleFollowAuthor } from "../lib/session";
 
 export function renderAuthorPage(slug: string): HTMLElement {
   const main = document.createElement("main");
@@ -28,6 +29,11 @@ export function renderAuthorPage(slug: string): HTMLElement {
         `,
       )
       .join("");
+    trackDemoEvent("Author Filter Applied", {
+      author_id: slug,
+      result_count: articles.length,
+      discovery_surface: "author_page",
+    });
     main.innerHTML = `
       <section class="listing-panel">
         <h1>${displayName}</h1>
@@ -44,7 +50,12 @@ export function renderAuthorPage(slug: string): HTMLElement {
       navigateToHash("#/account/login");
       return;
     }
-    toggleFollowAuthor(slug);
+    const followedNow = toggleFollowAuthor(slug);
+    const session = loadSession();
+    trackDemoEvent(followedNow ? "Author Followed" : "Author Unfollowed", {
+      author_id: slug,
+      followed_author_count: session.followedAuthorSlugs.length,
+    });
     navigateToHash(`#/author/${encodeURIComponent(slug)}`);
   });
 

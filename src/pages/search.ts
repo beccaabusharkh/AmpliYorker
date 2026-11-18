@@ -1,3 +1,4 @@
+import { trackDemoEvent } from "../lib/analytics/track";
 import { searchArticles } from "../lib/articles";
 import { navigateToHash, type Route } from "../lib/router";
 
@@ -16,6 +17,12 @@ export function renderSearchPage(query: string): HTMLElement {
   }
 
   const results = searchArticles(query);
+  trackDemoEvent("Search Completed", {
+    search_id: crypto.randomUUID(),
+    query_length: query.trim().length,
+    result_count: results.length,
+    search_scope: "articles",
+  });
   if (results.length === 0) {
     main.innerHTML = `
       <section class="search-panel">

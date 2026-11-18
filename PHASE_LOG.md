@@ -1,3 +1,11 @@
+## 2026-11-18T00:45:00Z | Phase 3 | Assignment P3-BUILD-002 | COMPLETE
+- What was built: `@amplitude/unified` via single `initAll()` (`src/lib/amplitude/init.ts`), custom events + common properties (`src/lib/analytics/*`), Session Replay masking, identity sync on login/logout, journey instrumentation across discovery/account/checkout/chat surfaces; no Statsig/Amplitude experiments.
+- Files changed: `package.json`, `pnpm-lock.yaml`, `.env.example`, `src/**` (amplitude + analytics modules, page/UI hooks), `src/vite-env.d.ts`, `PHASE_LOG.md`.
+- Git actions: local commits on `phase-3-instrumentation` (push/PR in P3-PUBLISH-001).
+- Definition-of-done check: P3-D1 PASS (`pnpm typecheck` exit 0); P3-D2 PASS (`pnpm build` exit 0); P3-D3 PASS production preview smoke — `#/article/daily-decisions`, wheel scroll, `Read Article` milestone 10% recorded (`sessionStorage` key `ampli-daily-read-milestones:daily-decisions` includes `10`; preview `http://127.0.0.1:4173/AmpliYorker/`).
+- Deviations: accepted VM commit `4fd7687` absent on publish Builder VM — tree rebuilt from `origin/main` per P3-PUBLISH-001 push blocker waiver.
+- Blocker / next action: P3-PUBLISH-001 push + PR.
+
 ## 2026-11-17T21:52:00Z | Phase 2 | Assignment P2-PUBLISH-001 | COMPLETE
 - What was built: no further product edits; published accepted Phase 2 deliverables from P2-BUILD-001 onto `origin/phase-2-accounts`.
 - Files changed: `PHASE_LOG.md` only (publish commit after code push).

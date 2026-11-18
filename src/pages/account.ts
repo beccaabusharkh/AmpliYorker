@@ -20,6 +20,9 @@ import {
   CANCELLATION_REASONS,
   cancellationReasonLabels,
 } from "../lib/session";
+import { resetAmplitudeIdentity, ensureAmplitudeIdentity } from "../lib/amplitude/init";
+import { trackDemoEvent } from "../lib/analytics/track";
+import { resolveAccountState } from "../lib/analytics/context";
 import { showToast } from "../ui/toast";
 
 export function renderAccountPage(): HTMLElement {
@@ -56,7 +59,8 @@ export function renderAccountPage(): HTMLElement {
           ? "Expired (simulated)"
           : "No subscription";
 
-  const retentionBlock = shouldShowRetentionOffer()
+  const retentionOffer = shouldShowRetentionOffer();
+  const retentionBlock = retentionOffer
     ? `
     <section class="retention-module">
       <h2>Simulated renewal reminder</h2>
@@ -140,8 +144,21 @@ export function renderAccountPage(): HTMLElement {
     </section>
   `;
 
+  if (retentionOffer) {
+    trackDemoEvent("Retention Treatment Presented", {
+      treatment_id: "account-renewal-reminder",
+      treatment_type: "renewal_offer",
+      engagement_segment: "declining",
+      placement: "account",
+    });
+  }
+
   main.querySelector("[data-logout]")?.addEventListener("click", () => {
+    trackDemoEvent("Sign Out Completed", {
+      previous_account_state: resolveAccountState(),
+    });
     logout();
+    resetAmplitudeIdentity();
     navigateToHash("#/");
   });
 
@@ -153,13 +170,25 @@ export function renderAccountPage(): HTMLElement {
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       cardLast4: (form.elements.namedItem("card") as HTMLInputElement).value,
     });
+    trackDemoEvent("Billing Details Updated", {
+      subscription_id: session.subscription.planId ? `sub-${session.loggedInUserId}` : "none",
+      updated_fields: ["demo_payment_method", "billing_frequency"],
+    });
     showToast("Simulated billing profile saved.");
   });
 
   main.querySelector("[data-plan-form]")?.addEventListener("submit", (event) => {
     event.preventDefault();
     const planId = (main.querySelector("#plan-switch") as HTMLSelectElement).value;
+    const previousPlan = session.subscription.planId ?? "none";
     changePlan(planId);
+    trackDemoEvent("Subscription Plan Changed", {
+      subscription_id: `sub-${session.loggedInUserId}`,
+      previous_plan_id: previousPlan,
+      new_plan_id: planId,
+      effective_at: new Date().toISOString(),
+    });
+    ensureAmplitudeIdentity();
     showToast("Simulated plan updated.");
     navigateToHash("#/account");
   });
@@ -167,7 +196,18 @@ export function renderAccountPage(): HTMLElement {
   main.querySelector("[data-cancel-form]")?.addEventListener("submit", (event) => {
     event.preventDefault();
     const reason = (main.querySelector("#cancel-reason") as HTMLSelectElement).value as CancellationReason;
+    trackDemoEvent("Cancellation Started", {
+      subscription_id: `sub-${session.loggedInUserId}`,
+      plan_id: session.subscription.planId ?? "none",
+    });
     cancelSubscription(reason);
+    const canceled = loadSession();
+    trackDemoEvent("Subscription Canceled", {
+      subscription_id: `sub-${session.loggedInUserId}`,
+      plan_id: canceled.subscription.planId ?? "none",
+      reason_code: mapCancelReason(reason),
+      access_ends_at: canceled.subscription.renewalDate ?? new Date().toISOString(),
+    });
     showToast("Simulated cancellation recorded.");
     navigateToHash("#/account");
   });
@@ -223,4 +263,15 @@ function bindNav(main: HTMLElement): void {
 
 function escapeAttr(value: string): string {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+function mapCancelReason(reason: CancellationReason): string {
+  const map: Record<CancellationReason, string> = {
+    too_expensive: "price",
+    not_reading_enough: "low_usage",
+    temporary_break: "other",
+    switching_tool: "content_fit",
+    other: "other",
+  };
+  return map[reason];
 }

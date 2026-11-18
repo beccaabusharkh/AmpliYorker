@@ -1,4 +1,5 @@
 import { getAllArticles, getFeaturedArticle } from "../lib/articles";
+import { trackDemoEvent } from "../lib/analytics/track";
 import { shouldShowRetentionOffer } from "../lib/session";
 import { navigateToHash } from "../lib/router";
 
@@ -20,7 +21,8 @@ export function renderHomePage(): HTMLElement {
     )
     .join("");
 
-  const retention = shouldShowRetentionOffer()
+  const retentionOffer = shouldShowRetentionOffer();
+  const retention = retentionOffer
     ? `
       <section class="retention-module home-retention">
         <h3>Simulated retention reminder</h3>
@@ -90,13 +92,47 @@ export function renderHomePage(): HTMLElement {
     navigateToHash("#/subscribe");
   });
 
+  if (retentionOffer) {
+    trackDemoEvent("Retention Treatment Presented", {
+      treatment_id: "home-retention-reminder",
+      treatment_type: "reminder",
+      engagement_segment: "declining",
+      placement: "home",
+    });
+  }
+
   main.querySelector("[data-newsletter-form]")?.addEventListener("submit", (event) => {
     event.preventDefault();
     const success = main.querySelector("[data-newsletter-success]");
     if (success instanceof HTMLElement) {
       success.hidden = false;
     }
+    trackDemoEvent("Newsletter Subscription Completed", {
+      newsletter_id: "daily-briefing",
+      entry_point: "home",
+    });
   });
+
+  const adSlot = main.querySelector(".ad-unit");
+  if (adSlot instanceof HTMLElement) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            trackDemoEvent("Advertisement Viewable", {
+              ad_impression_id: crypto.randomUUID(),
+              ad_id: "home-rail-display",
+              placement_id: "home_rail",
+              article_id: null,
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: [0.5] },
+    );
+    observer.observe(adSlot);
+  }
 
   return main;
 }

@@ -1,3 +1,4 @@
+import { trackDemoEvent } from "../lib/analytics/track";
 import faqData from "../data/faq.json";
 
 type FaqEntry = { keywords: string[]; answer: string };
@@ -23,10 +24,10 @@ export function mountDiscoveryChat(root: HTMLElement): void {
     <p class="discovery-chat__hint">Ask about search, topics, newsletter signup, or sponsored content.</p>
     <form class="discovery-chat__form" data-chat-form>
       <label class="visually-hidden" for="chat-input">Question</label>
-      <input id="chat-input" name="q" type="text" placeholder="How do I search?" autocomplete="off" />
+      <input id="chat-input" data-amplitude-mask name="q" type="text" placeholder="How do I search?" autocomplete="off" />
       <button type="submit">Ask</button>
     </form>
-    <p class="discovery-chat__answer" data-chat-answer hidden></p>
+    <p class="discovery-chat__answer" data-chat-answer data-chat-transcript hidden></p>
   `;
 
   const toggle = document.createElement("button");
@@ -59,11 +60,40 @@ export function mountDiscoveryChat(root: HTMLElement): void {
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
     const value = (input as HTMLInputElement).value.trim().toLowerCase();
+    const requestId = crypto.randomUUID();
+    const conversationId = crypto.randomUUID();
+    trackDemoEvent("Chat Request Submitted", {
+      conversation_id: conversationId,
+      request_id: requestId,
+      intent: inferDiscoveryIntent(value),
+      message_length: value.length,
+    });
+    const started = performance.now();
     const entry =
       faq.find((item) => item.keywords.some((keyword) => value.includes(keyword))) ?? faq[faq.length - 1];
     if (answerEl instanceof HTMLElement) {
       answerEl.hidden = false;
       answerEl.textContent = entry.answer;
     }
+    trackDemoEvent("Chat Response Delivered", {
+      conversation_id: conversationId,
+      request_id: requestId,
+      response_type: "support_steps",
+      result_count: 1,
+      response_latency_ms: performance.now() - started,
+    });
   });
+}
+
+function inferDiscoveryIntent(value: string): string {
+  if (value.includes("search")) {
+    return "find_article";
+  }
+  if (value.includes("topic")) {
+    return "explore_topic";
+  }
+  if (value.includes("read") || value.includes("next")) {
+    return "next_read";
+  }
+  return "unknown";
 }

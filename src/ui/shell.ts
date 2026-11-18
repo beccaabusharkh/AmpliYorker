@@ -25,7 +25,7 @@ export function renderHeader(): HTMLElement {
       </nav>
       <form class="header-search" data-header-search role="search">
         <label class="visually-hidden" for="header-search-input">Search articles</label>
-        <input id="header-search-input" type="search" name="q" placeholder="Search headlines\u2026" value="${escapeAttr(searchValue)}" />
+        <input id="header-search-input" data-amplitude-mask type="search" name="q" placeholder="Search headlines\u2026" value="${escapeAttr(searchValue)}" />
         <button type="submit">Search</button>
       </form>
     </div>

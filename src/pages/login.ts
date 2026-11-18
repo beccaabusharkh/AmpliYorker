@@ -1,5 +1,7 @@
 import { getRegisteredReaderPersona, personas } from "../lib/personas";
 import { navigateToHash } from "../lib/router";
+import { ensureAmplitudeIdentity } from "../lib/amplitude/init";
+import { trackDemoEvent } from "../lib/analytics/track";
 import { loginWithPersona } from "../lib/session";
 
 export function renderLoginPage(): HTMLElement {
@@ -42,6 +44,11 @@ export function renderLoginPage(): HTMLElement {
     event.preventDefault();
     const personaId = (personaSelect as HTMLSelectElement).value;
     loginWithPersona(personaId);
+    ensureAmplitudeIdentity();
+    trackDemoEvent("Sign In Completed", {
+      sign_in_method: "demo_account",
+      entry_point: "account_login",
+    });
     navigateToHash("#/account");
   });
 

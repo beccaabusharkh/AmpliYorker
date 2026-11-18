@@ -1,3 +1,4 @@
+import { trackDemoEvent } from "../lib/analytics/track";
 import { formatTopicLabel, getArticlesByTopic } from "../lib/articles";
 import { navigateToHash } from "../lib/router";
 
@@ -31,6 +32,11 @@ export function renderTopicPage(slug: string): HTMLElement {
         <ul class="listing-list">${items}</ul>
       </section>
     `;
+    trackDemoEvent("Topic Filter Applied", {
+      topic_id: slug,
+      result_count: articles.length,
+      discovery_surface: "topic_page",
+    });
   }
 
   main.querySelector("[data-home-link]")?.addEventListener("click", (event) => {
