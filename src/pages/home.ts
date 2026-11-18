@@ -166,14 +166,33 @@ export function renderHomePage(): HTMLElement {
   }
 
   const sponsoredModule = main.querySelector("[data-sponsored-module]");
-  sponsoredStories.slice(0, 2).forEach((story) => {
-    const block = document.createElement("article");
-    block.innerHTML = `
-      <h4><a href="#/article/${encodeURIComponent(story.id)}">${story.headline}</a></h4>
-      <p>${story.deck}</p>
+  const featured = sponsoredStories[0];
+  const secondaryStory = sponsoredStories[1];
+  if (featured && sponsoredModule) {
+    const articleHref = `#/article/${encodeURIComponent(featured.id)}`;
+    const heroSrc = featured.heroImage ? `${baseUrl}${featured.heroImage.src}` : "";
+    const heroAlt = featured.heroImage?.alt ?? featured.headline;
+    const offer = document.createElement("article");
+    offer.className = "sponsored-offer-card";
+    offer.dataset.sponsoredOffer = "";
+    offer.innerHTML = `
+      ${
+        heroSrc
+          ? `<a class="sponsored-offer-card__thumb" href="${articleHref}"><img src="${escapeAttr(heroSrc)}" alt="${escapeAttr(heroAlt)}" loading="lazy" width="640" height="360" /></a>`
+          : ""
+      }
+      <h4 class="sponsored-offer-card__title"><a href="${articleHref}">${featured.headline}</a></h4>
+      <p class="sponsored-offer-card__deck">${featured.deck}</p>
+      <a class="sponsored-offer-card__cta" href="${articleHref}">Read the partner briefing</a>
     `;
-    sponsoredModule?.append(block);
-  });
+    sponsoredModule.append(offer);
+  }
+  if (secondaryStory && sponsoredModule) {
+    const block = document.createElement("p");
+    block.className = "sponsored-secondary-link";
+    block.innerHTML = `<a href="#/article/${encodeURIComponent(secondaryStory.id)}">${secondaryStory.headline}</a>`;
+    sponsoredModule.append(block);
+  }
 
   const latestList = main.querySelector("[data-latest-list]");
   getAllArticles()

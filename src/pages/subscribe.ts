@@ -3,7 +3,6 @@ import { getBillingPeriod, getPlanAmountUsd } from "../lib/plan-pricing";
 import { getPlanFeatureBullets, SUBSCRIBE_PLAN_ORDER } from "../lib/subscribe-ui";
 import { getSubscriptionOfferVariant } from "../lib/statsig/evaluate";
 import { navigateToHash } from "../lib/router";
-import { getRegisteredReaderPersona } from "../lib/personas";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { getOrCreateCheckoutId } from "../lib/analytics/checkout";
 import { isLoggedIn, setPendingCheckout } from "../lib/session";
@@ -11,20 +10,19 @@ import { isLoggedIn, setPendingCheckout } from "../lib/session";
 export function renderSubscribePage(): HTMLElement {
   const main = document.createElement("main");
   main.className = "page-main account-page";
-  const smokePersona = getRegisteredReaderPersona();
 
   if (!isLoggedIn()) {
     main.innerHTML = `
       <section class="form-panel account-surface">
         <h1>Subscribe</h1>
-        <p class="simulation-label">Simulated plans — log in first with preset credentials.</p>
-        <p><a href="#/account/login" data-login-link>Simulated login</a></p>
+        <p class="account-gate-copy">Choose a subscription after you sign in.</p>
+        <p>
+          <a href="#/account/login" data-login-link>Log in</a>
+          · <a href="#/account/register" data-register-link>Create account</a>
+        </p>
       </section>
     `;
-    main.querySelector("[data-login-link]")?.addEventListener("click", (event) => {
-      event.preventDefault();
-      navigateToHash("#/account/login");
-    });
+    bindNav(main);
     return main;
   }
 
@@ -46,8 +44,8 @@ export function renderSubscribePage(): HTMLElement {
         <p class="plan-card__price">${plan.priceLabel}</p>
         <p class="intro-offer">${offerVariant === "intro_badge" ? "Statsig treatment · " : ""}${plan.introOfferLabel}</p>
         <ul class="plan-card__features">${features}</ul>
-        <button type="button" data-select-plan="${plan.id}" data-intro="true">Choose introductory offer</button>
-        <button type="button" class="secondary-button" data-select-plan="${plan.id}" data-intro="false">Choose standard price</button>
+        <button type="button" data-select-plan="${plan.id}" data-intro="true">Start with introductory offer</button>
+        <button type="button" class="secondary-button" data-select-plan="${plan.id}" data-intro="false">Continue at standard price</button>
       </article>
     `;
     })
@@ -55,8 +53,8 @@ export function renderSubscribePage(): HTMLElement {
 
   main.innerHTML = `
     <section class="form-panel account-surface account-surface--wide">
-      <h1>Simulated subscription plans</h1>
-      <p class="simulation-label">Registered-reader smoke persona (<code>${smokePersona.id}</code>): use <strong>introductory offer</strong> on any plan for checkout smoke.</p>
+      <h1>Choose your subscription</h1>
+      <p class="subscribe-deck">Unlimited access to every story, briefing, and field note in Amplitude Daily.</p>
       <div class="plan-grid plan-grid--three">${cards}</div>
     </section>
   `;
@@ -84,4 +82,16 @@ export function renderSubscribePage(): HTMLElement {
   });
 
   return main;
+}
+
+function bindNav(main: HTMLElement): void {
+  main.querySelectorAll("[data-login-link], [data-register-link]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const href = (link as HTMLAnchorElement).getAttribute("href");
+      if (href) {
+        navigateToHash(href.replace(/^#/, ""));
+      }
+    });
+  });
 }

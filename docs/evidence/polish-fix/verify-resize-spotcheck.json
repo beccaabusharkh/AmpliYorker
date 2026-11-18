@@ -1,0 +1,35 @@
+{
+  "resizePass": true,
+  "resizeLog": [
+    {
+      "w": 1440,
+      "surfaceW": 896,
+      "ok": true
+    },
+    {
+      "w": 1024,
+      "surfaceW": 896,
+      "ok": true
+    },
+    {
+      "w": 768,
+      "surfaceW": 720,
+      "ok": true
+    },
+    {
+      "w": 390,
+      "surfaceW": 342,
+      "ok": true
+    },
+    {
+      "w": 768,
+      "surfaceW": 720,
+      "ok": true
+    },
+    {
+      "w": 1440,
+      "surfaceW": 896,
+      "ok": true
+    }
+  ]
+}

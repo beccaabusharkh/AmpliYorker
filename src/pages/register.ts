@@ -10,15 +10,12 @@ export function renderRegisterPage(): HTMLElement {
   main.className = "page-main account-page";
   const personaOptions = personas
     .filter((persona) => persona.id !== "anonymous")
-    .map(
-      (persona) =>
-        `<option value="${persona.id}">${persona.label} — ${persona.description} (simulated registration)</option>`,
-    )
+    .map((persona) => `<option value="${persona.id}">${persona.label} — ${persona.description}</option>`)
     .join("");
 
   main.innerHTML = `
     <section class="form-panel account-surface">
-      <h1>Simulated registration</h1>
+      <h1>Create account</h1>
       <p class="simulation-label">No passwords are collected. Pick a preset persona — values are demo-only.</p>
       <form data-register-form class="stacked-form">
         <label for="reg-persona">Preset persona</label>
@@ -27,9 +24,9 @@ export function renderRegisterPage(): HTMLElement {
         <input id="reg-name" name="name" type="text" value="Demo Reader" autocomplete="name" />
         <label for="reg-email">Email (preset)</label>
         <input id="reg-email" name="email" type="email" value="reader-demo@ampliyorker.test" autocomplete="email" />
-        <button type="submit">Create simulated account</button>
+        <button type="submit">Create account</button>
       </form>
-      <p>Already registered? <a href="#/account/login" data-login-link>Simulated login</a></p>
+      <p>Already registered? <a href="#/account/login" data-login-link>Log in</a></p>
     </section>
   `;
 

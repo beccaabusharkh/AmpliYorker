@@ -1,0 +1,428 @@
+{
+  "assignment": "P2G-VERIFY-POLISH-001",
+  "branch": "polish-subscribe-account",
+  "matrix": {
+    "P2G-POL-A16": {
+      "pass": true,
+      "detail": "typecheck=0; build=0",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-typecheck-build.log"
+      ]
+    },
+    "P2G-POL-A18": {
+      "pass": true,
+      "detail": "User reference screenshots not provided; live baseline in subscribe-baseline-1440.png (spec § Audit).",
+      "evidence": [
+        "docs/evidence/polish-fix/subscribe-baseline-1440.png"
+      ]
+    },
+    "P2G-POL-A01": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A02": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A03": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A04": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A05": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A06": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A07": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A08": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A09": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A10": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A11": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A13": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/polish-fix/verify-matrix.json"
+      ]
+    },
+    "P2G-POL-A14": {
+      "pass": true,
+      "detail": "Demo controls (simulated)",
+      "evidence": [
+        "docs/evidence/polish-fix/account-signed-in-1440.png"
+      ]
+    },
+    "P2G-POL-A15": {
+      "pass": true,
+      "detail": "footer ok; ad disclosure=true",
+      "evidence": []
+    },
+    "P2G-POL-A12": {
+      "pass": true,
+      "detail": "checkout form=true; account dashboard=1",
+      "evidence": [
+        "docs/evidence/polish-fix/journey-subscribe-account.webm"
+      ]
+    },
+    "P2G-POL-A17": {
+      "pass": true,
+      "detail": "current surface=896px vs baseline ~448px",
+      "evidence": [
+        "docs/evidence/polish-fix/subscribe-baseline-1440.png",
+        "docs/evidence/polish-fix/subscribe-signed-in-1440.png"
+      ]
+    }
+  },
+  "viewportMatrix": {
+    "P2G-POL-A16": {
+      "390": {
+        "pass": true,
+        "detail": "build artifact global"
+      },
+      "768": {
+        "pass": true,
+        "detail": "build artifact global"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "build artifact global"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "build artifact global"
+      }
+    },
+    "P2G-POL-A18": {
+      "390": {
+        "pass": true,
+        "detail": "documented absent"
+      },
+      "768": {
+        "pass": true,
+        "detail": "documented absent"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "documented absent"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "documented absent"
+      }
+    },
+    "P2G-POL-A08": {
+      "390": {
+        "pass": true,
+        "detail": "Subscribe for full access to Amplitude Daily — plans from $12/month."
+      },
+      "768": {
+        "pass": true,
+        "detail": "Subscribe for full access to Amplitude Daily — plans from $12/month."
+      },
+      "1024": {
+        "pass": true,
+        "detail": "Subscribe for full access to Amplitude Daily — plans from $12/month."
+      },
+      "1440": {
+        "pass": true,
+        "detail": "Subscribe for full access to Amplitude Daily — plans from $12/month."
+      }
+    },
+    "P2G-POL-A07": {
+      "390": {
+        "pass": true,
+        "detail": "offer=1; img=1; cta=1"
+      },
+      "768": {
+        "pass": true,
+        "detail": "offer=1; img=1; cta=1"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "offer=1; img=1; cta=1"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "offer=1; img=1; cta=1"
+      }
+    },
+    "P2G-POL-A10": {
+      "390": {
+        "pass": true,
+        "detail": "edition=1; utility-date=0"
+      },
+      "768": {
+        "pass": true,
+        "detail": "edition=1; utility-date=0"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "edition=1; utility-date=0"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "edition=1; utility-date=0"
+      }
+    },
+    "P2G-POL-A09": {
+      "390": {
+        "pass": true,
+        "detail": "nav display=grid"
+      },
+      "768": {
+        "pass": true,
+        "detail": "nav display=grid"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "nav display=grid"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "grid=grid; centered=true; searchRight=true"
+      }
+    },
+    "P2G-POL-A01": {
+      "390": {
+        "pass": true,
+        "detail": "surfaceW=342"
+      },
+      "768": {
+        "pass": true,
+        "detail": "surfaceW=720"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "surfaceW=896"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "surfaceW=896"
+      }
+    },
+    "P2G-POL-A02": {
+      "390": {
+        "pass": true,
+        "detail": "cols=300px; cardW=300"
+      },
+      "768": {
+        "pass": true,
+        "detail": "cols=678px; cardW=678"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "cols=271.328px 271.328px 271.344px; cardW=271.328125"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "cols=271.328px 271.328px 271.344px; cardW=271.328125"
+      }
+    },
+    "P2G-POL-A03": {
+      "390": {
+        "pass": true,
+        "detail": "subscribe main copy"
+      },
+      "768": {
+        "pass": true,
+        "detail": "subscribe main copy"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "subscribe main copy"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "subscribe main copy"
+      }
+    },
+    "P2G-POL-A04": {
+      "390": {
+        "pass": true,
+        "detail": "dashboard=1; topLevel=1"
+      },
+      "768": {
+        "pass": true,
+        "detail": "dashboard=1; topLevel=1"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "dashboard=1; topLevel=1"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "dashboard=1; topLevel=1"
+      }
+    },
+    "P2G-POL-A05": {
+      "390": {
+        "pass": true,
+        "detail": "no simulated outside demo/persona"
+      },
+      "768": {
+        "pass": true,
+        "detail": "no simulated outside demo/persona"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "no simulated outside demo/persona"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "no simulated outside demo/persona"
+      }
+    },
+    "P2G-POL-A06": {
+      "390": {
+        "pass": true,
+        "detail": "cancelClosed=true; deviceClosed=true"
+      },
+      "768": {
+        "pass": true,
+        "detail": "cancelClosed=true; deviceClosed=true"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "cancelClosed=true; deviceClosed=true"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "cancelClosed=true; deviceClosed=true"
+      }
+    },
+    "P2G-POL-A14": {
+      "1440": {
+        "pass": true,
+        "detail": "Demo controls (simulated)"
+      }
+    },
+    "P2G-POL-A11": {
+      "390": {
+        "pass": true,
+        "detail": "login=2; register=1"
+      },
+      "768": {
+        "pass": true,
+        "detail": "login=2; register=1"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "login=2; register=1"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "login=2; register=1"
+      }
+    },
+    "P2G-POL-A13": {
+      "390": {
+        "pass": true,
+        "detail": "title=Log in"
+      },
+      "768": {
+        "pass": true,
+        "detail": "title=Log in"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "title=Log in"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "title=Log in"
+      }
+    },
+    "P2G-POL-A15": {
+      "390": {
+        "pass": true,
+        "detail": "global chrome"
+      },
+      "768": {
+        "pass": true,
+        "detail": "global chrome"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "global chrome"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "global chrome"
+      }
+    },
+    "P2G-POL-A17": {
+      "390": {
+        "pass": true,
+        "detail": "baseline compare @1440"
+      },
+      "768": {
+        "pass": true,
+        "detail": "baseline compare @1440"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "baseline compare @1440"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "w=896"
+      }
+    }
+  },
+  "generatedAt": "2026-11-18T22:59:38.524Z"
+}

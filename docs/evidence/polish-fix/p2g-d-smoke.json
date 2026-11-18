@@ -1,0 +1,15 @@
+{
+  "assignment": "P2G-BUILD-POLISH-001",
+  "P2G_D1_typecheck": "PASS",
+  "P2G_D2_build": "PASS",
+  "P2G_D3_smoke": "PASS",
+  "previewBase": "http://127.0.0.1:4174/AmpliYorker/",
+  "subscribeSurfaceWidthPx": 896,
+  "planCards": 3,
+  "promoCopy": "Subscribe for full access to Amplitude Daily — plans from $12/month.",
+  "sponsoredOfferCard": true,
+  "accountDashboardWide": true,
+  "cancelDetailsClosed": true,
+  "deviceDetailsClosed": true,
+  "sectionNavDisplay": "grid"
+}

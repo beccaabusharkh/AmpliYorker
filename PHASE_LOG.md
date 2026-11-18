@@ -1,3 +1,27 @@
+## 2026-11-19T00:25:00Z | Phase 2G | Assignment P2G-SHIP-POLISH-001 | COMPLETE
+- What was shipped: pushed `polish-subscribe-account`; opened PR to `main` (no merge).
+- Definition-of-done: PR cites 18/18 + `docs/evidence/polish-fix/`.
+- Blocker / next action: merge awaits approval.
+
+## 2026-11-19T00:15:00Z | Phase 2G | Assignment P2G-VERIFY-POLISH-001 | COMPLETE
+- What was verified: P2G-POL-A01–A18 @ 1440/1024/768/390; 12 journeys; resize spot-check; reader copy grep; subscribe→account video.
+- Files changed: `docs/evidence/polish-fix/UX-REVIEW.md`, `verify-matrix.json`, `verify-journeys.json`, screenshots, `journey-subscribe-account.webm`, `scripts/verify-polish-a01-a18.mjs`.
+- Definition-of-done: **18/18** + **12/12** PASS; **0** copy leaks.
+- Git actions: local commit only (no push).
+
+## 2026-11-18T23:55:00Z | Phase 2G | Assignment P2G-BUILD-POLISH-001 | COMPLETE
+- What was built: subscribe wide surface fix, account dashboard, de-simulated copy, sponsored offer card, header/nav grid, masthead edition line per `docs/2/POLISH-SPEC.md`.
+- Branch: `polish-subscribe-account` (local commit only; **no push**).
+- Definition-of-done: P2G-D1 typecheck PASS; P2G-D2 build PASS; P2G-D3 preview smoke PASS (`docs/evidence/polish-fix/p2g-d-smoke.json`).
+- Blocker / next action: verify + ship when authorized.
+
+## 2026-11-18T23:20:00Z | Phase 2F | Assignment P2F-MERGE-ATLANTIC-001 | COMPLETE
+- What was shipped: squash-merged **PR #9** to `main`; GitHub Pages deploy + live Atlantic smoke.
+- Git actions: PR https://github.com/beccaabusharkh/AmpliYorker/pull/9 merged; **merge SHA** `26705d8b16b05742995f5cbb917d15338e859446`; Deploy GitHub Pages https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44413959525 (**success**).
+- Definition-of-done: live `https://beccaabusharkh.github.io/AmpliYorker/#/` — body **#fff**, promo band, lead **280px**, flex lead grid (`docs/evidence/atlantic-refine/live-merge-smoke.json`).
+- Deviations: `BUILDER_HANDOFF.md` conflict resolved on PR branch before merge.
+- Blocker / next action: none.
+
 ## 2026-11-18T23:10:00Z | Phase 2F | Assignment P2F-SHIP-ATLANTIC-001 | COMPLETE
 - What was shipped: pushed `atlantic-refinement`; opened PR to `main` (no merge).
 - Files changed: `PHASE_LOG.md`.

@@ -60,7 +60,7 @@ export function renderArticlePage(id: string): HTMLElement {
       <section class="paywall-panel">
         <p class="paywall-block" data-paywall-message>${paywallCopy}</p>
         <p class="paywall-actions">
-          <a href="#/account/login" data-paywall-login>Simulated login</a>
+          <a href="#/account/login" data-paywall-login>Log in</a>
           <a class="paywall-subscribe-btn" href="#/subscribe" data-paywall-sub>Subscribe</a>
         </p>
       </section>`;
