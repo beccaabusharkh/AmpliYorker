@@ -99,3 +99,12 @@
 - **Scope note:** Instrumentation implementation claimed complete on VM (`@amplitude/unified`, `initAll`, custom events, masks); **Planner has not reviewed diff** until branch is pushed or evidence exported.
 - **Required (no secret in Slack):** Add `VITE_AMPLITUDE_API_KEY` to the **AmpliYorker** Cursor Cloud environment (team env `09ed1dd9-ddfa-11f1-ba91-f63b1661ac50`) or equivalent secret injection for Builder VMs; use a demo/dev project API key only.
 - **Resume:** After secret is set, top-level `@PLANNER resume P3-BUILD-001 smoke` to rerun P3-D3 only on existing VM branch (same assignment id until COMPLETE).
+
+## 2026-11-17 — Phase 3 rebuild dispatch (supersedes P3-BUILD-001)
+
+- **Channel:** #bas-cursor (Slack)
+- **Slack timestamp:** `1794961026.139839`
+- **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
+- **Decision:** Supersede **P3-BUILD-001** (VM-only `573af6d`, never on `origin`; smoke resume abandoned). Dispatch **P3-BUILD-002** — full Phase 3 instrumentation rebuild from current `main` on branch `phase-3-instrumentation`.
+- **Credentials:** Use team environment `09ed1dd9-ddfa-11f1-ba91-f63b1661ac50` secret `VITE_AMPLITUDE_API_KEY` on Builder VM (no secret in repo or Slack).
+- **Assignment:** `P3-BUILD-002` · Builder `bc-08e3bbe4-9fe1-557c-a303-74c7a8cfe114` · Commit yes · Push/PR/Merge no.
