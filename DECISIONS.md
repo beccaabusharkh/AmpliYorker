@@ -314,3 +314,7 @@
 
 - **A01–A20:** 20/20 PASS; 11/11 journeys PASS on `atlantic-refinement` (VM; no push).
 - UX screenshot sign-off: P2F-UX-REVIEW-ATLANTIC-001 **PASS** (minor gaps: journey video, optional mobile crops).
+## 2026-11-18 — Atlantic push/PR authorization
+
+- Authorize push + PR for `atlantic-refinement`; no merge without Approve.
+- Assignment: P2F-SHIP-ATLANTIC-001
