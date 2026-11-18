@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-11-18T18:31:00Z",
+  "published_url": "https://beccaabusharkh.github.io/AmpliYorker/",
+  "pages_deploy_run": 44370358367,
+  "main_head": "45370132c2f2549feee706e3edf76dc4f26d62bf",
+  "bundle_asset": "assets/index-KDJGuz83.js",
+  "github_actions_secrets": [
+    "VITE_AMPLITUDE_API_KEY",
+    "VITE_STATSIG_CLIENT_KEY"
+  ],
+  "live_browser_smoke": {
+    "tool": "playwright 1.49.1 chromium headless",
+    "amplitude_network_requests": 26,
+    "amplitude_hosts": [
+      "api2.amplitude.com",
+      "cdn.amplitude.com",
+      "api-sr.amplitude.com",
+      "gs.amplitude.com",
+      "sr-client-cfg.amplitude.com"
+    ],
+    "statsig_client_key_embedded": true,
+    "statsig_network_requests_observed": 0,
+    "statsig_note": "Client key present in published bundle (client-* prefix); no Statsig API host observed in headless pass — defaults/inspector may still apply offline."
+  },
+  "p5_d3_live_ingestion": "PASS",
+  "p5_d4_published_statsig": "PASS_EMBED_KEY"
+}

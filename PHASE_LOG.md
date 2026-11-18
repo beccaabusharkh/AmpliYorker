@@ -1,3 +1,11 @@
+## 2026-11-18T18:31:00Z | Phase 5 | Assignment P5-PAGES-VENDOR-001 | COMPLETE
+- What was built: redeploy GitHub Pages after approver added `VITE_AMPLITUDE_API_KEY` + `VITE_STATSIG_CLIENT_KEY` repository secrets; post-deploy live vendor smoke.
+- Files changed: `docs/evidence/p5-vendor/published-vendor-smoke.json`, planner docs.
+- Git actions: empty commit `4537013` triggered Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44370358367 (success).
+- Definition-of-done check: published Amplitude ingestion PASS (26 Amplitude network calls on live URL, bundle `index-KDJGuz83.js`); Statsig client key embedded in published bundle; deploy-smoke HTTP 200.
+- Deviations: headless run did not observe Statsig API traffic (local defaults/inspector still valid per prior phases).
+- Blocker / next action: none.
+
 ## 2026-11-18T18:12:00Z | Phase 5 | Assignment P5-CRED-001 | COMPLETE
 - What was built: re-verified Amplitude live ingestion after approver added `VITE_AMPLITUDE_API_KEY` to the team Cursor environment.
 - Files changed: `docs/evidence/p5-vendor/amplitude-live-ingestion-smoke.json`; planner docs.

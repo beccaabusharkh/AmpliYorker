@@ -215,7 +215,7 @@
 - **Slack timestamp:** follow-up after `1795025013.027169` (human: API key added)
 - **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
 - **Action:** `VITE_AMPLITUDE_API_KEY` present on team Cursor environment; Builder/preview live ingestion re-verified (see `docs/evidence/p5-vendor/amplitude-live-ingestion-smoke.json`).
-- **Note:** `deploy-pages.yml` now passes `secrets.VITE_AMPLITUDE_API_KEY` and `secrets.VITE_STATSIG_CLIENT_KEY` into `pnpm build`. Agent token cannot set GitHub Actions secrets (403); approver must add them at https://github.com/beccaabusharkh/AmpliYorker/settings/secrets/actions (same values as team Cursor env).
+- **Note:** `deploy-pages.yml` passes `secrets.VITE_AMPLITUDE_API_KEY` and `secrets.VITE_STATSIG_CLIENT_KEY` into `pnpm build`. Approver added repository secrets (2026-11-18); Pages run 44370358367 verified published Amplitude ingestion (see `docs/evidence/p5-vendor/published-vendor-smoke.json`).
 
 ## 2026-11-18 — Phase 5 merge approval (PR #6)
 

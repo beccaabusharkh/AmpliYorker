@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: IDLE — Phase 5 FINAL_VERIFY complete (2026-11-18). Demo live on `main` (`6419c30` planner docs) at https://beccaabusharkh.github.io/AmpliYorker/ (Pages deploy run 44365703026 success). Amplitude live ingestion PASS on Builder/preview with team `VITE_AMPLITUDE_API_KEY` (P5-CRED-001); published Pages build still ships without the key until GitHub Actions is wired.
+- Status: IDLE — Phase 5 FINAL_VERIFY complete (2026-11-18). Demo live on `main` at https://beccaabusharkh.github.io/AmpliYorker/ (Pages deploy run 44370358367 success). Published Amplitude ingestion PASS (P5-PAGES-VENDOR-001); vendor keys injected via GitHub Actions secrets + `deploy-pages.yml`.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -108,7 +108,7 @@
 
 ## Phase 5 : Final verification and corrections
 
-- **Review (2026-11-18):** PASS — P5-VERIFY-001 / P5-PUBLISH-001 / P5-MERGE-001 / P5-CRED-001; PR #6 squash-merged (`b077491`); Pages deploy run 44365703026 success; P5-D3 live Amplitude ingestion PASS on preview with team API key (Pages CI ingestion still optional).
+- **Review (2026-11-18):** PASS — P5-VERIFY-001 / P5-PUBLISH-001 / P5-MERGE-001 / P5-CRED-001 / P5-PAGES-VENDOR-001; PR #6 squash-merged (`b077491`); Pages deploy run 44370358367 success; P5-D3 live Amplitude ingestion PASS on published site; Statsig client key embedded at build time.
 - Type: FINAL_VERIFY.
 - Objective: verify all ten use cases, vendor integrations, and deployed behavior, then correct failures before declaring the demo verified.
 - Before dispatch: expand every deferred check above into a numbered case with route, persona/data state, steps, expected result, and evidence location; set exact viewport sizes, browser targets, vendor projects, and tool permissions in the handoff.
