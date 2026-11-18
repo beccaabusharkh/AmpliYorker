@@ -13,6 +13,7 @@
     "vite": "^6.0.3"
   },
   "dependencies": {
-    "@amplitude/unified": "^1.2.3"
+    "@amplitude/unified": "^1.2.3",
+    "@statsig/js-client": "^3.33.8"
   }
 }

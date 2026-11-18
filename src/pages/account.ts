@@ -21,6 +21,9 @@ import {
   cancellationReasonLabels,
 } from "../lib/session";
 import { resetAmplitudeIdentity, ensureAmplitudeIdentity } from "../lib/amplitude/init";
+import { RETENTION_COPY } from "../lib/statsig/catalog";
+import { getRetentionTreatmentVariant } from "../lib/statsig/evaluate";
+import { syncStatsigIdentity } from "../lib/statsig/init";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { resolveAccountState } from "../lib/analytics/context";
 import { showToast } from "../ui/toast";
@@ -60,11 +63,13 @@ export function renderAccountPage(): HTMLElement {
           : "No subscription";
 
   const retentionOffer = shouldShowRetentionOffer();
+  const retentionVariant = getRetentionTreatmentVariant("account-retention");
+  const retentionCopy = RETENTION_COPY[retentionVariant];
   const retentionBlock = retentionOffer
     ? `
     <section class="retention-module">
-      <h2>Simulated renewal reminder</h2>
-      <p>We noticed lighter reading lately — here's an introductory-style offer if you resubscribe.</p>
+      <h2>${retentionCopy.title}</h2>
+      <p>${retentionCopy.body}</p>
       <p><a href="#/subscribe" data-sub-link>View simulated plans</a></p>
     </section>`
     : "";
@@ -159,6 +164,7 @@ export function renderAccountPage(): HTMLElement {
     });
     logout();
     resetAmplitudeIdentity();
+    void syncStatsigIdentity();
     navigateToHash("#/");
   });
 
