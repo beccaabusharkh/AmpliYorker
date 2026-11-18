@@ -318,3 +318,7 @@
 
 - Authorize push + PR for `atlantic-refinement`; no merge without Approve.
 - Assignment: P2F-SHIP-ATLANTIC-001
+## 2026-11-18 — Atlantic merge authorization
+
+- Approve merge PR #9 → main.
+- Assignment: P2F-MERGE-ATLANTIC-001
