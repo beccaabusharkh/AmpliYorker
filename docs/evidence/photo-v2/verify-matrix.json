@@ -1,0 +1,113 @@
+{
+  "P2E-PHOTO-A14": {
+    "pass": true,
+    "detail": "typecheck exit 0; build exit 0",
+    "evidence": [
+      "docs/evidence/photo-v2/verify-typecheck-build.log"
+    ]
+  },
+  "P2E-PHOTO-A13": {
+    "pass": true,
+    "detail": "deployed=33; manifest paths=33; missing=none",
+    "evidence": [
+      "public/images/ASSET-MANIFEST.md",
+      "public/images/asset-manifest.json"
+    ]
+  },
+  "P2E-PHOTO-A01": {
+    "pass": true,
+    "detail": "gridTemplateColumns=472.797px 315.203px; lead=/AmpliYorker/images/editorial/cohort-compound-interest--hero.webp",
+    "evidence": [
+      "docs/evidence/photo-v2/home-1440-a01.png",
+      "docs/evidence/photo-v2/home-after-1440.png"
+    ]
+  },
+  "P2E-PHOTO-A02": {
+    "pass": true,
+    "detail": "unique DOM img urls=8; network raster=8",
+    "evidence": [
+      "docs/evidence/photo-v2/verify-a02-network.json"
+    ]
+  },
+  "P2E-PHOTO-A03": {
+    "pass": true,
+    "detail": "photos in top 2000px=5",
+    "evidence": [
+      "docs/evidence/photo-v2/home-1440-a03.png"
+    ]
+  },
+  "P2E-PHOTO-A04": {
+    "pass": true,
+    "detail": "/AmpliYorker/images/editorial/cohort-compound-interest--hero.webp",
+    "evidence": [
+      "docs/evidence/photo-v2/home-after-1440.png"
+    ]
+  },
+  "P2E-PHOTO-A05": {
+    "pass": true,
+    "detail": "[{\"id\":\"daily-decisions\",\"src\":\"/AmpliYorker/images/editorial/daily-decisions--hero.webp\"},{\"id\":\"retention-myths\",\"src\":\"/AmpliYorker/images/editorial/retention-myths--hero.webp\"},{\"id\":\"funnel-friction\",\"src\":\"/AmpliYorker/images/editorial/funnel-friction--hero.webp\"}]",
+    "evidence": [
+      "docs/evidence/photo-v2/verify-a05-secondaries.json"
+    ]
+  },
+  "P2E-PHOTO-A06": {
+    "pass": true,
+    "detail": "label=Advertisement · Simulated; ad_id=camp-northline-display; img=/AmpliYorker/images/ads/camp-northline-display--leaderboard.webp",
+    "evidence": [
+      "docs/evidence/photo-v2/home-1440.png"
+    ]
+  },
+  "P2E-PHOTO-A07": {
+    "pass": true,
+    "detail": "ad_id=camp-sunday-house-rail; img=/AmpliYorker/images/ads/camp-sunday-house-rail--rail.webp",
+    "evidence": [
+      "docs/evidence/photo-v2/home-1440.png"
+    ]
+  },
+  "P2E-PHOTO-A10": {
+    "pass": true,
+    "detail": "overflow=false; lead image first=true; thumbs=3",
+    "evidence": [
+      "docs/evidence/photo-v2/home-768-a10.png",
+      "docs/evidence/photo-v2/home-768.png"
+    ]
+  },
+  "P2E-PHOTO-A11": {
+    "pass": true,
+    "detail": "secondary grid columns=358px; overflow=false",
+    "evidence": [
+      "docs/evidence/photo-v2/home-390-a11.png",
+      "docs/evidence/photo-v2/home-390.png"
+    ]
+  },
+  "P2E-PHOTO-A08": {
+    "pass": true,
+    "detail": "ad_id=camp-margin-coffee-mpu; img=/AmpliYorker/images/ads/camp-margin-coffee-mpu--mpu.webp",
+    "evidence": [
+      "docs/evidence/photo-v2/article-retention-mpu-a08.png",
+      "docs/evidence/photo-v2/article-retention-mpu.png"
+    ]
+  },
+  "P2E-PHOTO-A09": {
+    "pass": true,
+    "detail": "unique rasters: /AmpliYorker/images/editorial/cohort-compound-interest--hero.webp, /AmpliYorker/images/editorial/cohort-compound-interest--inline-01.webp, /AmpliYorker/images/editorial/cohort-compound-interest--inline-02.webp",
+    "evidence": [
+      "docs/evidence/photo-v2/article-cohort-a09.png",
+      "docs/evidence/photo-v2/article-cohort.png"
+    ]
+  },
+  "P2E-PHOTO-A12": {
+    "pass": true,
+    "detail": "CTA ad_id=camp-northline-display; toast=Simulated ad engagement; amplitudeRequests=1 (SDK off without VITE_AMPLITUDE_API_KEY — CTA wiring verified)",
+    "evidence": [
+      "docs/evidence/photo-v2/verify-a12-ad-cta.json"
+    ]
+  },
+  "P2E-PHOTO-A15": {
+    "pass": true,
+    "detail": "lead focus=true; aria-selected top=true; keyboard tab=experimentation",
+    "evidence": [
+      "docs/evidence/photo-v2/verify-a15-a11y.json"
+    ]
+  }
+}

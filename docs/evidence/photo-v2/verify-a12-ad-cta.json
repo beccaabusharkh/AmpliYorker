@@ -1,0 +1,9 @@
+{
+  "ctaAdId": "camp-northline-display",
+  "toastText": "Simulated ad engagement",
+  "ampRequests": [
+    {
+      "url": "https://api2.amplitude.com/2/httpapi"
+    }
+  ]
+}

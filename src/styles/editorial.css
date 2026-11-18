@@ -619,4 +619,49 @@ summary:focus-visible {
   .home-secondary-leads {
     grid-template-columns: 1fr;
   }
+
+  .home-section-nav {
+    max-width: 100%;
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+
+  .section-nav-list {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .section-nav-search input {
+    min-width: 0;
+    width: min(100%, 10rem);
+  }
+
+  .home-editorial {
+    padding: 24px 16px;
+    overflow-x: clip;
+  }
+
+  .home-editorial-grid,
+  .home-primary-column {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .home-editorial img,
+  .ad-slot__photo {
+    max-width: 100%;
+  }
+
+  .exposure-inspector-host,
+  .exposure-inspector {
+    max-width: calc(100vw - 32px);
+    overflow-x: auto;
+  }
+
+  .exposure-inspector table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+  }
 }

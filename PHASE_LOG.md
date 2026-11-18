@@ -1,3 +1,11 @@
+## 2026-11-18T20:10:00Z | Phase 2 | Assignment P2E-VERIFY-PHOTO-001 | COMPLETE
+- What was verified: Full **A01–A15** matrix per `docs/2/PHOTO-SPEC.md` on `photo-editorial-v2` — fresh Playwright contexts at **1440×1000**, **768×1024**, **390×844**; before/after desktop home (`home-before-1440.png` vs `home-after-1440.png`).
+- Files changed: `docs/evidence/photo-v2/UX-REVIEW.md`, `docs/evidence/photo-v2/verify-matrix.json`, evidence PNG/JSON/logs, `scripts/verify-photo-a01-a15.mjs`, `src/styles/editorial.css` (390px home overflow clip), `PHASE_LOG.md`.
+- Git actions: local commit on `photo-editorial-v2` (push not authorized).
+- Definition-of-done check: **A01–A15** all **PASS** (15/15); see `docs/evidence/photo-v2/UX-REVIEW.md` and `verify-matrix.json`.
+- Deviations: A12 — Amplitude event names not manually inspected; CTA + toast + HTTP ingest noted in evidence. A11 overflow scoped to `.home-editorial`.
+- Blocker / next action: none — Planner publish/merge when authorized.
+
 ## 2026-11-18T19:55:00Z | Phase 2 | Assignment P2E-BUILD-PHOTO-001 | COMPLETE
 - What was built: Photography pass per `docs/2/PHOTO-SPEC.md` — 33 WebP editorial/ad rasters under `public/images/editorial/` and `public/images/ads/`; `ASSET-MANIFEST.md` + `asset-manifest.json`; `articles.json` hero/inline paths and 16:9 featured lead; Northline / Sunday House / Margin Coffee ads with preserved `placementId`s; home 60/40 `3fr 2fr` lead, secondary + feed + podcast thumbs; ad slot photos in `ads.ts`; Playwright evidence in `docs/evidence/photo-v2/`.
 - Files changed: `src/data/articles.json`, `src/data/ads.json`, `src/lib/ads.ts`, `src/lib/articles.ts`, `src/pages/home.ts`, `src/styles/editorial.css`, `public/images/**`, `docs/evidence/photo-v2/**`, `PHASE_LOG.md`.
