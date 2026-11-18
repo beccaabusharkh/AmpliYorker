@@ -279,3 +279,18 @@
 - **Channel:** Cursor Project (Becca Abu Sharkh)
 - **Decision:** Fix mode — substantial photography/asset pass on `main` without SDK/backend changes. UX then same Builder; local branch; no push/merge in this authorization.
 - **Assignments:** P2E-UX-PHOTO-001, P2E-BUILD-PHOTO-001, P2E-VERIFY-PHOTO-001
+## 2026-11-18 — Photography build acceptance (`P2E-BUILD-PHOTO-001`)
+
+- **Reviewed commit:** `b3dbfaa` on `photo-editorial-v2` (VM only; no push)
+- **Acceptance:** P2E-PHOTO-D1–D4 PASS per Builder; 33 WebP assets + `ASSET-MANIFEST.md`; Northline/Sunday House/Margin Coffee ads; 60/40 lead; 8 unique home photo URLs
+- **Verify:** P2E-VERIFY-PHOTO-001 COMPLETE — A01–A15 15/15 PASS (`docs/evidence/photo-v2/UX-REVIEW.md`)
+## 2026-11-18 — Photography push/PR authorization
+
+- **Channel:** Cursor Project (Becca Abu Sharkh)
+- **Decision:** Authorize push + open PR for `photo-editorial-v2`; **no merge** without separate Approve.
+- **Assignment:** P2E-SHIP-PHOTO-001 → Builder `bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2`
+## 2026-11-18 — Photography merge authorization
+
+- **Channel:** Cursor Project (Becca Abu Sharkh)
+- **Decision:** Approve and merge PR #8 → `main` (squash merge preferred if repo default)
+- **Assignment:** P2E-MERGE-PHOTO-001 → Builder
