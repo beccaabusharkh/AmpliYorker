@@ -1,0 +1,21 @@
+{
+  "source": "src/lib/amplitude/init.ts",
+  "replay_maskSelector": [
+    "input",
+    "textarea",
+    "select",
+    "#header-search-input",
+    "#search-input",
+    "#pay-name",
+    "#pay-card",
+    "#pay-exp",
+    "#bill-name",
+    "#bill-email",
+    "#bill-card",
+    "#newsletter-email",
+    ".discovery-chat",
+    ".account-support-chat",
+    "[data-chat-transcript]"
+  ],
+  "note": "Captured on publish VM; no API keys in repo."
+}

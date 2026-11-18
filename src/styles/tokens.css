@@ -383,7 +383,7 @@ a:hover {
 .exposure-inspector-host {
   position: fixed;
   right: var(--space-md);
-  bottom: var(--space-md);
+  bottom: calc(var(--space-lg) + 3.5rem);
   z-index: 40;
   max-width: min(28rem, 92vw);
   font-size: 0.85rem;
