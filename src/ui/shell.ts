@@ -10,6 +10,17 @@ const SECTION_LINKS = [
   { href: "#/subscribe", label: "Subscribe" },
 ];
 
+function routeUsesContentHeading(route: ReturnType<typeof getCurrentRoute>): boolean {
+  return (
+    route.name === "subscribe" ||
+    route.name === "account" ||
+    route.name === "accountLogin" ||
+    route.name === "accountRegister" ||
+    route.name === "checkout" ||
+    route.name === "checkoutConfirmation"
+  );
+}
+
 export function renderSkipLink(): HTMLElement {
   const skip = document.createElement("a");
   skip.id = "skip-main";
@@ -33,24 +44,27 @@ export function renderHeader(): HTMLElement {
     : "Log in";
   const accountHref = isLoggedIn() ? "#/account" : "#/account/login";
   const edition = formatEditionDate();
+  const useContentHeading = routeUsesContentHeading(route);
+  const mastheadTag = useContentHeading ? "p" : "h1";
 
   header.innerHTML = `
     <div class="home-utility-bar site-utility-bar">
-      <span class="utility-date">Today\u2019s edition \u00b7 ${edition}</span>
-      <div class="utility-links">
+      <div class="utility-links utility-links--end">
         <a href="#home-newsletter" data-newsletter-link>Newsletter</a>
         <a href="${accountHref}" data-utility-account>${accountLabel}</a>
       </div>
     </div>
-    <h1 class="home-masthead site-masthead">
+    <${mastheadTag} class="home-masthead site-masthead">
       <a href="#/" data-internal-link>Amplitude Daily</a>
-    </h1>
+    </${mastheadTag}>
+    <p class="site-masthead-edition">Today\u2019s edition \u00b7 ${edition}</p>
     <p class="home-masthead-tagline">Independent reporting on product analytics and experimentation</p>
     <div class="site-promo-band" data-subscribe-promo aria-label="Subscription promotion">
-      <p class="site-promo-band__copy">Subscribe for full access to Amplitude Daily — simulated plans from $12/month.</p>
+      <p class="site-promo-band__copy">Subscribe for full access to Amplitude Daily — plans from $12/month.</p>
       <a class="promo-band__cta" href="#/subscribe" data-section-link>Subscribe</a>
     </div>
     <nav class="home-section-nav" aria-label="Sections">
+      <div class="section-nav-spacer" aria-hidden="true"></div>
       <ul class="section-nav-list">
         ${SECTION_LINKS.map(
           (link) => `<li><a href="${link.href}" data-section-link>${link.label}</a></li>`,

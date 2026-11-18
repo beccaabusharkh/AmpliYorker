@@ -1,3 +1,16 @@
+## 2026-11-18T23:55:00Z | Phase 2G | Assignment P2G-BUILD-POLISH-001 | COMPLETE
+- What was built: subscribe wide surface fix, account dashboard, de-simulated copy, sponsored offer card, header/nav grid, masthead edition line per `docs/2/POLISH-SPEC.md`.
+- Branch: `polish-subscribe-account` (local commit only; **no push**).
+- Definition-of-done: P2G-D1 typecheck PASS; P2G-D2 build PASS; P2G-D3 preview smoke PASS (`docs/evidence/polish-fix/p2g-d-smoke.json`).
+- Blocker / next action: verify + ship when authorized.
+
+## 2026-11-18T23:20:00Z | Phase 2F | Assignment P2F-MERGE-ATLANTIC-001 | COMPLETE
+- What was shipped: squash-merged **PR #9** to `main`; GitHub Pages deploy + live Atlantic smoke.
+- Git actions: PR https://github.com/beccaabusharkh/AmpliYorker/pull/9 merged; **merge SHA** `26705d8b16b05742995f5cbb917d15338e859446`; Deploy GitHub Pages https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44413959525 (**success**).
+- Definition-of-done: live `https://beccaabusharkh.github.io/AmpliYorker/#/` — body **#fff**, promo band, lead **280px**, flex lead grid (`docs/evidence/atlantic-refine/live-merge-smoke.json`).
+- Deviations: `BUILDER_HANDOFF.md` conflict resolved on PR branch before merge.
+- Blocker / next action: none.
+
 ## 2026-11-18T23:10:00Z | Phase 2F | Assignment P2F-SHIP-ATLANTIC-001 | COMPLETE
 - What was shipped: pushed `atlantic-refinement`; opened PR to `main` (no merge).
 - Files changed: `PHASE_LOG.md`.

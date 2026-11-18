@@ -1,17 +1,17 @@
 const PLAN_FEATURES: Record<string, string[]> = {
   monthly: [
-    "Unlimited simulated article access",
-    "Daily briefing newsletter (demo)",
+    "Unlimited article access",
+    "Daily briefing newsletter",
     "Save articles for later",
   ],
   annual: [
     "Everything in Digital Monthly",
-    "Annual billing — simulated savings",
+    "Annual billing with subscriber savings",
     "Priority access to long-form features",
   ],
   premium: [
     "Everything in Digital Annual",
-    "Simulated audio editions + deep dives",
+    "Audio editions and deep dives",
     "Premium briefings and field notes",
   ],
 };

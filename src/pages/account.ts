@@ -34,10 +34,13 @@ export function renderAccountPage(): HTMLElement {
 
   if (!isLoggedIn()) {
     main.innerHTML = `
-      <section class="form-panel">
+      <section class="form-panel account-surface">
         <h1>Account</h1>
-        <p class="simulation-label">Simulated account hub — log in with preset persona credentials.</p>
-        <p><a href="#/account/login" data-login-link>Simulated login</a> · <a href="#/account/register" data-register-link>Register</a></p>
+        <p class="account-gate-copy">Sign in to manage your subscription and saved stories.</p>
+        <p>
+          <a href="#/account/login" data-login-link>Log in</a>
+          · <a href="#/account/register" data-register-link>Create account</a>
+        </p>
       </section>
     `;
     bindNav(main);
@@ -57,9 +60,9 @@ export function renderAccountPage(): HTMLElement {
     session.subscription.status === "active" && active
       ? "Active"
       : session.subscription.status === "canceled"
-        ? "Canceled (simulated)"
+        ? "Canceled"
         : session.subscription.status === "expired"
-          ? "Expired (simulated)"
+          ? "Expired"
           : "No subscription";
 
   const retentionOffer = shouldShowRetentionOffer();
@@ -67,10 +70,10 @@ export function renderAccountPage(): HTMLElement {
   const retentionCopy = RETENTION_COPY[retentionVariant];
   const retentionBlock = retentionOffer
     ? `
-    <section class="retention-module">
+    <section class="retention-module account-dashboard__retention">
       <h2>${retentionCopy.title}</h2>
       <p>${retentionCopy.body}</p>
-      <p><a href="#/subscribe" data-sub-link>View simulated plans</a></p>
+      <p><a href="#/subscribe" data-sub-link>View subscription options</a></p>
     </section>`
     : "";
 
@@ -78,75 +81,88 @@ export function renderAccountPage(): HTMLElement {
     (reason) => `<option value="${reason}">${cancellationReasonLabels()[reason as CancellationReason]}</option>`,
   ).join("");
 
+  const canceledNote =
+    session.subscription.status === "canceled"
+      ? `<p class="canceled-label">Cancellation recorded${session.subscription.cancellationReason ? `: ${session.subscription.cancellationReason}` : ""}.</p>`
+      : "";
+
   main.innerHTML = `
-    <section class="form-panel">
-      <h1>Account hub</h1>
-      <p class="simulation-label">Simulated account management — ${session.displayName} (<code>${session.loggedInUserId}</code>)</p>
-      <dl class="status-dl">
+    <section class="account-dashboard account-surface account-surface--wide form-panel">
+      <header class="account-dashboard__header">
+        <div>
+          <h1>Your account</h1>
+          <p class="account-dashboard__signed-in">Signed in as ${escapeHtml(session.displayName ?? session.loggedInUserId ?? "Reader")}.</p>
+          <p class="subscription-pill">${statusLabel} · ${planLabel}</p>
+        </div>
+        <nav class="account-actions" aria-label="Account actions">
+          ${active ? "" : `<a class="account-actions__primary" href="#/subscribe" data-sub-link>Subscribe</a>`}
+          <button type="button" data-logout>Log out</button>
+        </nav>
+      </header>
+
+      <dl class="status-dl account-dashboard__summary">
         <div><dt>Subscription</dt><dd data-account-status>${statusLabel} · ${planLabel}</dd></div>
-        <div><dt>Renewal (simulated)</dt><dd>${formatRenewalDate()}</dd></div>
+        <div><dt>Renewal date</dt><dd>${formatRenewalDate()}</dd></div>
         <div><dt>Device</dt><dd>${session.deviceLabel}${session.secondaryDeviceLabel ? ` · ${session.secondaryDeviceLabel}` : ""}</dd></div>
         <div><dt>Saved articles</dt><dd>${saved || "—"}</dd></div>
         <div><dt>Followed writers</dt><dd>${followed}</dd></div>
       </dl>
+
       ${retentionBlock}
-      <nav class="account-actions" aria-label="Account actions">
-        ${active ? "" : `<a href="#/subscribe" data-sub-link>Subscribe</a>`}
-        <a href="#/article/retention-myths" data-premium-link>Premium article</a>
-        <button type="button" data-logout>Log out (simulated)</button>
-      </nav>
-    </section>
 
-    <section class="form-panel">
-      <h2>Simulated billing profile</h2>
-      <form data-billing-form class="stacked-form">
-        <label for="bill-name">Name (preset)</label>
-        <input id="bill-name" name="name" type="text" value="${escapeAttr(session.billingProfile.name)}" />
-        <label for="bill-email">Email (preset)</label>
-        <input id="bill-email" name="email" type="email" value="${escapeAttr(session.billingProfile.email)}" />
-        <label for="bill-card">Card last four (preset)</label>
-        <input id="bill-card" name="card" type="text" value="${escapeAttr(session.billingProfile.cardLast4)}" maxlength="4" />
-        <button type="submit">Save billing (simulated)</button>
-      </form>
-    </section>
+      <div class="account-dashboard__forms">
+        <section class="account-dashboard__billing">
+          <h2>Billing profile</h2>
+          <form data-billing-form class="stacked-form">
+            <label for="bill-name">Name</label>
+            <input id="bill-name" name="name" type="text" value="${escapeAttr(session.billingProfile.name)}" />
+            <label for="bill-email">Email</label>
+            <input id="bill-email" name="email" type="email" value="${escapeAttr(session.billingProfile.email)}" />
+            <label for="bill-card">Card last four</label>
+            <input id="bill-card" name="card" type="text" value="${escapeAttr(session.billingProfile.cardLast4)}" maxlength="4" />
+            <button type="submit">Save billing</button>
+          </form>
+        </section>
 
-    <section class="form-panel">
-      <h2>Change plan (simulated)</h2>
-      <form data-plan-form class="stacked-form">
-        <label for="plan-switch">Plan</label>
-        <select id="plan-switch" name="plan">
-          ${plans.map((plan) => `<option value="${plan.id}" ${plan.id === session.subscription.planId ? "selected" : ""}>${plan.name}</option>`).join("")}
-        </select>
-        <button type="submit">Update plan (simulated)</button>
-      </form>
-    </section>
+        <section class="account-dashboard__plan">
+          <h2>Change plan</h2>
+          <form data-plan-form class="stacked-form">
+            <label for="plan-switch">Plan</label>
+            <select id="plan-switch" name="plan">
+              ${plans.map((plan) => `<option value="${plan.id}" ${plan.id === session.subscription.planId ? "selected" : ""}>${plan.name}</option>`).join("")}
+            </select>
+            <button type="submit">Update plan</button>
+          </form>
+        </section>
+      </div>
 
-    <section class="form-panel">
-      <h2>Cancel subscription (simulated)</h2>
-      <form data-cancel-form class="stacked-form">
-        <label for="cancel-reason">Reason</label>
-        <select id="cancel-reason" name="reason">${cancelReasons}</select>
-        <button type="submit">Confirm cancellation</button>
-      </form>
-      ${session.subscription.status === "canceled" ? `<p class="canceled-label">Simulated cancellation recorded${session.subscription.cancellationReason ? `: ${session.subscription.cancellationReason}` : ""}.</p>` : ""}
-    </section>
+      <details class="account-dashboard__cancel">
+        <summary>Cancel subscription</summary>
+        <form data-cancel-form class="stacked-form">
+          <label for="cancel-reason">Reason</label>
+          <select id="cancel-reason" name="reason">${cancelReasons}</select>
+          <button type="submit">Confirm cancellation</button>
+        </form>
+        ${canceledNote}
+      </details>
 
-    <section class="form-panel">
-      <h2>Simulated device switch</h2>
-      <p>Copy persona snapshot for a second device label (local simulation only).</p>
-      <button type="button" data-export-snapshot>Export persona snapshot</button>
-      <button type="button" data-apply-device>Apply secondary device label</button>
-      <pre class="snapshot-pre" data-snapshot-output hidden></pre>
-    </section>
+      <details class="account-dashboard__devices">
+        <summary>Device &amp; export</summary>
+        <p>Copy persona snapshot for a second device label (local simulation only).</p>
+        <button type="button" data-export-snapshot>Export persona snapshot</button>
+        <button type="button" data-apply-device>Apply secondary device label</button>
+        <pre class="snapshot-pre" data-snapshot-output hidden></pre>
+      </details>
 
-    <details class="form-panel demo-controls">
-      <summary>Demo controls (simulated)</summary>
-      <p class="simulation-label">Adjust demo time and reset local storage.</p>
-      <p>Demo time offset: <strong data-time-offset>${session.demoTimeOffsetDays}</strong> days</p>
-      <button type="button" data-advance-time="+7">Advance +7 days</button>
-      <button type="button" data-advance-time="+30">Advance +30 days</button>
-      <button type="button" data-reset-demo>Reset demo data</button>
-    </details>
+      <details class="demo-controls">
+        <summary>Demo controls (simulated)</summary>
+        <p class="simulation-label">Adjust demo time and reset local storage.</p>
+        <p>Demo time offset: <strong data-time-offset>${session.demoTimeOffsetDays}</strong> days</p>
+        <button type="button" data-advance-time="+7">Advance +7 days</button>
+        <button type="button" data-advance-time="+30">Advance +30 days</button>
+        <button type="button" data-reset-demo>Reset demo data</button>
+      </details>
+    </section>
   `;
 
   if (retentionOffer) {
@@ -214,7 +230,7 @@ export function renderAccountPage(): HTMLElement {
       reason_code: mapCancelReason(reason),
       access_ends_at: canceled.subscription.renewalDate ?? new Date().toISOString(),
     });
-    showToast("Simulated cancellation recorded.");
+    showToast("Cancellation recorded.");
     navigateToHash("#/account");
   });
 
@@ -269,6 +285,10 @@ function bindNav(main: HTMLElement): void {
 
 function escapeAttr(value: string): string {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+function escapeHtml(value: string): string {
+  return escapeAttr(value);
 }
 
 function mapCancelReason(reason: CancellationReason): string {

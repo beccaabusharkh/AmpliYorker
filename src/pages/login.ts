@@ -12,8 +12,8 @@ export function renderLoginPage(): HTMLElement {
 
   main.innerHTML = `
     <section class="form-panel account-surface">
-      <h1>Simulated login</h1>
-      <p class="simulation-label">Preset demo credentials only — no real authentication.</p>
+      <h1>Log in</h1>
+      <p class="simulation-label">Use demo credentials to explore subscriber journeys.</p>
       <form data-login-form class="stacked-form">
         <label for="login-email">Email (preset)</label>
         <input id="login-email" name="email" type="email" value="${smokePersona.presetEmail}" autocomplete="username" />
@@ -25,9 +25,9 @@ export function renderLoginPage(): HTMLElement {
             .join("")}
         </select>
         <p class="form-hint">Smoke persona id: <code>${smokePersona.id}</code></p>
-        <button type="submit">Log in (simulated)</button>
+        <button type="submit">Continue</button>
       </form>
-      <p>New here? <a href="#/account/register" data-register-link>Simulated registration</a></p>
+      <p>New here? <a href="#/account/register" data-register-link>Create account</a></p>
     </section>
   `;
 
