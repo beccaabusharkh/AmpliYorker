@@ -334,3 +334,4 @@
 
 ## 2026-11-18 — Polish merge authorization
 - Approve merge PR #10.
+- Landed `0fbc836c` PR #10.
