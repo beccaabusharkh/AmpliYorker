@@ -1,3 +1,10 @@
+## 2026-11-18T22:35:00Z | Phase 2F | Assignment P2F-BUILD-ATLANTIC-001 | COMPLETE
+- What was built: Atlantic-inspired refinement per `docs/2/ATLANTIC-SPEC.md` — white canvas, promo band, stacked compact lead, 3-plan subscribe (`premium`), paywall/checkout pricing unify, account + chat restyle.
+- Files changed: see commit `1c38802` on `atlantic-refinement`; evidence `docs/evidence/atlantic-refine/`.
+- Git actions: local commit only (push not authorized).
+- Definition-of-done check: **P2F-D1/D2/D3** PASS.
+- Blocker / next action: none.
+
 ## 2026-11-18T20:15:00Z | Phase 2 | Assignment P2E-SHIP-PHOTO-001 | COMPLETE
 - What was shipped: pushed `photo-editorial-v2` and opened PR into `main` (no merge).
 - Files changed: `PHASE_LOG.md` (this entry).
