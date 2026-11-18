@@ -1,6 +1,6 @@
 # Amplitude Daily project plan
 
-- Status: IDLE — Phase 4 published on GitHub: PR #5 https://github.com/beccaabusharkh/AmpliYorker/pull/5 (head `8c90341`, `phase-4-statsig`). Merge blocked until Slack `Approve`. Phase 3 live on `main` (`5bb6f9eb`) at https://beccaabusharkh.github.io/AmpliYorker/.
+- Status: IDLE — Phase 4 live on `main` (`df237c8`) at https://beccaabusharkh.github.io/AmpliYorker/ (PR #5 squash-merged; Pages deploy run 44359843731 success). Phase 5 not dispatched.
 - Audience: PMs, engineers, analysts, and other buyers evaluating Amplitude and Statsig.
 - Goal: demonstrate reader discovery, engagement, monetization, and retention through a fictional, Amplitude-branded news site.
 - Phase order: 0 → 1 → 2 → 3 → 4 → 5. Each phase depends on acceptance of the preceding phase.
@@ -91,6 +91,7 @@
 
 ## Phase 4 : Statsig gates and experiments
 
+- **Review (2026-11-18):** PASS — P4-BUILD-001 / P4-PUBLISH-001; PR #5 squash-merged (`df237c8`); Pages deploy run 44359843731 success; live bundle includes Statsig (deploy smoke).
 - Type: BUILD.
 - Objective: apply Statsig treatments to existing journeys and connect valid exposures to their measured outcomes.
 - Deliverables: one Statsig client integration, stable identity mapping, timeout/error defaults preserving the existing site, and gates/experiments for paywall timing, subscription copy, offers, recommendations, and retention treatments.

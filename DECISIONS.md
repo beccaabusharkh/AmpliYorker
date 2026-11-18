@@ -184,3 +184,16 @@
 - **Published head:** `8c9034190cd57f8013992bbe71c0109aaea496e6` on `phase-4-statsig`
 - **Acceptance:** P4-PUB-D1 PASS, P4-PUB-D2 PASS
 - **Note:** Published head differs from planner-reviewed VM commit `53abe42` authorized pre-push; GitHub head is a descendant including `PHASE_LOG` / publish evidence.
+
+## 2026-11-18 — Phase 4 merge approval (PR #5)
+
+- **Channel:** #bas-cursor (Slack)
+- **Slack timestamp:** `1795023096.564969`
+- **Approver:** Becca Abu Sharkh (`U045L8FS5BN`)
+- **PR:** https://github.com/beccaabusharkh/AmpliYorker/pull/5
+- **Reviewed commit (pre-merge head):** `8c9034190cd57f8013992bbe71c0109aaea496e6`
+- **Merge commit on `main`:** `df237c8dae3c6e05b1d0a705c37a5cf8f15c4533`
+- **Action:** Approve and squash-merge PR #5; trigger GitHub Pages deploy on `main`
+- **Assignment:** Phase 4 publish (consumes merge authorization after P4-PUBLISH-001)
+- **Approval state:** CONSUMED
+- **Deployment evidence:** Actions run https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44359843731 (success); live signed-out check `https://beccaabusharkh.github.io/AmpliYorker/` HTTP 200; deployed JS bundle includes Statsig strings (deploy smoke only)
