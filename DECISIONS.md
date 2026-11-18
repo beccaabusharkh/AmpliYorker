@@ -238,6 +238,17 @@
 - **Scope:** Editorial UI/content (`src/**`, `public/images/editorial/**`, `custom-events.yml` milestone docs/enum, `PHASE_LOG.md`); journeys + Amplitude/Statsig preserved.
 - **Publish:** Awaits **P2E-PUBLISH-001** (push + PR, merge separate).
 
+## 2026-11-18 — Editorial redesign publish authorization (push + PR only)
+
+- **Channel:** Cursor Project (Becca Abu Sharkh)
+- **Message:** `@PLANNER authorize push and PR for editorial redesign`
+- **Approver:** Becca Abu Sharkh
+- **Reviewed commit:** `54ef27d` on `editorial-redesign` (Builder VM; pre-push)
+- **Action:** Authorize push of `editorial-redesign` to `origin` and open one PR into `main`; **not** merge or deployment
+- **Assignment:** `P2E-PUBLISH-001`
+- **Approval state:** CONSUMED
+
+
 ## 2026-11-18 — Editorial redesign scope authorization
 
 - **Channel:** Cursor Project (Becca Abu Sharkh)
