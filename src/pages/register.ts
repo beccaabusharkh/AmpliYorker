@@ -1,55 +1,49 @@
-import { personas } from "../lib/personas";
 import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash } from "../lib/router";
 import { ensureAmplitudeIdentity } from "../lib/amplitude/init";
 import { syncStatsigIdentity } from "../lib/statsig/init";
 import { trackDemoEvent } from "../lib/analytics/track";
-import { loginWithPersona } from "../lib/session";
+import { loginWithCredentials } from "../lib/session";
 
 export function renderRegisterPage(): HTMLElement {
   const p = getPageParams("account_register");
   const main = document.createElement("main");
   main.className = "page-main account-page";
-  const personaOptions = personas
-    .filter((persona) => persona.id !== "anonymous")
-    .map((persona) => `<option value="${persona.id}">${persona.label} — ${persona.description}</option>`)
-    .join("");
 
   main.innerHTML = `
     <section class="form-panel account-surface">
       <h1>${p.page_title}</h1>
       <p class="simulation-label">${p.simulation_disclosure}</p>
       <form data-register-form data-precision-event class="stacked-form">
-        <label for="reg-persona">${p.persona_field_label}</label>
-        <select id="reg-persona" name="persona" required>${personaOptions}</select>
         <label for="reg-name">${p.display_name_label}</label>
-        <input id="reg-name" name="name" type="text" value="${escapeAttr(p.default_display_name)}" autocomplete="name" />
+        <input id="reg-name" name="name" type="text" value="${escapeAttr(p.default_display_name)}" required autocomplete="name" />
         <label for="reg-email">${p.email_label}</label>
-        <input id="reg-email" name="email" type="email" value="${escapeAttr(p.default_email)}" autocomplete="email" />
+        <input id="reg-email" name="email" type="email" value="${escapeAttr(p.default_email)}" required autocomplete="email" />
+        <label for="reg-password">${p.password_label}</label>
+        <input id="reg-password" name="password" type="password" value="demo" required autocomplete="new-password" />
+        <p class="form-hint">${p.password_hint}</p>
+        <p class="form-error" data-register-error hidden>Enter name, email, and a non-empty password to continue.</p>
         <button type="submit">${p.submit_label}</button>
       </form>
       <p>${p.login_prompt} <a href="#/account/login" data-login-link>${p.login_link_label}</a></p>
     </section>
   `;
 
-  const personaSelect = main.querySelector("#reg-persona");
-  const nameInput = main.querySelector("#reg-name");
-  const emailInput = main.querySelector("#reg-email");
-
-  personaSelect?.addEventListener("change", () => {
-    const persona = personas.find((item) => item.id === (personaSelect as HTMLSelectElement).value);
-    if (persona && nameInput instanceof HTMLInputElement) {
-      nameInput.value = persona.presetDisplayName ?? persona.label;
-    }
-    if (persona && emailInput instanceof HTMLInputElement) {
-      emailInput.value = persona.presetEmail ?? `${persona.id}@ampliyorker.test`;
-    }
-  });
-
+  const errorEl = main.querySelector("[data-register-error]");
   main.querySelector("[data-register-form]")?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const personaId = (personaSelect as HTMLSelectElement).value;
-    loginWithPersona(personaId);
+    const nameInput = main.querySelector("#reg-name");
+    const emailInput = main.querySelector("#reg-email");
+    const passwordInput = main.querySelector("#reg-password");
+    const displayName = nameInput instanceof HTMLInputElement ? nameInput.value : "";
+    const email = emailInput instanceof HTMLInputElement ? emailInput.value : "";
+    const password = passwordInput instanceof HTMLInputElement ? passwordInput.value : "";
+    const session = loginWithCredentials(email, password, { displayName });
+    if (!session) {
+      errorEl?.removeAttribute("hidden");
+      return;
+    }
+    errorEl?.setAttribute("hidden", "");
     ensureAmplitudeIdentity();
     void syncStatsigIdentity();
     trackDemoEvent("Registration Completed", {

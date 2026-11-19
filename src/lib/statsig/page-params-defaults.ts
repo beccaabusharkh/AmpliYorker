@@ -134,21 +134,26 @@ export const PAGE_DEFAULTS = {
   },
   account_register: {
     page_title: "Create account",
-    simulation_disclosure: "No passwords are collected. Pick a preset persona — values are demo-only.",
-    persona_field_label: "Preset persona",
-    display_name_label: "Display name (preset)",
+    simulation_disclosure:
+      "Simulated registration — your typed email becomes the analytics user id. Password is cosmetic only.",
+    display_name_label: "Display name",
     default_display_name: "Demo Reader",
-    email_label: "Email (preset)",
+    email_label: "Email",
     default_email: "reader-demo@ampliyorker.test",
+    password_label: "Password (demo)",
+    password_hint:
+      "Any non-empty password works. Preset emails map to demo engagement profiles (e.g. lapsed@ampliyorker.test).",
     submit_label: "Create account",
     login_prompt: "Already registered?",
     login_link_label: "Log in",
   },
   account_login: {
     page_title: "Log in",
-    simulation_disclosure: "Use demo credentials to explore subscriber journeys.",
-    email_label: "Email (preset)",
-    persona_label: "Persona",
+    simulation_disclosure:
+      "Simulated sign-in — analytics identity is your email. Password is cosmetic (try demo or any non-empty value).",
+    email_label: "Email",
+    password_label: "Password (demo)",
+    password_hint: "Not sent anywhere — required for UX only.",
     submit_label: "Continue",
     register_prompt: "New here?",
     register_link_label: "Create account",

@@ -1,10 +1,10 @@
-import { getRegisteredReaderPersona, personas } from "../lib/personas";
+import { getRegisteredReaderPersona } from "../lib/personas";
 import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash } from "../lib/router";
 import { ensureAmplitudeIdentity } from "../lib/amplitude/init";
 import { syncStatsigIdentity } from "../lib/statsig/init";
 import { trackDemoEvent } from "../lib/analytics/track";
-import { loginWithPersona } from "../lib/session";
+import { loginWithCredentials } from "../lib/session";
 
 export function renderLoginPage(): HTMLElement {
   const p = getPageParams("account_login");
@@ -18,35 +18,31 @@ export function renderLoginPage(): HTMLElement {
       <p class="simulation-label">${p.simulation_disclosure}</p>
       <form data-login-form data-precision-event class="stacked-form">
         <label for="login-email">${p.email_label}</label>
-        <input id="login-email" name="email" type="email" value="${smokePersona.presetEmail}" autocomplete="username" />
-        <label for="login-persona">${p.persona_label}</label>
-        <select id="login-persona" name="persona">
-          ${personas
-            .filter((p) => p.id !== "anonymous")
-            .map((p) => `<option value="${p.id}" ${p.id === smokePersona.id ? "selected" : ""}>${p.label}</option>`)
-            .join("")}
-        </select>
-        <p class="form-hint">Smoke persona id: <code>${smokePersona.id}</code></p>
+        <input id="login-email" name="email" type="email" value="${smokePersona.presetEmail}" required autocomplete="username" />
+        <p class="form-hint">Preset smoke email: <code>${smokePersona.presetEmail}</code> · declining profile: <code>lapsed@ampliyorker.test</code></p>
+        <label for="login-password">${p.password_label}</label>
+        <input id="login-password" name="password" type="password" value="demo" required autocomplete="current-password" />
+        <p class="form-hint">${p.password_hint}</p>
+        <p class="form-error" data-login-error hidden>Enter email and a non-empty password to continue.</p>
         <button type="submit">${p.submit_label}</button>
       </form>
       <p>${p.register_prompt} <a href="#/account/register" data-register-link>${p.register_link_label}</a></p>
     </section>
   `;
 
-  const personaSelect = main.querySelector("#login-persona");
-  const emailInput = main.querySelector("#login-email");
-
-  personaSelect?.addEventListener("change", () => {
-    const persona = personas.find((item) => item.id === (personaSelect as HTMLSelectElement).value);
-    if (persona && emailInput instanceof HTMLInputElement && persona.presetEmail) {
-      emailInput.value = persona.presetEmail;
-    }
-  });
-
+  const errorEl = main.querySelector("[data-login-error]");
   main.querySelector("[data-login-form]")?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const personaId = (personaSelect as HTMLSelectElement).value;
-    loginWithPersona(personaId);
+    const emailInput = main.querySelector("#login-email");
+    const passwordInput = main.querySelector("#login-password");
+    const email = emailInput instanceof HTMLInputElement ? emailInput.value : "";
+    const password = passwordInput instanceof HTMLInputElement ? passwordInput.value : "";
+    const session = loginWithCredentials(email, password);
+    if (!session) {
+      errorEl?.removeAttribute("hidden");
+      return;
+    }
+    errorEl?.setAttribute("hidden", "");
     ensureAmplitudeIdentity();
     void syncStatsigIdentity();
     trackDemoEvent("Sign In Completed", {

@@ -206,22 +206,25 @@ pages:
         default: Create account
       simulation_disclosure:
         type: string
-        default: "No passwords are collected. Pick a preset persona — values are demo-only."
-      persona_field_label:
-        type: string
-        default: Preset persona
+        default: "Simulated registration — your typed email becomes the analytics user id. Password is cosmetic only."
       display_name_label:
         type: string
-        default: Display name (preset)
+        default: Display name
       default_display_name:
         type: string
         default: Demo Reader
       email_label:
         type: string
-        default: Email (preset)
+        default: Email
       default_email:
         type: string
         default: reader-demo@ampliyorker.test
+      password_label:
+        type: string
+        default: Password (demo)
+      password_hint:
+        type: string
+        default: "Any non-empty password works. Preset emails map to demo engagement profiles (e.g. lapsed@ampliyorker.test)."
       submit_label:
         type: string
         default: Create account
@@ -240,13 +243,16 @@ pages:
         default: Log in
       simulation_disclosure:
         type: string
-        default: Use demo credentials to explore subscriber journeys.
+        default: "Simulated sign-in — analytics identity is your email. Password is cosmetic (try demo or any non-empty value)."
       email_label:
         type: string
-        default: Email (preset)
-      persona_label:
+        default: Email
+      password_label:
         type: string
-        default: Persona
+        default: Password (demo)
+      password_hint:
+        type: string
+        default: Not sent anywhere — required for UX only.
       submit_label:
         type: string
         default: Continue

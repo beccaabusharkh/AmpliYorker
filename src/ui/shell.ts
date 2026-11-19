@@ -78,8 +78,8 @@ export function renderHeader(): HTMLElement {
     </div>
     <p class="home-masthead-tagline">${shell.masthead_tagline}</p>
     ${
-      session.activePersonaId !== "anonymous"
-        ? `<p class="persona-banner simulation-label">Persona: <strong>${session.displayName ?? session.activePersonaId}</strong> (<code>${session.activePersonaId}</code>) \u00b7 simulated session</p>`
+      isLoggedIn() && session.email
+        ? `<p class="persona-banner simulation-label">Simulated session: <strong>${escapeAttr(session.displayName ?? "Reader")}</strong> · <code>${escapeAttr(session.email)}</code> (demo preset <code>${escapeAttr(session.activePersonaId)}</code>)</p>`
         : ""
     }
   `;
