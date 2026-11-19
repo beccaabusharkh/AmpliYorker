@@ -1,0 +1,30 @@
+
+> ampliyorker@0.0.0 typecheck /workspace
+> tsc --noEmit
+
+
+
+
+> ampliyorker@0.0.0 build /workspace
+> vite build
+
+vite v6.4.6 building for production...
+transforming...
+✓ 429 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                        0.50 kB │ gzip:   0.31 kB
+dist/assets/index-CvRk6OmK.css                        30.03 kB │ gzip:   6.05 kB
+dist/assets/observers-CCOLgxrL.js                      2.89 kB │ gzip:   1.33 kB
+dist/assets/worker-ChM7AtzN.js                         8.92 kB │ gzip:   3.77 kB
+dist/assets/esm-B1O-s4Om.js                           15.81 kB │ gzip:   5.09 kB
+dist/assets/rrweb-plugin-console-record-BAdpdlup.js  128.84 kB │ gzip:  42.11 kB
+dist/assets/rrweb-record-BoutPmzN.js                 186.77 kB │ gzip:  58.97 kB
+dist/assets/index-B1-NwaKt.js                        816.80 kB │ gzip: 189.91 kB
+✓ built in 1.87s
+
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

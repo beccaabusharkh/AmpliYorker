@@ -1,3 +1,31 @@
+## 2026-11-19T02:10:00Z | Phase 2H | Assignment P2H-SHIP-FIDELITY-001 | COMPLETE
+- What was shipped: pushed `cursor/atlantic-fidelity-93b2`; opened PR to `main` (no merge).
+- Verify: **20/20** `P2H-FID-A01`–`A20` @ 1440/1024/768/390; **9/9** journeys.
+- Evidence: `docs/evidence/atlantic-fidelity/UX-REVIEW.md`, `verify-matrix.json`, `remaining-differences.md`, annotated before/after + `journey-home-fidelity.webm`.
+- Scope: layout/CSS + home chrome only; no SDK/backend; routes/`data-*` hooks preserved.
+
+## 2026-11-19T01:55:00Z | Phase 2H | Assignment P2H-VERIFY-FIDELITY-001 | COMPLETE
+- What was verified: full matrix A01–A20 + journeys; commit `0351f04`+ on `atlantic-fidelity` (no push until ship).
+- Evidence: `scripts/verify-fidelity-a01-a20.mjs`, `verify-matrix.json`, `UX-REVIEW.md`.
+
+## 2026-11-19T01:40:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P2-001 | COMPLETE
+- What was built: 2H-4/2H-5 below-fold rhythm, 18px feed/rail type, 1px rules, 296px rail cap; P1 geometry preserved.
+- Branch: `atlantic-fidelity` (no push).
+- Evidence: `p2h-p2-geometry.json`, `home-below-fold-p2-1440.png`, `home-opening-p2-390.png`.
+- FID-M07–M11: see `p2h-p2-geometry.json` `fidStatus`.
+
+## 2026-11-19T01:25:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P1b-001 | COMPLETE
+- What was built: FID-M06 mobile chrome ~102px — compact brand row, slim nav, hide promo @ 390.
+- Branch: `atlantic-fidelity` @ `875af29`+ (no push).
+- Evidence: `ampliyorker-after-p1-390.png`, `p2h-p1-geometry.json` (chromeHeight 101 @ 390).
+- Next: **P2H-BUILD-FIDELITY-P2-001** — 2H-2/2H-4/2H-5 per spec (container polish, rail type, rules); below-fold home bands.
+
+## 2026-11-19T01:10:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P1-001 | COMPLETE
+- What was built: FID-M01–M06 — fused chrome, opening 296/624/296 mosaic, 3:2 lead (624×416), image-first, 1280 container tokens.
+- Branch: `atlantic-fidelity` (no push).
+- Definition-of-done: typecheck + build PASS; `docs/evidence/atlantic-fidelity/` side-by-side + `p2h-p1-geometry.json`.
+- Blocker / next action: verify / phase 2 when authorized.
+
 ## 2026-11-19T00:25:00Z | Phase 2G | Assignment P2G-SHIP-POLISH-001 | COMPLETE
 - What was shipped: pushed `polish-subscribe-account`; opened PR to `main` (no merge).
 - Definition-of-done: PR cites 18/18 + `docs/evidence/polish-fix/`.

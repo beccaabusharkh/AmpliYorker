@@ -36,6 +36,17 @@ function filterForTab(tab: HomeTab) {
   }
 }
 
+function renderOpeningRailCard(item: Article): string {
+  return `
+    <article class="secondary-lead-card opening-rail-card">
+      <a class="secondary-lead-link" href="#/article/${encodeURIComponent(item.id)}">
+        <img class="secondary-lead-thumb" src="${baseUrl}${escapeAttr(item.heroImage?.src ?? "")}" alt="${escapeAttr(getArticleThumbAlt(item))}" loading="lazy" width="592" height="394" />
+        <h2 class="rail-headline">${item.headline}</h2>
+      </a>
+      <p class="secondary-deck">${item.deck}</p>
+    </article>`;
+}
+
 export function renderHomePage(): HTMLElement {
   const article = getFeaturedArticle();
   const secondary = getAllArticles()
@@ -55,47 +66,43 @@ export function renderHomePage(): HTMLElement {
   main.className = "page-main home-editorial";
   const heroSrc = article.heroImage ? `${baseUrl}${article.heroImage.src}` : "";
   const heroAlt = article.heroImage?.alt ?? article.headline;
+  const leftRail = secondary[0];
+  const rightRail = secondary.slice(1, 3);
 
   main.innerHTML = `
     <div class="home-leaderboard-wrap" data-leaderboard-slot></div>
-    <div class="home-editorial-grid">
+    <section class="opening-mosaic" data-opening-mosaic>
+      <div class="opening-rail opening-rail--left" aria-label="Opening stories left">
+        ${leftRail ? renderOpeningRailCard(leftRail) : ""}
+      </div>
+      <section class="home-lead-package opening-lead" data-component="home-lead">
+        ${article.kicker ? `<p class="home-kicker">${article.kicker}</p>` : ""}
+        <div class="lead-grid">
+          <a class="lead-hero-link" href="#/article/${encodeURIComponent(article.id)}" data-lead-link>
+            <img class="lead-hero-image" src="${heroSrc}" alt="${escapeAttr(heroAlt)}" width="1248" height="832" />
+          </a>
+          <div class="lead-copy">
+            <h2 class="lead-headline"><a href="#/article/${encodeURIComponent(article.id)}" data-lead-link>${article.headline}</a></h2>
+            <p class="lead-deck">${article.deck}</p>
+          </div>
+        </div>
+      </section>
+      <div class="opening-rail opening-rail--right" aria-label="Opening stories right">
+        ${rightRail.map((item) => renderOpeningRailCard(item)).join("")}
+      </div>
+    </section>
+    <div class="home-content-grid">
       <div class="home-primary-column">
         ${
           retentionOffer
-            ? `<section class="retention-module home-retention">
+            ? `<section class="retention-module home-retention home-fidelity-band">
           <h3>${retentionCopy.title}</h3>
           <p>${retentionCopy.body}</p>
           <p><a href="#/subscribe" data-retention-sub>View simulated introductory offers</a></p>
         </section>`
             : ""
         }
-        <section class="home-lead-package" data-component="home-lead">
-          ${article.kicker ? `<p class="home-kicker">${article.kicker}</p>` : ""}
-          <div class="lead-grid">
-            <div class="lead-copy">
-              <h2 class="lead-headline"><a href="#/article/${encodeURIComponent(article.id)}" data-lead-link>${article.headline}</a></h2>
-              <p class="lead-deck">${article.deck}</p>
-            </div>
-            <a class="lead-hero-link" href="#/article/${encodeURIComponent(article.id)}" data-lead-link>
-              <img class="lead-hero-image" src="${heroSrc}" alt="${escapeAttr(heroAlt)}" width="1200" height="800" />
-            </a>
-          </div>
-        </section>
-        <div class="home-secondary-leads">
-          ${secondary
-            .map(
-              (item) => `
-            <article class="secondary-lead-card">
-              <a class="secondary-lead-link" href="#/article/${encodeURIComponent(item.id)}">
-                <img class="secondary-lead-thumb" src="${baseUrl}${escapeAttr(item.heroImage?.src ?? "")}" alt="${escapeAttr(getArticleThumbAlt(item))}" loading="lazy" width="800" height="600" />
-                <h3>${item.headline}</h3>
-              </a>
-              <p class="secondary-deck">${item.deck}</p>
-            </article>`,
-            )
-            .join("")}
-        </div>
-        <section class="home-tabbed-feed" data-home-tabs>
+        <section class="home-tabbed-feed home-fidelity-band" data-home-tabs>
           <div role="tablist" aria-label="Home sections" class="home-tablist">
             ${(Object.keys(TAB_LABELS) as HomeTab[])
               .map(
@@ -107,7 +114,7 @@ export function renderHomePage(): HTMLElement {
           <ul class="home-feed-list" data-feed-list role="tabpanel" aria-labelledby="tab-top"></ul>
           <p class="feed-empty" data-feed-empty hidden>No stories in this section yet.</p>
         </section>
-        <section class="home-topic-ribbon">
+        <section class="home-topic-ribbon home-fidelity-band">
           <h3>Topics</h3>
           <div class="topic-chip-row" aria-label="Topics">
             <a href="#/topic/product-analytics">Product Analytics</a>
@@ -117,7 +124,7 @@ export function renderHomePage(): HTMLElement {
         </section>
         ${
           podcastFeature
-            ? `<section class="home-podcast-spotlight podcast-card">
+            ? `<section class="home-podcast-spotlight podcast-card home-fidelity-band">
           <p class="podcast-label">Podcast</p>
           ${
             podcastFeature.heroImage
@@ -129,7 +136,7 @@ export function renderHomePage(): HTMLElement {
         </section>`
             : ""
         }
-        <section class="home-newsletter" id="home-newsletter" data-newsletter>
+        <section class="home-newsletter home-fidelity-band" id="home-newsletter" data-newsletter>
           <h3>The Daily Briefing</h3>
           <p>Simulated newsletter signup — no email is sent.</p>
           <form data-newsletter-form>
@@ -141,11 +148,11 @@ export function renderHomePage(): HTMLElement {
         </section>
       </div>
       <aside class="home-rail" aria-label="Marketplace and latest">
-        <section class="home-sponsored-module sponsored-card" data-sponsored-module>
+        <section class="home-sponsored-module sponsored-card home-fidelity-band" data-sponsored-module>
           <h3>Sponsored insight</h3>
           <p class="sponsored-disclosure">Paid post · Simulated sponsor</p>
         </section>
-        <section class="latest-list">
+        <section class="latest-list home-fidelity-band">
           <h3>${recVariant === "editors_picks" ? "Editor's picks" : "Latest"}</h3>
           <ul data-latest-list></ul>
         </section>
