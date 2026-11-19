@@ -1,6 +1,5 @@
 {
-  "assignment": "P2H-BUILD-FIDELITY-P1b-001",
-  "priorAssignment": "P2H-BUILD-FIDELITY-P1-001",
+  "assignment": "P2H-BUILD-FIDELITY-P1-001",
   "metrics": {
     "390": {
       "gutterLeft": 16,
@@ -31,5 +30,5 @@
       "headlineSize": "38px"
     }
   },
-  "capturedAt": "2026-11-19T00:02:49.479Z"
+  "capturedAt": "2026-11-19T00:03:57.808Z"
 }

@@ -1,3 +1,9 @@
+## 2026-11-19T01:40:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P2-001 | COMPLETE
+- What was built: 2H-4/2H-5 below-fold rhythm, 18px feed/rail type, 1px rules, 296px rail cap; P1 geometry preserved.
+- Branch: `atlantic-fidelity` (no push).
+- Evidence: `p2h-p2-geometry.json`, `home-below-fold-p2-1440.png`, `home-opening-p2-390.png`.
+- FID-M07–M11: see `p2h-p2-geometry.json` `fidStatus`.
+
 ## 2026-11-19T01:25:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P1b-001 | COMPLETE
 - What was built: FID-M06 mobile chrome ~102px — compact brand row, slim nav, hide promo @ 390.
 - Branch: `atlantic-fidelity` @ `875af29`+ (no push).

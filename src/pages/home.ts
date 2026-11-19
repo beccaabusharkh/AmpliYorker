@@ -95,14 +95,14 @@ export function renderHomePage(): HTMLElement {
       <div class="home-primary-column">
         ${
           retentionOffer
-            ? `<section class="retention-module home-retention">
+            ? `<section class="retention-module home-retention home-fidelity-band">
           <h3>${retentionCopy.title}</h3>
           <p>${retentionCopy.body}</p>
           <p><a href="#/subscribe" data-retention-sub>View simulated introductory offers</a></p>
         </section>`
             : ""
         }
-        <section class="home-tabbed-feed" data-home-tabs>
+        <section class="home-tabbed-feed home-fidelity-band" data-home-tabs>
           <div role="tablist" aria-label="Home sections" class="home-tablist">
             ${(Object.keys(TAB_LABELS) as HomeTab[])
               .map(
@@ -114,7 +114,7 @@ export function renderHomePage(): HTMLElement {
           <ul class="home-feed-list" data-feed-list role="tabpanel" aria-labelledby="tab-top"></ul>
           <p class="feed-empty" data-feed-empty hidden>No stories in this section yet.</p>
         </section>
-        <section class="home-topic-ribbon">
+        <section class="home-topic-ribbon home-fidelity-band">
           <h3>Topics</h3>
           <div class="topic-chip-row" aria-label="Topics">
             <a href="#/topic/product-analytics">Product Analytics</a>
@@ -124,7 +124,7 @@ export function renderHomePage(): HTMLElement {
         </section>
         ${
           podcastFeature
-            ? `<section class="home-podcast-spotlight podcast-card">
+            ? `<section class="home-podcast-spotlight podcast-card home-fidelity-band">
           <p class="podcast-label">Podcast</p>
           ${
             podcastFeature.heroImage
@@ -136,7 +136,7 @@ export function renderHomePage(): HTMLElement {
         </section>`
             : ""
         }
-        <section class="home-newsletter" id="home-newsletter" data-newsletter>
+        <section class="home-newsletter home-fidelity-band" id="home-newsletter" data-newsletter>
           <h3>The Daily Briefing</h3>
           <p>Simulated newsletter signup — no email is sent.</p>
           <form data-newsletter-form>
@@ -148,11 +148,11 @@ export function renderHomePage(): HTMLElement {
         </section>
       </div>
       <aside class="home-rail" aria-label="Marketplace and latest">
-        <section class="home-sponsored-module sponsored-card" data-sponsored-module>
+        <section class="home-sponsored-module sponsored-card home-fidelity-band" data-sponsored-module>
           <h3>Sponsored insight</h3>
           <p class="sponsored-disclosure">Paid post · Simulated sponsor</p>
         </section>
-        <section class="latest-list">
+        <section class="latest-list home-fidelity-band">
           <h3>${recVariant === "editors_picks" ? "Editor's picks" : "Latest"}</h3>
           <ul data-latest-list></ul>
         </section>
