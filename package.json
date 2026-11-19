@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:statsig-params": "node --experimental-strip-types scripts/verify-statsig-params-yaml.mts",
-    "test:amplitude-config": "node --experimental-strip-types scripts/verify-amplitude-config.mts"
+    "test:amplitude-config": "node --experimental-strip-types scripts/verify-amplitude-config.mts",
+    "test:statsig-audit": "node --experimental-strip-types scripts/verify-statsig-audit.mts"
   },
   "devDependencies": {
     "typescript": "^5.7.2",
