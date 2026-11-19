@@ -1,16 +1,18 @@
 import { trackDemoEvent } from "../lib/analytics/track";
 import { searchArticles } from "../lib/articles";
+import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash, type Route } from "../lib/router";
 
 export function renderSearchPage(query: string): HTMLElement {
+  const p = getPageParams("search");
   const main = document.createElement("main");
   main.className = "page-main";
 
   if (!query.trim()) {
     main.innerHTML = `
       <section class="search-panel">
-        <h1>Search Amplitude Daily</h1>
-        <p class="search-guidance">Enter a headline or keyword in the header search field to see matching articles.</p>
+        <h1>${p.empty_query_title}</h1>
+        <p class="search-guidance">${p.empty_query_guidance}</p>
       </section>
     `;
     return main;
@@ -26,8 +28,8 @@ export function renderSearchPage(query: string): HTMLElement {
   if (results.length === 0) {
     main.innerHTML = `
       <section class="search-panel">
-        <h1>Search results</h1>
-        <p class="search-empty">No articles match <strong>${escapeHtml(query)}</strong>. Try another keyword such as “retention” or “experiment”.</p>
+        <h1>${p.empty_results_title}</h1>
+        <p class="search-empty">${p.no_results_template.replace("…", `<strong>${escapeHtml(query)}</strong>`)}</p>
       </section>
     `;
     return main;
@@ -46,7 +48,7 @@ export function renderSearchPage(query: string): HTMLElement {
 
   main.innerHTML = `
     <section class="search-panel">
-      <h1>Search results for “${escapeHtml(query)}”</h1>
+      <h1>${p.results_title_prefix} “${escapeHtml(query)}”</h1>
       <ul class="search-results">${items}</ul>
     </section>
   `;

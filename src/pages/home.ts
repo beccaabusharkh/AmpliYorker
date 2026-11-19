@@ -6,21 +6,13 @@ import {
   formatTopicLabel,
   type Article,
 } from "../lib/articles";
-import { RETENTION_COPY } from "../lib/statsig/catalog";
-import { getHomeRecommendationVariant, getRetentionTreatmentVariant } from "../lib/statsig/evaluate";
+import { getPageParams } from "../lib/statsig/page-params";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { shouldShowRetentionOffer } from "../lib/session";
 import { navigateToHash } from "../lib/router";
 import { baseUrl } from "../lib/paths";
 
 type HomeTab = "top" | "product-analytics" | "experimentation" | "podcasts";
-
-const TAB_LABELS: Record<HomeTab, string> = {
-  top: "Top Stories",
-  "product-analytics": "Product Analytics",
-  experimentation: "Experimentation",
-  podcasts: "Podcasts",
-};
 
 function filterForTab(tab: HomeTab) {
   const all = getAllArticles().filter((item) => !item.sponsored);
@@ -48,19 +40,19 @@ function renderOpeningRailCard(item: Article): string {
 }
 
 export function renderHomePage(): HTMLElement {
+  const p = getPageParams("home");
   const article = getFeaturedArticle();
   const secondary = getAllArticles()
     .filter((item) => item.id !== article.id && !item.sponsored)
-    .slice(0, 3);
+    .slice(0, p.secondary_lead_count);
   const sponsoredStories = getAllArticles().filter((item) => item.sponsored);
   const podcastFeature =
     getAllArticles().find((item) => item.podcast && item.id !== article.id) ??
     getAllArticles().find((item) => item.podcast);
 
-  const recVariant = getHomeRecommendationVariant("home-latest");
+  const tabLabels = p.tab_labels as Record<HomeTab, string>;
+  const recVariant = p.home_recommendation_variant === "editors_picks" ? "editors_picks" : "control";
   const retentionOffer = shouldShowRetentionOffer();
-  const retentionVariant = getRetentionTreatmentVariant("home-retention");
-  const retentionCopy = RETENTION_COPY[retentionVariant];
 
   const main = document.createElement("main");
   main.className = "page-main home-editorial";
@@ -96,26 +88,26 @@ export function renderHomePage(): HTMLElement {
         ${
           retentionOffer
             ? `<section class="retention-module home-retention home-fidelity-band">
-          <h3>${retentionCopy.title}</h3>
-          <p>${retentionCopy.body}</p>
-          <p><a href="#/subscribe" data-retention-sub>View simulated introductory offers</a></p>
+          <h3>${p.retention_title}</h3>
+          <p>${p.retention_body}</p>
+          <p><a href="#/subscribe" data-retention-sub>${p.retention_cta_text}</a></p>
         </section>`
             : ""
         }
         <section class="home-tabbed-feed home-fidelity-band" data-home-tabs>
           <div role="tablist" aria-label="Home sections" class="home-tablist">
-            ${(Object.keys(TAB_LABELS) as HomeTab[])
+            ${(Object.keys(tabLabels) as HomeTab[])
               .map(
                 (key) =>
-                  `<button type="button" role="tab" data-tab="${key}" aria-selected="${key === "top" ? "true" : "false"}" id="tab-${key}">${TAB_LABELS[key]}</button>`,
+                  `<button type="button" role="tab" data-tab="${key}" aria-selected="${key === p.default_tab ? "true" : "false"}" id="tab-${key}">${tabLabels[key]}</button>`,
               )
               .join("")}
           </div>
           <ul class="home-feed-list" data-feed-list role="tabpanel" aria-labelledby="tab-top"></ul>
-          <p class="feed-empty" data-feed-empty hidden>No stories in this section yet.</p>
+          <p class="feed-empty" data-feed-empty hidden>${p.feed_empty_message}</p>
         </section>
         <section class="home-topic-ribbon home-fidelity-band">
-          <h3>Topics</h3>
+          <h3>${p.topics_heading}</h3>
           <div class="topic-chip-row" aria-label="Topics">
             <a href="#/topic/product-analytics">Product Analytics</a>
             <a href="#/topic/experimentation">Experimentation</a>
@@ -125,7 +117,7 @@ export function renderHomePage(): HTMLElement {
         ${
           podcastFeature
             ? `<section class="home-podcast-spotlight podcast-card home-fidelity-band">
-          <p class="podcast-label">Podcast</p>
+          <p class="podcast-label">${p.podcast_spotlight_label}</p>
           ${
             podcastFeature.heroImage
               ? `<a href="#/article/${encodeURIComponent(podcastFeature.id)}"><img class="podcast-spotlight-thumb" src="${baseUrl}${escapeAttr(podcastFeature.heroImage.src)}" alt="${escapeAttr(getArticleThumbAlt(podcastFeature))}" loading="lazy" width="800" height="600" /></a>`
@@ -137,23 +129,23 @@ export function renderHomePage(): HTMLElement {
             : ""
         }
         <section class="home-newsletter home-fidelity-band" id="home-newsletter" data-newsletter>
-          <h3>The Daily Briefing</h3>
-          <p>Simulated newsletter signup — no email is sent.</p>
+          <h3>${p.newsletter_title}</h3>
+          <p>${p.newsletter_subcopy}</p>
           <form data-newsletter-form>
-            <label for="newsletter-email">Work email</label>
-            <input id="newsletter-email" type="email" name="email" placeholder="you@company.com" />
-            <button type="submit">Sign up</button>
+            <label for="newsletter-email">${p.newsletter_email_label}</label>
+            <input id="newsletter-email" type="email" name="email" placeholder="${escapeAttr(p.newsletter_placeholder)}" />
+            <button type="submit">${p.newsletter_submit_label}</button>
           </form>
-          <p class="newsletter-success" data-newsletter-success hidden>Simulated signup — no email sent</p>
+          <p class="newsletter-success" data-newsletter-success hidden>${p.newsletter_success_message}</p>
         </section>
       </div>
       <aside class="home-rail" aria-label="Marketplace and latest">
         <section class="home-sponsored-module sponsored-card home-fidelity-band" data-sponsored-module>
-          <h3>Sponsored insight</h3>
-          <p class="sponsored-disclosure">Paid post · Simulated sponsor</p>
+          <h3>${p.sponsored_module_title}</h3>
+          <p class="sponsored-disclosure">${p.sponsored_disclosure}</p>
         </section>
         <section class="latest-list home-fidelity-band">
-          <h3>${recVariant === "editors_picks" ? "Editor's picks" : "Latest"}</h3>
+          <h3>${recVariant === "editors_picks" ? p.editors_picks_rail_heading : p.latest_rail_heading}</h3>
           <ul data-latest-list></ul>
         </section>
         <div class="home-rail-ad-slot" data-rail-ad-slot></div>
@@ -190,7 +182,7 @@ export function renderHomePage(): HTMLElement {
       }
       <h4 class="sponsored-offer-card__title"><a href="${articleHref}">${featured.headline}</a></h4>
       <p class="sponsored-offer-card__deck">${featured.deck}</p>
-      <a class="sponsored-offer-card__cta" href="${articleHref}">Read the partner briefing</a>
+      <a class="sponsored-offer-card__cta" href="${articleHref}">${p.sponsored_cta_label}</a>
     `;
     sponsoredModule.append(offer);
   }
@@ -204,14 +196,14 @@ export function renderHomePage(): HTMLElement {
   const latestList = main.querySelector("[data-latest-list]");
   getAllArticles()
     .filter((item) => !item.sponsored)
-    .slice(0, 6)
+    .slice(0, p.latest_list_limit)
     .forEach((item) => {
       const li = document.createElement("li");
       li.innerHTML = `<a href="#/article/${encodeURIComponent(item.id)}">${item.headline}</a><span>${item.publishedAt}</span>`;
       latestList?.append(li);
     });
 
-  let activeTab: HomeTab = "top";
+  let activeTab: HomeTab = (p.default_tab as HomeTab) ?? "top";
   const renderFeed = (): void => {
     const items = filterForTab(activeTab);
     const list = main.querySelector("[data-feed-list]");
@@ -220,7 +212,7 @@ export function renderHomePage(): HTMLElement {
       return;
     }
     list.innerHTML = items
-      .slice(0, 8)
+      .slice(0, p.feed_item_limit)
       .map((item, index) => renderFeedRow(item, index))
       .join("");
     if (empty instanceof HTMLElement) {
@@ -243,7 +235,7 @@ export function renderHomePage(): HTMLElement {
       if (!(event instanceof KeyboardEvent)) {
         return;
       }
-      const keys = Object.keys(TAB_LABELS) as HomeTab[];
+      const keys = Object.keys(tabLabels) as HomeTab[];
       const idx = keys.indexOf(activeTab);
       if (event.key === "ArrowRight") {
         activeTab = keys[(idx + 1) % keys.length];
