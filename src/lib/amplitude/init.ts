@@ -18,6 +18,8 @@ const MASK_SELECTORS = [
   "#bill-email",
   "#bill-card",
   "#newsletter-email",
+  "#login-password",
+  "#reg-password",
   ".discovery-chat",
   ".account-support-chat",
   "[data-chat-transcript]",

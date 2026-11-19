@@ -1,4 +1,4 @@
-import { getPersonaById, type Persona } from "./personas";
+import { getPersonaById, resolvePersonaIdForEmail, type Persona } from "./personas";
 import { getPlanById } from "./plans";
 
 export const SESSION_STORAGE_KEY = "ampli-daily-session";
@@ -139,18 +139,41 @@ export function hasActiveSubscription(): boolean {
   return effectiveNow <= new Date(renewal);
 }
 
-export function loginWithPersona(personaId: string): SessionState {
+export function normalizeLoginEmail(email: string): string {
+  return email.trim().toLowerCase();
+}
+
+/** Demo-only: any non-empty password is accepted; not validated against a server. */
+export function isDemoPasswordValid(password: string): boolean {
+  return password.trim().length > 0;
+}
+
+export function loginWithCredentials(
+  email: string,
+  password: string,
+  options?: { displayName?: string },
+): SessionState | null {
+  if (!isDemoPasswordValid(password)) {
+    return null;
+  }
+  const normalizedEmail = normalizeLoginEmail(email);
+  if (!normalizedEmail.includes("@")) {
+    return null;
+  }
+  const personaId = resolvePersonaIdForEmail(normalizedEmail);
   const persona = getPersonaById(personaId);
   if (!persona || persona.id === "anonymous") {
-    return loadSession();
+    return null;
   }
+  const displayName =
+    options?.displayName?.trim() || persona.presetDisplayName || persona.label;
   return updateSession((state) => {
     const next: SessionState = {
       ...state,
       activePersonaId: persona.id,
-      loggedInUserId: persona.id,
-      displayName: persona.presetDisplayName ?? persona.label,
-      email: persona.presetEmail ?? `${persona.id}@ampliyorker.test`,
+      loggedInUserId: normalizedEmail,
+      displayName,
+      email: normalizedEmail,
       subscription: { ...state.subscription },
       engagement: { ...state.engagement },
     };
@@ -163,8 +186,8 @@ export function loginWithPersona(personaId: string): SessionState {
     }
     next.billingProfile = {
       ...next.billingProfile,
-      name: next.displayName ?? next.billingProfile.name,
-      email: next.email ?? next.billingProfile.email,
+      name: displayName,
+      email: normalizedEmail,
     };
     return next;
   });

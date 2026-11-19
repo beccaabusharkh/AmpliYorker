@@ -23,3 +23,14 @@ export function getRegisteredReaderPersona(): Persona {
   }
   return persona;
 }
+
+/** Maps a normalized login email to a demo preset (subscription/engagement seeds). */
+export function resolvePersonaIdForEmail(normalizedEmail: string): string {
+  const match = personas.find(
+    (persona) =>
+      persona.id !== "anonymous" &&
+      persona.presetEmail &&
+      persona.presetEmail.trim().toLowerCase() === normalizedEmail,
+  );
+  return match?.id ?? "registered-reader";
+}
