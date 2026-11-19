@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** COMPLETE (awaiting Planner push authorization)
+**Status:** SHIPPED (PR open; await merge approval)
 **assignment_id:** P6-WEB-EXP-SCRIPT-001
 **Branch:** `cursor/web-experiment-script-93b2`
 **Builder agent ID:** bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2
