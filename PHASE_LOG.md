@@ -1,3 +1,9 @@
+## 2026-11-19T01:25:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P1b-001 | COMPLETE
+- What was built: FID-M06 mobile chrome ~102px — compact brand row, slim nav, hide promo @ 390.
+- Branch: `atlantic-fidelity` @ `875af29`+ (no push).
+- Evidence: `ampliyorker-after-p1-390.png`, `p2h-p1-geometry.json` (chromeHeight 101 @ 390).
+- Next: **P2H-BUILD-FIDELITY-P2-001** — 2H-2/2H-4/2H-5 per spec (container polish, rail type, rules); below-fold home bands.
+
 ## 2026-11-19T01:10:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P1-001 | COMPLETE
 - What was built: FID-M01–M06 — fused chrome, opening 296/624/296 mosaic, 3:2 lead (624×416), image-first, 1280 container tokens.
 - Branch: `atlantic-fidelity` (no push).

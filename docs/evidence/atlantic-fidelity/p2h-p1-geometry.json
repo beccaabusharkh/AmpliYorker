@@ -1,5 +1,6 @@
 {
-  "assignment": "P2H-BUILD-FIDELITY-P1-001",
+  "assignment": "P2H-BUILD-FIDELITY-P1b-001",
+  "priorAssignment": "P2H-BUILD-FIDELITY-P1-001",
   "metrics": {
     "390": {
       "gutterLeft": 16,
@@ -9,7 +10,9 @@
         "h": 239,
         "aspect": 1.497907949790795
       },
-      "chromeHeight": 187,
+      "chromeHeight": 101,
+      "headerHeightToPromo": 101,
+      "promoVisible": false,
       "imageBeforeHeadline": true,
       "headlineSize": "32px"
     },
@@ -22,9 +25,11 @@
         "aspect": 1.5
       },
       "chromeHeight": 155,
+      "headerHeightToPromo": 215,
+      "promoVisible": true,
       "imageBeforeHeadline": true,
       "headlineSize": "38px"
     }
   },
-  "capturedAt": "2026-11-18T23:59:56.044Z"
+  "capturedAt": "2026-11-19T00:02:49.479Z"
 }

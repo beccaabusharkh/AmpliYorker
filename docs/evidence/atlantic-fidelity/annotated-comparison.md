@@ -79,7 +79,7 @@ After opening-mosaic + fused chrome on `atlantic-fidelity` — see `docs/evidenc
 | FID-M03 topology | 296/624/296 | `data-opening-mosaic` 3-column @ ≥769 |
 | FID-M04 lead image | 624×416 3:2 | `leadImage` bbox |
 | FID-M05 mobile order | image-first | `imageBeforeHeadline` |
-| FID-M06 mobile chrome | ≤120px (+ slim promo) | `chromeHeight` @ 390 |
+| FID-M06 mobile chrome | ≤120px (+ slim promo) | **101px** chrome @ 390 (P1b); promo hidden |
 
 ---
 

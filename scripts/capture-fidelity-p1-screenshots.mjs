@@ -37,11 +37,18 @@ for (const vp of [
     const gr = grid?.getBoundingClientRect();
     const lr = leadImg?.getBoundingClientRect();
     const cr = chrome?.getBoundingClientRect();
+    const header = document.querySelector(".site-header--fidelity");
+    const promo = document.querySelector("[data-subscribe-promo]");
+    const hr = header?.getBoundingClientRect();
+    const pr = promo?.getBoundingClientRect();
+    const promoVisible = promo ? getComputedStyle(promo).display !== "none" : false;
     return {
       gutterLeft: gr?.left,
       gridWidth: gr?.width,
       leadImage: lr ? { w: lr.width, h: lr.height, aspect: lr.width / lr.height } : null,
       chromeHeight: cr?.height,
+      headerHeightToPromo: promoVisible && pr ? pr.bottom - (hr?.top ?? 0) : hr?.height,
+      promoVisible,
       imageBeforeHeadline: (leadImg?.getBoundingClientRect().top ?? 1) < (leadH?.getBoundingClientRect().top ?? 0),
       headlineSize: leadH ? getComputedStyle(leadH).fontSize : null,
     };
