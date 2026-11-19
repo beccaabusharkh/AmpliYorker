@@ -1,3 +1,7 @@
+## 2026-11-19T04:50:00Z | Phase 6 | Assignment P6-WEB-EXP-SCRIPT-001 | COMPLETE (branch only)
+- Web Experiment standalone CDN in `index.html` via Vite transform; `.env.example` note; evidence `web-experiment-cdn-script.md`.
+- Branch `cursor/web-experiment-script-93b2` — no push.
+
 ## 2026-11-19T04:12:00Z | Phase 6 | Assignment P6-FINAL-QA-MERGE-001 | COMPLETE
 - Squash-merged **PR #17** → `main` @ **`f38489e80ba3e55a31afcf70fc6dced1311e4ec6`**.
 - Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44456517816 — **success**.
