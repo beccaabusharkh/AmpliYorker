@@ -1,8 +1,10 @@
 import { trackDemoEvent } from "../lib/analytics/track";
 import { formatTopicLabel, getArticlesByTopic } from "../lib/articles";
+import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash } from "../lib/router";
 
 export function renderTopicPage(slug: string): HTMLElement {
+  const p = getPageParams("topic");
   const main = document.createElement("main");
   main.className = "page-main";
   const articles = getArticlesByTopic(slug);
@@ -10,9 +12,9 @@ export function renderTopicPage(slug: string): HTMLElement {
   if (articles.length === 0) {
     main.innerHTML = `
       <section class="listing-panel">
-        <h1>Topic not found</h1>
-        <p>No articles are tagged with this topic.</p>
-        <p><a href="#/" data-home-link>Return home</a></p>
+        <h1>${p.not_found_title}</h1>
+        <p>${p.not_found_body}</p>
+        <p><a href="#/" data-home-link>${p.return_home_label}</a></p>
       </section>
     `;
   } else {

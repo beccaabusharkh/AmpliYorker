@@ -1,0 +1,474 @@
+# AmpliYorker page parameters — mirrors Statsig param stores (console entities pending MCP write)
+version: 1
+project: AmpliYorker [BAS]
+pages:
+  home:
+    layer: home_layer
+    store: home_params
+    parameters:
+      tab_labels:
+        type: object
+        default: |
+          {"top":"Top Stories","product-analytics":"Product Analytics","experimentation":"Experimentation","podcasts":"Podcasts"}
+      default_tab:
+        type: string
+        default: top
+      feed_item_limit:
+        type: number
+        default: 8
+      latest_list_limit:
+        type: number
+        default: 6
+      secondary_lead_count:
+        type: number
+        default: 3
+      feed_empty_message:
+        type: string
+        default: No stories in this section yet.
+      topics_heading:
+        type: string
+        default: Topics
+      podcast_spotlight_label:
+        type: string
+        default: Podcast
+      newsletter_title:
+        type: string
+        default: The Daily Briefing
+      newsletter_subcopy:
+        type: string
+        default: "Simulated newsletter signup — no email is sent."
+      newsletter_email_label:
+        type: string
+        default: Work email
+      newsletter_placeholder:
+        type: string
+        default: you@company.com
+      newsletter_submit_label:
+        type: string
+        default: Sign up
+      newsletter_success_message:
+        type: string
+        default: "Simulated signup — no email sent"
+      sponsored_module_title:
+        type: string
+        default: Sponsored insight
+      sponsored_disclosure:
+        type: string
+        default: Paid post · Simulated sponsor
+      sponsored_cta_label:
+        type: string
+        default: Read the partner briefing
+      latest_rail_heading:
+        type: string
+        default: Latest
+      editors_picks_rail_heading:
+        type: string
+        default: "Editor's picks"
+      home_recommendation_variant:
+        type: string
+        default: control
+      retention_title:
+        type: string
+        default: Simulated renewal reminder
+      retention_body:
+        type: string
+        default: "We noticed lighter reading lately — here's an introductory-style offer if you resubscribe."
+      retention_cta_text:
+        type: string
+        default: View simulated introductory offers
+      retention_articles_read_max:
+        type: number
+        default: 3
+      retention_days_since_visit_min:
+        type: number
+        default: 7
+  article:
+    layer: article_layer
+    store: article_params
+    parameters:
+      not_found_title:
+        type: string
+        default: Article not found
+      not_found_body:
+        type: string
+        default: This article is not in the demo corpus.
+      return_home_label:
+        type: string
+        default: Return home
+      default_preview_paragraphs:
+        type: number
+        default: 2
+      premium_paywall_scroll_enabled:
+        type: boolean
+        default: false
+      paywall_scroll_threshold_px:
+        type: number
+        default: 48
+      paywall_message_logged_out:
+        type: string
+        default: "Simulated paywall — register or log in, then subscribe to read this premium brief."
+      paywall_message_subscribe_control:
+        type: string
+        default: "Simulated paywall — choose a plan and complete simulated checkout to unlock."
+      paywall_message_subscribe_urgency:
+        type: string
+        default: "Limited-time reader offer — unlock premium briefs now to keep your experiment evaluation streak."
+      paywall_message_canceled:
+        type: string
+        default: "Simulated paywall — subscription canceled; resubscribe to regain access."
+      paywall_message_expired:
+        type: string
+        default: "Simulated paywall — subscription expired. Renew on Account or advance demo time."
+      paywall_login_label:
+        type: string
+        default: Log in
+      paywall_subscribe_label:
+        type: string
+        default: Subscribe
+      narrated_section_label:
+        type: string
+        default: Listen to this article
+      save_article_label:
+        type: string
+        default: Save article
+      saved_article_label:
+        type: string
+        default: Saved
+      premium_badge_subscriber:
+        type: string
+        default: Premium · subscriber access
+      premium_badge_preview:
+        type: string
+        default: Premium · preview
+      recommendations_heading:
+        type: string
+        default: More for you
+      article_end_signoff:
+        type: string
+        default: "You've reached the end of this article."
+  search:
+    layer: search_layer
+    store: search_params
+    parameters:
+      empty_query_title:
+        type: string
+        default: Search Amplitude Daily
+      empty_query_guidance:
+        type: string
+        default: Enter a headline or keyword in the header search field to see matching articles.
+      results_title_prefix:
+        type: string
+        default: Search results for
+      no_results_template:
+        type: string
+        default: No articles match … Try another keyword such as "retention" or "experiment".
+      empty_results_title:
+        type: string
+        default: Search results
+  topic:
+    layer: topic_layer
+    store: topic_params
+    parameters:
+      not_found_title:
+        type: string
+        default: Topic not found
+      not_found_body:
+        type: string
+        default: No articles are tagged with this topic.
+      return_home_label:
+        type: string
+        default: Return home
+  author:
+    layer: author_layer
+    store: author_params
+    parameters:
+      not_found_title:
+        type: string
+        default: Author not found
+      not_found_body:
+        type: string
+        default: No articles are attributed to this author.
+      return_home_label:
+        type: string
+        default: Return home
+      follow_button_label:
+        type: string
+        default: Follow writer
+      following_button_label:
+        type: string
+        default: Following
+  account_register:
+    layer: account_register_layer
+    store: account_register_params
+    parameters:
+      page_title:
+        type: string
+        default: Create account
+      simulation_disclosure:
+        type: string
+        default: "Simulated registration — your typed email becomes the analytics user id. Password is cosmetic only."
+      display_name_label:
+        type: string
+        default: Display name
+      default_display_name:
+        type: string
+        default: Demo Reader
+      email_label:
+        type: string
+        default: Email
+      default_email:
+        type: string
+        default: reader-demo@ampliyorker.test
+      password_label:
+        type: string
+        default: Password (demo)
+      password_hint:
+        type: string
+        default: "Any non-empty password works. Preset emails map to demo engagement profiles (e.g. lapsed@ampliyorker.test)."
+      submit_label:
+        type: string
+        default: Create account
+      login_prompt:
+        type: string
+        default: Already registered?
+      login_link_label:
+        type: string
+        default: Log in
+  account_login:
+    layer: account_login_layer
+    store: account_login_params
+    parameters:
+      page_title:
+        type: string
+        default: Log in
+      simulation_disclosure:
+        type: string
+        default: "Simulated sign-in — analytics identity is your email. Password is cosmetic (try demo or any non-empty value)."
+      email_label:
+        type: string
+        default: Email
+      password_label:
+        type: string
+        default: Password (demo)
+      password_hint:
+        type: string
+        default: Not sent anywhere — required for UX only.
+      submit_label:
+        type: string
+        default: Continue
+      register_prompt:
+        type: string
+        default: New here?
+      register_link_label:
+        type: string
+        default: Create account
+  account:
+    layer: account_layer
+    store: account_params
+    parameters:
+      gate_title:
+        type: string
+        default: Account
+      gate_copy:
+        type: string
+        default: Sign in to manage your subscription and saved stories.
+      dashboard_title:
+        type: string
+        default: Your account
+      signed_in_template:
+        type: string
+        default: Signed in as {name}.
+      subscribe_primary_cta:
+        type: string
+        default: Subscribe
+      logout_label:
+        type: string
+        default: Log out
+      retention_title:
+        type: string
+        default: Simulated renewal reminder
+      retention_body:
+        type: string
+        default: "We noticed lighter reading lately — here's an introductory-style offer if you resubscribe."
+      retention_subscribe_link:
+        type: string
+        default: View subscription options
+      billing_section_title:
+        type: string
+        default: Billing profile
+      plan_section_title:
+        type: string
+        default: Change plan
+      cancel_summary:
+        type: string
+        default: Cancel subscription
+      devices_summary:
+        type: string
+        default: Device & export
+      demo_controls_summary:
+        type: string
+        default: Demo controls (simulated)
+      retention_treatment_variant:
+        type: string
+        default: control
+  subscribe:
+    layer: subscribe_layer
+    store: subscribe_params
+    parameters:
+      gate_title:
+        type: string
+        default: Subscribe
+      gate_copy:
+        type: string
+        default: Choose a subscription after you sign in.
+      page_title:
+        type: string
+        default: Choose your subscription
+      page_deck:
+        type: string
+        default: Unlimited access to every story, briefing, and field note in Amplitude Daily.
+      recommended_plan_badge:
+        type: string
+        default: Recommended
+      intro_offer_badge_prefix:
+        type: string
+        default: Statsig treatment · 
+      intro_cta_label:
+        type: string
+        default: Start with introductory offer
+      standard_cta_label:
+        type: string
+        default: Continue at standard price
+      subscription_offer_variant:
+        type: string
+        default: control
+      recommended_plan_id:
+        type: string
+        default: annual
+  checkout:
+    layer: checkout_layer
+    store: checkout_params
+    parameters:
+      missing_state_title:
+        type: string
+        default: Checkout
+      missing_state_body:
+        type: string
+        default: Select a plan on Subscribe first.
+      page_title:
+        type: string
+        default: Simulated checkout
+      simulation_disclosure:
+        type: string
+        default: "Simulated payment — preset values only; nothing is charged."
+      preset_cardholder_name:
+        type: string
+        default: Demo Reader
+      preset_card_number:
+        type: string
+        default: 4242 4242 4242 4242
+      preset_card_expiry:
+        type: string
+        default: 12/30
+      submit_label:
+        type: string
+        default: Submit simulated payment
+      trial_days_on_intro:
+        type: number
+        default: 7
+  checkout_confirmation:
+    layer: checkout_confirmation_layer
+    store: checkout_confirmation_params
+    parameters:
+      page_title:
+        type: string
+        default: Simulated confirmation
+      simulation_disclosure:
+        type: string
+        default: "Simulated payment succeeded — subscription stored in local browser state only."
+      active_subscriber_template:
+        type: string
+        default: Active subscriber
+      intro_applied_note:
+        type: string
+        default: Introductory offer applied (simulated).
+      premium_article_link_label:
+        type: string
+        default: Open premium article
+      account_hub_link_label:
+        type: string
+        default: Account hub
+      inactive_body:
+        type: string
+        default: No active subscription in local state. Complete checkout from Subscribe.
+  not_found:
+    layer: not_found_layer
+    store: not_found_params
+    parameters:
+      page_title:
+        type: string
+        default: Page not found
+      body_copy:
+        type: string
+        default: That hash route is not implemented yet.
+      home_link_label:
+        type: string
+        default: Go to Amplitude Daily home
+  shell:
+    layer: shell_layer
+    store: shell_params
+    parameters:
+      skip_link_label:
+        type: string
+        default: Skip to main content
+      site_name:
+        type: string
+        default: Amplitude Daily
+      masthead_tagline:
+        type: string
+        default: Independent reporting on product analytics and experimentation
+      edition_label_prefix:
+        type: string
+        default: "Today's edition ·"
+      promo_band_copy:
+        type: string
+        default: "Subscribe for full access to Amplitude Daily — plans from $12/month."
+      promo_band_cta:
+        type: string
+        default: Subscribe
+      newsletter_utility_link:
+        type: string
+        default: Newsletter
+      search_placeholder:
+        type: string
+        default: Search headlines…
+      search_submit_label:
+        type: string
+        default: Search
+      section_nav_links:
+        type: array
+        default: |
+          [{"href":"#/","label":"Home"},{"href":"#/topic/product-analytics","label":"Product Analytics"},{"href":"#/topic/experimentation","label":"Experimentation"},{"href":"#/topic/podcast","label":"Podcasts"},{"href":"#/subscribe","label":"Subscribe"}]
+      footer_disclosure:
+        type: string
+        default: © {year} Amplitude Daily · Fictional demo publication · Simulated accounts, payments, and advertising
+  discovery_chat:
+    layer: discovery_chat_layer
+    store: discovery_chat_params
+    parameters:
+      panel_title:
+        type: string
+        default: Ask the Daily
+      panel_subtitle:
+        type: string
+        default: How can we help you explore the demo?
+      disclosure:
+        type: string
+        default: "Scripted assistant for this demo — no live AI. Answers come from local FAQ rules."
+      suggested_prompts:
+        type: array
+        default: |
+          ["Search tips","Premium access","Newsletter signup","Sponsored content"]
+      input_placeholder:
+        type: string
+        default: What should I read about retention?

@@ -1,21 +1,22 @@
 import { plans, getPlanById } from "../lib/plans";
 import { getBillingPeriod, getPlanAmountUsd } from "../lib/plan-pricing";
 import { getPlanFeatureBullets, SUBSCRIBE_PLAN_ORDER } from "../lib/subscribe-ui";
-import { getSubscriptionOfferVariant } from "../lib/statsig/evaluate";
+import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash } from "../lib/router";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { getOrCreateCheckoutId } from "../lib/analytics/checkout";
 import { isLoggedIn, setPendingCheckout } from "../lib/session";
 
 export function renderSubscribePage(): HTMLElement {
+  const p = getPageParams("subscribe");
   const main = document.createElement("main");
   main.className = "page-main account-page";
 
   if (!isLoggedIn()) {
     main.innerHTML = `
       <section class="form-panel account-surface">
-        <h1>Subscribe</h1>
-        <p class="account-gate-copy">Choose a subscription after you sign in.</p>
+        <h1>${p.gate_title}</h1>
+        <p class="account-gate-copy">${p.gate_copy}</p>
         <p>
           <a href="#/account/login" data-login-link>Log in</a>
           · <a href="#/account/register" data-register-link>Create account</a>
@@ -26,26 +27,26 @@ export function renderSubscribePage(): HTMLElement {
     return main;
   }
 
-  const offerVariant = getSubscriptionOfferVariant("subscribe-page");
+  const offerVariant = p.subscription_offer_variant === "intro_badge" ? "intro_badge" : "control";
   const orderedPlans = SUBSCRIBE_PLAN_ORDER.map((id) => getPlanById(id)).filter(
     (plan): plan is NonNullable<typeof plan> => plan != null,
   );
 
   const cards = orderedPlans
     .map((plan) => {
-      const recommended = plan.id === "annual";
+      const recommended = plan.id === p.recommended_plan_id;
       const features = getPlanFeatureBullets(plan.id)
         .map((line) => `<li>${line}</li>`)
         .join("");
       return `
       <article class="plan-card${recommended ? " plan-card--recommended" : ""}" data-plan-card="${plan.id}">
-        ${recommended ? `<p class="plan-card__badge">Recommended</p>` : ""}
+        ${recommended ? `<p class="plan-card__badge">${p.recommended_plan_badge}</p>` : ""}
         <h2>${plan.name}</h2>
         <p class="plan-card__price">${plan.priceLabel}</p>
-        <p class="intro-offer">${offerVariant === "intro_badge" ? "Statsig treatment · " : ""}${plan.introOfferLabel}</p>
+        <p class="intro-offer">${offerVariant === "intro_badge" ? p.intro_offer_badge_prefix : ""}${plan.introOfferLabel}</p>
         <ul class="plan-card__features">${features}</ul>
-        <button type="button" data-select-plan="${plan.id}" data-intro="true">Start with introductory offer</button>
-        <button type="button" class="secondary-button" data-select-plan="${plan.id}" data-intro="false">Continue at standard price</button>
+        <button type="button" data-select-plan data-precision-event data-plan-id="${plan.id}" data-intro="true">${p.intro_cta_label}</button>
+        <button type="button" class="secondary-button" data-select-plan data-precision-event data-plan-id="${plan.id}" data-intro="false">${p.standard_cta_label}</button>
       </article>
     `;
     })
@@ -53,15 +54,15 @@ export function renderSubscribePage(): HTMLElement {
 
   main.innerHTML = `
     <section class="form-panel account-surface account-surface--wide">
-      <h1>Choose your subscription</h1>
-      <p class="subscribe-deck">Unlimited access to every story, briefing, and field note in Amplitude Daily.</p>
+      <h1>${p.page_title}</h1>
+      <p class="subscribe-deck">${p.page_deck}</p>
       <div class="plan-grid plan-grid--three">${cards}</div>
     </section>
   `;
 
   main.querySelectorAll("[data-select-plan]").forEach((button) => {
     button.addEventListener("click", () => {
-      const planId = button.getAttribute("data-select-plan");
+      const planId = button.getAttribute("data-plan-id");
       const intro = button.getAttribute("data-intro") === "true";
       if (planId && plans.some((p) => p.id === planId)) {
         setPendingCheckout(planId, intro);

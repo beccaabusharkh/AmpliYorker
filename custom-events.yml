@@ -9,10 +9,15 @@ conventions:
   currency: "USD"
   revenue: "revenue_usd is a number in dollars; forward as revenue only for carries_revenue events."
   simulation: "Exclude seeded history and forced experiment traffic from live experiment conclusions."
+  statsig_mirror: "Each wired event also logs to Statsig as snake_case only (e.g. read_article) via trackStatsigMirror. Reserve auto_capture:: for Web Analytics plugin only (page_view, clicks)."
+  statsig_exposures: "All SDK evaluations (gates, experiments, parameter stores) log exposures to Statsig; sessionStorage inspector is a deduped demo mirror labeled vs server logs."
+  statsig_identity: "Statsig userID = reader_id ?? anonymous_id; customIDs.amplitude_device_id mirrors Amplitude device_id; custom.account_state uses resolveAccountState()."
   privacy: "Exclude passwords, payment details, email addresses, raw search queries, and free-text chat or survey responses."
   reading: "content_progress_percent measures content position reached, not proof that every preceding word was read."
-  excluded_autocapture: ["Page Views", "Element Clicks", "Raw Form Interactions", "Raw Scroll Events"]
-  implementation_notes: ["Adding to cart persists the selected subscription offer in the checkout draft; no separate cart page is required.", "Record money only on Subscription Payment Completed and Ad Revenue Recorded.", "Checkout, activation, trial conversion, and renewal events must not duplicate revenue.", "Read Article replaces Article Reading Started, Article Reading Completed, and Reading Resumed."]
+  excluded_autocapture: ["Raw Form Interactions", "Raw Scroll Events", "File Downloads"]
+  selective_autocapture: ["[Amplitude] Page Viewed (hash routes)", "[Amplitude] Element Clicked", "[Amplitude] Element Changed on non-precision controls only"]
+  agent_analytics: "Parallel `[Agent] User Message` / `[Agent] AI Response` / `[Agent] Session End` on Ask the Daily + account support (metadata-only; no message text). Product chat events unchanged."
+  implementation_notes: ["Adding to cart persists the selected subscription offer in the checkout draft; no separate cart page is required.", "Record money only on Subscription Payment Completed and Ad Revenue Recorded.", "Checkout, activation, trial conversion, and renewal events must not duplicate revenue.", "Read Article replaces Article Reading Started, Article Reading Completed, and Reading Resumed.", "Read Article dedupes with stable insert_id read-article:{article_id}:{milestone}:{demo_run_id}.", "Precision surfaces use data-precision-event or data-* form roots; autocapture resolver skips them."]
 
 common_properties:
   event_id: {"type": "string"}
@@ -51,15 +56,6 @@ events:
       result_count: {"type": "integer"}
       search_scope: {"type": "string"}
     fires_at: "SearchResults, after a submitted search finishes."
-    carries_revenue: false
-
-  Recommendation Set Presented:
-    properties:
-      recommendation_set_id: {"type": "string"}
-      article_ids: {"type": "array", "items": {"type": "string"}}
-      recommendation_strategy: {"type": "string"}
-      placement: {"type": "string"}
-    fires_at: "RecommendationList, once at least half the list is visible for one second."
     carries_revenue: false
 
   Read Article:
@@ -335,6 +331,15 @@ events:
       previous_account_state: {"type": "string"}
       expiration_reason: {"type": "string", "enum": ["trial_ended", "cancellation_effective", "simulated_payment_failure"]}
     fires_at: "SubscriptionLifecycle, once when advancing demo time causes access to expire."
+    carries_revenue: false
+
+  "[Agent] Session End":
+    properties:
+      "[Agent] Agent ID": {"type": "string"}
+      "[Agent] Session ID": {"type": "string"}
+      "[Agent] Turn Count": {"type": "integer"}
+      "[Agent] Environment": {"type": "string"}
+    fires_at: "AskTheDaily or AccountSupport, when closing the agent panel after at least one turn; metadata-only."
     carries_revenue: false
 
   Chat Request Submitted:

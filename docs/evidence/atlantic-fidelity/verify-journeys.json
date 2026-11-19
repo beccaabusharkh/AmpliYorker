@@ -1,0 +1,40 @@
+{
+  "journeys": [
+    {
+      "id": "J01_opening_mosaic",
+      "pass": true
+    },
+    {
+      "id": "J02_mobile_image_first",
+      "pass": true
+    },
+    {
+      "id": "J03_chrome_hooks",
+      "pass": true
+    },
+    {
+      "id": "J04_tab_feed",
+      "pass": true
+    },
+    {
+      "id": "J05_header_search",
+      "pass": true
+    },
+    {
+      "id": "J06_topic",
+      "pass": true
+    },
+    {
+      "id": "J07_article",
+      "pass": true
+    },
+    {
+      "id": "J08_subscribe_regression",
+      "pass": true
+    },
+    {
+      "id": "J09_home_scroll_video",
+      "pass": true
+    }
+  ]
+}

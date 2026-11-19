@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-11-19T04:12:00Z",
+  "merge_sha": "f38489e80ba3e55a31afcf70fc6dced1311e4ec6",
+  "pr": "https://github.com/beccaabusharkh/AmpliYorker/pull/17",
+  "deploy_run_id": 44456517816,
+  "deploy_run_url": "https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44456517816",
+  "deploy_status": "success",
+  "live_url": "https://beccaabusharkh.github.io/AmpliYorker/#/",
+  "bundle": "/AmpliYorker/assets/index-Bc4EeyRc.js",
+  "http_root": 200,
+  "retest": {
+    "test_custom_events_parity": "PASS",
+    "quick_playwright_home_article": "PASS",
+    "note": "P6 merge was mostly dictionary/docs/harness; app bundle unchanged from P5 deploy."
+  },
+  "overall": "PASS",
+  "certification_verdict_unchanged": "PARTIAL — G&S draft, Statsig S21/S22, D02 network"
+}

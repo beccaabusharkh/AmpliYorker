@@ -1,3 +1,121 @@
+## 2026-11-19T05:20:00Z | Phase 8 | Assignment P8-STATSIG-PROD-TIER-001 | COMPLETE (branch only)
+- `VITE_STATSIG_ENV_TIER` + resolveStatsigEnvTier; deploy workflow secret; prod-cutover.md.
+- Branch `cursor/statsig-prod-tier-93b2` — no push.
+
+## 2026-11-19T05:16:00Z | Phase 7 | Assignment P7-STATSIG-MERGE-001 | COMPLETE
+- Squash-merged **PR #19** → `main` @ **`80f5ef288df915d9dfa83ce4eaa7d38a7dd8ad87`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44463680404 — **success**.
+- Live: `p7-live-merge-smoke.json` — bundle OK; **statsigapi 0** (likely missing `VITE_STATSIG_CLIENT_KEY` in CI build).
+
+## 2026-11-19T05:05:00Z | Phase 7 | Assignment P7-STATSIG-EVENTS-WA-001 | COMPLETE (branch only)
+- `@statsig/web-analytics` AutoCapture + `trackStatsigMirror`; SDK exposures enabled; evidence statsig-events-wa.md.
+- Branch `cursor/statsig-events-wa-93b2` — no push.
+
+## 2026-11-19T04:50:00Z | Phase 6 | Assignment P6-WEB-EXP-MERGE-001 | COMPLETE
+- Squash-merged **PR #18** → `main` @ **`8647ca92b0c0cd01a494580457db614ce213b618`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44460822452 — **success**.
+- Live: `cdn.amplitude.com/script/…experiment.js` in published `index.html` — **PASS**.
+
+## 2026-11-19T04:50:00Z | Phase 6 | Assignment P6-WEB-EXP-SCRIPT-001 | COMPLETE (branch only)
+- Web Experiment standalone CDN in `index.html` via Vite transform; `.env.example` note; evidence `web-experiment-cdn-script.md`.
+- Branch `cursor/web-experiment-script-93b2` — no push.
+
+## 2026-11-19T04:12:00Z | Phase 6 | Assignment P6-FINAL-QA-MERGE-001 | COMPLETE
+- Squash-merged **PR #17** → `main` @ **`f38489e80ba3e55a31afcf70fc6dced1311e4ec6`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44456517816 — **success**.
+- Live smoke: `docs/evidence/final-qa/live-merge-smoke.json` — **PASS** (PARTIAL certification unchanged).
+
+## 2026-11-19T04:10:00Z | Phase 6 | Assignment P6-FINAL-QA-PARITY-001 | COMPLETE (branch only)
+- Final QA: matrix Q01–Q45; Playwright live journeys + media; parity table; defect D01 fixed (`[Agent] Session End` in dictionary).
+- Verdict: **PARTIAL** certification (G&S draft, Statsig live network/MCP blockers).
+- Branch: `cursor/final-qa-parity-93b2` — local commit, **no push**.
+
+## 2026-11-19T04:00:00Z | Phase 5 | Assignment P5-STATSIG-AUDIT-MERGE-001 | COMPLETE
+- Squash-merged **PR #16** → `main` @ **`b08a93d8dc13c1e34d066697edb7e2ff08471281`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44455139773 — **success**.
+- Live smoke: `docs/evidence/statsig-audit/live-merge-smoke.json` — bundle `index-Bc4EeyRc.js`, **PASS**; S21/S22 unchanged.
+
+## 2026-11-19T05:00:00Z | Phase 5 | Assignment P5-STATSIG-AUDIT-001 | COMPLETE (branch only)
+- What was built: S01–S40 coverage matrix; root causes RC-S01–S06; identity/event-map/walkthrough; Statsig init/identity/exposure fixes; `pnpm test:statsig-audit`.
+- Git: `cursor/statsig-audit-93b2` — committed locally, **no push** (await `@PLANNER authorize push and PR`).
+- Live post-merge smoke pending deploy after PR merge.
+
+## 2026-11-19T04:50:00Z | Phase 4 | Assignment P4-GS-ENABLE-MERGE-001 | COMPLETE
+- Squash-merged **PR #15** → `main` @ **`2e499ce8097bd9601410f2ef68c9b9f7ade9ea63`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44437260454 — **success**.
+- Live engagement check: **PASS** (`index-C02-sAEF.js`, `engagement:{}` present, no `engagement:{skip:!0}`). Survey **112204** status **draft** (Amplitude MCP).
+
+## 2026-11-19T04:45:00Z | Phase 4 | Assignment P4-GS-ENABLE-001 | COMPLETE (ship)
+- What was built: `deploy-pages.yml` + `.env.example` for `VITE_AMPLITUDE_ENGAGEMENT_ENABLED`; `live-gaps.md` links survey **112204** (draft).
+- Git: `cursor/engagement-enable-93b2` — PR **#15** https://github.com/beccaabusharkh/AmpliYorker/pull/15 (no merge).
+
+## 2026-11-19T04:40:00Z | Phase 4 | Assignment P4-AMPLITUDE-FOLLOW-MERGE-001 | COMPLETE
+- Squash-merged **PR #14** → `main` @ **`bb2c0c68b3dfd6d0a448d0f50632782050ba8a10`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44436047510 — **success**.
+- Live: bundle `index-BljoOFwA.js` includes Web Experiment init symbols (`deploymentKey`, `fetchOnStart`, `automaticExposureTracking`); A20/A37 evidence updated.
+
+## 2026-11-19T04:35:00Z | Phase 4 | Assignment P4-AMPLITUDE-FOLLOW-001 | COMPLETE (ship)
+- What was built: `deploy-pages.yml` passes `VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY`; removed `Recommendation Set Presented` from dictionary; evidence A20 + DECISIONS; verify PASS with dummy deployment key at build.
+- Git: branch `cursor/amplitude-webexp-follow-93b2` — PR **#14** https://github.com/beccaabusharkh/AmpliYorker/pull/14 (no merge).
+
+## 2026-11-19T04:25:00Z | Phase 4 | Assignment P4-AMPLITUDE-MERGE-001 | COMPLETE
+- Squash-merged **PR #13** → `main` @ **`f435fefcaff09d0772ae575bf68116f4c5d849b6`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44434748241 — **success**.
+- Live smoke: `docs/evidence/amplitude-audit/live-smoke-post-deploy.json` — HTTP 200, 11 amp requests, Read Article milestones `[25,50,75,90,100]`; G&S / Web Exp blockers unchanged.
+
+## 2026-11-19T04:20:00Z | Phase 4 | Assignment P4-AMPLITUDE-AUDIT-SHIP-001 | COMPLETE
+- Pushed `cursor/amplitude-audit-93b2`; opened PR **#13** — https://github.com/beccaabusharkh/AmpliYorker/pull/13 (no merge).
+
+## 2026-11-19T04:10:00Z | Phase 4 | Assignment P4-AMPLITUDE-AUDIT-001 | COMPLETE
+- What was built: Audit matrix A01–A40 + root causes; unified autocapture (hash page views + selective element interactions); identity device/user sync; Read Article `insert_id` dedupe; Agent Analytics `[Agent]` chat events; G&S skip unless enabled; Web Experiment env-gated; precision `data-precision-event` roots.
+- Files changed: `src/lib/amplitude/init.ts`, `src/lib/analytics/*`, chat UI, precision attrs on forms; `docs/evidence/amplitude-audit/*`; `custom-events.yml`; `pnpm test:amplitude-config`.
+- Git actions: branch `cursor/amplitude-audit-93b2` — commit local, **no push**.
+- Definition-of-done check: `pnpm typecheck` PASS; `pnpm build` PASS; `pnpm test:amplitude-config` PASS; preview smoke `docs/evidence/amplitude-audit/preview-smoke.json` (8 amp requests, milestones 25–100 on `daily-decisions`). Live site still pre-audit bundle.
+- Blocker / next action: G&S content + Web Experiment deployment key + Pages deploy for live parity.
+
+## 2026-11-19T03:15:00Z | Phase 3 | Assignment P3-SHIP-STATSIG-PARAMS-001 | COMPLETE
+- Pushed `cursor/statsig-page-params-93b2`; opened PR to `main` (no merge).
+- Includes P3-STATSIG-PARAMS-BUILD-001 @ `eb5628c`+.
+
+## 2026-11-19T03:05:00Z | Phase 3 | Assignment P3-STATSIG-PARAMS-BUILD-001 | COMPLETE
+- What was built: Statsig **14** layer/store pairs (`home_layer`/`home_params` … `discovery_chat_layer`/`discovery_chat_params`); store params linked to layer (gate/experiment refs for paywall + existing experiments).
+- Code: `getPageParams()` + `docs/statsig-params.yml`; pages/shell/paywall wired; `pnpm test:statsig-params` PASS; typecheck + build PASS.
+- Git: branch `cursor/statsig-page-params-93b2` — commit local, **no push**.
+
+## 2026-11-19T02:30:00Z | Phase 2H | Assignment P2H-MERGE-FIDELITY-001 | COMPLETE
+- Squash-merged **PR #11** (`cursor/atlantic-fidelity-93b2` @ `ffaff4e`) → `main` merge commit **`9b0f614ece3749811401601e3ee8f0a7f2b47435`**.
+- PR state: **merged** (no required checks reported on head).
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44429151616 — **success**.
+- Live smoke: https://beccaabusharkh.github.io/AmpliYorker/ **HTTP 200**; bundle `index-DNLAzdVq.js` includes `data-opening-mosaic` / `Amplitude Daily`.
+
+## 2026-11-19T02:10:00Z | Phase 2H | Assignment P2H-SHIP-FIDELITY-001 | COMPLETE
+- What was shipped: pushed `cursor/atlantic-fidelity-93b2`; opened PR to `main` (no merge).
+- Verify: **20/20** `P2H-FID-A01`–`A20` @ 1440/1024/768/390; **9/9** journeys.
+- Evidence: `docs/evidence/atlantic-fidelity/UX-REVIEW.md`, `verify-matrix.json`, `remaining-differences.md`, annotated before/after + `journey-home-fidelity.webm`.
+- Scope: layout/CSS + home chrome only; no SDK/backend; routes/`data-*` hooks preserved.
+
+## 2026-11-19T01:55:00Z | Phase 2H | Assignment P2H-VERIFY-FIDELITY-001 | COMPLETE
+- What was verified: full matrix A01–A20 + journeys; commit `0351f04`+ on `atlantic-fidelity` (no push until ship).
+- Evidence: `scripts/verify-fidelity-a01-a20.mjs`, `verify-matrix.json`, `UX-REVIEW.md`.
+
+## 2026-11-19T01:40:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P2-001 | COMPLETE
+- What was built: 2H-4/2H-5 below-fold rhythm, 18px feed/rail type, 1px rules, 296px rail cap; P1 geometry preserved.
+- Branch: `atlantic-fidelity` (no push).
+- Evidence: `p2h-p2-geometry.json`, `home-below-fold-p2-1440.png`, `home-opening-p2-390.png`.
+- FID-M07–M11: see `p2h-p2-geometry.json` `fidStatus`.
+
+## 2026-11-19T01:25:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P1b-001 | COMPLETE
+- What was built: FID-M06 mobile chrome ~102px — compact brand row, slim nav, hide promo @ 390.
+- Branch: `atlantic-fidelity` @ `875af29`+ (no push).
+- Evidence: `ampliyorker-after-p1-390.png`, `p2h-p1-geometry.json` (chromeHeight 101 @ 390).
+- Next: **P2H-BUILD-FIDELITY-P2-001** — 2H-2/2H-4/2H-5 per spec (container polish, rail type, rules); below-fold home bands.
+
+## 2026-11-19T01:10:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P1-001 | COMPLETE
+- What was built: FID-M01–M06 — fused chrome, opening 296/624/296 mosaic, 3:2 lead (624×416), image-first, 1280 container tokens.
+- Branch: `atlantic-fidelity` (no push).
+- Definition-of-done: typecheck + build PASS; `docs/evidence/atlantic-fidelity/` side-by-side + `p2h-p1-geometry.json`.
+- Blocker / next action: verify / phase 2 when authorized.
+
 ## 2026-11-19T00:25:00Z | Phase 2G | Assignment P2G-SHIP-POLISH-001 | COMPLETE
 - What was shipped: pushed `polish-subscribe-account`; opened PR to `main` (no merge).
 - Definition-of-done: PR cites 18/18 + `docs/evidence/polish-fix/`.

@@ -1,3 +1,4 @@
+import { trackAgentAiResponse, trackAgentUserMessage } from "../lib/analytics/agent-chat";
 import { trackDemoEvent } from "../lib/analytics/track";
 import accountFaqData from "../data/account-faq.json";
 
@@ -22,7 +23,7 @@ export function mountAccountSupportChat(root: HTMLElement): void {
       <button type="button" class="account-support-chat__close" data-account-chat-close aria-label="Close">×</button>
     </header>
     <p class="account-support-chat__hint">Billing, paywall, cancellation, and device-switch help (FAQ from repo JSON).</p>
-    <form class="account-support-chat__form" data-account-chat-form>
+    <form class="account-support-chat__form" data-account-chat-form data-precision-event>
       <label class="visually-hidden" for="account-chat-input">Question</label>
       <input id="account-chat-input" data-amplitude-mask name="q" type="text" placeholder="How do I cancel?" autocomplete="off" />
       <button type="submit">Ask</button>
@@ -61,6 +62,12 @@ export function mountAccountSupportChat(root: HTMLElement): void {
     const value = (input as HTMLInputElement).value.trim().toLowerCase();
     const requestId = crypto.randomUUID();
     const conversationId = crypto.randomUUID();
+    const traceId = crypto.randomUUID();
+    const messageId = crypto.randomUUID();
+    trackAgentUserMessage("account-support", messageId, {
+      surface: "account_support",
+      message_length: value.length,
+    });
     trackDemoEvent("Chat Request Submitted", {
       conversation_id: conversationId,
       request_id: requestId,
@@ -74,12 +81,17 @@ export function mountAccountSupportChat(root: HTMLElement): void {
       answerEl.hidden = false;
       answerEl.textContent = entry.answer;
     }
+    const latencyMs = performance.now() - started;
+    trackAgentAiResponse("account-support", crypto.randomUUID(), {
+      latencyMs,
+      traceId,
+    });
     trackDemoEvent("Chat Response Delivered", {
       conversation_id: conversationId,
       request_id: requestId,
       response_type: "support_steps",
       result_count: 1,
-      response_latency_ms: performance.now() - started,
+      response_latency_ms: latencyMs,
     });
   });
 }

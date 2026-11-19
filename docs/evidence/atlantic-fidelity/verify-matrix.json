@@ -1,0 +1,496 @@
+{
+  "assignment": "P2H-VERIFY-FIDELITY-001",
+  "buildSha": "d7ad8cd8b3fe362222787d4f70c1dde7911f7e90",
+  "matrix": {
+    "P2H-FID-A19": {
+      "pass": true,
+      "detail": "typecheck=0; build=0",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-typecheck-build.log"
+      ]
+    },
+    "P2H-FID-A20": {
+      "pass": true,
+      "detail": "Wayback reference pairs in evidence; annotated side-by-side @ 1440 & 390",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/side-by-side-p1-1440.png",
+        "docs/evidence/atlantic-fidelity/side-by-side-p1-390.png"
+      ]
+    },
+    "P2H-FID-A01": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A02": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A03": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A04": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A05": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A06": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A07": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A08": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A09": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A10": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A11": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A12": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A13": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A14": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A15": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A17": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A18": {
+      "pass": true,
+      "detail": "all viewports PASS",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-matrix.json"
+      ]
+    },
+    "P2H-FID-A16": {
+      "pass": true,
+      "detail": "{\"promo\":true,\"mosaic\":true,\"chrome\":true,\"tabs\":true,\"search\":true}",
+      "evidence": [
+        "docs/evidence/atlantic-fidelity/verify-a16-hooks.json"
+      ]
+    }
+  },
+  "viewportMatrix": {
+    "P2H-FID-A19": {
+      "390": {
+        "pass": true,
+        "detail": "build artifact"
+      },
+      "768": {
+        "pass": true,
+        "detail": "build artifact"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "build artifact"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "build artifact"
+      }
+    },
+    "P2H-FID-A20": {
+      "390": {
+        "pass": true,
+        "detail": "UX pair"
+      },
+      "768": {
+        "pass": true,
+        "detail": "UX pair"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "UX pair"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "UX pair"
+      }
+    },
+    "P2H-FID-A01": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A02": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A03": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A04": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A05": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A06": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A07": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A08": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A09": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A10": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A11": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A12": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A13": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A14": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A15": {
+      "390": {
+        "pass": true,
+        "detail": "rgb(255, 255, 255)"
+      },
+      "768": {
+        "pass": true,
+        "detail": "rgb(255, 255, 255)"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "rgb(255, 255, 255)"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "rgb(255, 255, 255)"
+      }
+    },
+    "P2H-FID-A17": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    },
+    "P2H-FID-A18": {
+      "390": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":358,\"colCount\":1,\"leadColWidth\":358,\"leftRailWidth\":358,\"rightRailWidth\":358,\"leadImage\":{\"w\":358,\"h\":239,\"aspect\":1.497907949790795},\"chromeHeight\":101,\"promoHeight\":0,"
+      },
+      "768": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":16,\"mosaicWidth\":736,\"colCount\":1,\"leadColWidth\":736,\"leftRailWidth\":736,\"rightRailWidth\":736,\"leadImage\":{\"w\":736,\"h\":239,\"aspect\":3.079497907949791},\"chromeHeight\":109,\"promoHeight\":0,"
+      },
+      "1024": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":864,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":151.390625,\"promoHeight\":60,\"promo"
+      },
+      "1440": {
+        "pass": true,
+        "detail": "{\"gutterLeft\":80,\"mosaicWidth\":1280,\"colCount\":3,\"leadColWidth\":624,\"leftRailWidth\":296,\"rightRailWidth\":296,\"leadImage\":{\"w\":624,\"h\":416,\"aspect\":1.5},\"chromeHeight\":155,\"promoHeight\":60,\"promoVisibl"
+      }
+    }
+  },
+  "passA": 20,
+  "totalA": 20,
+  "passJ": 9,
+  "totalJ": 9,
+  "generatedAt": "2026-11-19T00:08:52.414Z"
+}

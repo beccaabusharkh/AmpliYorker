@@ -1,0 +1,39 @@
+{
+  "runId": "p6-20261119-0405b",
+  "liveUrl": "https://beccaabusharkh.github.io/AmpliYorker/#/",
+  "ampRequestCount": 32,
+  "statsigRequestCount": 0,
+  "journeys": [
+    {
+      "id": "J01-home",
+      "status": "PASS"
+    },
+    {
+      "id": "J02-article-milestones",
+      "status": "PASS",
+      "note": "scroll fired"
+    },
+    {
+      "id": "J03-search",
+      "status": "PASS"
+    },
+    {
+      "id": "J04-topic",
+      "status": "PASS"
+    },
+    {
+      "id": "J05-auth-surfaces",
+      "status": "PASS"
+    },
+    {
+      "id": "J06-responsive",
+      "status": "PASS"
+    },
+    {
+      "id": "J07-subscription-video",
+      "status": "PASS"
+    }
+  ],
+  "screenshotsDir": "/cursor/stores/self/media/final-qa",
+  "subscriptionVideo": "/cursor/stores/self/media/final-qa/subscription-journey.webm"
+}

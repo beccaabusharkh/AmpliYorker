@@ -1,0 +1,14 @@
+{
+  "checked_at_utc": "2026-11-19T04:50:00Z",
+  "merge_sha": "8647ca92b0c0cd01a494580457db614ce213b618",
+  "pr": "https://github.com/beccaabusharkh/AmpliYorker/pull/18",
+  "deploy_run_url": "https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44460822452",
+  "deploy_status": "success",
+  "live_url": "https://beccaabusharkh.github.io/AmpliYorker/",
+  "checks": {
+    "cdn_amplitude_com_script": true,
+    "experiment_js_suffix": true,
+    "no_unified_api_key_js": true
+  },
+  "overall": "PASS"
+}

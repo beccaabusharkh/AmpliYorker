@@ -68,6 +68,21 @@ Screenshots `atlantic-desktop-1440x1000.png` and `atlantic-mobile-390x844.png` s
 
 ---
 
+## Phase 1 build slice (P2H-BUILD-FIDELITY-P1-001)
+
+After opening-mosaic + fused chrome on `atlantic-fidelity` — see `docs/evidence/atlantic-fidelity/p2h-p1-geometry.json`, `side-by-side-p1-1440.png`, `side-by-side-p1-390.png`.
+
+| Metric | Target | Post P1 (measured) |
+| --- | --- | --- |
+| FID-M01 gutter @ 1440 | 80px | See `p2h-p1-geometry.json` `gutterLeft` |
+| FID-M02 container | 1280px | `gridWidth` |
+| FID-M03 topology | 296/624/296 | `data-opening-mosaic` 3-column @ ≥769 |
+| FID-M04 lead image | 624×416 3:2 | `leadImage` bbox |
+| FID-M05 mobile order | image-first | `imageBeforeHeadline` |
+| FID-M06 mobile chrome | ≤120px (+ slim promo) | **101px** chrome @ 390 (P1b); promo hidden |
+
+---
+
 ## Priority fidelity gaps (for Builder phase 1)
 
 1. **Opening grid topology** — move from 820+300 magazine layout toward **1280-centered 3-across mosaic** (296 / 624 / 296) or faithful simplification with measured gutters.

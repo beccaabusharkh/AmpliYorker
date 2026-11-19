@@ -1,0 +1,80 @@
+{
+  "assignment": "P2H-BUILD-FIDELITY-P2-001",
+  "metrics": {
+    "390": {
+      "railHeadlinePx": "18px",
+      "feedHeadlinePx": "18px",
+      "tabBorderPx": "1px",
+      "tabBorderColor": "rgb(226, 226, 226)",
+      "railWidth": 296,
+      "thumbBox": {
+        "w": 358,
+        "h": 197
+      },
+      "bodyBg": "rgb(255, 255, 255)",
+      "chromeHeight": 101,
+      "tabButtonSize": "18px"
+    },
+    "1440": {
+      "railHeadlinePx": "18px",
+      "feedHeadlinePx": "18px",
+      "tabBorderPx": "1px",
+      "tabBorderColor": "rgb(226, 226, 226)",
+      "railWidth": 296,
+      "thumbBox": {
+        "w": 296,
+        "h": 197
+      },
+      "bodyBg": "rgb(255, 255, 255)",
+      "chromeHeight": 155,
+      "tabButtonSize": "18px"
+    }
+  },
+  "fidStatus": {
+    "FID-M01": {
+      "status": "addressed",
+      "note": "80px gutter @1440 (P1)"
+    },
+    "FID-M02": {
+      "status": "addressed",
+      "note": "1280px opening container (P1)"
+    },
+    "FID-M03": {
+      "status": "addressed",
+      "note": "296/624/296 mosaic (P1)"
+    },
+    "FID-M04": {
+      "status": "addressed",
+      "note": "624×416 3:2 lead (P1)"
+    },
+    "FID-M05": {
+      "status": "addressed",
+      "note": "image-first (P1)"
+    },
+    "FID-M06": {
+      "status": "addressed",
+      "note": "~101px chrome @390 (P1b)"
+    },
+    "FID-M07": {
+      "status": "partial",
+      "note": "desktop slim promo band remains below chrome; hidden @390"
+    },
+    "FID-M08": {
+      "status": "partial",
+      "note": "edition in chrome center @desktop; not Atlantic-hidden"
+    },
+    "FID-M09": {
+      "status": "addressed",
+      "note": "38/32px lead headline tokens"
+    },
+    "FID-M10": {
+      "status": "addressed",
+      "note": "18px rail/feed/latest (P2)"
+    },
+    "FID-M11": {
+      "status": "partial",
+      "note": "fused chrome ~155px @1440; below Atlantic 226px nav monolith"
+    }
+  },
+  "capturedAt": "2026-11-19T00:04:01.148Z"
+}

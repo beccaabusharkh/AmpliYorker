@@ -2,8 +2,8 @@ import { getArticleById, getRecommendations, formatTopicLabel } from "../lib/art
 import { renderArticleBodyContent, renderArticleHero } from "../lib/article-render";
 import { getAdByPlacement, renderAdUnit } from "../lib/ads";
 import { canAccessArticle, isPremiumArticle, paywallMessage, paywallMessageExperimentId } from "../lib/paywall";
-import { STATSIG_GATES } from "../lib/statsig/catalog";
-import { getGateValue, getSubscriptionMessageVariant } from "../lib/statsig/evaluate";
+import { getSubscriptionMessageVariant } from "../lib/statsig/evaluate";
+import { getPageParams } from "../lib/statsig/page-params";
 import { attachReadingProgress } from "../lib/reading-progress";
 import { navigateToHash } from "../lib/router";
 import { baseUrl } from "../lib/paths";
@@ -19,15 +19,16 @@ import {
 } from "../lib/session";
 
 export function renderArticlePage(id: string): HTMLElement {
+  const p = getPageParams("article");
   const article = getArticleById(id);
   const main = document.createElement("main");
   main.className = "page-main article-page";
   if (!article) {
     main.innerHTML = `
       <section class="not-found">
-        <h1>Article not found</h1>
-        <p>This article is not in the demo corpus.</p>
-        <p><a href="#/" data-home-link>Return home</a></p>
+        <h1>${p.not_found_title}</h1>
+        <p>${p.not_found_body}</p>
+        <p><a href="#/" data-home-link>${p.return_home_label}</a></p>
       </section>
     `;
     main.querySelector("[data-home-link]")?.addEventListener("click", (event) => {
@@ -38,12 +39,12 @@ export function renderArticlePage(id: string): HTMLElement {
   }
 
   const premium = isPremiumArticle(id);
-  const scrollGate = premium ? getGateValue(STATSIG_GATES.premiumPaywallScroll, "article-paywall") : false;
+  const scrollGate = premium ? p.premium_paywall_scroll_enabled : false;
   const allowed = canAccessArticle(id);
   const saved = isArticleSaved(id);
   const paywallCopy = paywallMessage("article-paywall");
   const messageVariant = getSubscriptionMessageVariant("article-paywall");
-  const previewCount = article.previewParagraphCount ?? 2;
+  const previewCount = article.previewParagraphCount ?? p.default_preview_paragraphs;
 
   const fullBody = renderArticleBodyContent(article);
   let bodySection = "";
@@ -60,8 +61,8 @@ export function renderArticlePage(id: string): HTMLElement {
       <section class="paywall-panel">
         <p class="paywall-block" data-paywall-message>${paywallCopy}</p>
         <p class="paywall-actions">
-          <a href="#/account/login" data-paywall-login>Log in</a>
-          <a class="paywall-subscribe-btn" href="#/subscribe" data-paywall-sub>Subscribe</a>
+          <a href="#/account/login" data-paywall-login>${p.paywall_login_label}</a>
+          <a class="paywall-subscribe-btn" href="#/subscribe" data-paywall-sub>${p.paywall_subscribe_label}</a>
         </p>
       </section>`;
   } else {
@@ -79,7 +80,7 @@ export function renderArticlePage(id: string): HTMLElement {
     allowed && article.narrated
       ? `
     <section class="narrated-block" aria-label="Narrated article">
-      <p class="narrated-label">Listen to this article</p>
+      <p class="narrated-label">${p.narrated_section_label}</p>
       <audio controls src="${baseUrl}audio/narration-demo.wav">
         Your browser does not support audio playback.
       </audio>
@@ -87,7 +88,7 @@ export function renderArticlePage(id: string): HTMLElement {
       : "";
 
   const premiumBadge = premium
-    ? `<span class="premium-badge">${hasActiveSubscription() ? "Premium · subscriber access" : "Premium · preview"}</span>`
+    ? `<span class="premium-badge">${hasActiveSubscription() ? p.premium_badge_subscriber : p.premium_badge_preview}</span>`
     : "";
 
   const kicker = article.kicker ? `<p class="article-kicker">${article.kicker}</p>` : "";
@@ -107,7 +108,7 @@ export function renderArticlePage(id: string): HTMLElement {
             ${premiumBadge}
           </p>
           <p class="article-actions">
-            <button type="button" data-save-article>${saved ? "Saved" : "Save article"}</button>
+            <button type="button" data-save-article data-precision-event>${saved ? p.saved_article_label : p.save_article_label}</button>
           </p>
         </header>
         ${renderArticleHero(article)}
@@ -117,10 +118,10 @@ export function renderArticlePage(id: string): HTMLElement {
         </article>
         <section class="article-end-signoff">
           <hr class="end-rule" />
-          <p>You\u2019ve reached the end of this article.</p>
+          <p>${p.article_end_signoff}</p>
         </section>
         <section class="recommendations">
-          <h2>More for you</h2>
+          <h2>${p.recommendations_heading}</h2>
           <ul>${recs}</ul>
         </section>
       </div>
@@ -156,7 +157,7 @@ export function renderArticlePage(id: string): HTMLElement {
     };
     if (scrollGate) {
       const onScroll = (): void => {
-        if (window.scrollY > 48) {
+        if (window.scrollY > p.paywall_scroll_threshold_px) {
           emitPaywall();
           window.removeEventListener("scroll", onScroll);
         }

@@ -21,22 +21,23 @@ import {
   cancellationReasonLabels,
 } from "../lib/session";
 import { resetAmplitudeIdentity, ensureAmplitudeIdentity } from "../lib/amplitude/init";
-import { RETENTION_COPY } from "../lib/statsig/catalog";
-import { getRetentionTreatmentVariant } from "../lib/statsig/evaluate";
+import { getPageParams } from "../lib/statsig/page-params";
+import { clearExposures } from "../lib/statsig/exposures";
 import { syncStatsigIdentity } from "../lib/statsig/init";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { resolveAccountState } from "../lib/analytics/context";
 import { showToast } from "../ui/toast";
 
 export function renderAccountPage(): HTMLElement {
+  const p = getPageParams("account");
   const main = document.createElement("main");
   main.className = "page-main account-page";
 
   if (!isLoggedIn()) {
     main.innerHTML = `
       <section class="form-panel account-surface">
-        <h1>Account</h1>
-        <p class="account-gate-copy">Sign in to manage your subscription and saved stories.</p>
+        <h1>${p.gate_title}</h1>
+        <p class="account-gate-copy">${p.gate_copy}</p>
         <p>
           <a href="#/account/login" data-login-link>Log in</a>
           · <a href="#/account/register" data-register-link>Create account</a>
@@ -66,14 +67,12 @@ export function renderAccountPage(): HTMLElement {
           : "No subscription";
 
   const retentionOffer = shouldShowRetentionOffer();
-  const retentionVariant = getRetentionTreatmentVariant("account-retention");
-  const retentionCopy = RETENTION_COPY[retentionVariant];
   const retentionBlock = retentionOffer
     ? `
     <section class="retention-module account-dashboard__retention">
-      <h2>${retentionCopy.title}</h2>
-      <p>${retentionCopy.body}</p>
-      <p><a href="#/subscribe" data-sub-link>View subscription options</a></p>
+      <h2>${p.retention_title}</h2>
+      <p>${p.retention_body}</p>
+      <p><a href="#/subscribe" data-sub-link>${p.retention_subscribe_link}</a></p>
     </section>`
     : "";
 
@@ -90,13 +89,13 @@ export function renderAccountPage(): HTMLElement {
     <section class="account-dashboard account-surface account-surface--wide form-panel">
       <header class="account-dashboard__header">
         <div>
-          <h1>Your account</h1>
-          <p class="account-dashboard__signed-in">Signed in as ${escapeHtml(session.displayName ?? session.loggedInUserId ?? "Reader")}.</p>
+          <h1>${p.dashboard_title}</h1>
+          <p class="account-dashboard__signed-in">${p.signed_in_template.replace("{name}", escapeHtml(session.displayName ?? session.loggedInUserId ?? "Reader"))}</p>
           <p class="subscription-pill">${statusLabel} · ${planLabel}</p>
         </div>
         <nav class="account-actions" aria-label="Account actions">
-          ${active ? "" : `<a class="account-actions__primary" href="#/subscribe" data-sub-link>Subscribe</a>`}
-          <button type="button" data-logout>Log out</button>
+          ${active ? "" : `<a class="account-actions__primary" href="#/subscribe" data-sub-link>${p.subscribe_primary_cta}</a>`}
+          <button type="button" data-logout data-precision-event>${p.logout_label}</button>
         </nav>
       </header>
 
@@ -112,8 +111,8 @@ export function renderAccountPage(): HTMLElement {
 
       <div class="account-dashboard__forms">
         <section class="account-dashboard__billing">
-          <h2>Billing profile</h2>
-          <form data-billing-form class="stacked-form">
+          <h2>${p.billing_section_title}</h2>
+          <form data-billing-form data-precision-event class="stacked-form">
             <label for="bill-name">Name</label>
             <input id="bill-name" name="name" type="text" value="${escapeAttr(session.billingProfile.name)}" />
             <label for="bill-email">Email</label>
@@ -125,8 +124,8 @@ export function renderAccountPage(): HTMLElement {
         </section>
 
         <section class="account-dashboard__plan">
-          <h2>Change plan</h2>
-          <form data-plan-form class="stacked-form">
+          <h2>${p.plan_section_title}</h2>
+          <form data-plan-form data-precision-event class="stacked-form">
             <label for="plan-switch">Plan</label>
             <select id="plan-switch" name="plan">
               ${plans.map((plan) => `<option value="${plan.id}" ${plan.id === session.subscription.planId ? "selected" : ""}>${plan.name}</option>`).join("")}
@@ -137,8 +136,8 @@ export function renderAccountPage(): HTMLElement {
       </div>
 
       <details class="account-dashboard__cancel">
-        <summary>Cancel subscription</summary>
-        <form data-cancel-form class="stacked-form">
+        <summary>${p.cancel_summary}</summary>
+        <form data-cancel-form data-precision-event class="stacked-form">
           <label for="cancel-reason">Reason</label>
           <select id="cancel-reason" name="reason">${cancelReasons}</select>
           <button type="submit">Confirm cancellation</button>
@@ -147,7 +146,7 @@ export function renderAccountPage(): HTMLElement {
       </details>
 
       <details class="account-dashboard__devices">
-        <summary>Device &amp; export</summary>
+        <summary>${p.devices_summary}</summary>
         <p>Copy persona snapshot for a second device label (local simulation only).</p>
         <button type="button" data-export-snapshot>Export persona snapshot</button>
         <button type="button" data-apply-device>Apply secondary device label</button>
@@ -155,7 +154,7 @@ export function renderAccountPage(): HTMLElement {
       </details>
 
       <details class="demo-controls">
-        <summary>Demo controls (simulated)</summary>
+        <summary>${p.demo_controls_summary}</summary>
         <p class="simulation-label">Adjust demo time and reset local storage.</p>
         <p>Demo time offset: <strong data-time-offset>${session.demoTimeOffsetDays}</strong> days</p>
         <button type="button" data-advance-time="+7">Advance +7 days</button>
@@ -180,6 +179,7 @@ export function renderAccountPage(): HTMLElement {
     });
     logout();
     resetAmplitudeIdentity();
+    clearExposures();
     void syncStatsigIdentity();
     navigateToHash("#/");
   });

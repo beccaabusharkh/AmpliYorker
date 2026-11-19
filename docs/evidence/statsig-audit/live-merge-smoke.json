@@ -1,0 +1,22 @@
+{
+  "checked_at_utc": "2026-11-19T04:00:00Z",
+  "merge_sha": "b08a93d8dc13c1e34d066697edb7e2ff08471281",
+  "pr": "https://github.com/beccaabusharkh/AmpliYorker/pull/16",
+  "deploy_run_id": 44455139773,
+  "deploy_run_url": "https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44455139773",
+  "deploy_status": "success",
+  "live_url": "https://beccaabusharkh.github.io/AmpliYorker/#/",
+  "bundle": "/AmpliYorker/assets/index-Bc4EeyRc.js",
+  "http_root": 200,
+  "checks": {
+    "statsig_client_symbols": "PASS — catalog wires (e.g. premium_paywall_scroll_enabled, force_statsig) in main bundle",
+    "statsig_session_replay": "PASS — no Statsig replay SDK strings (Amplitude rrweb chunks remain separate assets)",
+    "amplitude_preserved": "PASS — Amplitude unified + rrweb assets unchanged pattern",
+    "exposure_inspector_surface": "PASS — bundle includes article-paywall / param-store wiring"
+  },
+  "overall": "PASS",
+  "blockers_unchanged": {
+    "S21_prod_param_promotion": "BLOCKED — Statsig console reviewRequired on production",
+    "S22_mcp_inventory_empty": "PARTIAL — use docs/statsig-entities-step2.md + console UI"
+  }
+}

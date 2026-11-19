@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-11-19T05:16:00Z",
+  "merge_sha": "80f5ef288df915d9dfa83ce4eaa7d38a7dd8ad87",
+  "pr": "https://github.com/beccaabusharkh/AmpliYorker/pull/19",
+  "deploy_run_url": "https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44463680404",
+  "deploy_status": "success",
+  "live_url": "https://beccaabusharkh.github.io/AmpliYorker/#/",
+  "bundle": "/AmpliYorker/assets/index-rTLCs32k.js",
+  "statsig_network_smoke": {
+    "pass": false,
+    "statsigRequestCount": 0,
+    "journey": "home + article/retention-myths (Playwright 8s wait)",
+    "note": "Published bundle includes P7 WA plugin symbols but no statsigapi.net requests observed — likely VITE_STATSIG_CLIENT_KEY absent at CI build (init falls back to defaults)."
+  },
+  "event_batch_verification": {
+    "pass": false,
+    "reason": "No Statsig log batch without client init/network"
+  },
+  "overall": "PARTIAL — code deployed; live ingestion blocked pending client key in Pages build"
+}
