@@ -1,6 +1,7 @@
 import { track } from "@amplitude/unified";
 import { buildCommonProperties } from "./context";
 import { isAmplitudeReady } from "../amplitude/init";
+import { trackStatsigMirror } from "../statsig/events";
 
 export function trackDemoEvent(
   eventName: string,
@@ -8,14 +9,14 @@ export function trackDemoEvent(
   dataOrigin: "interactive_demo" | "seeded_history" = "interactive_demo",
   insertId?: string,
 ): void {
-  if (!isAmplitudeReady()) {
-    return;
-  }
   const common = buildCommonProperties(dataOrigin);
   const payload = {
     ...common,
     ...properties,
   };
   const dedupeKey = insertId ?? String(common.event_id);
-  track(eventName, payload, { insert_id: dedupeKey });
+  if (isAmplitudeReady()) {
+    track(eventName, payload, { insert_id: dedupeKey });
+  }
+  trackStatsigMirror(eventName, payload);
 }

@@ -74,7 +74,7 @@ function readStoreParams(page: PageId): PageParamsMap[PageId] {
   const storeName = PAGE_STORE_NAMES[page];
   const layerName = PAGE_LAYER_NAMES[page];
   try {
-    const store = client.getParameterStore(storeName, { disableExposureLog: true });
+    const store = client.getParameterStore(storeName);
     void layerName;
     for (const key of Object.keys(defaults) as (keyof typeof defaults)[]) {
       const fallback = defaults[key] as ParamValue;

@@ -11,6 +11,18 @@ const REQUIRED_SURFACES = [
 ];
 
 async function main(): Promise<void> {
+  const pkg = JSON.parse(await import("node:fs/promises").then((fs) => fs.readFile("package.json", "utf8"))) as {
+    dependencies?: Record<string, string>;
+  };
+  const deps = Object.keys(pkg.dependencies ?? {});
+  if (!deps.includes("@statsig/web-analytics")) {
+    console.error("FAIL: @statsig/web-analytics missing");
+    process.exit(1);
+  }
+  if (deps.some((d) => d.includes("session-replay") && d.startsWith("@statsig"))) {
+    console.error("FAIL: Statsig session replay package present");
+    process.exit(1);
+  }
   const gates = Object.values(STATSIG_GATES);
   const experiments = Object.values(STATSIG_EXPERIMENTS);
   if (gates.length < 1 || experiments.length < 4) {

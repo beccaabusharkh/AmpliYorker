@@ -1,6 +1,7 @@
 import { track } from "@amplitude/unified";
 import { getDemoRunId, getOrCreateAnonymousId } from "./context";
 import { isAmplitudeReady } from "../amplitude/init";
+import { trackStatsigMirror } from "../statsig/events";
 
 const AGENT_ENV = "development";
 
@@ -27,11 +28,9 @@ export function endAgentChatSession(agentId: string): void {
     sessions.delete(agentId);
     return;
   }
-  track(
-    "[Agent] Session End",
-    baseAgentProps(agentId, session, crypto.randomUUID()),
-    { insert_id: `agent-end-${session.sessionId}` },
-  );
+  const props = baseAgentProps(agentId, session, crypto.randomUUID());
+  track("[Agent] Session End", props, { insert_id: `agent-end-${session.sessionId}` });
+  trackStatsigMirror("[Agent] Session End", props);
   sessions.delete(agentId);
 }
 
@@ -46,15 +45,13 @@ export function trackAgentUserMessage(
   const session = agentChatSession(agentId);
   session.turn += 1;
   const traceId = crypto.randomUUID();
-  track(
-    "[Agent] User Message",
-    {
-      ...baseAgentProps(agentId, session, traceId),
-      "[Agent] Message ID": messageId,
-      "[Agent] Context": JSON.stringify({ ...context, demo_run_id: getDemoRunId() }),
-    },
-    { insert_id: `agent-um-${messageId}` },
-  );
+  const props = {
+    ...baseAgentProps(agentId, session, traceId),
+    "[Agent] Message ID": messageId,
+    "[Agent] Context": JSON.stringify({ ...context, demo_run_id: getDemoRunId() }),
+  };
+  track("[Agent] User Message", props, { insert_id: `agent-um-${messageId}` });
+  trackStatsigMirror("[Agent] User Message", props);
 }
 
 export function trackAgentAiResponse(
@@ -71,21 +68,19 @@ export function trackAgentAiResponse(
     return;
   }
   const session = agentChatSession(agentId);
-  track(
-    "[Agent] AI Response",
-    {
-      ...baseAgentProps(agentId, session, opts.traceId),
-      "[Agent] Message ID": messageId,
-      "[Agent] Model Name": opts.model ?? "scripted-faq",
-      "[Agent] Provider": opts.provider ?? "ampliyorker-demo",
-      "[Agent] Latency Ms": Math.round(opts.latencyMs),
-      "[Agent] Input Tokens": 0,
-      "[Agent] Output Tokens": 0,
-      "[Agent] Total Tokens": 0,
-      "[Agent] Cost USD": 0,
-    },
-    { insert_id: `agent-ar-${messageId}` },
-  );
+  const props = {
+    ...baseAgentProps(agentId, session, opts.traceId),
+    "[Agent] Message ID": messageId,
+    "[Agent] Model Name": opts.model ?? "scripted-faq",
+    "[Agent] Provider": opts.provider ?? "ampliyorker-demo",
+    "[Agent] Latency Ms": Math.round(opts.latencyMs),
+    "[Agent] Input Tokens": 0,
+    "[Agent] Output Tokens": 0,
+    "[Agent] Total Tokens": 0,
+    "[Agent] Cost USD": 0,
+  };
+  track("[Agent] AI Response", props, { insert_id: `agent-ar-${messageId}` });
+  trackStatsigMirror("[Agent] AI Response", props);
 }
 
 function baseAgentProps(agentId: string, session: AgentChatSession, traceId: string) {
