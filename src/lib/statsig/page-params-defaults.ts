@@ -153,7 +153,7 @@ export const PAGE_DEFAULTS = {
       "Simulated sign-in — analytics identity is your email. Password is cosmetic (try demo or any non-empty value).",
     email_label: "Email",
     password_label: "Password (demo)",
-    password_hint: "Not sent anywhere — required for UX only.",
+    password_hint: "",
     submit_label: "Continue",
     register_prompt: "New here?",
     register_link_label: "Create account",
