@@ -1,5 +1,11 @@
 # Decision log
 
+## 2026-11-19 — Drop `Recommendation Set Presented`; wire Web Experiment secret (P4 follow-up)
+
+- **Decision:** Remove `Recommendation Set Presented` from the Amplitude measurement contract (`custom-events.yml`); do not implement in app code.
+- **Web Experiment:** Add `VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY` to GitHub Actions Pages build env (user added repository secret).
+- **Assignment:** P4-AMPLITUDE-FOLLOW-001 (Builder).
+
 ## 2026-11-11 — Phase 0 merge approval (PR #1)
 
 - **Channel:** #bas-cursor (Slack)

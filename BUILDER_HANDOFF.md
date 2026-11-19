@@ -1,8 +1,8 @@
 # BUILDER_HANDOFF
 
 **Status:** IDLE
-**assignment_id:** P4-AMPLITUDE-MERGE-001
+**assignment_id:** P4-AMPLITUDE-FOLLOW-001
 **Builder agent ID:** bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2
-**Branch:** `main`
+**Branch:** `cursor/amplitude-webexp-follow-93b2`
 
-PR #13 squash-merged @ `f435fef`. Deploy run **44434748241** success. Live smoke `live-smoke-post-deploy.json`.
+Follow-up PR open to `main` (Web Experiment CI env + drop Recommendation Set Presented). Do not merge until user Approve.
