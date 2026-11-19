@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** SHIPPED (PR open; await merge approval)
+**Status:** MERGED (PR #16 @ `b08a93d8dc13c1e34d066697edb7e2ff08471281`; live smoke PASS)
 **assignment_id:** P5-STATSIG-AUDIT-001
 **Builder agent ID:** bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2
 **Branch:** `cursor/statsig-audit-93b2` (local commit; **no push**)
