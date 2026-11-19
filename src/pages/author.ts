@@ -1,9 +1,11 @@
 import { trackDemoEvent } from "../lib/analytics/track";
 import { getArticlesByAuthor } from "../lib/articles";
+import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash } from "../lib/router";
 import { isAuthorFollowed, isLoggedIn, loadSession, toggleFollowAuthor } from "../lib/session";
 
 export function renderAuthorPage(slug: string): HTMLElement {
+  const p = getPageParams("author");
   const main = document.createElement("main");
   main.className = "page-main";
   const articles = getArticlesByAuthor(slug);
@@ -13,9 +15,9 @@ export function renderAuthorPage(slug: string): HTMLElement {
   if (articles.length === 0) {
     main.innerHTML = `
       <section class="listing-panel">
-        <h1>Author not found</h1>
-        <p>No articles are attributed to this author.</p>
-        <p><a href="#/" data-home-link>Return home</a></p>
+        <h1>${p.not_found_title}</h1>
+        <p>${p.not_found_body}</p>
+        <p><a href="#/" data-home-link>${p.return_home_label}</a></p>
       </section>
     `;
   } else {
@@ -38,7 +40,7 @@ export function renderAuthorPage(slug: string): HTMLElement {
       <section class="listing-panel">
         <h1>${displayName}</h1>
         <p class="author-actions">
-          <button type="button" data-follow-author>${followed ? "Following" : "Follow writer"}</button>
+          <button type="button" data-follow-author>${followed ? p.following_button_label : p.follow_button_label}</button>
         </p>
         <ul class="listing-list">${items}</ul>
       </section>

@@ -14,6 +14,10 @@ import { recordExposure } from "./exposures";
 let client: StatsigClient | null = null;
 let ready = false;
 
+export function getStatsigClientForParams(): StatsigClient | null {
+  return ready ? client : null;
+}
+
 const localValues: Record<string, string> = { ...DEFAULT_VARIANTS };
 
 export function bindStatsigClient(instance: StatsigClient | null, initialized: boolean): void {

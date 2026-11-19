@@ -1,8 +1,10 @@
 import { getPlanById } from "../lib/plans";
+import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash } from "../lib/router";
 import { formatRenewalDate, hasActiveSubscription, loadSession } from "../lib/session";
 
 export function renderCheckoutConfirmationPage(): HTMLElement {
+  const p = getPageParams("checkout_confirmation");
   const main = document.createElement("main");
   main.className = "page-main account-page";
   const session = loadSession();
@@ -11,18 +13,18 @@ export function renderCheckoutConfirmationPage(): HTMLElement {
 
   main.innerHTML = `
     <section class="form-panel">
-      <h1>Simulated confirmation</h1>
-      <p class="simulation-label">Simulated payment succeeded — subscription stored in local browser state only.</p>
+      <h1>${p.page_title}</h1>
+      <p class="simulation-label">${p.simulation_disclosure}</p>
       ${
         active && plan
           ? `
-        <p class="status-active" data-subscriber-status><strong>Active subscriber</strong> — ${plan.name} plan</p>
+        <p class="status-active" data-subscriber-status><strong>${p.active_subscriber_template}</strong> — ${plan.name} plan</p>
         <p>Renewal date (simulated): <strong>${formatRenewalDate()}</strong></p>
-        ${session.subscription.usedIntroOffer ? `<p>Introductory offer applied (simulated).</p>` : ""}
-        <p><a href="#/article/retention-myths" data-premium-link>Open premium article</a> · <a href="#/account" data-account-link>Account hub</a></p>
+        ${session.subscription.usedIntroOffer ? `<p>${p.intro_applied_note}</p>` : ""}
+        <p><a href="#/article/retention-myths" data-premium-link>${p.premium_article_link_label}</a> · <a href="#/account" data-account-link>${p.account_hub_link_label}</a></p>
       `
           : `
-        <p data-subscriber-status>No active subscription in local state. Complete checkout from Subscribe.</p>
+        <p data-subscriber-status>${p.inactive_body}</p>
         <p><a href="#/subscribe" data-sub-link>Subscribe</a></p>
       `
       }

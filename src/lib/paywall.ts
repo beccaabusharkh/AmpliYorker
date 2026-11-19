@@ -1,6 +1,7 @@
 import { getArticleById } from "./articles";
-import { SUBSCRIPTION_MESSAGE_COPY, STATSIG_EXPERIMENTS } from "./statsig/catalog";
+import { STATSIG_EXPERIMENTS } from "./statsig/catalog";
 import { getSubscriptionMessageVariant } from "./statsig/evaluate";
+import { getPageParams } from "./statsig/page-params";
 import { hasActiveSubscription, isLoggedIn, loadSession } from "./session";
 
 export function isPremiumArticle(articleId: string): boolean {
@@ -16,21 +17,24 @@ export function canAccessArticle(articleId: string): boolean {
 }
 
 export function paywallMessage(surface = "paywall"): string {
+  const p = getPageParams("article");
   const session = loadSession();
   if (!isLoggedIn()) {
-    return "Simulated paywall — register or log in, then subscribe to read this premium brief.";
+    return p.paywall_message_logged_out;
   }
   if (!hasActiveSubscription()) {
     const variant = getSubscriptionMessageVariant(surface);
-    return SUBSCRIPTION_MESSAGE_COPY[variant];
+    return variant === "urgency"
+      ? p.paywall_message_subscribe_urgency
+      : p.paywall_message_subscribe_control;
   }
   if (session.subscription.status === "canceled") {
-    return "Simulated paywall — subscription canceled; resubscribe to regain access.";
+    return p.paywall_message_canceled;
   }
   if (session.subscription.status === "expired") {
-    return "Simulated paywall — subscription expired. Renew on Account or advance demo time.";
+    return p.paywall_message_expired;
   }
-  return "Simulated paywall";
+  return p.paywall_message_subscribe_control;
 }
 
 export function paywallMessageExperimentId(): string {

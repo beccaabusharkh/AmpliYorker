@@ -1,11 +1,10 @@
 import { trackDemoEvent } from "../lib/analytics/track";
+import { getPageParams } from "../lib/statsig/page-params";
 import faqData from "../data/faq.json";
 
 type FaqEntry = { keywords: string[]; answer: string };
 
 const faq = faqData as FaqEntry[];
-
-const SUGGESTED_PROMPTS = ["Search tips", "Premium access", "Newsletter signup", "Sponsored content"];
 
 export function mountDiscoveryChat(root: HTMLElement): void {
   mountAskDailyAssistant(root);
@@ -15,6 +14,9 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
   if (root.querySelector("[data-ask-daily]")) {
     return;
   }
+
+  const p = getPageParams("discovery_chat");
+  const suggestedPrompts = [...p.suggested_prompts];
 
   const panel = document.createElement("aside");
   panel.className = "ask-daily-panel";
@@ -26,18 +28,18 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
   panel.innerHTML = `
     <header class="ask-daily__header">
       <div>
-        <strong id="ask-daily-title">Ask the Daily</strong>
-        <p class="ask-daily__subtitle">How can we help you explore the demo?</p>
+        <strong id="ask-daily-title">${p.panel_title}</strong>
+        <p class="ask-daily__subtitle">${p.panel_subtitle}</p>
       </div>
       <button type="button" class="ask-daily__close" data-chat-close aria-label="Close Ask the Daily">×</button>
     </header>
-    <p class="ask-daily__disclosure">Scripted assistant for this demo — no live AI. Answers come from local FAQ rules.</p>
+    <p class="ask-daily__disclosure">${p.disclosure}</p>
     <div class="ask-daily__chips" data-chat-chips>
-      ${SUGGESTED_PROMPTS.map((chip) => `<button type="button" data-chip="${escapeAttr(chip)}">${chip}</button>`).join("")}
+      ${suggestedPrompts.map((chip) => `<button type="button" data-chip="${escapeAttr(chip)}">${chip}</button>`).join("")}
     </div>
     <form class="ask-daily__form" data-chat-form>
       <label class="visually-hidden" for="chat-input">Ask a question</label>
-      <input id="chat-input" data-amplitude-mask name="q" type="text" placeholder="What should I read about retention?" autocomplete="off" />
+      <input id="chat-input" data-amplitude-mask name="q" type="text" placeholder="${escapeAttr(p.input_placeholder)}" autocomplete="off" />
       <button type="submit">Ask</button>
     </form>
     <p class="ask-daily__answer" data-chat-answer data-chat-transcript hidden></p>
@@ -49,7 +51,7 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
   toggle.className = "ask-daily-fab";
   toggle.dataset.chatToggle = "true";
   toggle.setAttribute("aria-expanded", "false");
-  toggle.innerHTML = `<span class="ask-daily-fab__icon" aria-hidden="true">?</span> Ask the Daily`;
+  toggle.innerHTML = `<span class="ask-daily-fab__icon" aria-hidden="true">?</span> ${p.panel_title}`;
 
   root.append(toggle, panel);
 

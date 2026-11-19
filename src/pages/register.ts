@@ -1,4 +1,5 @@
 import { personas } from "../lib/personas";
+import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash } from "../lib/router";
 import { ensureAmplitudeIdentity } from "../lib/amplitude/init";
 import { syncStatsigIdentity } from "../lib/statsig/init";
@@ -6,6 +7,7 @@ import { trackDemoEvent } from "../lib/analytics/track";
 import { loginWithPersona } from "../lib/session";
 
 export function renderRegisterPage(): HTMLElement {
+  const p = getPageParams("account_register");
   const main = document.createElement("main");
   main.className = "page-main account-page";
   const personaOptions = personas
@@ -15,18 +17,18 @@ export function renderRegisterPage(): HTMLElement {
 
   main.innerHTML = `
     <section class="form-panel account-surface">
-      <h1>Create account</h1>
-      <p class="simulation-label">No passwords are collected. Pick a preset persona — values are demo-only.</p>
+      <h1>${p.page_title}</h1>
+      <p class="simulation-label">${p.simulation_disclosure}</p>
       <form data-register-form class="stacked-form">
-        <label for="reg-persona">Preset persona</label>
+        <label for="reg-persona">${p.persona_field_label}</label>
         <select id="reg-persona" name="persona" required>${personaOptions}</select>
-        <label for="reg-name">Display name (preset)</label>
-        <input id="reg-name" name="name" type="text" value="Demo Reader" autocomplete="name" />
-        <label for="reg-email">Email (preset)</label>
-        <input id="reg-email" name="email" type="email" value="reader-demo@ampliyorker.test" autocomplete="email" />
-        <button type="submit">Create account</button>
+        <label for="reg-name">${p.display_name_label}</label>
+        <input id="reg-name" name="name" type="text" value="${escapeAttr(p.default_display_name)}" autocomplete="name" />
+        <label for="reg-email">${p.email_label}</label>
+        <input id="reg-email" name="email" type="email" value="${escapeAttr(p.default_email)}" autocomplete="email" />
+        <button type="submit">${p.submit_label}</button>
       </form>
-      <p>Already registered? <a href="#/account/login" data-login-link>Log in</a></p>
+      <p>${p.login_prompt} <a href="#/account/login" data-login-link>${p.login_link_label}</a></p>
     </section>
   `;
 
@@ -63,4 +65,8 @@ export function renderRegisterPage(): HTMLElement {
   });
 
   return main;
+}
+
+function escapeAttr(value: string): string {
+  return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 }
