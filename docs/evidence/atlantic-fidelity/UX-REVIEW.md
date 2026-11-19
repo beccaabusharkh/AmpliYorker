@@ -1,7 +1,7 @@
 # UX review — Atlantic fidelity verify (`P2H-VERIFY-FIDELITY-001`)
 
 **Branch:** `atlantic-fidelity`  
-**Verified build:** see `verify-matrix.json` → `buildSha`  
+**Verified build:** `9ff9d73` (includes verify slice on top of P2 P2 build `85f9d502`)  
 **Spec:** [`docs/2/ATLANTIC-FIDELITY-SPEC.md`](../../2/ATLANTIC-FIDELITY-SPEC.md)  
 **Playwright:** `scripts/verify-fidelity-a01-a20.mjs` @ 1440 / 1024 / 768 / 390
 
