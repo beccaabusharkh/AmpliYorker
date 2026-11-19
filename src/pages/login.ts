@@ -19,10 +19,8 @@ export function renderLoginPage(): HTMLElement {
       <form data-login-form data-precision-event class="stacked-form">
         <label for="login-email">${p.email_label}</label>
         <input id="login-email" name="email" type="email" value="${smokePersona.presetEmail}" required autocomplete="username" />
-        <p class="form-hint">Preset smoke email: <code>${smokePersona.presetEmail}</code> · declining profile: <code>lapsed@ampliyorker.test</code></p>
         <label for="login-password">${p.password_label}</label>
         <input id="login-password" name="password" type="password" value="demo" required autocomplete="current-password" />
-        <p class="form-hint">${p.password_hint}</p>
         <p class="form-error" data-login-error hidden>Enter email and a non-empty password to continue.</p>
         <button type="submit">${p.submit_label}</button>
       </form>
