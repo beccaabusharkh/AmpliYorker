@@ -16,6 +16,13 @@ pnpm test:statsig-audit
 pnpm test:statsig-network-smoke   # after deploy + VITE_STATSIG_CLIENT_KEY; expects statsigapi requests
 
 Pre-merge live may report 0 until P7 ships. CI/Pages build with secret should PASS.
+
+## Post-merge (PR #19 @ `80f5ef2`)
+
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44463680404 — success
+- Live bundle `index-rTLCs32k.js` includes WA plugin
+- `test:statsig-network-smoke`: **FAIL** (0 statsigapi requests) — verify `VITE_STATSIG_CLIENT_KEY` GitHub Actions secret for Pages build
+- Evidence: `p7-live-merge-smoke.json`
 ```
 
 ## Mapping

@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** SHIPPED (PR open; await merge approval)
+**Status:** MERGED (PR #19 @ `80f5ef2`; live statsigapi smoke PARTIAL — key secret)
 **assignment_id:** P7-STATSIG-EVENTS-WA-001
 **Branch:** `cursor/statsig-events-wa-93b2`
 **Branch:** `cursor/web-experiment-script-93b2`

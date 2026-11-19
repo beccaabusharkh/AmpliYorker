@@ -9,7 +9,7 @@ async function main(): Promise<void> {
   const page = await browser.newPage();
   page.on("request", (req) => {
     const url = req.url();
-    if (url.includes("statsigapi.net") || url.includes("statsig.com/api")) {
+    if (/statsig(api)?\.(net|com)/i.test(url)) {
       statsigUrls.push(url);
     }
   });
