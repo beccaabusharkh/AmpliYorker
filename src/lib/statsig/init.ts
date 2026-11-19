@@ -1,4 +1,5 @@
 import { StatsigClient } from "@statsig/js-client";
+import { StatsigAutoCapturePlugin } from "@statsig/web-analytics";
 import { readerIdentityLabel, resolveAccountState } from "../analytics/context";
 import { isLoggedIn } from "../session";
 import { ensureAmplitudeIdentity } from "../amplitude/init";
@@ -13,6 +14,10 @@ const INIT_TIMEOUT_MS = 2500;
 
 export function isStatsigReady(): boolean {
   return initialized || readForcedAssignments().length > 0;
+}
+
+export function getStatsigClient(): StatsigClient | null {
+  return initialized && client ? client : null;
 }
 
 export async function initStatsig(): Promise<void> {
@@ -31,6 +36,7 @@ export async function initStatsig(): Promise<void> {
 
   client = new StatsigClient(clientKey, buildStatsigUser(), {
     environment: { tier: "development" },
+    plugins: [new StatsigAutoCapturePlugin()],
   });
 
   try {

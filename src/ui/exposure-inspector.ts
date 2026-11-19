@@ -23,8 +23,8 @@ function renderInspector(root: HTMLElement): void {
 
   root.innerHTML = `
     <details class="exposure-inspector" data-exposure-inspector>
-      <summary>Statsig exposure inspector (local)</summary>
-      <p class="simulation-label">Forced demo traffic is labeled and excluded from live experiment conclusions.</p>
+      <summary>Statsig exposure inspector (local UI)</summary>
+      <p class="simulation-label">Exposures are sent to Statsig from every SDK evaluation (server logs are source of truth). This table is a deduped local mirror for the demo UI. Forced traffic is labeled and excluded from live experiment conclusions.</p>
       <table>
         <thead><tr><th>Gate / experiment</th><th>Variant</th><th>Surface</th><th>Source</th></tr></thead>
         <tbody>${rows || `<tr><td colspan="4">No exposures yet — interact with paywall or subscribe.</td></tr>`}</tbody>

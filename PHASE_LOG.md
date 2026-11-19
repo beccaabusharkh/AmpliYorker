@@ -1,3 +1,7 @@
+## 2026-11-19T05:05:00Z | Phase 7 | Assignment P7-STATSIG-EVENTS-WA-001 | COMPLETE (branch only)
+- `@statsig/web-analytics` AutoCapture + `trackStatsigMirror`; SDK exposures enabled; evidence statsig-events-wa.md.
+- Branch `cursor/statsig-events-wa-93b2` — no push.
+
 ## 2026-11-19T04:50:00Z | Phase 6 | Assignment P6-WEB-EXP-MERGE-001 | COMPLETE
 - Squash-merged **PR #18** → `main` @ **`8647ca92b0c0cd01a494580457db614ce213b618`**.
 - Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44460822452 — **success**.

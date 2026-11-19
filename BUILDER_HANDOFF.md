@@ -1,7 +1,8 @@
 # BUILDER_HANDOFF
 
-**Status:** MERGED (PR #18 @ `8647ca92b0c0cd01a494580457db614ce213b618`; live Web Exp script PASS)
-**assignment_id:** P6-WEB-EXP-SCRIPT-001
+**Status:** SHIPPED (PR open; await merge approval)
+**assignment_id:** P7-STATSIG-EVENTS-WA-001
+**Branch:** `cursor/statsig-events-wa-93b2`
 **Branch:** `cursor/web-experiment-script-93b2`
 **Builder agent ID:** bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2
 **Branch:** `cursor/final-qa-parity-93b2`
