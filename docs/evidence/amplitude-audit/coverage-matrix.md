@@ -43,9 +43,9 @@
 | A34 | G&S | No mystery boot without content | FAIL | PASS | skip avoids Engagement Booted when disabled |
 | A35 | G&S | Console survey targeting | BLOCKED | BLOCKED | no authorized G&S content |
 | A36 | G&S | Entitlements / prod content | BLOCKED | BLOCKED | planner approval |
-| A37 | Web Experiment | Deployment key only (not Feature Flags) | FAIL | PARTIAL | env `VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY`; off when unset |
+| A37 | Web Experiment | Deployment key only (not Feature Flags) | FAIL | **PASS** | CI secret + live bundle `index-BljoOFwA.js` includes experiment init path (2026-11-19) |
 | A38 | Web Experiment | No duplicate experiment CDN | PASS | PASS | unified only |
 | A39 | Experiment surface | Statsig owns UI experiments | PASS | PASS | Statsig SDK unchanged |
 | A40 | Agent Analytics | Scripted chat taxonomy | FAIL | PASS | `[Agent] User Message` / `AI Response` |
 
-**Summary:** Pre-audit **PASS 12 · PARTIAL 6 · FAIL 15 · BLOCKED 2 · DEFERRED 1**. Post-fix local **PASS 36 · PARTIAL 1 · BLOCKED 2 · DROPPED 1** (A37 partial until Pages rebuild with deployment key; **A20 OUT OF SCOPE / DROPPED**).
+**Summary (2026-11-19 post PR #14):** **A20 OUT OF SCOPE / DROPPED**; **A37 PASS** after Pages build with `VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY` (live bundle `index-BljoOFwA.js` includes `deploymentKey` / `fetchOnStart` / `automaticExposureTracking` paths — key not logged).

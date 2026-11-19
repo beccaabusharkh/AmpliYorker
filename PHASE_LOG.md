@@ -1,3 +1,8 @@
+## 2026-11-19T04:40:00Z | Phase 4 | Assignment P4-AMPLITUDE-FOLLOW-MERGE-001 | COMPLETE
+- Squash-merged **PR #14** → `main` @ **`bb2c0c68b3dfd6d0a448d0f50632782050ba8a10`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44436047510 — **success**.
+- Live: bundle `index-BljoOFwA.js` includes Web Experiment init symbols (`deploymentKey`, `fetchOnStart`, `automaticExposureTracking`); A20/A37 evidence updated.
+
 ## 2026-11-19T04:35:00Z | Phase 4 | Assignment P4-AMPLITUDE-FOLLOW-001 | COMPLETE (ship)
 - What was built: `deploy-pages.yml` passes `VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY`; removed `Recommendation Set Presented` from dictionary; evidence A20 + DECISIONS; verify PASS with dummy deployment key at build.
 - Git: branch `cursor/amplitude-webexp-follow-93b2` — PR **#14** https://github.com/beccaabusharkh/AmpliYorker/pull/14 (no merge).

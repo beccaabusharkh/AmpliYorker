@@ -8,5 +8,5 @@
 | `[Agent] *` events | **PARTIAL** — instrumented; live wire capture not confirmed in smoke script |
 | Autocapture on precision controls | **PASS** — `data-precision-event` in live bundle |
 | G&S surveys | **BLOCKED** — no content / entitlements; skip default |
-| Amplitude Web Experiment | **PENDING DEPLOY** — GitHub secret added; bakes in on next Pages build after follow-up PR |
+| Amplitude Web Experiment | **PASS (build-time)** — secret wired in Actions; live bundle includes experiment plugin options (not live fetch verified) |
 | `Recommendation Set Presented` | **OUT OF SCOPE** — dropped from `custom-events.yml` |
