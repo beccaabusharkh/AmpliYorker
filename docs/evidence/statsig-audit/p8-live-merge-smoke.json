@@ -1,0 +1,14 @@
+{
+  "merge_sha": "0e21b281e04f19917052781926723bd7ab8524cf",
+  "pr": 20,
+  "pages_deploy_run": 142,
+  "pages_deploy_status": "success",
+  "live_bundle": "assets/index-DB46eQYa.js",
+  "statsig_env_tier_bundle": "PASS",
+  "statsig_network_smoke": {
+    "pass": false,
+    "statsigRequestCount": 0,
+    "note": "VITE_STATSIG_CLIENT_KEY likely missing at CI build — init falls back to local defaults"
+  },
+  "s21_console_promotion": "PARTIAL — see /cursor/stores/self/docs/evidence/statsig-audit/s21-prod-promotion.md (AMP-42)"
+}
