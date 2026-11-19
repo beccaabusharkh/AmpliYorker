@@ -1,3 +1,7 @@
+## 2026-11-19T03:15:00Z | Phase 3 | Assignment P3-SHIP-STATSIG-PARAMS-001 | COMPLETE
+- Pushed `cursor/statsig-page-params-93b2`; opened PR to `main` (no merge).
+- Includes P3-STATSIG-PARAMS-BUILD-001 @ `eb5628c`+.
+
 ## 2026-11-19T03:05:00Z | Phase 3 | Assignment P3-STATSIG-PARAMS-BUILD-001 | COMPLETE
 - What was built: Statsig **14** layer/store pairs (`home_layer`/`home_params` … `discovery_chat_layer`/`discovery_chat_params`); store params linked to layer (gate/experiment refs for paywall + existing experiments).
 - Code: `getPageParams()` + `docs/statsig-params.yml`; pages/shell/paywall wired; `pnpm test:statsig-params` PASS; typecheck + build PASS.
