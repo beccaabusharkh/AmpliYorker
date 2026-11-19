@@ -7,6 +7,7 @@
 | Page views (hash SPA) | `[Amplitude] Page Viewed` autocapture | **Not used** (no Statsig WA) | PASS — intentional split |
 | Session replay | Amplitude `sessionReplay` | **Excluded** | PASS |
 | Feature experiments | **Excluded** (Web Experiment only) | Statsig gates/experiments/layers | PASS — separate products |
+| Web Experiment CDN | `index.html` `*.experiment.js` (API key) + unified `deploymentKey` | N/A | PASS — see `amplitude-audit/web-experiment-cdn-script.md` |
 | Treatment exposures | Web Exp: manual off; G&S gated | Manual inspector + `disableExposureLog` reads | PASS |
 | Outcome events | `custom-events.yml` → `trackDemoEvent` | No parallel Statsig custom mirror | PASS — see event-map |
 | Forced demo traffic | `is_forced_variant` | `?force_statsig=` + inspector `isForced` | PASS |
