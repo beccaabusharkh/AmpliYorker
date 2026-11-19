@@ -1,0 +1,19 @@
+{
+  "assignment": "P6-FINAL-QA-PARITY-001",
+  "test_run_id": "p6-20261119-0405",
+  "branch_at_audit": "main",
+  "commit_sha": "52206387b4a1c4ef4bb65c4646f0d39449d1cf4c",
+  "live_bundle": "/AmpliYorker/assets/index-Bc4EeyRc.js",
+  "deploy_run": "https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44455139773",
+  "amplitude_project_id": "905300",
+  "statsig_project_id": "1Nj9BkrZHElrDQV9CIWiyf",
+  "isolated_identity": "playwright ephemeral context per journey; QA_RUN_ID prefix",
+  "toolchain": {
+    "typecheck": "PASS",
+    "build": "PASS",
+    "test_amplitude_config": "PASS",
+    "test_statsig_audit": "PASS",
+    "test_statsig_params": "PASS",
+    "test_custom_events_parity": "PASS"
+  }
+}

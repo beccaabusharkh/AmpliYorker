@@ -15,7 +15,7 @@ conventions:
   reading: "content_progress_percent measures content position reached, not proof that every preceding word was read."
   excluded_autocapture: ["Raw Form Interactions", "Raw Scroll Events", "File Downloads"]
   selective_autocapture: ["[Amplitude] Page Viewed (hash routes)", "[Amplitude] Element Clicked", "[Amplitude] Element Changed on non-precision controls only"]
-  agent_analytics: "Parallel `[Agent] User Message` / `[Agent] AI Response` on Ask the Daily + account support (metadata-only; no message text). Product chat events unchanged."
+  agent_analytics: "Parallel `[Agent] User Message` / `[Agent] AI Response` / `[Agent] Session End` on Ask the Daily + account support (metadata-only; no message text). Product chat events unchanged."
   implementation_notes: ["Adding to cart persists the selected subscription offer in the checkout draft; no separate cart page is required.", "Record money only on Subscription Payment Completed and Ad Revenue Recorded.", "Checkout, activation, trial conversion, and renewal events must not duplicate revenue.", "Read Article replaces Article Reading Started, Article Reading Completed, and Reading Resumed.", "Read Article dedupes with stable insert_id read-article:{article_id}:{milestone}:{demo_run_id}.", "Precision surfaces use data-precision-event or data-* form roots; autocapture resolver skips them."]
 
 common_properties:
@@ -330,6 +330,15 @@ events:
       previous_account_state: {"type": "string"}
       expiration_reason: {"type": "string", "enum": ["trial_ended", "cancellation_effective", "simulated_payment_failure"]}
     fires_at: "SubscriptionLifecycle, once when advancing demo time causes access to expire."
+    carries_revenue: false
+
+  "[Agent] Session End":
+    properties:
+      "[Agent] Agent ID": {"type": "string"}
+      "[Agent] Session ID": {"type": "string"}
+      "[Agent] Turn Count": {"type": "integer"}
+      "[Agent] Environment": {"type": "string"}
+    fires_at: "AskTheDaily or AccountSupport, when closing the agent panel after at least one turn; metadata-only."
     carries_revenue: false
 
   Chat Request Submitted:

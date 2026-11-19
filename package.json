@@ -9,9 +9,12 @@
     "preview": "vite preview",
     "test:statsig-params": "node --experimental-strip-types scripts/verify-statsig-params-yaml.mts",
     "test:amplitude-config": "node --experimental-strip-types scripts/verify-amplitude-config.mts",
-    "test:statsig-audit": "node --experimental-strip-types scripts/verify-statsig-audit.mts"
+    "test:statsig-audit": "node --experimental-strip-types scripts/verify-statsig-audit.mts",
+    "test:custom-events-parity": "node --experimental-strip-types scripts/verify-custom-events-parity.mts",
+    "test:final-qa-browser": "node --experimental-strip-types scripts/run-final-qa-browser.mts"
   },
   "devDependencies": {
+    "playwright": "1.49.1",
     "typescript": "^5.7.2",
     "vite": "^6.0.3"
   },
