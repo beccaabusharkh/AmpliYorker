@@ -7,7 +7,8 @@
     "typecheck": "tsc --noEmit",
     "build": "vite build",
     "preview": "vite preview",
-    "test:statsig-params": "node --experimental-strip-types scripts/verify-statsig-params-yaml.mts"
+    "test:statsig-params": "node --experimental-strip-types scripts/verify-statsig-params-yaml.mts",
+    "test:amplitude-config": "node --experimental-strip-types scripts/verify-amplitude-config.mts"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

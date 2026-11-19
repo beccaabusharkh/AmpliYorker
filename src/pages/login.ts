@@ -16,7 +16,7 @@ export function renderLoginPage(): HTMLElement {
     <section class="form-panel account-surface">
       <h1>${p.page_title}</h1>
       <p class="simulation-label">${p.simulation_disclosure}</p>
-      <form data-login-form class="stacked-form">
+      <form data-login-form data-precision-event class="stacked-form">
         <label for="login-email">${p.email_label}</label>
         <input id="login-email" name="email" type="email" value="${smokePersona.presetEmail}" autocomplete="username" />
         <label for="login-persona">${p.persona_label}</label>

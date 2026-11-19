@@ -131,7 +131,7 @@ export function renderHomePage(): HTMLElement {
         <section class="home-newsletter home-fidelity-band" id="home-newsletter" data-newsletter>
           <h3>${p.newsletter_title}</h3>
           <p>${p.newsletter_subcopy}</p>
-          <form data-newsletter-form>
+          <form data-newsletter-form data-precision-event>
             <label for="newsletter-email">${p.newsletter_email_label}</label>
             <input id="newsletter-email" type="email" name="email" placeholder="${escapeAttr(p.newsletter_placeholder)}" />
             <button type="submit">${p.newsletter_submit_label}</button>

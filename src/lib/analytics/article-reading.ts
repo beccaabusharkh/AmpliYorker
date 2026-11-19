@@ -1,5 +1,6 @@
 import { getArticleById } from "../articles";
 import { getReadingProgress } from "../reading-progress";
+import { getDemoRunId } from "./context";
 import { trackDemoEvent } from "./track";
 
 const MILESTONES = [25, 50, 75, 90, 100] as const;
@@ -69,18 +70,24 @@ export function attachArticleReadTracking(articleId: string, bodyEl: HTMLElement
       if (percent >= milestone && !fired.has(milestone)) {
         fired.add(milestone);
         persistFired(sessionKey, fired);
-        trackDemoEvent("Read Article", {
-          article_id: article.id,
-          author_id: article.author,
-          topic_id: article.topic,
-          content_progress_percent: milestone,
-          active_reading_seconds: readingSeconds,
-          discovery_source: "direct",
-          recommendation_set_id: null,
-          reading_source: "new_read",
-          content_type: article.sponsored ? "sponsored" : "editorial",
-          sponsor_id: article.sponsored ? article.author : null,
-        });
+        const insertId = `read-article:${articleId}:${milestone}:${getDemoRunId()}`;
+        trackDemoEvent(
+          "Read Article",
+          {
+            article_id: article.id,
+            author_id: article.author,
+            topic_id: article.topic,
+            content_progress_percent: milestone,
+            active_reading_seconds: readingSeconds,
+            discovery_source: "direct",
+            recommendation_set_id: null,
+            reading_source: "new_read",
+            content_type: article.sponsored ? "sponsored" : "editorial",
+            sponsor_id: article.sponsored ? article.author : null,
+          },
+          "interactive_demo",
+          insertId,
+        );
       }
     }
   };

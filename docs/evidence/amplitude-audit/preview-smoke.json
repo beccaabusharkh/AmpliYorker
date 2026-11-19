@@ -1,0 +1,9 @@
+{
+  "checked_at_utc": "2026-11-19T01:06:00Z",
+  "build": "pnpm build with VITE_AMPLITUDE_API_KEY from team env (.env.local not committed)",
+  "preview_url": "http://127.0.0.1:4173/AmpliYorker/",
+  "route": "#/article/daily-decisions",
+  "amplitude_network_requests": 8,
+  "read_article_milestones_session": "[25,50,75,90,100]",
+  "live_gap": "https://beccaabusharkh.github.io/AmpliYorker/ still serves pre-audit bundle until next Pages deploy (no push in assignment)."
+}

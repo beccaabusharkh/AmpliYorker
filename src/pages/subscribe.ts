@@ -45,8 +45,8 @@ export function renderSubscribePage(): HTMLElement {
         <p class="plan-card__price">${plan.priceLabel}</p>
         <p class="intro-offer">${offerVariant === "intro_badge" ? p.intro_offer_badge_prefix : ""}${plan.introOfferLabel}</p>
         <ul class="plan-card__features">${features}</ul>
-        <button type="button" data-select-plan="${plan.id}" data-intro="true">${p.intro_cta_label}</button>
-        <button type="button" class="secondary-button" data-select-plan="${plan.id}" data-intro="false">${p.standard_cta_label}</button>
+        <button type="button" data-select-plan data-precision-event data-plan-id="${plan.id}" data-intro="true">${p.intro_cta_label}</button>
+        <button type="button" class="secondary-button" data-select-plan data-precision-event data-plan-id="${plan.id}" data-intro="false">${p.standard_cta_label}</button>
       </article>
     `;
     })
@@ -62,7 +62,7 @@ export function renderSubscribePage(): HTMLElement {
 
   main.querySelectorAll("[data-select-plan]").forEach((button) => {
     button.addEventListener("click", () => {
-      const planId = button.getAttribute("data-select-plan");
+      const planId = button.getAttribute("data-plan-id");
       const intro = button.getAttribute("data-intro") === "true";
       if (planId && plans.some((p) => p.id === planId)) {
         setPendingCheckout(planId, intro);
