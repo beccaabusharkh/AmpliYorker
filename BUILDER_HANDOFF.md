@@ -1,23 +1,22 @@
 # BUILDER_HANDOFF
 
-**Status:** MERGED (PR #16 @ `b08a93d8dc13c1e34d066697edb7e2ff08471281`; live smoke PASS)
-**assignment_id:** P5-STATSIG-AUDIT-001
+**Status:** COMPLETE (awaiting Planner push authorization)
+**assignment_id:** P6-FINAL-QA-PARITY-001
 **Builder agent ID:** bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2
-**Branch:** `cursor/statsig-audit-93b2` (local commit; **no push**)
+**Branch:** `cursor/final-qa-parity-93b2`
 
 ## Summary
-Statsig audit fixes: identity `account_state` parity, init timeout handling, `disableExposureLog` on gate/experiment reads, logout `clearExposures`, evidence S01–S40 + `test:statsig-audit`.
+Final QA parity pass: toolchain PASS; live Playwright journeys PASS; dictionary fix D01 (`[Agent] Session End`); evidence Q01–Q45; demo certification **PARTIAL** (G&S draft, Statsig network MCP blockers).
 
-## Code
-- `src/lib/statsig/init.ts`, `evaluate.ts`
-- `src/pages/account.ts`
-- `scripts/verify-statsig-audit.mts`, `package.json`
-- `custom-events.yml` (Statsig conventions)
-- `docs/5/STATSIG-AUDIT-SPEC.md`, `docs/evidence/statsig-audit/*`
+## Deliverables
+- `docs/6/FINAL-QA-SPEC.md`, store mirror `docs/6`
+- `docs/evidence/final-qa/` (matrix, parity, defects, FINAL-REPORT, baseline, browser-journey.json)
+- Media: `/cursor/stores/self/media/final-qa/` (screenshots + `subscription-journey.webm`)
+- Scripts: `test:custom-events-parity`, `test:final-qa-browser`
 
-## Blockers (console)
-- **S21** Production param promotion (`reviewRequired`)
-- **S22** Statsig MCP gate/experiment list returned 0 — use `docs/statsig-entities-step2.md` + console UI
+## Blockers for Planner
+- B01 G&S survey 112204 draft
+- B02–B03 Statsig S21/S22 console
+- B04/B05 ingestion + automated Statsig network (D02 PARTIAL)
 
-## Verification
-`pnpm typecheck`, `pnpm build`, `test:statsig-params`, `test:statsig-audit`, `test:amplitude-config` — PASS.
+**No push/PR yet** (await `@PLANNER authorize push and PR`).
