@@ -32,7 +32,7 @@ export function renderSkipLink(): HTMLElement {
 
 export function renderHeader(): HTMLElement {
   const header = document.createElement("header");
-  header.className = "site-header";
+  header.className = "site-header site-header--fidelity";
   header.dataset.component = "site-header";
   const route = getCurrentRoute();
   const searchValue = route.name === "search" ? route.query : "";
@@ -48,34 +48,39 @@ export function renderHeader(): HTMLElement {
   const mastheadTag = useContentHeading ? "p" : "h1";
 
   header.innerHTML = `
-    <div class="home-utility-bar site-utility-bar">
-      <div class="utility-links utility-links--end">
-        <a href="#home-newsletter" data-newsletter-link>Newsletter</a>
-        <a href="${accountHref}" data-utility-account>${accountLabel}</a>
+    <div class="site-header-chrome" data-fidelity-chrome>
+      <div class="site-chrome-brand-row">
+        <div class="site-chrome-brand-center">
+          <${mastheadTag} class="home-masthead site-masthead">
+            <a href="#/" data-internal-link>Amplitude Daily</a>
+          </${mastheadTag}>
+          <p class="site-masthead-edition site-masthead-edition--chrome">Today\u2019s edition \u00b7 ${edition}</p>
+        </div>
+        <div class="site-chrome-actions">
+          <a href="#home-newsletter" data-newsletter-link>Newsletter</a>
+          <a href="${accountHref}" data-utility-account>${accountLabel}</a>
+          <a class="site-chrome-subscribe" href="#/subscribe" data-section-link>Subscribe</a>
+        </div>
       </div>
+      <nav class="home-section-nav" aria-label="Sections">
+        <div class="section-nav-spacer" aria-hidden="true"></div>
+        <ul class="section-nav-list">
+          ${SECTION_LINKS.map(
+            (link) => `<li><a href="${link.href}" data-section-link>${link.label}</a></li>`,
+          ).join("")}
+        </ul>
+        <form class="header-search section-nav-search" data-header-search role="search">
+          <label class="visually-hidden" for="header-search-input">Search articles</label>
+          <input id="header-search-input" data-amplitude-mask type="search" name="q" placeholder="Search headlines\u2026" value="${escapeAttr(searchValue)}" />
+          <button type="submit">Search</button>
+        </form>
+      </nav>
     </div>
-    <${mastheadTag} class="home-masthead site-masthead">
-      <a href="#/" data-internal-link>Amplitude Daily</a>
-    </${mastheadTag}>
-    <p class="site-masthead-edition">Today\u2019s edition \u00b7 ${edition}</p>
-    <p class="home-masthead-tagline">Independent reporting on product analytics and experimentation</p>
-    <div class="site-promo-band" data-subscribe-promo aria-label="Subscription promotion">
+    <div class="site-promo-band site-promo-band--slim" data-subscribe-promo aria-label="Subscription promotion">
       <p class="site-promo-band__copy">Subscribe for full access to Amplitude Daily — plans from $12/month.</p>
       <a class="promo-band__cta" href="#/subscribe" data-section-link>Subscribe</a>
     </div>
-    <nav class="home-section-nav" aria-label="Sections">
-      <div class="section-nav-spacer" aria-hidden="true"></div>
-      <ul class="section-nav-list">
-        ${SECTION_LINKS.map(
-          (link) => `<li><a href="${link.href}" data-section-link>${link.label}</a></li>`,
-        ).join("")}
-      </ul>
-      <form class="header-search section-nav-search" data-header-search role="search">
-        <label class="visually-hidden" for="header-search-input">Search articles</label>
-        <input id="header-search-input" data-amplitude-mask type="search" name="q" placeholder="Search headlines\u2026" value="${escapeAttr(searchValue)}" />
-        <button type="submit">Search</button>
-      </form>
-    </nav>
+    <p class="home-masthead-tagline">Independent reporting on product analytics and experimentation</p>
     ${
       session.activePersonaId !== "anonymous"
         ? `<p class="persona-banner simulation-label">Persona: <strong>${session.displayName ?? session.activePersonaId}</strong> (<code>${session.activePersonaId}</code>) \u00b7 simulated session</p>`

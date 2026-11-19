@@ -36,6 +36,17 @@ function filterForTab(tab: HomeTab) {
   }
 }
 
+function renderOpeningRailCard(item: Article): string {
+  return `
+    <article class="secondary-lead-card opening-rail-card">
+      <a class="secondary-lead-link" href="#/article/${encodeURIComponent(item.id)}">
+        <img class="secondary-lead-thumb" src="${baseUrl}${escapeAttr(item.heroImage?.src ?? "")}" alt="${escapeAttr(getArticleThumbAlt(item))}" loading="lazy" width="592" height="394" />
+        <h2 class="rail-headline">${item.headline}</h2>
+      </a>
+      <p class="secondary-deck">${item.deck}</p>
+    </article>`;
+}
+
 export function renderHomePage(): HTMLElement {
   const article = getFeaturedArticle();
   const secondary = getAllArticles()
@@ -55,10 +66,32 @@ export function renderHomePage(): HTMLElement {
   main.className = "page-main home-editorial";
   const heroSrc = article.heroImage ? `${baseUrl}${article.heroImage.src}` : "";
   const heroAlt = article.heroImage?.alt ?? article.headline;
+  const leftRail = secondary[0];
+  const rightRail = secondary.slice(1, 3);
 
   main.innerHTML = `
     <div class="home-leaderboard-wrap" data-leaderboard-slot></div>
-    <div class="home-editorial-grid">
+    <section class="opening-mosaic" data-opening-mosaic>
+      <div class="opening-rail opening-rail--left" aria-label="Opening stories left">
+        ${leftRail ? renderOpeningRailCard(leftRail) : ""}
+      </div>
+      <section class="home-lead-package opening-lead" data-component="home-lead">
+        ${article.kicker ? `<p class="home-kicker">${article.kicker}</p>` : ""}
+        <div class="lead-grid">
+          <a class="lead-hero-link" href="#/article/${encodeURIComponent(article.id)}" data-lead-link>
+            <img class="lead-hero-image" src="${heroSrc}" alt="${escapeAttr(heroAlt)}" width="1248" height="832" />
+          </a>
+          <div class="lead-copy">
+            <h2 class="lead-headline"><a href="#/article/${encodeURIComponent(article.id)}" data-lead-link>${article.headline}</a></h2>
+            <p class="lead-deck">${article.deck}</p>
+          </div>
+        </div>
+      </section>
+      <div class="opening-rail opening-rail--right" aria-label="Opening stories right">
+        ${rightRail.map((item) => renderOpeningRailCard(item)).join("")}
+      </div>
+    </section>
+    <div class="home-content-grid">
       <div class="home-primary-column">
         ${
           retentionOffer
@@ -69,32 +102,6 @@ export function renderHomePage(): HTMLElement {
         </section>`
             : ""
         }
-        <section class="home-lead-package" data-component="home-lead">
-          ${article.kicker ? `<p class="home-kicker">${article.kicker}</p>` : ""}
-          <div class="lead-grid">
-            <div class="lead-copy">
-              <h2 class="lead-headline"><a href="#/article/${encodeURIComponent(article.id)}" data-lead-link>${article.headline}</a></h2>
-              <p class="lead-deck">${article.deck}</p>
-            </div>
-            <a class="lead-hero-link" href="#/article/${encodeURIComponent(article.id)}" data-lead-link>
-              <img class="lead-hero-image" src="${heroSrc}" alt="${escapeAttr(heroAlt)}" width="1200" height="800" />
-            </a>
-          </div>
-        </section>
-        <div class="home-secondary-leads">
-          ${secondary
-            .map(
-              (item) => `
-            <article class="secondary-lead-card">
-              <a class="secondary-lead-link" href="#/article/${encodeURIComponent(item.id)}">
-                <img class="secondary-lead-thumb" src="${baseUrl}${escapeAttr(item.heroImage?.src ?? "")}" alt="${escapeAttr(getArticleThumbAlt(item))}" loading="lazy" width="800" height="600" />
-                <h3>${item.headline}</h3>
-              </a>
-              <p class="secondary-deck">${item.deck}</p>
-            </article>`,
-            )
-            .join("")}
-        </div>
         <section class="home-tabbed-feed" data-home-tabs>
           <div role="tablist" aria-label="Home sections" class="home-tablist">
             ${(Object.keys(TAB_LABELS) as HomeTab[])
