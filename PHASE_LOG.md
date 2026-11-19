@@ -1,3 +1,8 @@
+## 2026-11-19T04:50:00Z | Phase 6 | Assignment P6-WEB-EXP-MERGE-001 | COMPLETE
+- Squash-merged **PR #18** → `main` @ **`8647ca92b0c0cd01a494580457db614ce213b618`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44460822452 — **success**.
+- Live: `cdn.amplitude.com/script/…experiment.js` in published `index.html` — **PASS**.
+
 ## 2026-11-19T04:50:00Z | Phase 6 | Assignment P6-WEB-EXP-SCRIPT-001 | COMPLETE (branch only)
 - Web Experiment standalone CDN in `index.html` via Vite transform; `.env.example` note; evidence `web-experiment-cdn-script.md`.
 - Branch `cursor/web-experiment-script-93b2` — no push.

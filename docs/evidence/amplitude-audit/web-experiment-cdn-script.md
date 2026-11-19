@@ -10,3 +10,12 @@
 | Amplitude Feature Experiment (server-side) | **EXCLUDED** |
 
 Built output check: run `VITE_AMPLITUDE_API_KEY=<key> pnpm build` then `pnpm test:amplitude-config` (reads `dist/index.html` when present).
+
+## Live verify (post PR #18)
+
+| Field | Value |
+| --- | --- |
+| Merge SHA | `8647ca92b0c0cd01a494580457db614ce213b618` |
+| Deploy | https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44460822452 — **success** |
+| Check | **PASS** — live `index.html` includes `cdn.amplitude.com/script/…experiment.js`; no `API_KEY.js` |
+| Verified | 2026-11-19T04:50:00Z |
