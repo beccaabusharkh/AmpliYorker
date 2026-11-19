@@ -41,10 +41,12 @@ function resolveValue(gateOrExperiment: string, fallback: string): { value: stri
     try {
       const gateValues = Object.values(STATSIG_GATES) as string[];
       if (gateValues.includes(gateOrExperiment)) {
-        const gate = client.checkGate(gateOrExperiment as (typeof STATSIG_GATES)[keyof typeof STATSIG_GATES]);
+        const gate = client.checkGate(gateOrExperiment as (typeof STATSIG_GATES)[keyof typeof STATSIG_GATES], {
+          disableExposureLog: true,
+        });
         return { value: gate ? "true" : "false", forced: false };
       }
-      const exp = client.getExperiment(gateOrExperiment);
+      const exp = client.getExperiment(gateOrExperiment, { disableExposureLog: true });
       const variant = exp.get("variant", fallback);
       return { value: String(variant), forced: false };
     } catch {

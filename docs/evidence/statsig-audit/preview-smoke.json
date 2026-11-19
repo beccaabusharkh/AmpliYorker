@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-11-19T05:00:00Z",
+  "live_url": "https://beccaabusharkh.github.io/AmpliYorker/#/",
+  "note": "Live bundle predates P5 merge; local build verifies Statsig client inclusion.",
+  "local_build": {
+    "bundle": "dist/assets/index-DQ9FGsCl.js",
+    "statsig_client_present": true,
+    "statsig_session_replay_present": false,
+    "amplitude_rrweb_present": true
+  },
+  "tests": {
+    "typecheck": "pass",
+    "test:statsig-params": "pass",
+    "test:statsig-audit": "pass",
+    "test:amplitude-config": "pass",
+    "build": "pass"
+  }
+}

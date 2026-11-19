@@ -1,8 +1,23 @@
 # BUILDER_HANDOFF
 
-**Status:** IDLE
-**assignment_id:** P4-GS-ENABLE-MERGE-001
+**Status:** COMPLETE (awaiting Planner push authorization)
+**assignment_id:** P5-STATSIG-AUDIT-001
 **Builder agent ID:** bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2
-**Branch:** `main`
+**Branch:** `cursor/statsig-audit-93b2` (local commit; **no push**)
 
-PR #15 merged. Deploy success. Live engagement check PASS. Survey 112204 still draft in Amplitude.
+## Summary
+Statsig audit fixes: identity `account_state` parity, init timeout handling, `disableExposureLog` on gate/experiment reads, logout `clearExposures`, evidence S01–S40 + `test:statsig-audit`.
+
+## Code
+- `src/lib/statsig/init.ts`, `evaluate.ts`
+- `src/pages/account.ts`
+- `scripts/verify-statsig-audit.mts`, `package.json`
+- `custom-events.yml` (Statsig conventions)
+- `docs/5/STATSIG-AUDIT-SPEC.md`, `docs/evidence/statsig-audit/*`
+
+## Blockers (console)
+- **S21** Production param promotion (`reviewRequired`)
+- **S22** Statsig MCP gate/experiment list returned 0 — use `docs/statsig-entities-step2.md` + console UI
+
+## Verification
+`pnpm typecheck`, `pnpm build`, `test:statsig-params`, `test:statsig-audit`, `test:amplitude-config` — PASS.

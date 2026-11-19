@@ -9,6 +9,8 @@ conventions:
   currency: "USD"
   revenue: "revenue_usd is a number in dollars; forward as revenue only for carries_revenue events."
   simulation: "Exclude seeded history and forced experiment traffic from live experiment conclusions."
+  statsig_exposures: "Treatment exposures are recorded in sessionStorage (src/lib/statsig/exposures.ts) and via disableExposureLog SDK reads — not as duplicate Amplitude events. Map outcomes in docs/evidence/statsig-audit/event-map.md."
+  statsig_identity: "Statsig userID = reader_id ?? anonymous_id; customIDs.amplitude_device_id mirrors Amplitude device_id; custom.account_state uses resolveAccountState()."
   privacy: "Exclude passwords, payment details, email addresses, raw search queries, and free-text chat or survey responses."
   reading: "content_progress_percent measures content position reached, not proof that every preceding word was read."
   excluded_autocapture: ["Raw Form Interactions", "Raw Scroll Events", "File Downloads"]
