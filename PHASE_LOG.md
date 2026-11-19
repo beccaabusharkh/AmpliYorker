@@ -1,3 +1,13 @@
+## 2026-11-19T02:10:00Z | Phase 2H | Assignment P2H-SHIP-FIDELITY-001 | COMPLETE
+- What was shipped: pushed `cursor/atlantic-fidelity-93b2`; opened PR to `main` (no merge).
+- Verify: **20/20** `P2H-FID-A01`–`A20` @ 1440/1024/768/390; **9/9** journeys.
+- Evidence: `docs/evidence/atlantic-fidelity/UX-REVIEW.md`, `verify-matrix.json`, `remaining-differences.md`, annotated before/after + `journey-home-fidelity.webm`.
+- Scope: layout/CSS + home chrome only; no SDK/backend; routes/`data-*` hooks preserved.
+
+## 2026-11-19T01:55:00Z | Phase 2H | Assignment P2H-VERIFY-FIDELITY-001 | COMPLETE
+- What was verified: full matrix A01–A20 + journeys; commit `0351f04`+ on `atlantic-fidelity` (no push until ship).
+- Evidence: `scripts/verify-fidelity-a01-a20.mjs`, `verify-matrix.json`, `UX-REVIEW.md`.
+
 ## 2026-11-19T01:40:00Z | Phase 2H | Assignment P2H-BUILD-FIDELITY-P2-001 | COMPLETE
 - What was built: 2H-4/2H-5 below-fold rhythm, 18px feed/rail type, 1px rules, 296px rail cap; P1 geometry preserved.
 - Branch: `atlantic-fidelity` (no push).
