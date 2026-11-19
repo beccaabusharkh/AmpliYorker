@@ -14,6 +14,6 @@
   "blockers_unchanged": {
     "guides_and_surveys_content": "BLOCKED — not verified; engagement skip unless VITE_AMPLITUDE_ENGAGEMENT_ENABLED",
     "web_experiment_deployment_key": "BLOCKED — not in repo / not verified on live",
-    "recommendation_set_presented": "DEFERRED — not implemented"
+    "recommendation_set_presented": "OUT OF SCOPE — dropped from contract"
   }
 }

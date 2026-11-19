@@ -55,15 +55,6 @@ events:
     fires_at: "SearchResults, after a submitted search finishes."
     carries_revenue: false
 
-  Recommendation Set Presented:
-    properties:
-      recommendation_set_id: {"type": "string"}
-      article_ids: {"type": "array", "items": {"type": "string"}}
-      recommendation_strategy: {"type": "string"}
-      placement: {"type": "string"}
-    fires_at: "RecommendationList, once at least half the list is visible for one second."
-    carries_revenue: false
-
   Read Article:
     properties:
       article_id: {"type": "string"}

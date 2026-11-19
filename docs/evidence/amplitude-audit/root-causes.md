@@ -45,4 +45,8 @@
 ## RC-08 — Blocked: G&S content + Web Experiment deployment key
 
 **G&S:** No approved survey/guide content in console for AmpliYorker → targeting checks **BLOCKED** (A35–A36).  
-**Web Experiment:** `VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY` not in repo → plugin omitted (A37 partial). Statsig remains sole UI experiment surface (A39 PASS).
+**Web Experiment:** `VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY` not in repo → plugin omitted (A37 partial). Statsig remains sole UI experiment surface (A39 PASS). **Update:** user added GitHub secret; follow-up PR wires it into `deploy-pages.yml` build env.
+
+## RC-09 — `Recommendation Set Presented` removed from contract
+
+**Decision:** User dropped event from measurement dictionary (2026-11-19); article recommendation UI remains without a dedicated Amplitude event.

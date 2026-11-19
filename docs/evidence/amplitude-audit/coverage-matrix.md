@@ -26,7 +26,7 @@
 | A17 | Read Article | One fire per milestone / session / article | PARTIAL | PASS | sessionStorage + `insert_id` |
 | A18 | Read Article | Dedupe ingest (`insert_id`) | FAIL | PASS | `trackDemoEvent` + stable key |
 | A19 | Dictionary | No legacy Article Reading Started | PASS | PASS | grep clean |
-| A20 | Dictionary | `Recommendation Set Presented` implemented | FAIL | DEFERRED | not in `src/` (historical ingest only) |
+| A20 | Dictionary | `Recommendation Set Presented` implemented | FAIL | **OUT OF SCOPE / DROPPED** | Removed from measurement contract (user decision 2026-11-19); never implement |
 | A21 | Autocapture | Selective element click/change enabled | FAIL | PASS | `elementInteractions` + resolver |
 | A22 | Autocapture | Form / file autocapture off | PASS | PASS | `formInteractions: false` |
 | A23 | Autocapture | No overlap on precision forms | FAIL | PASS | `data-precision-event` + roots |
@@ -48,4 +48,4 @@
 | A39 | Experiment surface | Statsig owns UI experiments | PASS | PASS | Statsig SDK unchanged |
 | A40 | Agent Analytics | Scripted chat taxonomy | FAIL | PASS | `[Agent] User Message` / `AI Response` |
 
-**Summary:** Pre-audit **PASS 12 · PARTIAL 6 · FAIL 15 · BLOCKED 2 · DEFERRED 1**. Post-fix local **PASS 36 · PARTIAL 1 · BLOCKED 2 · DEFERRED 1** (A37 partial until deployment key supplied; A20 deferred).
+**Summary:** Pre-audit **PASS 12 · PARTIAL 6 · FAIL 15 · BLOCKED 2 · DEFERRED 1**. Post-fix local **PASS 36 · PARTIAL 1 · BLOCKED 2 · DROPPED 1** (A37 partial until Pages rebuild with deployment key; **A20 OUT OF SCOPE / DROPPED**).

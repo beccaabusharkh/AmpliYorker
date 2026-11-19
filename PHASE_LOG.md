@@ -1,3 +1,7 @@
+## 2026-11-19T04:35:00Z | Phase 4 | Assignment P4-AMPLITUDE-FOLLOW-001 | COMPLETE (ship)
+- What was built: `deploy-pages.yml` passes `VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY`; removed `Recommendation Set Presented` from dictionary; evidence A20 + DECISIONS; verify PASS with dummy deployment key at build.
+- Git: branch `cursor/amplitude-webexp-follow-93b2` — PR **#14** https://github.com/beccaabusharkh/AmpliYorker/pull/14 (no merge).
+
 ## 2026-11-19T04:25:00Z | Phase 4 | Assignment P4-AMPLITUDE-MERGE-001 | COMPLETE
 - Squash-merged **PR #13** → `main` @ **`f435fefcaff09d0772ae575bf68116f4c5d849b6`**.
 - Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44434748241 — **success**.

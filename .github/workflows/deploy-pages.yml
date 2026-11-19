@@ -31,6 +31,7 @@ jobs:
         env:
           VITE_AMPLITUDE_API_KEY: ${{ secrets.VITE_AMPLITUDE_API_KEY }}
           VITE_STATSIG_CLIENT_KEY: ${{ secrets.VITE_STATSIG_CLIENT_KEY }}
+          VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY: ${{ secrets.VITE_AMPLITUDE_WEB_EXPERIMENT_DEPLOYMENT_KEY }}
         run: pnpm build
       - uses: actions/upload-pages-artifact@v3
         with:
