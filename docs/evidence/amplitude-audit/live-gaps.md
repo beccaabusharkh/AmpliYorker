@@ -7,6 +7,6 @@
 | `[Amplitude] Page Viewed` on hash routes | **PARTIAL** — autocapture configured; payload grep inconclusive (encoding) |
 | `[Agent] *` events | **PARTIAL** — instrumented; live wire capture not confirmed in smoke script |
 | Autocapture on precision controls | **PASS** — `data-precision-event` in live bundle |
-| G&S surveys | **BLOCKED** — no content / entitlements; skip default |
+| G&S surveys | **PENDING** — Amplitude survey **112204** (draft; user must publish in UI). After merge + secret `VITE_AMPLITUDE_ENGAGEMENT_ENABLED=true`, Pages build loads engagement plugin (not skip). |
 | Amplitude Web Experiment | **PASS (build-time)** — secret wired in Actions; live bundle includes experiment plugin options (not live fetch verified) |
 | `Recommendation Set Presented` | **OUT OF SCOPE** — dropped from `custom-events.yml` |
