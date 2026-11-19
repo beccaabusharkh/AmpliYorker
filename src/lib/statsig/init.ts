@@ -5,6 +5,7 @@ import { isLoggedIn } from "../session";
 import { ensureAmplitudeIdentity } from "../amplitude/init";
 import { bindStatsigClient, refreshLocalAssignments } from "./evaluate";
 import { readForcedAssignments } from "./overrides";
+import { resolveStatsigEnvTier } from "./env-tier";
 
 let client: StatsigClient | null = null;
 let initAttempted = false;
@@ -34,8 +35,9 @@ export async function initStatsig(): Promise<void> {
     return;
   }
 
+  const tier = resolveStatsigEnvTier();
   client = new StatsigClient(clientKey, buildStatsigUser(), {
-    environment: { tier: "development" },
+    environment: { tier },
     plugins: [new StatsigAutoCapturePlugin()],
   });
 

@@ -1,3 +1,7 @@
+## 2026-11-19T05:20:00Z | Phase 8 | Assignment P8-STATSIG-PROD-TIER-001 | COMPLETE (branch only)
+- `VITE_STATSIG_ENV_TIER` + resolveStatsigEnvTier; deploy workflow secret; prod-cutover.md.
+- Branch `cursor/statsig-prod-tier-93b2` — no push.
+
 ## 2026-11-19T05:16:00Z | Phase 7 | Assignment P7-STATSIG-MERGE-001 | COMPLETE
 - Squash-merged **PR #19** → `main` @ **`80f5ef288df915d9dfa83ce4eaa7d38a7dd8ad87`**.
 - Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44463680404 — **success**.

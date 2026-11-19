@@ -1,7 +1,8 @@
 # BUILDER_HANDOFF
 
-**Status:** MERGED (PR #19 @ `80f5ef2`; live statsigapi smoke PARTIAL — key secret)
-**assignment_id:** P7-STATSIG-EVENTS-WA-001
+**Status:** COMPLETE (awaiting Planner push authorization)
+**assignment_id:** P8-STATSIG-PROD-TIER-001
+**Branch:** `cursor/statsig-prod-tier-93b2`
 **Branch:** `cursor/statsig-events-wa-93b2`
 **Branch:** `cursor/web-experiment-script-93b2`
 **Builder agent ID:** bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2

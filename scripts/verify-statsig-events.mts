@@ -17,6 +17,13 @@ const init = fs.readFileSync("src/lib/statsig/init.ts", "utf8");
 if (!init.includes("StatsigAutoCapturePlugin")) {
   failures.push("init missing StatsigAutoCapturePlugin");
 }
+if (!init.includes("resolveStatsigEnvTier")) {
+  failures.push("init missing resolveStatsigEnvTier");
+}
+const envTier = fs.readFileSync("src/lib/statsig/env-tier.ts", "utf8");
+if (!envTier.includes("VITE_STATSIG_ENV_TIER")) {
+  failures.push("env-tier missing VITE_STATSIG_ENV_TIER");
+}
 const track = fs.readFileSync("src/lib/analytics/track.ts", "utf8");
 if (!track.includes("trackStatsigMirror")) {
   failures.push("track.ts missing Statsig mirror");
