@@ -1,3 +1,8 @@
+## 2026-11-19T04:50:00Z | Phase 4 | Assignment P4-GS-ENABLE-MERGE-001 | COMPLETE
+- Squash-merged **PR #15** → `main` @ **`2e499ce8097bd9601410f2ef68c9b9f7ade9ea63`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44437260454 — **success**.
+- Live engagement check: **PASS** (`index-C02-sAEF.js`, `engagement:{}` present, no `engagement:{skip:!0}`). Survey **112204** status **draft** (Amplitude MCP).
+
 ## 2026-11-19T04:45:00Z | Phase 4 | Assignment P4-GS-ENABLE-001 | COMPLETE (ship)
 - What was built: `deploy-pages.yml` + `.env.example` for `VITE_AMPLITUDE_ENGAGEMENT_ENABLED`; `live-gaps.md` links survey **112204** (draft).
 - Git: `cursor/engagement-enable-93b2` — PR **#15** https://github.com/beccaabusharkh/AmpliYorker/pull/15 (no merge).
