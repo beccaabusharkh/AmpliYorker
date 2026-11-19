@@ -7,7 +7,7 @@ pages:
     store: home_params
     parameters:
       tab_labels:
-        type: json
+        type: object
         default: |
           {"top":"Top Stories","product-analytics":"Product Analytics","experimentation":"Experimentation","podcasts":"Podcasts"}
       default_tab:
@@ -440,7 +440,7 @@ pages:
         type: string
         default: Search
       section_nav_links:
-        type: json
+        type: array
         default: |
           [{"href":"#/","label":"Home"},{"href":"#/topic/product-analytics","label":"Product Analytics"},{"href":"#/topic/experimentation","label":"Experimentation"},{"href":"#/topic/podcast","label":"Podcasts"},{"href":"#/subscribe","label":"Subscribe"}]
       footer_disclosure:
@@ -460,7 +460,7 @@ pages:
         type: string
         default: "Scripted assistant for this demo — no live AI. Answers come from local FAQ rules."
       suggested_prompts:
-        type: json
+        type: array
         default: |
           ["Search tips","Premium access","Newsletter signup","Sponsored content"]
       input_placeholder:
