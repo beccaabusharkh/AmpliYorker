@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** COMPLETE (awaiting Planner push authorization)
+**Status:** SHIPPED (PR open; await merge approval)
 **assignment_id:** P5-STATSIG-AUDIT-001
 **Builder agent ID:** bc-e05e21fe-01c2-5e95-981a-bb0d5f5193b2
 **Branch:** `cursor/statsig-audit-93b2` (local commit; **no push**)
