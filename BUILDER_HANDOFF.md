@@ -1,6 +1,6 @@
 # BUILDER_HANDOFF
 
-**Status:** COMPLETE (awaiting Planner push authorization)
+**Status:** SHIPPED (PR open; await merge approval)
 **assignment_id:** P7-STATSIG-EVENTS-WA-001
 **Branch:** `cursor/statsig-events-wa-93b2`
 **Branch:** `cursor/web-experiment-script-93b2`
