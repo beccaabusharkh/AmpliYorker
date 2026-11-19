@@ -1,3 +1,8 @@
+## 2026-11-19T04:12:00Z | Phase 6 | Assignment P6-FINAL-QA-MERGE-001 | COMPLETE
+- Squash-merged **PR #17** → `main` @ **`f38489e80ba3e55a31afcf70fc6dced1311e4ec6`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44456517816 — **success**.
+- Live smoke: `docs/evidence/final-qa/live-merge-smoke.json` — **PASS** (PARTIAL certification unchanged).
+
 ## 2026-11-19T04:10:00Z | Phase 6 | Assignment P6-FINAL-QA-PARITY-001 | COMPLETE (branch only)
 - Final QA: matrix Q01–Q45; Playwright live journeys + media; parity table; defect D01 fixed (`[Agent] Session End` in dictionary).
 - Verdict: **PARTIAL** certification (G&S draft, Statsig live network/MCP blockers).
