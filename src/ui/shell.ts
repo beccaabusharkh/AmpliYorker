@@ -65,7 +65,7 @@ export function renderHeader(): HTMLElement {
             .map((link) => `<li><a href="${link.href}" data-section-link>${link.label}</a></li>`)
             .join("")}
         </ul>
-        <form class="header-search section-nav-search" data-header-search role="search">
+        <form class="header-search section-nav-search" data-header-search data-precision-event role="search">
           <label class="visually-hidden" for="header-search-input">Search articles</label>
           <input id="header-search-input" data-amplitude-mask type="search" name="q" placeholder="${escapeAttr(shell.search_placeholder)}" value="${escapeAttr(searchValue)}" />
           <button type="submit">${shell.search_submit_label}</button>

@@ -108,7 +108,7 @@ export function renderArticlePage(id: string): HTMLElement {
             ${premiumBadge}
           </p>
           <p class="article-actions">
-            <button type="button" data-save-article>${saved ? p.saved_article_label : p.save_article_label}</button>
+            <button type="button" data-save-article data-precision-event>${saved ? p.saved_article_label : p.save_article_label}</button>
           </p>
         </header>
         ${renderArticleHero(article)}

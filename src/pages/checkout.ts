@@ -35,7 +35,7 @@ export function renderCheckoutPage(): HTMLElement {
       <h1>${p.page_title}</h1>
       <p class="simulation-label">${p.simulation_disclosure}</p>
       <p><strong>Plan:</strong> ${plan.name} · ${offerCopy}</p>
-      <form data-checkout-form class="stacked-form">
+      <form data-checkout-form data-precision-event class="stacked-form">
         <label for="pay-name">Name on card (preset)</label>
         <input id="pay-name" data-amplitude-mask name="name" type="text" value="${escapeAttr(p.preset_cardholder_name)}" />
         <label for="pay-card">Card number (preset)</label>

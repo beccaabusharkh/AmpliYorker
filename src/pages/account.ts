@@ -94,7 +94,7 @@ export function renderAccountPage(): HTMLElement {
         </div>
         <nav class="account-actions" aria-label="Account actions">
           ${active ? "" : `<a class="account-actions__primary" href="#/subscribe" data-sub-link>${p.subscribe_primary_cta}</a>`}
-          <button type="button" data-logout>${p.logout_label}</button>
+          <button type="button" data-logout data-precision-event>${p.logout_label}</button>
         </nav>
       </header>
 
@@ -111,7 +111,7 @@ export function renderAccountPage(): HTMLElement {
       <div class="account-dashboard__forms">
         <section class="account-dashboard__billing">
           <h2>${p.billing_section_title}</h2>
-          <form data-billing-form class="stacked-form">
+          <form data-billing-form data-precision-event class="stacked-form">
             <label for="bill-name">Name</label>
             <input id="bill-name" name="name" type="text" value="${escapeAttr(session.billingProfile.name)}" />
             <label for="bill-email">Email</label>
@@ -124,7 +124,7 @@ export function renderAccountPage(): HTMLElement {
 
         <section class="account-dashboard__plan">
           <h2>${p.plan_section_title}</h2>
-          <form data-plan-form class="stacked-form">
+          <form data-plan-form data-precision-event class="stacked-form">
             <label for="plan-switch">Plan</label>
             <select id="plan-switch" name="plan">
               ${plans.map((plan) => `<option value="${plan.id}" ${plan.id === session.subscription.planId ? "selected" : ""}>${plan.name}</option>`).join("")}
@@ -136,7 +136,7 @@ export function renderAccountPage(): HTMLElement {
 
       <details class="account-dashboard__cancel">
         <summary>${p.cancel_summary}</summary>
-        <form data-cancel-form class="stacked-form">
+        <form data-cancel-form data-precision-event class="stacked-form">
           <label for="cancel-reason">Reason</label>
           <select id="cancel-reason" name="reason">${cancelReasons}</select>
           <button type="submit">Confirm cancellation</button>

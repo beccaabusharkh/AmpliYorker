@@ -1,3 +1,4 @@
+import { trackAgentAiResponse, trackAgentUserMessage } from "../lib/analytics/agent-chat";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { getPageParams } from "../lib/statsig/page-params";
 import faqData from "../data/faq.json";
@@ -37,7 +38,7 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
     <div class="ask-daily__chips" data-chat-chips>
       ${suggestedPrompts.map((chip) => `<button type="button" data-chip="${escapeAttr(chip)}">${chip}</button>`).join("")}
     </div>
-    <form class="ask-daily__form" data-chat-form>
+    <form class="ask-daily__form" data-chat-form data-precision-event>
       <label class="visually-hidden" for="chat-input">Ask a question</label>
       <input id="chat-input" data-amplitude-mask name="q" type="text" placeholder="${escapeAttr(p.input_placeholder)}" autocomplete="off" />
       <button type="submit">Ask</button>
@@ -136,6 +137,13 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
     }
     const requestId = crypto.randomUUID();
     const conversationId = crypto.randomUUID();
+    const traceId = crypto.randomUUID();
+    const messageId = crypto.randomUUID();
+    trackAgentUserMessage("ask-the-daily", messageId, {
+      surface: "ask_the_daily",
+      intent: inferDiscoveryIntent(value),
+      message_length: value.length,
+    });
     trackDemoEvent("Chat Request Submitted", {
       conversation_id: conversationId,
       request_id: requestId,
@@ -149,12 +157,17 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
       answerEl.hidden = false;
       answerEl.textContent = entry.answer;
     }
+    const latencyMs = performance.now() - started;
+    trackAgentAiResponse("ask-the-daily", crypto.randomUUID(), {
+      latencyMs,
+      traceId,
+    });
     trackDemoEvent("Chat Response Delivered", {
       conversation_id: conversationId,
       request_id: requestId,
       response_type: "support_steps",
       result_count: 1,
-      response_latency_ms: performance.now() - started,
+      response_latency_ms: latencyMs,
     });
   });
 }

@@ -1,3 +1,13 @@
+## 2026-11-19T04:20:00Z | Phase 4 | Assignment P4-AMPLITUDE-AUDIT-SHIP-001 | COMPLETE
+- Pushed `cursor/amplitude-audit-93b2`; opened PR **#13** — https://github.com/beccaabusharkh/AmpliYorker/pull/13 (no merge).
+
+## 2026-11-19T04:10:00Z | Phase 4 | Assignment P4-AMPLITUDE-AUDIT-001 | COMPLETE
+- What was built: Audit matrix A01–A40 + root causes; unified autocapture (hash page views + selective element interactions); identity device/user sync; Read Article `insert_id` dedupe; Agent Analytics `[Agent]` chat events; G&S skip unless enabled; Web Experiment env-gated; precision `data-precision-event` roots.
+- Files changed: `src/lib/amplitude/init.ts`, `src/lib/analytics/*`, chat UI, precision attrs on forms; `docs/evidence/amplitude-audit/*`; `custom-events.yml`; `pnpm test:amplitude-config`.
+- Git actions: branch `cursor/amplitude-audit-93b2` — commit local, **no push**.
+- Definition-of-done check: `pnpm typecheck` PASS; `pnpm build` PASS; `pnpm test:amplitude-config` PASS; preview smoke `docs/evidence/amplitude-audit/preview-smoke.json` (8 amp requests, milestones 25–100 on `daily-decisions`). Live site still pre-audit bundle.
+- Blocker / next action: G&S content + Web Experiment deployment key + Pages deploy for live parity.
+
 ## 2026-11-19T03:15:00Z | Phase 3 | Assignment P3-SHIP-STATSIG-PARAMS-001 | COMPLETE
 - Pushed `cursor/statsig-page-params-93b2`; opened PR to `main` (no merge).
 - Includes P3-STATSIG-PARAMS-BUILD-001 @ `eb5628c`+.

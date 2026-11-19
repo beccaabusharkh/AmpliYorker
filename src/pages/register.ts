@@ -19,7 +19,7 @@ export function renderRegisterPage(): HTMLElement {
     <section class="form-panel account-surface">
       <h1>${p.page_title}</h1>
       <p class="simulation-label">${p.simulation_disclosure}</p>
-      <form data-register-form class="stacked-form">
+      <form data-register-form data-precision-event class="stacked-form">
         <label for="reg-persona">${p.persona_field_label}</label>
         <select id="reg-persona" name="persona" required>${personaOptions}</select>
         <label for="reg-name">${p.display_name_label}</label>
