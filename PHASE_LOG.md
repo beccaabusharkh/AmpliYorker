@@ -1,6 +1,6 @@
 ## 2026-11-19T04:45:00Z | Phase 4 | Assignment P4-GS-ENABLE-001 | COMPLETE (ship)
 - What was built: `deploy-pages.yml` + `.env.example` for `VITE_AMPLITUDE_ENGAGEMENT_ENABLED`; `live-gaps.md` links survey **112204** (draft).
-- Git: `cursor/engagement-enable-93b2` — push + PR (no merge).
+- Git: `cursor/engagement-enable-93b2` — PR **#15** https://github.com/beccaabusharkh/AmpliYorker/pull/15 (no merge).
 
 ## 2026-11-19T04:40:00Z | Phase 4 | Assignment P4-AMPLITUDE-FOLLOW-MERGE-001 | COMPLETE
 - Squash-merged **PR #14** → `main` @ **`bb2c0c68b3dfd6d0a448d0f50632782050ba8a10`**.
