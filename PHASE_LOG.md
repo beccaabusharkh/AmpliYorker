@@ -1,3 +1,8 @@
+## 2026-11-19T04:25:00Z | Phase 4 | Assignment P4-AMPLITUDE-MERGE-001 | COMPLETE
+- Squash-merged **PR #13** → `main` @ **`f435fefcaff09d0772ae575bf68116f4c5d849b6`**.
+- Deploy: https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44434748241 — **success**.
+- Live smoke: `docs/evidence/amplitude-audit/live-smoke-post-deploy.json` — HTTP 200, 11 amp requests, Read Article milestones `[25,50,75,90,100]`; G&S / Web Exp blockers unchanged.
+
 ## 2026-11-19T04:20:00Z | Phase 4 | Assignment P4-AMPLITUDE-AUDIT-SHIP-001 | COMPLETE
 - Pushed `cursor/amplitude-audit-93b2`; opened PR **#13** — https://github.com/beccaabusharkh/AmpliYorker/pull/13 (no merge).
 

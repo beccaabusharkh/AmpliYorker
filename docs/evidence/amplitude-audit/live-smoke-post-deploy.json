@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-11-19T01:12:00Z",
+  "merge_sha": "f435fefcaff09d0772ae575bf68116f4c5d849b6",
+  "deploy_run": "https://github.com/beccaabusharkh/AmpliYorker/actions/runs/44434748241",
+  "deploy_status": "success",
+  "live_url": "https://beccaabusharkh.github.io/AmpliYorker/",
+  "bundle": "/AmpliYorker/assets/index-D1R1Mq5p.js",
+  "http_root": 200,
+  "journey": "#/article/daily-decisions scroll + optional Ask the Daily",
+  "amplitude_network_requests_article_journey": 11,
+  "read_article_milestones_session": "[25,50,75,90,100]",
+  "duplicate_spam_check": "PASS — five milestones only; no rapid duplicate milestone keys in sessionStorage",
+  "bundle_signals": ["read-article:", "data-precision-event", "engagement skip path"],
+  "blockers_unchanged": {
+    "guides_and_surveys_content": "BLOCKED — not verified; engagement skip unless VITE_AMPLITUDE_ENGAGEMENT_ENABLED",
+    "web_experiment_deployment_key": "BLOCKED — not in repo / not verified on live",
+    "recommendation_set_presented": "DEFERRED — not implemented"
+  }
+}
