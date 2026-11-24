@@ -41,11 +41,11 @@ user_properties:
     description: "True after the reader persists a simulated newsletter subscription in local session storage."
     statsig_targeting_hint: "Exclude existing subscribers by targeting newsletter_subscriber is false."
   newsletter_id:
-    type: ["string", "null"]
+    type: string
     amplitude: true
     statsig_custom: true
     synced_by: syncReaderUserProperties
-    description: "Newsletter identifier when subscribed (e.g. daily-briefing); null when not subscribed. No email or PII."
+    description: "Newsletter identifier when subscribed (e.g. daily-briefing); empty string when not subscribed. No email or PII."
 
 events:
   Topic Filter Applied:

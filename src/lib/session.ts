@@ -244,7 +244,8 @@ export function subscribeToNewsletter(newsletterId: string): boolean {
 
 export type NewsletterUserProperties = {
   newsletter_subscriber: boolean;
-  newsletter_id: string | null;
+  /** Empty string when not subscribed (Amplitude/Statsig reject null primitives). */
+  newsletter_id: string;
 };
 
 export function resolveNewsletterUserProperties(): NewsletterUserProperties {
@@ -258,7 +259,7 @@ export function resolveNewsletterUserProperties(): NewsletterUserProperties {
       return bAt.localeCompare(aAt);
     });
   if (subscribedIds.length === 0) {
-    return { newsletter_subscriber: false, newsletter_id: null };
+    return { newsletter_subscriber: false, newsletter_id: "" };
   }
   return { newsletter_subscriber: true, newsletter_id: subscribedIds[0] };
 }
