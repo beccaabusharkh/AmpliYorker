@@ -1,11 +1,16 @@
-import { trackAgentAiResponse, trackAgentUserMessage } from "../lib/analytics/agent-chat";
-import { trackDemoEvent } from "../lib/analytics/track";
+import {
+  endAgentChatSession,
+  trackAgentAiResponse,
+  trackAgentUserMessage,
+} from "../lib/analytics/agent-chat";
 import { getPageParams } from "../lib/statsig/page-params";
 import faqData from "../data/faq.json";
 
 type FaqEntry = { keywords: string[]; answer: string };
 
 const faq = faqData as FaqEntry[];
+
+const ASK_DAILY_AGENT_ID = "ask-the-daily";
 
 export function mountDiscoveryChat(root: HTMLElement): void {
   mountAskDailyAssistant(root);
@@ -34,7 +39,15 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
       </div>
       <button type="button" class="ask-daily__close" data-chat-close aria-label="Close Ask the Daily">×</button>
     </header>
-    <p class="ask-daily__disclosure">${p.disclosure}</p>
+    <div
+      class="ask-daily__transcript"
+      data-chat-answer
+      data-chat-transcript
+      role="log"
+      aria-live="polite"
+      aria-relevant="additions"
+      aria-label="Conversation with Ask the Daily"
+    ></div>
     <div class="ask-daily__chips" data-chat-chips>
       ${suggestedPrompts.map((chip) => `<button type="button" data-chip="${escapeAttr(chip)}">${chip}</button>`).join("")}
     </div>
@@ -43,7 +56,6 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
       <input id="chat-input" data-amplitude-mask name="q" type="text" placeholder="${escapeAttr(p.input_placeholder)}" autocomplete="off" />
       <button type="submit">Ask</button>
     </form>
-    <p class="ask-daily__answer" data-chat-answer data-chat-transcript hidden></p>
     <p class="ask-daily__error" data-chat-error hidden>Type a question to continue.</p>
   `;
 
@@ -56,14 +68,33 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
 
   root.append(toggle, panel);
 
-  const answerEl = panel.querySelector("[data-chat-answer]");
+  const transcriptEl = panel.querySelector("[data-chat-transcript]");
   const errorEl = panel.querySelector("[data-chat-error]");
   const form = panel.querySelector("[data-chat-form]");
   const input = panel.querySelector("#chat-input");
+  let sessionTurns = 0;
+
   const focusable = () =>
     Array.from(panel.querySelectorAll<HTMLElement>("input, button, [data-chip]")).filter(
       (el) => !el.hidden && el.offsetParent !== null,
     );
+
+  const scrollTranscript = (): void => {
+    if (transcriptEl instanceof HTMLElement) {
+      transcriptEl.scrollTop = transcriptEl.scrollHeight;
+    }
+  };
+
+  const appendBubble = (role: "user" | "agent", text: string): void => {
+    if (!(transcriptEl instanceof HTMLElement)) {
+      return;
+    }
+    const bubble = document.createElement("div");
+    bubble.className = `ask-daily__msg ask-daily__msg--${role}`;
+    bubble.textContent = text;
+    transcriptEl.append(bubble);
+    scrollTranscript();
+  };
 
   const open = (): void => {
     panel.hidden = false;
@@ -72,6 +103,10 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
   };
 
   const close = (): void => {
+    if (sessionTurns > 0) {
+      endAgentChatSession(ASK_DAILY_AGENT_ID);
+      sessionTurns = 0;
+    }
     panel.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
     toggle.focus();
@@ -125,7 +160,8 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
 
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const value = (input as HTMLInputElement).value.trim().toLowerCase();
+    const rawValue = (input as HTMLInputElement).value.trim();
+    const value = rawValue.toLowerCase();
     if (!value) {
       if (errorEl instanceof HTMLElement) {
         errorEl.hidden = false;
@@ -135,41 +171,41 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
     if (errorEl instanceof HTMLElement) {
       errorEl.hidden = true;
     }
-    const requestId = crypto.randomUUID();
-    const conversationId = crypto.randomUUID();
+
     const traceId = crypto.randomUUID();
-    const messageId = crypto.randomUUID();
-    trackAgentUserMessage("ask-the-daily", messageId, {
+    const userMessageId = crypto.randomUUID();
+    const responseMessageId = crypto.randomUUID();
+    const intent = inferDiscoveryIntent(value);
+
+    trackAgentUserMessage(ASK_DAILY_AGENT_ID, userMessageId, traceId, {
       surface: "ask_the_daily",
-      intent: inferDiscoveryIntent(value),
+      intent,
       message_length: value.length,
-    });
-    trackDemoEvent("Chat Request Submitted", {
-      conversation_id: conversationId,
-      request_id: requestId,
-      intent: inferDiscoveryIntent(value),
-      message_length: value.length,
-    });
+    }, { userMessageText: userMessageSurrogate(intent, value.length) });
+
+    appendBubble("user", rawValue);
+    (input as HTMLInputElement).value = "";
+    sessionTurns += 1;
+
     const started = performance.now();
     const entry =
       faq.find((item) => item.keywords.some((keyword) => value.includes(keyword))) ?? faq[faq.length - 1];
-    if (answerEl instanceof HTMLElement) {
-      answerEl.hidden = false;
-      answerEl.textContent = entry.answer;
-    }
+    appendBubble("agent", entry.answer);
+
     const latencyMs = performance.now() - started;
-    trackAgentAiResponse("ask-the-daily", crypto.randomUUID(), {
+    trackAgentAiResponse(ASK_DAILY_AGENT_ID, responseMessageId, {
       latencyMs,
       traceId,
-    });
-    trackDemoEvent("Chat Response Delivered", {
-      conversation_id: conversationId,
-      request_id: requestId,
-      response_type: "support_steps",
-      result_count: 1,
-      response_latency_ms: latencyMs,
+      responseText: entry.answer,
     });
   });
+}
+
+function userMessageSurrogate(intent: string, length: number): string {
+  if (intent !== "unknown") {
+    return intent;
+  }
+  return `[redacted user message, ${length} chars]`;
 }
 
 function inferDiscoveryIntent(value: string): string {

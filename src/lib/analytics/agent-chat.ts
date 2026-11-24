@@ -37,18 +37,23 @@ export function endAgentChatSession(agentId: string): void {
 export function trackAgentUserMessage(
   agentId: string,
   messageId: string,
+  traceId: string,
   context: Record<string, unknown>,
+  opts?: { userMessageText?: string },
 ): void {
   if (!isAmplitudeReady()) {
     return;
   }
   const session = agentChatSession(agentId);
   session.turn += 1;
-  const traceId = crypto.randomUUID();
+  const llmText =
+    opts?.userMessageText ??
+    `[redacted user message, ${typeof context.message_length === "number" ? context.message_length : 0} chars]`;
   const props = {
     ...baseAgentProps(agentId, session, traceId),
     "[Agent] Message ID": messageId,
     "[Agent] Context": JSON.stringify({ ...context, demo_run_id: getDemoRunId() }),
+    $llm_message: { text: llmText },
   };
   track("[Agent] User Message", props, { insert_id: `agent-um-${messageId}` });
   trackStatsigMirror("[Agent] User Message", props);
@@ -62,6 +67,7 @@ export function trackAgentAiResponse(
     model?: string;
     provider?: string;
     traceId: string;
+    responseText?: string;
   },
 ): void {
   if (!isAmplitudeReady()) {
@@ -78,6 +84,7 @@ export function trackAgentAiResponse(
     "[Agent] Output Tokens": 0,
     "[Agent] Total Tokens": 0,
     "[Agent] Cost USD": 0,
+    $llm_message: { text: opts.responseText ?? "" },
   };
   track("[Agent] AI Response", props, { insert_id: `agent-ar-${messageId}` });
   trackStatsigMirror("[Agent] AI Response", props);
