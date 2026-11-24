@@ -1185,6 +1185,45 @@ summary:focus-visible {
   border-bottom-left-radius: 4px;
 }
 
+.ask-daily__agent-turn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  max-width: 88%;
+}
+
+.ask-daily__feedback {
+  display: flex;
+  gap: 0.25rem;
+  padding-left: 0.15rem;
+}
+
+.ask-daily__score {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.15rem 0.35rem;
+  border-radius: 6px;
+  opacity: 0.55;
+}
+
+.ask-daily__score:hover:not(:disabled),
+.ask-daily__score:focus-visible:not(:disabled) {
+  opacity: 1;
+  background: #efefef;
+}
+
+.ask-daily__score--chosen {
+  opacity: 1;
+}
+
+.ask-daily__score:disabled {
+  cursor: default;
+}
+
 .ask-daily__chips {
   display: flex;
   flex-wrap: wrap;

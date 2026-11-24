@@ -86,6 +86,8 @@ export function mountAccountSupportChat(root: HTMLElement): void {
       latencyMs,
       traceId,
       responseText: entry.answer,
+      userCharLength: value.length,
+      answerCharLength: entry.answer.length,
     });
     trackDemoEvent("Chat Response Delivered", {
       conversation_id: conversationId,

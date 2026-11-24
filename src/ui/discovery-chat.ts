@@ -1,8 +1,15 @@
 import {
   endAgentChatSession,
   trackAgentAiResponse,
+  trackAgentScore,
+  trackAgentToolCall,
   trackAgentUserMessage,
 } from "../lib/analytics/agent-chat";
+import {
+  scriptedToolCallsForIntent,
+  syntheticInvocationId,
+  syntheticToolLatencyMs,
+} from "../lib/analytics/agent-demo-synthesis";
 import { getPageParams } from "../lib/statsig/page-params";
 import faqData from "../data/faq.json";
 
@@ -85,14 +92,56 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
     }
   };
 
-  const appendBubble = (role: "user" | "agent", text: string): void => {
+  const appendUserBubble = (text: string): void => {
     if (!(transcriptEl instanceof HTMLElement)) {
       return;
     }
     const bubble = document.createElement("div");
-    bubble.className = `ask-daily__msg ask-daily__msg--${role}`;
+    bubble.className = "ask-daily__msg ask-daily__msg--user";
     bubble.textContent = text;
     transcriptEl.append(bubble);
+    scrollTranscript();
+  };
+
+  const appendAgentBubble = (text: string, messageId: string, traceId: string): void => {
+    if (!(transcriptEl instanceof HTMLElement)) {
+      return;
+    }
+    const turn = document.createElement("div");
+    turn.className = "ask-daily__agent-turn";
+
+    const bubble = document.createElement("div");
+    bubble.className = "ask-daily__msg ask-daily__msg--agent";
+    bubble.textContent = text;
+
+    const feedback = document.createElement("div");
+    feedback.className = "ask-daily__feedback";
+    feedback.setAttribute("role", "group");
+    feedback.setAttribute("aria-label", "Rate this answer");
+    feedback.innerHTML = `
+      <button type="button" class="ask-daily__score" data-score="1" aria-label="Helpful">👍</button>
+      <button type="button" class="ask-daily__score" data-score="0" aria-label="Not helpful">👎</button>
+    `;
+
+    feedback.addEventListener("click", (event) => {
+      const target = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-score]");
+      if (!target || feedback.dataset.scored === "true") {
+        return;
+      }
+      const score = target.dataset.score === "1" ? 1 : 0;
+      feedback.dataset.scored = "true";
+      trackAgentScore(ASK_DAILY_AGENT_ID, traceId, {
+        targetMessageId: messageId,
+        score,
+      });
+      feedback.querySelectorAll("button").forEach((btn) => {
+        btn.disabled = true;
+        btn.classList.toggle("ask-daily__score--chosen", btn === target);
+      });
+    });
+
+    turn.append(bubble, feedback);
+    transcriptEl.append(turn);
     scrollTranscript();
   };
 
@@ -183,20 +232,36 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
       message_length: value.length,
     }, { userMessageText: userMessageSurrogate(intent, value.length) });
 
-    appendBubble("user", rawValue);
+    const tools = scriptedToolCallsForIntent(intent, traceId);
+    tools.forEach((tool, index) => {
+      trackAgentToolCall(ASK_DAILY_AGENT_ID, {
+        traceId,
+        parentMessageId: userMessageId,
+        invocationId: syntheticInvocationId(traceId, index),
+        toolName: tool.toolName,
+        toolInput: tool.toolInput,
+        toolOutput: tool.toolOutput,
+        latencyMs: syntheticToolLatencyMs(traceId, index),
+        success: true,
+      });
+    });
+
+    appendUserBubble(rawValue);
     (input as HTMLInputElement).value = "";
     sessionTurns += 1;
 
     const started = performance.now();
     const entry =
       faq.find((item) => item.keywords.some((keyword) => value.includes(keyword))) ?? faq[faq.length - 1];
-    appendBubble("agent", entry.answer);
+    appendAgentBubble(entry.answer, responseMessageId, traceId);
 
     const latencyMs = performance.now() - started;
     trackAgentAiResponse(ASK_DAILY_AGENT_ID, responseMessageId, {
       latencyMs,
       traceId,
       responseText: entry.answer,
+      userCharLength: value.length,
+      answerCharLength: entry.answer.length,
     });
   });
 }

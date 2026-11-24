@@ -34,3 +34,21 @@
 2. In Amplitude Agent Analytics, confirm the session shows user + assistant rows with message text (user row shows intent surrogate; assistant shows FAQ snippet).
 3. Confirm both events share the same `[Agent] Trace ID` and `[Agent] Turn ID` for that exchange.
 4. Close panel after a turn; confirm `[Agent] Session End` fires once.
+
+## Synthetic demo richness (AMP-45 extension)
+
+Customer demos need plausible Agent Analytics depth without a live LLM. All synthesis lives in `src/lib/analytics/agent-demo-synthesis.ts`.
+
+| Signal | Scheme |
+| --- | --- |
+| **Tokens & cost** | `ceil(chars / 4)` for input (user message length) and output (FAQ answer). Model `gpt-4o-mini`, provider `openai`. Cost uses fixed rates: **$0.15 / 1M input tokens**, **$0.60 / 1M output tokens** (`DEMO_INPUT_USD_PER_TOKEN`, `DEMO_OUTPUT_USD_PER_TOKEN`). Same lengths → same token/cost values. Wall-clock **latency stays real** (`performance.now()`). |
+| **Tool calls** | 1–2 `[Agent] Tool Call` events per Ask the Daily turn, between User Message and AI Response. Same session/turn/trace/agent IDs. Intent → scripted tools (`search_catalog`, `lookup_billing_faq`, etc.) with JSON `[Agent] Tool Input` / `[Agent] Tool Output` using `intent` + synthetic `query_id` only (no raw user text). Latency **80–220 ms** from `syntheticToolLatencyMs(traceId, index)`. |
+| **Scores** | Thumbs up/down under each agent bubble; one `[Agent] Score` per message (`user-feedback`, 0/1). |
+| **Session enrichment** | Before `[Agent] Session End`, emit `[Agent] Session Enrichment` with `demo_topic` = last intent, `resolution: answered`. |
+
+### Verification (extension, 2026-11-24)
+
+- `npm run typecheck` — **PASS**
+- `npm run build` — **PASS**
+- `npm run test:statsig-params` — **PASS**
+- `npm run test:custom-events-parity` — **PASS** (dict 43, wired 36)
