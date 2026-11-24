@@ -64,10 +64,10 @@ export function mountAccountSupportChat(root: HTMLElement): void {
     const conversationId = crypto.randomUUID();
     const traceId = crypto.randomUUID();
     const messageId = crypto.randomUUID();
-    trackAgentUserMessage("account-support", messageId, {
+    trackAgentUserMessage("account-support", messageId, traceId, {
       surface: "account_support",
       message_length: value.length,
-    });
+    }, { userMessageText: `[redacted user message, ${value.length} chars]` });
     trackDemoEvent("Chat Request Submitted", {
       conversation_id: conversationId,
       request_id: requestId,
@@ -85,6 +85,9 @@ export function mountAccountSupportChat(root: HTMLElement): void {
     trackAgentAiResponse("account-support", crypto.randomUUID(), {
       latencyMs,
       traceId,
+      responseText: entry.answer,
+      userCharLength: value.length,
+      answerCharLength: entry.answer.length,
     });
     trackDemoEvent("Chat Response Delivered", {
       conversation_id: conversationId,

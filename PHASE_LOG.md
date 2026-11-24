@@ -1,3 +1,9 @@
+## 2026-11-24T18:45:00Z | AMP-45 | Ask the Daily chat UI + Agent Analytics | COMPLETE (local, no push)
+- UI: multi-turn transcript bubbles; disclosure removed; empty `disclosure` param retained for Statsig parity.
+- Analytics: `$llm_message: { text }` on agent events; shared trace per turn; Session End on close; removed duplicate product chat events on Ask the Daily only.
+- Tests: `typecheck`, `build`, `test:statsig-params`, `test:custom-events-parity` PASS.
+- Evidence: `docs/evidence/amplitude-audit/agent-analytics-ask-daily.md`.
+
 ## 2026-11-19T05:20:00Z | Phase 8 | Assignment P8-STATSIG-PROD-TIER-001 | COMPLETE (branch only)
 - `VITE_STATSIG_ENV_TIER` + resolveStatsigEnvTier; deploy workflow secret; prod-cutover.md.
 - Branch `cursor/statsig-prod-tier-93b2` — no push.

@@ -464,7 +464,7 @@ pages:
         default: How can we help you explore the demo?
       disclosure:
         type: string
-        default: "Scripted assistant for this demo — no live AI. Answers come from local FAQ rules."
+        default: ""
       suggested_prompts:
         type: array
         default: |

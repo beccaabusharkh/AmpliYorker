@@ -237,7 +237,7 @@ export const PAGE_DEFAULTS = {
   discovery_chat: {
     panel_title: "Ask the Daily",
     panel_subtitle: "How can we help you explore the demo?",
-    disclosure: "Scripted assistant for this demo — no live AI. Answers come from local FAQ rules.",
+    disclosure: "",
     suggested_prompts: ["Search tips", "Premium access", "Newsletter signup", "Sponsored content"],
     input_placeholder: "What should I read about retention?",
   },

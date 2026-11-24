@@ -1,11 +1,23 @@
-import { trackAgentAiResponse, trackAgentUserMessage } from "../lib/analytics/agent-chat";
-import { trackDemoEvent } from "../lib/analytics/track";
+import {
+  endAgentChatSession,
+  trackAgentAiResponse,
+  trackAgentScore,
+  trackAgentToolCall,
+  trackAgentUserMessage,
+} from "../lib/analytics/agent-chat";
+import {
+  scriptedToolCallsForIntent,
+  syntheticInvocationId,
+  syntheticToolLatencyMs,
+} from "../lib/analytics/agent-demo-synthesis";
 import { getPageParams } from "../lib/statsig/page-params";
 import faqData from "../data/faq.json";
 
 type FaqEntry = { keywords: string[]; answer: string };
 
 const faq = faqData as FaqEntry[];
+
+const ASK_DAILY_AGENT_ID = "ask-the-daily";
 
 export function mountDiscoveryChat(root: HTMLElement): void {
   mountAskDailyAssistant(root);
@@ -34,7 +46,15 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
       </div>
       <button type="button" class="ask-daily__close" data-chat-close aria-label="Close Ask the Daily">×</button>
     </header>
-    <p class="ask-daily__disclosure">${p.disclosure}</p>
+    <div
+      class="ask-daily__transcript"
+      data-chat-answer
+      data-chat-transcript
+      role="log"
+      aria-live="polite"
+      aria-relevant="additions"
+      aria-label="Conversation with Ask the Daily"
+    ></div>
     <div class="ask-daily__chips" data-chat-chips>
       ${suggestedPrompts.map((chip) => `<button type="button" data-chip="${escapeAttr(chip)}">${chip}</button>`).join("")}
     </div>
@@ -43,7 +63,6 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
       <input id="chat-input" data-amplitude-mask name="q" type="text" placeholder="${escapeAttr(p.input_placeholder)}" autocomplete="off" />
       <button type="submit">Ask</button>
     </form>
-    <p class="ask-daily__answer" data-chat-answer data-chat-transcript hidden></p>
     <p class="ask-daily__error" data-chat-error hidden>Type a question to continue.</p>
   `;
 
@@ -56,14 +75,75 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
 
   root.append(toggle, panel);
 
-  const answerEl = panel.querySelector("[data-chat-answer]");
+  const transcriptEl = panel.querySelector("[data-chat-transcript]");
   const errorEl = panel.querySelector("[data-chat-error]");
   const form = panel.querySelector("[data-chat-form]");
   const input = panel.querySelector("#chat-input");
+  let sessionTurns = 0;
+
   const focusable = () =>
     Array.from(panel.querySelectorAll<HTMLElement>("input, button, [data-chip]")).filter(
       (el) => !el.hidden && el.offsetParent !== null,
     );
+
+  const scrollTranscript = (): void => {
+    if (transcriptEl instanceof HTMLElement) {
+      transcriptEl.scrollTop = transcriptEl.scrollHeight;
+    }
+  };
+
+  const appendUserBubble = (text: string): void => {
+    if (!(transcriptEl instanceof HTMLElement)) {
+      return;
+    }
+    const bubble = document.createElement("div");
+    bubble.className = "ask-daily__msg ask-daily__msg--user";
+    bubble.textContent = text;
+    transcriptEl.append(bubble);
+    scrollTranscript();
+  };
+
+  const appendAgentBubble = (text: string, messageId: string, traceId: string): void => {
+    if (!(transcriptEl instanceof HTMLElement)) {
+      return;
+    }
+    const turn = document.createElement("div");
+    turn.className = "ask-daily__agent-turn";
+
+    const bubble = document.createElement("div");
+    bubble.className = "ask-daily__msg ask-daily__msg--agent";
+    bubble.textContent = text;
+
+    const feedback = document.createElement("div");
+    feedback.className = "ask-daily__feedback";
+    feedback.setAttribute("role", "group");
+    feedback.setAttribute("aria-label", "Rate this answer");
+    feedback.innerHTML = `
+      <button type="button" class="ask-daily__score" data-score="1" aria-label="Helpful">👍</button>
+      <button type="button" class="ask-daily__score" data-score="0" aria-label="Not helpful">👎</button>
+    `;
+
+    feedback.addEventListener("click", (event) => {
+      const target = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-score]");
+      if (!target || feedback.dataset.scored === "true") {
+        return;
+      }
+      const score = target.dataset.score === "1" ? 1 : 0;
+      feedback.dataset.scored = "true";
+      trackAgentScore(ASK_DAILY_AGENT_ID, traceId, {
+        targetMessageId: messageId,
+        score,
+      });
+      feedback.querySelectorAll("button").forEach((btn) => {
+        btn.disabled = true;
+        btn.classList.toggle("ask-daily__score--chosen", btn === target);
+      });
+    });
+
+    turn.append(bubble, feedback);
+    transcriptEl.append(turn);
+    scrollTranscript();
+  };
 
   const open = (): void => {
     panel.hidden = false;
@@ -72,6 +152,10 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
   };
 
   const close = (): void => {
+    if (sessionTurns > 0) {
+      endAgentChatSession(ASK_DAILY_AGENT_ID);
+      sessionTurns = 0;
+    }
     panel.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
     toggle.focus();
@@ -125,7 +209,8 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
 
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const value = (input as HTMLInputElement).value.trim().toLowerCase();
+    const rawValue = (input as HTMLInputElement).value.trim();
+    const value = rawValue.toLowerCase();
     if (!value) {
       if (errorEl instanceof HTMLElement) {
         errorEl.hidden = false;
@@ -135,41 +220,57 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
     if (errorEl instanceof HTMLElement) {
       errorEl.hidden = true;
     }
-    const requestId = crypto.randomUUID();
-    const conversationId = crypto.randomUUID();
+
     const traceId = crypto.randomUUID();
-    const messageId = crypto.randomUUID();
-    trackAgentUserMessage("ask-the-daily", messageId, {
+    const userMessageId = crypto.randomUUID();
+    const responseMessageId = crypto.randomUUID();
+    const intent = inferDiscoveryIntent(value);
+
+    trackAgentUserMessage(ASK_DAILY_AGENT_ID, userMessageId, traceId, {
       surface: "ask_the_daily",
-      intent: inferDiscoveryIntent(value),
+      intent,
       message_length: value.length,
+    }, { userMessageText: userMessageSurrogate(intent, value.length) });
+
+    const tools = scriptedToolCallsForIntent(intent, traceId);
+    tools.forEach((tool, index) => {
+      trackAgentToolCall(ASK_DAILY_AGENT_ID, {
+        traceId,
+        parentMessageId: userMessageId,
+        invocationId: syntheticInvocationId(traceId, index),
+        toolName: tool.toolName,
+        toolInput: tool.toolInput,
+        toolOutput: tool.toolOutput,
+        latencyMs: syntheticToolLatencyMs(traceId, index),
+        success: true,
+      });
     });
-    trackDemoEvent("Chat Request Submitted", {
-      conversation_id: conversationId,
-      request_id: requestId,
-      intent: inferDiscoveryIntent(value),
-      message_length: value.length,
-    });
+
+    appendUserBubble(rawValue);
+    (input as HTMLInputElement).value = "";
+    sessionTurns += 1;
+
     const started = performance.now();
     const entry =
       faq.find((item) => item.keywords.some((keyword) => value.includes(keyword))) ?? faq[faq.length - 1];
-    if (answerEl instanceof HTMLElement) {
-      answerEl.hidden = false;
-      answerEl.textContent = entry.answer;
-    }
+    appendAgentBubble(entry.answer, responseMessageId, traceId);
+
     const latencyMs = performance.now() - started;
-    trackAgentAiResponse("ask-the-daily", crypto.randomUUID(), {
+    trackAgentAiResponse(ASK_DAILY_AGENT_ID, responseMessageId, {
       latencyMs,
       traceId,
-    });
-    trackDemoEvent("Chat Response Delivered", {
-      conversation_id: conversationId,
-      request_id: requestId,
-      response_type: "support_steps",
-      result_count: 1,
-      response_latency_ms: latencyMs,
+      responseText: entry.answer,
+      userCharLength: value.length,
+      answerCharLength: entry.answer.length,
     });
   });
+}
+
+function userMessageSurrogate(intent: string, length: number): string {
+  if (intent !== "unknown") {
+    return intent;
+  }
+  return `[redacted user message, ${length} chars]`;
 }
 
 function inferDiscoveryIntent(value: string): string {
