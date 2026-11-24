@@ -230,7 +230,7 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
       surface: "ask_the_daily",
       intent,
       message_length: value.length,
-    }, { userMessageText: userMessageSurrogate(intent, value.length) });
+    }, { userMessageText: telemetryUserMessageText(rawValue) });
 
     const tools = scriptedToolCallsForIntent(intent, traceId);
     tools.forEach((tool, index) => {
@@ -266,11 +266,13 @@ export function mountAskDailyAssistant(root: HTMLElement): void {
   });
 }
 
-function userMessageSurrogate(intent: string, length: number): string {
-  if (intent !== "unknown") {
-    return intent;
+const AGENT_USER_MESSAGE_MAX_CHARS = 500;
+
+function telemetryUserMessageText(text: string): string {
+  if (text.length <= AGENT_USER_MESSAGE_MAX_CHARS) {
+    return text;
   }
-  return `[redacted user message, ${length} chars]`;
+  return `${text.slice(0, AGENT_USER_MESSAGE_MAX_CHARS)}…`;
 }
 
 function inferDiscoveryIntent(value: string): string {
