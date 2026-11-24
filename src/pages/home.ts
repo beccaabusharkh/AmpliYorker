@@ -7,15 +7,17 @@ import {
   type Article,
 } from "../lib/articles";
 import { getPageParams } from "../lib/statsig/page-params";
-import { syncReaderUserProperties } from "../lib/analytics/user-properties";
 import { trackDemoEvent } from "../lib/analytics/track";
-import { isNewsletterSubscribed, shouldShowRetentionOffer, subscribeToNewsletter } from "../lib/session";
+import {
+  attachNewsletterModule,
+  newsletterCopyFromHomeParams,
+  renderNewsletterSection,
+} from "../lib/newsletter-ui";
+import { shouldShowRetentionOffer } from "../lib/session";
 import { navigateToHash } from "../lib/router";
 import { baseUrl } from "../lib/paths";
 
 type HomeTab = "top" | "product-analytics" | "experimentation" | "podcasts";
-
-const DAILY_BRIEFING_NEWSLETTER_ID = "daily-briefing";
 
 function filterForTab(tab: HomeTab) {
   const all = getAllArticles().filter((item) => !item.sponsored);
@@ -131,16 +133,7 @@ export function renderHomePage(): HTMLElement {
         </section>`
             : ""
         }
-        <section class="home-newsletter home-fidelity-band" id="home-newsletter" data-newsletter>
-          <h3>${p.newsletter_title}</h3>
-          <p>${p.newsletter_subcopy}</p>
-          <form data-newsletter-form data-precision-event>
-            <label for="newsletter-email">${p.newsletter_email_label}</label>
-            <input id="newsletter-email" type="email" name="email" placeholder="${escapeAttr(p.newsletter_placeholder)}" />
-            <button type="submit">${p.newsletter_submit_label}</button>
-          </form>
-          <p class="newsletter-success" data-newsletter-success hidden>${p.newsletter_success_message}</p>
-        </section>
+        <div id="home-newsletter-mount" data-home-newsletter-mount></div>
       </div>
       <aside class="home-rail" aria-label="Marketplace and latest">
         <section class="home-sponsored-module sponsored-card home-fidelity-band" data-sponsored-module>
@@ -270,34 +263,17 @@ export function renderHomePage(): HTMLElement {
     });
   }
 
-  const newsletterForm = main.querySelector("[data-newsletter-form]");
-  const newsletterSuccess = main.querySelector("[data-newsletter-success]");
-  if (isNewsletterSubscribed(DAILY_BRIEFING_NEWSLETTER_ID)) {
-    if (newsletterSuccess instanceof HTMLElement) {
-      newsletterSuccess.hidden = false;
-    }
-    if (newsletterForm instanceof HTMLElement) {
-      newsletterForm.hidden = true;
-    }
+  const homeNewsletterMount = main.querySelector("[data-home-newsletter-mount]");
+  if (homeNewsletterMount instanceof HTMLElement) {
+    const copy = newsletterCopyFromHomeParams(p);
+    const section = renderNewsletterSection(copy, {
+      surfaceClass: "home-newsletter home-fidelity-band",
+      inputId: "newsletter-email",
+    });
+    section.id = "home-newsletter";
+    homeNewsletterMount.append(section);
+    attachNewsletterModule(homeNewsletterMount, { entryPoint: "home" });
   }
-
-  newsletterForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const newlySubscribed = subscribeToNewsletter(DAILY_BRIEFING_NEWSLETTER_ID);
-    syncReaderUserProperties();
-    if (newsletterSuccess instanceof HTMLElement) {
-      newsletterSuccess.hidden = false;
-    }
-    if (newsletterForm instanceof HTMLElement) {
-      newsletterForm.hidden = true;
-    }
-    if (newlySubscribed) {
-      trackDemoEvent("Newsletter Subscription Completed", {
-        newsletter_id: DAILY_BRIEFING_NEWSLETTER_ID,
-        entry_point: "home",
-      });
-    }
-  });
 
   return main;
 }
