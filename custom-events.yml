@@ -11,7 +11,7 @@ conventions:
   simulation: "Exclude seeded history and forced experiment traffic from live experiment conclusions."
   statsig_mirror: "Each wired event also logs to Statsig as snake_case only (e.g. read_article) via trackStatsigMirror. Reserve auto_capture:: for Web Analytics plugin only (page_view, clicks)."
   statsig_exposures: "All SDK evaluations (gates, experiments, parameter stores) log exposures to Statsig; sessionStorage inspector is a deduped demo mirror labeled vs server logs."
-  statsig_identity: "Statsig userID = reader_id ?? anonymous_id; customIDs.amplitude_device_id mirrors Amplitude device_id; custom.account_state uses resolveAccountState()."
+  statsig_identity: "Statsig userID = reader_id ?? anonymous_id; customIDs.amplitude_device_id mirrors Amplitude device_id; custom.account_state uses resolveAccountState(). User properties newsletter_subscriber and newsletter_id sync to Amplitude Identify and Statsig custom via syncReaderUserProperties()."
   privacy: "Exclude passwords, payment details, email addresses, and raw search queries in product events. Agent Analytics `[Agent] User Message` on Ask the Daily may include truncated demo chat text in `$llm_message` (Session Replay masks `#chat-input` / chat surfaces). Other free-text chat or survey responses stay excluded elsewhere."
   reading: "content_progress_percent measures content position reached, not proof that every preceding word was read."
   excluded_autocapture: ["Raw Form Interactions", "Raw Scroll Events", "File Downloads"]
@@ -31,6 +31,21 @@ common_properties:
   is_simulated: {"type": "boolean"}
   is_forced_variant: {"type": "boolean"}
   demo_run_id: {"type": "string"}
+
+user_properties:
+  newsletter_subscriber:
+    type: boolean
+    amplitude: true
+    statsig_custom: true
+    synced_by: syncReaderUserProperties
+    description: "True after the reader persists a simulated newsletter subscription in local session storage."
+    statsig_targeting_hint: "Exclude existing subscribers by targeting newsletter_subscriber is false."
+  newsletter_id:
+    type: ["string", "null"]
+    amplitude: true
+    statsig_custom: true
+    synced_by: syncReaderUserProperties
+    description: "Newsletter identifier when subscribed (e.g. daily-briefing); null when not subscribed. No email or PII."
 
 events:
   Topic Filter Applied:

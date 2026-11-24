@@ -1,8 +1,7 @@
 import { getRegisteredReaderPersona } from "../lib/personas";
 import { getPageParams } from "../lib/statsig/page-params";
 import { navigateToHash } from "../lib/router";
-import { ensureAmplitudeIdentity } from "../lib/amplitude/init";
-import { syncStatsigIdentity } from "../lib/statsig/init";
+import { syncReaderUserProperties } from "../lib/analytics/user-properties";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { loginWithCredentials } from "../lib/session";
 
@@ -41,8 +40,7 @@ export function renderLoginPage(): HTMLElement {
       return;
     }
     errorEl?.setAttribute("hidden", "");
-    ensureAmplitudeIdentity();
-    void syncStatsigIdentity();
+    syncReaderUserProperties();
     trackDemoEvent("Sign In Completed", {
       sign_in_method: "demo_account",
       entry_point: "account_login",

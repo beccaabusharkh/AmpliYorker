@@ -1,7 +1,7 @@
 import { StatsigClient } from "@statsig/js-client";
 import { StatsigAutoCapturePlugin } from "@statsig/web-analytics";
 import { readerIdentityLabel, resolveAccountState } from "../analytics/context";
-import { isLoggedIn } from "../session";
+import { isLoggedIn, resolveNewsletterUserProperties } from "../session";
 import { ensureAmplitudeIdentity } from "../amplitude/init";
 import { bindStatsigClient, refreshLocalAssignments } from "./evaluate";
 import { readForcedAssignments } from "./overrides";
@@ -61,6 +61,7 @@ export async function initStatsig(): Promise<void> {
 
 export function buildStatsigUser() {
   const identity = readerIdentityLabel();
+  const newsletter = resolveNewsletterUserProperties();
   return {
     userID: identity.reader_id ?? identity.anonymous_id,
     customIDs: {
@@ -69,6 +70,8 @@ export function buildStatsigUser() {
     custom: {
       account_state: resolveAccountState(),
       is_logged_in: isLoggedIn(),
+      newsletter_subscriber: newsletter.newsletter_subscriber,
+      newsletter_id: newsletter.newsletter_id,
     },
   };
 }

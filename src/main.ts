@@ -1,5 +1,6 @@
 import "./styles/tokens.css";
 import "./styles/editorial.css";
+import { syncReaderUserProperties } from "./lib/analytics/user-properties";
 import { initAmplitude } from "./lib/amplitude/init";
 import { initStatsig } from "./lib/statsig/init";
 import { getCurrentRoute, onRouteChange, type Route } from "./lib/router";
@@ -75,6 +76,7 @@ function renderApp(route: Route): void {
 async function boot(): Promise<void> {
   await initAmplitude();
   await initStatsig();
+  syncReaderUserProperties();
   const initialRoute = getCurrentRoute();
   if (!window.location.hash) {
     window.location.hash = "#/";

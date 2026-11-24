@@ -7,12 +7,15 @@ import {
   type Article,
 } from "../lib/articles";
 import { getPageParams } from "../lib/statsig/page-params";
+import { syncReaderUserProperties } from "../lib/analytics/user-properties";
 import { trackDemoEvent } from "../lib/analytics/track";
-import { shouldShowRetentionOffer } from "../lib/session";
+import { isNewsletterSubscribed, shouldShowRetentionOffer, subscribeToNewsletter } from "../lib/session";
 import { navigateToHash } from "../lib/router";
 import { baseUrl } from "../lib/paths";
 
 type HomeTab = "top" | "product-analytics" | "experimentation" | "podcasts";
+
+const DAILY_BRIEFING_NEWSLETTER_ID = "daily-briefing";
 
 function filterForTab(tab: HomeTab) {
   const all = getAllArticles().filter((item) => !item.sponsored);
@@ -267,16 +270,33 @@ export function renderHomePage(): HTMLElement {
     });
   }
 
-  main.querySelector("[data-newsletter-form]")?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const success = main.querySelector("[data-newsletter-success]");
-    if (success instanceof HTMLElement) {
-      success.hidden = false;
+  const newsletterForm = main.querySelector("[data-newsletter-form]");
+  const newsletterSuccess = main.querySelector("[data-newsletter-success]");
+  if (isNewsletterSubscribed(DAILY_BRIEFING_NEWSLETTER_ID)) {
+    if (newsletterSuccess instanceof HTMLElement) {
+      newsletterSuccess.hidden = false;
     }
-    trackDemoEvent("Newsletter Subscription Completed", {
-      newsletter_id: "daily-briefing",
-      entry_point: "home",
-    });
+    if (newsletterForm instanceof HTMLElement) {
+      newsletterForm.hidden = true;
+    }
+  }
+
+  newsletterForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const newlySubscribed = subscribeToNewsletter(DAILY_BRIEFING_NEWSLETTER_ID);
+    syncReaderUserProperties();
+    if (newsletterSuccess instanceof HTMLElement) {
+      newsletterSuccess.hidden = false;
+    }
+    if (newsletterForm instanceof HTMLElement) {
+      newsletterForm.hidden = true;
+    }
+    if (newlySubscribed) {
+      trackDemoEvent("Newsletter Subscription Completed", {
+        newsletter_id: DAILY_BRIEFING_NEWSLETTER_ID,
+        entry_point: "home",
+      });
+    }
   });
 
   return main;
