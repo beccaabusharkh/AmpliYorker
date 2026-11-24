@@ -10,14 +10,15 @@
 
 2. **Mismatched trace IDs per turn** — `trackAgentUserMessage` generated a new `[Agent] Trace ID` internally while `discovery-chat.ts` passed a different `traceId` into `trackAgentAiResponse`. User and assistant events for the same turn could not be joined in Agent Analytics.
 
-**Privacy baseline:** `custom-events.yml` forbids raw free-text chat in telemetry. User messages must use a surrogate; scripted FAQ answers are safe for AI Response.
+**Privacy baseline:** Product events still avoid raw free-text. For Agent Analytics UI, Ask the Daily now sends truncated user display text in `$llm_message` (max 500 chars). Session Replay masks `#chat-input` and chat surfaces in the player via existing privacy selectors.
 
 ## Fix
 
 | Area | Change |
 | --- | --- |
 | `src/lib/analytics/agent-chat.ts` | Add `$llm_message: { text }` on User Message and AI Response; accept `traceId` on User Message (caller-owned, shared per turn); optional `userMessageText` / `responseText`. |
-| `src/ui/discovery-chat.ts` | One `traceId` per submit; surrogate text from intent or `[redacted user message, N chars]`; FAQ text on AI Response; `endAgentChatSession("ask-the-daily")` on panel close after ≥1 turn; removed duplicate product chat events. |
+| `src/ui/discovery-chat.ts` | One `traceId` per submit; `telemetryUserMessageText(rawValue)` on User Message (session title + thread); FAQ text on AI Response; `endAgentChatSession("ask-the-daily")` on panel close after ≥1 turn; removed duplicate product chat events. |
+| `src/lib/analytics/agent-chat.ts` (replay) | Spread `sessionReplay().getSessionReplayProperties()` and optional `$session_id` on every `[Agent]` event so **View Replay** works in Agent Analytics. |
 | UI | In-panel chat transcript (user right/gray, agent left); disclosure paragraph removed; multi-turn session history. |
 | `account-support-chat.ts` | API alignment only (shared trace + `$llm_message`; product chat events unchanged). |
 
@@ -31,7 +32,7 @@
 ## Live validation (manual)
 
 1. Open Ask the Daily, submit a chip or typed question.
-2. In Amplitude Agent Analytics, confirm the session shows user + assistant rows with message text (user row shows intent surrogate; assistant shows FAQ snippet).
+2. In Amplitude Agent Analytics, confirm the session list title is the first user message and the thread shows user + assistant rows (user row shows typed text; assistant shows FAQ snippet).
 3. Confirm both events share the same `[Agent] Trace ID` and `[Agent] Turn ID` for that exchange.
 4. Close panel after a turn; confirm `[Agent] Session End` fires once.
 
@@ -52,3 +53,18 @@ Customer demos need plausible Agent Analytics depth without a live LLM. All synt
 - `npm run build` — **PASS**
 - `npm run test:statsig-params` — **PASS**
 - `npm run test:custom-events-parity` — **PASS** (dict 43, wired 36)
+
+## Session Replay in Agent Analytics
+
+**Symptom:** No **View Replay** on an agent session even though Session Replay is sampled on the demo site.
+
+**Cause:** The session replay enrichment plugin auto-attaches `[Amplitude] Session Replay ID` to normal `track()` events. `[Agent]` events are emitted through the same `track()` API but need replay properties merged on each payload so Agent Analytics can join the session to a replay segment.
+
+**Fix:** `agentSessionReplayProperties()` in `agent-chat.ts` calls `sessionReplay()?.getSessionReplayProperties()` when Amplitude is ready and spreads the result into `baseAgentProps()` for User Message, Tool Call, AI Response, Score, Session Enrichment, and Session End.
+
+**How to validate View Replay**
+
+1. Use a browser session that is in the replay sample (`VITE_AMPLITUDE_REPLAY_SAMPLE_RATE`, default 0.25).
+2. Open Ask the Daily, submit at least one message, then close the panel (Session End).
+3. In Amplitude **Agent Analytics**, open the session and confirm agent events include `[Amplitude] Session Replay ID` on the event details (same value across the turn).
+4. When the replay ID is present and replay data has landed, **View Replay** appears on the session; opening it should show masked chat input per `#chat-input` mask selectors while transcript text comes from `$llm_message`.

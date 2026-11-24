@@ -12,11 +12,11 @@ conventions:
   statsig_mirror: "Each wired event also logs to Statsig as snake_case only (e.g. read_article) via trackStatsigMirror. Reserve auto_capture:: for Web Analytics plugin only (page_view, clicks)."
   statsig_exposures: "All SDK evaluations (gates, experiments, parameter stores) log exposures to Statsig; sessionStorage inspector is a deduped demo mirror labeled vs server logs."
   statsig_identity: "Statsig userID = reader_id ?? anonymous_id; customIDs.amplitude_device_id mirrors Amplitude device_id; custom.account_state uses resolveAccountState()."
-  privacy: "Exclude passwords, payment details, email addresses, raw search queries, and free-text chat or survey responses."
+  privacy: "Exclude passwords, payment details, email addresses, and raw search queries in product events. Agent Analytics `[Agent] User Message` on Ask the Daily may include truncated demo chat text in `$llm_message` (Session Replay masks `#chat-input` / chat surfaces). Other free-text chat or survey responses stay excluded elsewhere."
   reading: "content_progress_percent measures content position reached, not proof that every preceding word was read."
   excluded_autocapture: ["Raw Form Interactions", "Raw Scroll Events", "File Downloads"]
   selective_autocapture: ["[Amplitude] Page Viewed (hash routes)", "[Amplitude] Element Clicked", "[Amplitude] Element Changed on non-precision controls only"]
-  agent_analytics: "Parallel `[Agent] User Message` / `[Agent] Tool Call` / `[Agent] AI Response` / optional `[Agent] Score` / `[Agent] Session Enrichment` / `[Agent] Session End` on Ask the Daily (+ account support for core message events). Each chat message includes `$llm_message: { text }` (object). User Message uses intent/redaction surrogate — never raw free-text. AI Response uses scripted FAQ answer text. Token counts, cost USD, tool I/O, and tool latency are **deterministic demo synthesis** (see `agent-demo-synthesis.ts`), not live LLM billing. Shared `[Agent] Trace ID` per turn. Ask the Daily omits duplicate product `Chat Request Submitted` / `Chat Response Delivered` events; account support product chat events unchanged."
+  agent_analytics: "Parallel `[Agent] User Message` / `[Agent] Tool Call` / `[Agent] AI Response` / optional `[Agent] Score` / `[Agent] Session Enrichment` / `[Agent] Session End` on Ask the Daily (+ account support for core message events). Each chat message includes `$llm_message: { text }` (object). Ask the Daily User Message sends truncated display text (max 500 chars) so Agent Analytics session titles and threads match reader input; account support User Message stays redaction surrogate. Merge `[Amplitude] Session Replay ID` (and optional `$session_id`) on every `[Agent]` event via `sessionReplay().getSessionReplayProperties()`. AI Response uses scripted FAQ answer text. Token counts, cost USD, tool I/O, and tool latency are **deterministic demo synthesis** (see `agent-demo-synthesis.ts`), not live LLM billing. Shared `[Agent] Trace ID` per turn. Ask the Daily omits duplicate product `Chat Request Submitted` / `Chat Response Delivered` events; account support product chat events unchanged."
   implementation_notes: ["Adding to cart persists the selected subscription offer in the checkout draft; no separate cart page is required.", "Record money only on Subscription Payment Completed and Ad Revenue Recorded.", "Checkout, activation, trial conversion, and renewal events must not duplicate revenue.", "Read Article replaces Article Reading Started, Article Reading Completed, and Reading Resumed.", "Read Article dedupes with stable insert_id read-article:{article_id}:{milestone}:{demo_run_id}.", "Precision surfaces use data-precision-event or data-* form roots; autocapture resolver skips them."]
 
 common_properties:
@@ -342,7 +342,7 @@ events:
       "[Agent] Message ID": {"type": "string"}
       "[Agent] Context": {"type": "string"}
       $llm_message: {"type": "object"}
-    fires_at: "AskTheDaily or AccountSupport, after accepting a nonempty reader request. `$llm_message.text` is an intent label or redaction surrogate — never raw user free-text."
+    fires_at: "AskTheDaily or AccountSupport, after accepting a nonempty reader request. Ask the Daily `$llm_message.text` is truncated user display text (max 500 chars); account support uses a redaction surrogate. Session Replay continues to mask chat inputs in the replay player."
     carries_revenue: false
 
   "[Agent] AI Response":

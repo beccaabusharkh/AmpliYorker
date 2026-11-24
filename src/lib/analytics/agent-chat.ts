@@ -1,4 +1,4 @@
-import { track } from "@amplitude/unified";
+import { track, sessionReplay, getSessionId } from "@amplitude/unified";
 import { getDemoRunId, getOrCreateAnonymousId } from "./context";
 import { isAmplitudeReady } from "../amplitude/init";
 import { trackStatsigMirror } from "../statsig/events";
@@ -174,8 +174,17 @@ function trackAgentSessionEnrichment(agentId: string, session: AgentChatSession)
   trackStatsigMirror("[Agent] Session Enrichment", props);
 }
 
+function agentSessionReplayProperties(): Record<string, string | boolean | null> {
+  if (!isAmplitudeReady()) {
+    return {};
+  }
+  return sessionReplay()?.getSessionReplayProperties() ?? {};
+}
+
 function baseAgentProps(agentId: string, session: AgentChatSession, traceId: string) {
+  const ampSessionId = getSessionId();
   return {
+    ...agentSessionReplayProperties(),
     "[Agent] Session ID": session.sessionId,
     "[Agent] Turn ID": session.turn,
     "[Agent] Trace ID": traceId,
@@ -184,5 +193,6 @@ function baseAgentProps(agentId: string, session: AgentChatSession, traceId: str
     "[Agent] Runtime": "browser",
     "[Agent] Session Trigger": "interactive",
     device_id: getOrCreateAnonymousId(),
+    ...(ampSessionId != null ? { $session_id: ampSessionId } : {}),
   };
 }
