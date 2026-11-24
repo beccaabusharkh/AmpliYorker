@@ -1,4 +1,7 @@
+import { attachArticleNewsletterSentinel } from "../lib/article-newsletter-sentinel";
 import { getArticleById, getRecommendations, formatTopicLabel } from "../lib/articles";
+import { newsletterCopyFromHomeParams } from "../lib/newsletter-ui";
+import { PAGE_DEFAULTS } from "../lib/statsig/page-params-defaults";
 import { renderArticleBodyContent, renderArticleHero } from "../lib/article-render";
 import { getAdByPlacement, renderAdUnit } from "../lib/ads";
 import { canAccessArticle, isPremiumArticle, paywallMessage, paywallMessageExperimentId } from "../lib/paywall";
@@ -120,6 +123,8 @@ export function renderArticlePage(id: string): HTMLElement {
           <hr class="end-rule" />
           <p>${p.article_end_signoff}</p>
         </section>
+        <div data-article-newsletter-sentinel class="article-newsletter-sentinel" aria-hidden="true"></div>
+        <div data-article-newsletter-mount class="article-newsletter-mount" hidden></div>
         <section class="recommendations">
           <h2>${p.recommendations_heading}</h2>
           <ul>${recs}</ul>
@@ -211,7 +216,7 @@ export function renderArticlePage(id: string): HTMLElement {
     navigateToHash(`#/article/${encodeURIComponent(article.id)}`);
   });
 
-  main.querySelectorAll("[data-rec-link], [data-paywall-login], [data-paywall-sub]").forEach((link) => {
+  main.querySelectorAll("[data-paywall-login], [data-paywall-sub]").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       const href = (link as HTMLAnchorElement).getAttribute("href");
@@ -220,6 +225,25 @@ export function renderArticlePage(id: string): HTMLElement {
       }
     });
   });
+
+  main.querySelectorAll("[data-rec-link]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const href = (link as HTMLAnchorElement).getAttribute("href");
+      const destMatch = href?.match(/\/article\/([^/?#]+)/);
+      const destinationArticleId = destMatch ? decodeURIComponent(destMatch[1]) : "";
+      trackDemoEvent("Article Recommendation Clicked", {
+        source_article_id: article.id,
+        destination_article_id: destinationArticleId,
+      });
+      if (href) {
+        navigateToHash(href.replace(/^#/, ""));
+      }
+    });
+  });
+
+  const homeCopy = newsletterCopyFromHomeParams(PAGE_DEFAULTS.home);
+  attachArticleNewsletterSentinel(main, article.id, homeCopy);
 
   return main;
 }

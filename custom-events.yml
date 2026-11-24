@@ -141,8 +141,16 @@ events:
   Newsletter Subscription Completed:
     properties:
       newsletter_id: {"type": "string"}
-      entry_point: {"type": "string"}
+      entry_point: {"type": "string", "enum": ["home", "article_end"]}
+      source_article_id: {"type": ["string", "null"]}
     fires_at: "NewsletterForm, after persisting a new simulated newsletter subscription."
+    carries_revenue: false
+
+  Article Recommendation Clicked:
+    properties:
+      source_article_id: {"type": "string"}
+      destination_article_id: {"type": "string"}
+    fires_at: "ArticleRecommendationsList, when the reader activates a recommended article link."
     carries_revenue: false
 
   Newsletter Unsubscription Completed:

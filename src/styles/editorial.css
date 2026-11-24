@@ -1072,6 +1072,26 @@ body {
   color: var(--color-ink-muted);
 }
 
+.article-newsletter-sentinel {
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.article-newsletter-mount:not([hidden]) {
+  margin-bottom: var(--space-section);
+}
+
+.article-page .article-end-newsletter {
+  max-width: var(--measure-article);
+  border: var(--fid-rule-hairline) solid var(--fid-rule-color-muted);
+  border-radius: 0;
+  background: var(--color-canvas);
+  padding: var(--fid-section-gap) 0;
+  margin: var(--space-section) 0;
+}
+
 .end-rule {
   border: none;
   border-top: 1px solid var(--color-rule);

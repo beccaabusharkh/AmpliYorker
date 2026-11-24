@@ -33,6 +33,7 @@ function renderInspector(root: HTMLElement): void {
       <ul>${forcedList || "<li>none</li>"}</ul>
       <div class="inspector-actions">
         <button type="button" data-force-sub-urgency>Force subscription message: urgency</button>
+        <p class="simulation-label">Article newsletter (<code>article_layer</code> → <code>show_article_newsletter</code>) is read only when the end-of-article sentinel intersects; use Statsig overrides or console allocation — not wired to forced demo buttons.</p>
         <button type="button" data-clear-forced>Clear forced overrides</button>
         <button type="button" data-clear-exposures>Clear exposure log</button>
       </div>
