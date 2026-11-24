@@ -20,10 +20,10 @@ import {
   CANCELLATION_REASONS,
   cancellationReasonLabels,
 } from "../lib/session";
+import { syncReaderUserProperties } from "../lib/analytics/user-properties";
 import { resetAmplitudeIdentity, ensureAmplitudeIdentity } from "../lib/amplitude/init";
 import { getPageParams } from "../lib/statsig/page-params";
 import { clearExposures } from "../lib/statsig/exposures";
-import { syncStatsigIdentity } from "../lib/statsig/init";
 import { trackDemoEvent } from "../lib/analytics/track";
 import { resolveAccountState } from "../lib/analytics/context";
 import { showToast } from "../ui/toast";
@@ -180,7 +180,7 @@ export function renderAccountPage(): HTMLElement {
     logout();
     resetAmplitudeIdentity();
     clearExposures();
-    void syncStatsigIdentity();
+    syncReaderUserProperties();
     navigateToHash("#/");
   });
 

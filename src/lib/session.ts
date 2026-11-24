@@ -6,6 +6,11 @@ export const SESSION_SCHEMA_VERSION = 2;
 
 export type SubscriptionStatus = "none" | "active" | "canceled" | "expired";
 
+export type NewsletterSubscriptionState = {
+  subscribed: boolean;
+  subscribedAt: string | null;
+};
+
 export type SessionState = {
   schemaVersion: number;
   activePersonaId: string;
@@ -36,6 +41,7 @@ export type SessionState = {
   secondaryDeviceLabel: string | null;
   pendingCheckoutPlanId: string | null;
   pendingIntroOffer: boolean;
+  newsletters: Record<string, NewsletterSubscriptionState>;
 };
 
 const CANCELLATION_REASONS = [
@@ -89,6 +95,7 @@ function defaultState(): SessionState {
     secondaryDeviceLabel: null,
     pendingCheckoutPlanId: null,
     pendingIntroOffer: false,
+    newsletters: {},
   };
 }
 
@@ -101,7 +108,12 @@ function parseState(raw: string | null): SessionState {
     if (parsed.schemaVersion !== SESSION_SCHEMA_VERSION) {
       return defaultState();
     }
-    return { ...defaultState(), ...parsed, subscription: { ...defaultState().subscription, ...parsed.subscription } };
+    return {
+      ...defaultState(),
+      ...parsed,
+      subscription: { ...defaultState().subscription, ...parsed.subscription },
+      newsletters: { ...defaultState().newsletters, ...(parsed.newsletters ?? {}) },
+    };
   } catch {
     return defaultState();
   }
@@ -197,10 +209,58 @@ export function logout(): SessionState {
   return updateSession((state) => ({
     ...defaultState(),
     engagement: state.engagement,
+    newsletters: state.newsletters,
     demoTimeOffsetDays: state.demoTimeOffsetDays,
     deviceLabel: state.deviceLabel,
     secondaryDeviceLabel: state.secondaryDeviceLabel,
   }));
+}
+
+export function isNewsletterSubscribed(newsletterId: string): boolean {
+  return loadSession().newsletters[newsletterId]?.subscribed === true;
+}
+
+/** Returns whether this call newly persisted a subscription (false if already subscribed). */
+export function subscribeToNewsletter(newsletterId: string): boolean {
+  let newlySubscribed = false;
+  updateSession((state) => {
+    if (state.newsletters[newsletterId]?.subscribed) {
+      return state;
+    }
+    newlySubscribed = true;
+    return {
+      ...state,
+      newsletters: {
+        ...state.newsletters,
+        [newsletterId]: {
+          subscribed: true,
+          subscribedAt: effectiveNow(state).toISOString(),
+        },
+      },
+    };
+  });
+  return newlySubscribed;
+}
+
+export type NewsletterUserProperties = {
+  newsletter_subscriber: boolean;
+  newsletter_id: string | null;
+};
+
+export function resolveNewsletterUserProperties(): NewsletterUserProperties {
+  const session = loadSession();
+  const subscribedIds = Object.entries(session.newsletters)
+    .filter(([, entry]) => entry.subscribed)
+    .map(([id]) => id)
+    .sort((a, b) => {
+      const aAt = session.newsletters[a]?.subscribedAt ?? "";
+      const bAt = session.newsletters[b]?.subscribedAt ?? "";
+      return bAt.localeCompare(aAt);
+    });
+  if (subscribedIds.length === 0) {
+    return { newsletter_subscriber: false, newsletter_id: null };
+  }
+  return { newsletter_subscriber: true, newsletter_id: subscribedIds[0] };
 }
 
 export function resetDemoData(): SessionState {
